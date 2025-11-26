@@ -28,7 +28,6 @@
         .mt-2 { margin-top: 8px; }
         .mt-4 { margin-top: 16px; }
         .text-6xl { font-size: 60px; }
-        .text-5xl { font-size: 48px; }
         .text-4xl { font-size: 36px; }
         .text-3xl { font-size: 30px; }
         .text-2xl { font-size: 24px; }
@@ -57,7 +56,6 @@
         .grid { display: grid; }
         .grid-2 { grid-template-columns: repeat(2, 1fr); }
         .grid-3 { grid-template-columns: repeat(3, 1fr); }
-        .grid-7 { grid-template-columns: repeat(7, 1fr); }
         .subject-card { background: linear-gradient(135deg, var(--from), var(--to)); padding: 20px; border-radius: 16px; cursor: pointer; transition: transform 0.2s; text-align: left; border: none; color: white; width: 100%; }
         .subject-card:hover { transform: translateY(-5px); }
         .subject-card .icon { font-size: 40px; margin-bottom: 10px; }
@@ -74,6 +72,7 @@
         .badge-yellow { background: #eab308; }
         .badge-purple { background: #8b5cf6; }
         .badge-blue { background: #3b82f6; }
+        .badge-red { background: #ef4444; }
         .nav { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
         .nav-btn { background: rgba(255,255,255,0.1); border: none; color: white; padding: 10px 16px; border-radius: 10px; cursor: pointer; font-size: 14px; }
         .nav-btn.active { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
@@ -83,12 +82,19 @@
         .health-warning { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
         .health-danger { background: linear-gradient(135deg, #ef4444, #f87171); }
         .alert { padding: 15px; border-radius: 12px; margin-bottom: 15px; }
-        .alert-info { background: rgba(59,130,246,0.2); border: 1px solid rgba(59,130,246,0.5); }
         .alert-success { background: rgba(34,197,94,0.2); border: 1px solid rgba(34,197,94,0.5); }
         .alert-warning { background: rgba(245,158,11,0.2); border: 1px solid rgba(245,158,11,0.5); }
         .tabs { display: flex; gap: 5px; margin-bottom: 20px; }
         .tab { padding: 10px 20px; background: rgba(255,255,255,0.1); border: none; color: white; border-radius: 10px 10px 0 0; cursor: pointer; }
         .tab.active { background: rgba(255,255,255,0.2); }
+        
+        /* Week Plan Card */
+        .week-plan-card { background: linear-gradient(135deg, var(--from), var(--to)); border-radius: 16px; padding: 20px; margin-bottom: 15px; position: relative; overflow: hidden; }
+        .week-plan-card::before { content: ''; position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; transform: translate(30%, -30%); }
+        .week-plan-card .week-number { font-size: 48px; font-weight: bold; opacity: 0.3; position: absolute; right: 20px; top: 10px; }
+        .week-plan-card .topics-list { margin-top: 15px; }
+        .week-plan-card .topic-item { background: rgba(255,255,255,0.15); padding: 8px 12px; border-radius: 8px; margin: 5px 0; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+        .week-plan-card .topic-item::before { content: '✓'; color: rgba(255,255,255,0.5); }
         
         /* Calendar Styles */
         .week-card { background: rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; margin-bottom: 15px; border-left: 4px solid var(--accent); }
@@ -141,6 +147,12 @@
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .modal { background: linear-gradient(135deg, #1e1b4b, #312e81); border-radius: 20px; padding: 30px; max-width: 550px; width: 100%; max-height: 90vh; overflow-y: auto; }
         
+        /* Study Plan Details */
+        .plan-detail-card { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 15px; margin-bottom: 10px; border-left: 3px solid var(--color); }
+        .plan-detail-card .detail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .plan-detail-card .detail-topics { display: flex; flex-wrap: wrap; gap: 6px; }
+        .plan-detail-card .detail-topic { background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 15px; font-size: 12px; }
+        
         @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .floating { animation: float 3s ease-in-out infinite; }
         @keyframes bounce { 0% { transform: scale(0); } 100% { transform: scale(1); } }
@@ -169,12 +181,63 @@
         const DAILY_GOAL = 2;
         
         const weeklyPlan = [
-            { week: 1, name: "Week 1", dates: "Dec 6-12", subject: "math", topic: "Number & Algebra", icon: "📐", color: { from: "#3b82f6", to: "#06b6d4" } },
-            { week: 2, name: "Week 2", dates: "Dec 13-19", subject: "english", topic: "Vocabulary", icon: "📚", color: { from: "#8b5cf6", to: "#ec4899" } },
-            { week: 3, name: "Week 3", dates: "Dec 20-26", subject: "math", topic: "Geometry", icon: "📐", color: { from: "#3b82f6", to: "#06b6d4" }, holiday: true },
-            { week: 4, name: "Week 4", dates: "Dec 27-Jan 2", subject: "science", topic: "Chemistry", icon: "🔬", color: { from: "#22c55e", to: "#14b8a6" }, holiday: true },
-            { week: 5, name: "Week 5", dates: "Jan 3-9", subject: "english", topic: "Grammar", icon: "📚", color: { from: "#8b5cf6", to: "#ec4899" } },
-            { week: 6, name: "Week 6", dates: "Jan 10-17", subject: "all", topic: "Final Review", icon: "🎯", color: { from: "#f97316", to: "#ef4444" } }
+            { 
+                week: 1, name: "Week 1", dates: "Dec 6-12", subject: "math", 
+                topic: "Number & Algebra", icon: "📐", 
+                color: { from: "#3b82f6", to: "#06b6d4" },
+                description: "Build strong foundation in numbers and basic algebra",
+                keyTopics: ["Integers & Operations", "Fractions & Decimals", "Percentages", "Basic Algebra", "Indices & Powers"],
+                dailyGoal: "2 exams/day",
+                targetGrade: "E7-E8"
+            },
+            { 
+                week: 2, name: "Week 2", dates: "Dec 13-19", subject: "english", 
+                topic: "Reading & Vocabulary", icon: "📚", 
+                color: { from: "#8b5cf6", to: "#ec4899" },
+                description: "Expand vocabulary and reading comprehension skills",
+                keyTopics: ["Synonyms & Antonyms", "Prefixes & Suffixes", "Parts of Speech", "Reading Comprehension", "Context Clues"],
+                dailyGoal: "2 exams/day",
+                targetGrade: "M5-M6"
+            },
+            { 
+                week: 3, name: "Week 3", dates: "Dec 20-26", subject: "math", 
+                topic: "Geometry & Statistics", icon: "📐", 
+                color: { from: "#3b82f6", to: "#06b6d4" }, holiday: true,
+                description: "Master shapes, measurements, and data analysis",
+                keyTopics: ["Angles & Triangles", "Area & Perimeter", "Circles & Pi", "Pythagoras Theorem", "Mean, Median, Mode"],
+                dailyGoal: "1-2 exams/day (holiday week)",
+                targetGrade: "E7-E8",
+                note: "🎄 Dec 25 is rest day"
+            },
+            { 
+                week: 4, name: "Week 4", dates: "Dec 27-Jan 2", subject: "science", 
+                topic: "All Science Topics", icon: "🔬", 
+                color: { from: "#22c55e", to: "#14b8a6" }, holiday: true,
+                description: "Explore chemistry, biology, and physics fundamentals",
+                keyTopics: ["Atoms & Elements", "Chemical Reactions", "Cells & Organisms", "Photosynthesis", "Forces & Energy"],
+                dailyGoal: "1-2 exams/day (holiday week)",
+                targetGrade: "M6-E7",
+                note: "🎆 Jan 1 is rest day"
+            },
+            { 
+                week: 5, name: "Week 5", dates: "Jan 3-9", subject: "english", 
+                topic: "Grammar & Writing", icon: "📚", 
+                color: { from: "#8b5cf6", to: "#ec4899" },
+                description: "Perfect grammar rules and writing techniques",
+                keyTopics: ["Sentence Structure", "Verb Tenses", "Subject-Verb Agreement", "Punctuation", "Paragraph Writing"],
+                dailyGoal: "2 exams/day",
+                targetGrade: "M5-M6"
+            },
+            { 
+                week: 6, name: "Week 6", dates: "Jan 10-17", subject: "all", 
+                topic: "Final Review", icon: "🎯", 
+                color: { from: "#f97316", to: "#ef4444" },
+                description: "Comprehensive review of all subjects",
+                keyTopics: ["Math Review", "English Review", "Science Review", "Social Science", "Mixed Practice"],
+                dailyGoal: "2-3 exams/day",
+                targetGrade: "E7-E8",
+                note: "Final push! 💪"
+            }
         ];
         
         const restDays = ['2025-12-25', '2026-01-01'];
@@ -230,32 +293,79 @@
             all_rounder: { icon: '🌟', name: 'All Rounder', desc: '3+ each subject', check: s => s.subjects.math >= 3 && s.subjects.english >= 3 && s.subjects.science >= 3 && s.subjects.social >= 3 }
         };
 
-        // ============ QUESTIONS ============
+        // ============ EXPANDED QUESTION DATABASE ============
         const questions = {
             math: {
                 name: "Mathematics", icon: "📐", from: "#3b82f6", to: "#06b6d4",
                 topics: {
                     "Number & Algebra": [
-                        { q: "Simplify: 3x + 5x - 2x", opts: ["6x", "8x", "10x", "4x"], ans: 0, exp: "(3+5-2)x = 6x", diff: "A3-A4" },
-                        { q: "What is 2³ × 2²?", opts: ["32", "16", "64", "8"], ans: 0, exp: "2³ × 2² = 2⁵ = 32", diff: "M5-M6" },
-                        { q: "Solve: 2x + 7 = 15", opts: ["x = 4", "x = 8", "x = 11", "x = 3"], ans: 0, exp: "2x = 8, x = 4", diff: "A3-A4" },
+                        // Integers
+                        { q: "Calculate: -5 + 8", opts: ["3", "-3", "13", "-13"], ans: 0, exp: "-5 + 8 = 3", diff: "A3-A4" },
+                        { q: "Calculate: -12 ÷ (-4)", opts: ["3", "-3", "8", "-8"], ans: 0, exp: "Negative ÷ negative = positive", diff: "A3-A4" },
+                        { q: "What is (-3) × (-7)?", opts: ["21", "-21", "10", "-10"], ans: 0, exp: "Negative × negative = positive", diff: "A3-A4" },
+                        // Fractions
+                        { q: "Simplify: 12/18", opts: ["2/3", "3/4", "1/2", "4/6"], ans: 0, exp: "12÷6 / 18÷6 = 2/3", diff: "A3-A4" },
+                        { q: "Calculate: 1/4 + 2/4", opts: ["3/4", "3/8", "1/2", "2/4"], ans: 0, exp: "Same denominator: 1+2=3", diff: "A3-A4" },
+                        { q: "Calculate: 2/3 × 3/4", opts: ["1/2", "6/7", "5/12", "2/4"], ans: 0, exp: "2×3=6, 3×4=12, 6/12=1/2", diff: "M5-M6" },
+                        { q: "Convert 0.75 to a fraction", opts: ["3/4", "7/5", "1/4", "4/3"], ans: 0, exp: "0.75 = 75/100 = 3/4", diff: "A3-A4" },
+                        // Percentages
                         { q: "What is 15% of 80?", opts: ["12", "15", "8", "10"], ans: 0, exp: "0.15 × 80 = 12", diff: "A3-A4" },
-                        { q: "Next: 2, 6, 18, 54, ...?", opts: ["162", "108", "72", "216"], ans: 0, exp: "×3: 54×3=162", diff: "M5-M6" },
+                        { q: "What is 25% of 200?", opts: ["50", "25", "75", "100"], ans: 0, exp: "0.25 × 200 = 50", diff: "A3-A4" },
+                        { q: "Convert 3/5 to a percentage", opts: ["60%", "35%", "53%", "65%"], ans: 0, exp: "3÷5 = 0.6 = 60%", diff: "M5-M6" },
+                        { q: "A shirt costs $40, with 20% off. Final price?", opts: ["$32", "$36", "$28", "$38"], ans: 0, exp: "20% of 40 = 8, 40-8 = 32", diff: "M5-M6" },
+                        // Algebra
+                        { q: "Simplify: 3x + 5x - 2x", opts: ["6x", "8x", "10x", "4x"], ans: 0, exp: "(3+5-2)x = 6x", diff: "A3-A4" },
+                        { q: "Solve: 2x + 7 = 15", opts: ["x = 4", "x = 8", "x = 11", "x = 3"], ans: 0, exp: "2x = 8, x = 4", diff: "A3-A4" },
+                        { q: "Solve: 3x - 5 = 10", opts: ["x = 5", "x = 15", "x = 3", "x = 7"], ans: 0, exp: "3x = 15, x = 5", diff: "A3-A4" },
+                        { q: "Expand: 2(x + 3)", opts: ["2x + 6", "2x + 3", "x + 6", "2x + 5"], ans: 0, exp: "2×x + 2×3 = 2x + 6", diff: "M5-M6" },
                         { q: "Factorise: x² - 9", opts: ["(x+3)(x-3)", "(x+9)(x-1)", "(x-3)²", "(x+3)²"], ans: 0, exp: "Difference of squares", diff: "E7-E8" },
-                        { q: "Ratio 3:5, 24 boys. Girls?", opts: ["40", "30", "45", "35"], ans: 0, exp: "1 part=8, 5×8=40", diff: "M5-M6" }
+                        // Indices
+                        { q: "What is 2³ × 2²?", opts: ["32", "16", "64", "8"], ans: 0, exp: "2³ × 2² = 2⁵ = 32", diff: "M5-M6" },
+                        { q: "Simplify: 10⁰", opts: ["1", "0", "10", "100"], ans: 0, exp: "Any number to power 0 = 1", diff: "A3-A4" },
+                        { q: "What is 5²?", opts: ["25", "10", "52", "125"], ans: 0, exp: "5 × 5 = 25", diff: "A3-A4" },
+                        { q: "Simplify: 2⁴ ÷ 2²", opts: ["4", "2", "8", "16"], ans: 0, exp: "2⁴⁻² = 2² = 4", diff: "M5-M6" },
+                        // Sequences
+                        { q: "Next: 2, 6, 18, 54, ...?", opts: ["162", "108", "72", "216"], ans: 0, exp: "×3 pattern: 54×3=162", diff: "M5-M6" },
+                        { q: "Next: 3, 7, 11, 15, ...?", opts: ["19", "18", "20", "17"], ans: 0, exp: "+4 pattern: 15+4=19", diff: "A3-A4" },
+                        // Ratios
+                        { q: "Ratio 3:5, 24 boys. How many girls?", opts: ["40", "30", "45", "35"], ans: 0, exp: "1 part=8, girls=5×8=40", diff: "M5-M6" },
+                        { q: "Simplify ratio 15:25", opts: ["3:5", "1:2", "5:3", "15:25"], ans: 0, exp: "÷5 each: 3:5", diff: "A3-A4" }
                     ],
                     "Geometry": [
-                        { q: "Area: 8cm × 5cm?", opts: ["40 cm²", "26 cm²", "13 cm²", "80 cm²"], ans: 0, exp: "8×5 = 40", diff: "A3-A4" },
-                        { q: "Triangle angles sum?", opts: ["180°", "360°", "90°", "270°"], ans: 0, exp: "Always 180°", diff: "A3-A4" },
-                        { q: "135° is what angle?", opts: ["Obtuse", "Acute", "Right", "Reflex"], ans: 0, exp: "90°-180° = obtuse", diff: "A3-A4" },
-                        { q: "Pythagoras: 3,4 → ?", opts: ["5", "7", "6", "12"], ans: 0, exp: "9+16=25, √25=5", diff: "E7-E8" },
-                        { q: "Circumference r=7 (π=22/7)?", opts: ["44 cm", "154 cm", "22 cm", "88 cm"], ans: 0, exp: "2πr = 44", diff: "M5-M6" }
+                        // Angles
+                        { q: "What type of angle is 135°?", opts: ["Obtuse", "Acute", "Right", "Reflex"], ans: 0, exp: "90°-180° = obtuse", diff: "A3-A4" },
+                        { q: "What type of angle is 45°?", opts: ["Acute", "Obtuse", "Right", "Reflex"], ans: 0, exp: "Less than 90° = acute", diff: "A3-A4" },
+                        { q: "Angles on a straight line sum to?", opts: ["180°", "360°", "90°", "270°"], ans: 0, exp: "Supplementary angles", diff: "A3-A4" },
+                        { q: "Sum of angles in a triangle?", opts: ["180°", "360°", "90°", "270°"], ans: 0, exp: "Always 180°", diff: "A3-A4" },
+                        { q: "Sum of angles in a quadrilateral?", opts: ["360°", "180°", "270°", "540°"], ans: 0, exp: "4 sides = 360°", diff: "M5-M6" },
+                        { q: "Two angles are complementary. One is 35°. Other?", opts: ["55°", "145°", "65°", "125°"], ans: 0, exp: "90-35=55", diff: "M5-M6" },
+                        // Area & Perimeter
+                        { q: "Area of rectangle 8cm × 5cm?", opts: ["40 cm²", "26 cm²", "13 cm²", "80 cm²"], ans: 0, exp: "8×5 = 40", diff: "A3-A4" },
+                        { q: "Perimeter of rectangle 8cm × 5cm?", opts: ["26 cm", "40 cm", "13 cm", "80 cm"], ans: 0, exp: "2(8+5) = 26", diff: "A3-A4" },
+                        { q: "Area of triangle: base 10cm, height 6cm?", opts: ["30 cm²", "60 cm²", "16 cm²", "8 cm²"], ans: 0, exp: "½ × 10 × 6 = 30", diff: "M5-M6" },
+                        { q: "Area of square with side 7cm?", opts: ["49 cm²", "28 cm²", "14 cm²", "21 cm²"], ans: 0, exp: "7 × 7 = 49", diff: "A3-A4" },
+                        // Circles
+                        { q: "Circumference formula?", opts: ["2πr", "πr²", "πd²", "2πr²"], ans: 0, exp: "C = 2πr or πd", diff: "M5-M6" },
+                        { q: "Area of circle formula?", opts: ["πr²", "2πr", "πd", "2πr²"], ans: 0, exp: "A = πr²", diff: "M5-M6" },
+                        { q: "Circumference, radius 7cm (π=22/7)?", opts: ["44 cm", "154 cm", "22 cm", "88 cm"], ans: 0, exp: "2×22/7×7 = 44", diff: "M5-M6" },
+                        { q: "What is the diameter if radius is 5cm?", opts: ["10 cm", "5 cm", "25 cm", "15 cm"], ans: 0, exp: "d = 2r = 10", diff: "A3-A4" },
+                        // Pythagoras
+                        { q: "Pythagoras: a²+b²=?", opts: ["c²", "2c", "c", "ab"], ans: 0, exp: "Hypotenuse squared", diff: "M5-M6" },
+                        { q: "Right triangle: legs 3cm & 4cm. Hypotenuse?", opts: ["5 cm", "7 cm", "6 cm", "12 cm"], ans: 0, exp: "9+16=25, √25=5", diff: "E7-E8" },
+                        { q: "Right triangle: legs 6cm & 8cm. Hypotenuse?", opts: ["10 cm", "14 cm", "48 cm", "7 cm"], ans: 0, exp: "36+64=100, √100=10", diff: "E7-E8" },
+                        // Transformations
+                        { q: "Reflection preserves?", opts: ["Size and shape", "Position", "Orientation", "Nothing"], ans: 0, exp: "Congruent transformation", diff: "M5-M6" },
+                        { q: "Rotation by 180° is same as?", opts: ["Half turn", "Quarter turn", "Full turn", "No turn"], ans: 0, exp: "180° = half turn", diff: "A3-A4" }
                     ],
                     "Statistics": [
-                        { q: "Mean: 4,7,8,9,12?", opts: ["8", "7", "9", "8.5"], ans: 0, exp: "40÷5=8", diff: "A3-A4" },
-                        { q: "Median: 3,7,9,12,15?", opts: ["9", "7", "12", "9.2"], ans: 0, exp: "Middle = 9", diff: "A3-A4" },
-                        { q: "Mode: 2,4,4,5,7,4,8?", opts: ["4", "5", "2", "7"], ans: 0, exp: "4 appears most", diff: "A3-A4" },
-                        { q: "Range: 15,22,8,31,19?", opts: ["23", "31", "8", "19"], ans: 0, exp: "31-8=23", diff: "A3-A4" }
+                        { q: "Mean of 4, 7, 8, 9, 12?", opts: ["8", "7", "9", "8.5"], ans: 0, exp: "40÷5=8", diff: "A3-A4" },
+                        { q: "Median of 3, 7, 9, 12, 15?", opts: ["9", "7", "12", "9.2"], ans: 0, exp: "Middle value = 9", diff: "A3-A4" },
+                        { q: "Mode of 2, 4, 4, 5, 7, 4, 8?", opts: ["4", "5", "2", "7"], ans: 0, exp: "4 appears most (3 times)", diff: "A3-A4" },
+                        { q: "Range of 15, 22, 8, 31, 19?", opts: ["23", "31", "8", "19"], ans: 0, exp: "31-8=23", diff: "A3-A4" },
+                        { q: "Median of 2, 4, 6, 8?", opts: ["5", "4", "6", "20"], ans: 0, exp: "Even count: (4+6)/2=5", diff: "M5-M6" },
+                        { q: "Which average is best for skewed data?", opts: ["Median", "Mean", "Mode", "Range"], ans: 0, exp: "Median isn't affected by outliers", diff: "E7-E8" },
+                        { q: "A dataset has no mode. This means?", opts: ["All values appear once", "All same value", "No data", "Mean=0"], ans: 0, exp: "No value repeats", diff: "M5-M6" },
+                        { q: "Probability of rolling 6 on a die?", opts: ["1/6", "1/3", "6", "1/2"], ans: 0, exp: "1 outcome out of 6", diff: "A3-A4" }
                     ]
                 }
             },
@@ -263,22 +373,70 @@
                 name: "English ESOL", icon: "📚", from: "#8b5cf6", to: "#ec4899",
                 topics: {
                     "Vocabulary": [
+                        // Synonyms
                         { q: "Synonym for 'happy'?", opts: ["Joyful", "Sad", "Angry", "Tired"], ans: 0, exp: "Joyful = happy", diff: "A3-A4" },
+                        { q: "Synonym for 'big'?", opts: ["Large", "Small", "Tiny", "Short"], ans: 0, exp: "Large = big", diff: "A3-A4" },
+                        { q: "Synonym for 'fast'?", opts: ["Quick", "Slow", "Heavy", "Light"], ans: 0, exp: "Quick = fast", diff: "A3-A4" },
+                        { q: "Synonym for 'intelligent'?", opts: ["Smart", "Stupid", "Lazy", "Weak"], ans: 0, exp: "Smart = intelligent", diff: "M5-M6" },
+                        // Antonyms
                         { q: "Antonym for 'ancient'?", opts: ["Modern", "Old", "Historic", "Traditional"], ans: 0, exp: "Modern = opposite", diff: "A3-A4" },
-                        { q: "Which is a noun?", opts: ["Happiness", "Happy", "Happily", "Happier"], ans: 0, exp: "Happiness = thing", diff: "M5-M6" },
-                        { q: "Prefix 'un-' means?", opts: ["Not", "Very", "Before", "After"], ans: 0, exp: "un- = not", diff: "A3-A4" },
-                        { q: "Suffix '-ful' means?", opts: ["Full of", "Without", "Before", "Again"], ans: 0, exp: "hopeful = full of hope", diff: "A3-A4" }
+                        { q: "Antonym for 'hot'?", opts: ["Cold", "Warm", "Burning", "Humid"], ans: 0, exp: "Cold = opposite", diff: "A3-A4" },
+                        { q: "Antonym for 'generous'?", opts: ["Selfish", "Kind", "Giving", "Wealthy"], ans: 0, exp: "Selfish = opposite", diff: "M5-M6" },
+                        // Parts of Speech
+                        { q: "Which is a noun?", opts: ["Happiness", "Happy", "Happily", "Happier"], ans: 0, exp: "Happiness = thing (noun)", diff: "M5-M6" },
+                        { q: "Which is an adjective?", opts: ["Beautiful", "Beauty", "Beautify", "Beautifully"], ans: 0, exp: "Beautiful describes", diff: "M5-M6" },
+                        { q: "Which is a verb?", opts: ["Running", "Runner", "Run-down", "Runny"], ans: 0, exp: "Running = action", diff: "A3-A4" },
+                        { q: "Which is an adverb?", opts: ["Quickly", "Quick", "Quicker", "Quickest"], ans: 0, exp: "Quickly modifies verbs", diff: "M5-M6" },
+                        // Prefixes & Suffixes
+                        { q: "Prefix 'un-' means?", opts: ["Not", "Very", "Before", "After"], ans: 0, exp: "un- = not (unhappy)", diff: "A3-A4" },
+                        { q: "Prefix 're-' means?", opts: ["Again", "Not", "Before", "Under"], ans: 0, exp: "re- = again (redo)", diff: "A3-A4" },
+                        { q: "Prefix 'pre-' means?", opts: ["Before", "After", "Not", "Again"], ans: 0, exp: "pre- = before (preview)", diff: "A3-A4" },
+                        { q: "Suffix '-ful' means?", opts: ["Full of", "Without", "Before", "Again"], ans: 0, exp: "hopeful = full of hope", diff: "A3-A4" },
+                        { q: "Suffix '-less' means?", opts: ["Without", "Full of", "More", "Most"], ans: 0, exp: "careless = without care", diff: "A3-A4" },
+                        // Context clues
+                        { q: "'The ravenous wolf devoured the meat.' Ravenous means?", opts: ["Very hungry", "Angry", "Tired", "Fast"], ans: 0, exp: "Context: devoured = ate quickly", diff: "M5-M6" },
+                        { q: "'She was elated after winning.' Elated means?", opts: ["Very happy", "Sad", "Tired", "Angry"], ans: 0, exp: "Context: winning = positive", diff: "M5-M6" }
                     ],
                     "Grammar": [
+                        // Sentence structure
                         { q: "Correct sentence?", opts: ["She doesn't like apples.", "She don't like apples.", "She not like apples.", "She no like apples."], ans: 0, exp: "doesn't with she/he/it", diff: "A3-A4" },
-                        { q: "'The book is _____' (Maria)", opts: ["hers", "her", "she", "herself"], ans: 0, exp: "Possessive pronoun", diff: "M5-M6" },
-                        { q: "Compound sentence?", opts: ["I went to shop, and bought milk.", "Although it rained.", "The big red car.", "Running quickly."], ans: 0, exp: "Two clauses + 'and'", diff: "E7-E8" },
-                        { q: "Past tense of 'go'?", opts: ["went", "goed", "gone", "going"], ans: 0, exp: "Irregular verb", diff: "A3-A4" }
+                        { q: "Subject in 'The cat sat on the mat'?", opts: ["The cat", "sat", "the mat", "on"], ans: 0, exp: "Who/what does action", diff: "A3-A4" },
+                        { q: "Which is a complete sentence?", opts: ["She runs fast.", "Running fast.", "The big dog.", "Because he left."], ans: 0, exp: "Subject + verb = complete", diff: "M5-M6" },
+                        // Verb tenses
+                        { q: "Past tense of 'go'?", opts: ["Went", "Goed", "Gone", "Going"], ans: 0, exp: "Irregular verb", diff: "A3-A4" },
+                        { q: "Past tense of 'eat'?", opts: ["Ate", "Eated", "Eaten", "Eating"], ans: 0, exp: "Irregular verb", diff: "A3-A4" },
+                        { q: "Future tense of 'write'?", opts: ["Will write", "Wrote", "Written", "Writing"], ans: 0, exp: "Will + base verb", diff: "A3-A4" },
+                        { q: "Present continuous of 'read'?", opts: ["Is reading", "Read", "Reads", "Readed"], ans: 0, exp: "Is/am/are + -ing", diff: "M5-M6" },
+                        // Subject-verb agreement
+                        { q: "Correct: 'The dogs ___ barking.'", opts: ["are", "is", "was", "be"], ans: 0, exp: "Dogs (plural) = are", diff: "A3-A4" },
+                        { q: "Correct: 'Everyone ___ here.'", opts: ["is", "are", "were", "be"], ans: 0, exp: "Everyone = singular", diff: "M5-M6" },
+                        // Pronouns
+                        { q: "'The book is _____' (Maria's)", opts: ["hers", "her", "she", "herself"], ans: 0, exp: "Possessive pronoun", diff: "M5-M6" },
+                        { q: "Replace 'John and I': ___", opts: ["We", "Us", "They", "Them"], ans: 0, exp: "Subject pronoun", diff: "A3-A4" },
+                        // Compound sentences
+                        { q: "Which is a compound sentence?", opts: ["I went to shop, and bought milk.", "Although it rained.", "The big red car.", "Running quickly."], ans: 0, exp: "Two clauses + 'and'", diff: "E7-E8" },
+                        { q: "Which conjunction joins sentences?", opts: ["And", "The", "A", "Very"], ans: 0, exp: "And, but, or = conjunctions", diff: "A3-A4" },
+                        // Punctuation
+                        { q: "Which needs a comma?", opts: ["However I disagree", "I am here", "She runs fast", "The cat sat"], ans: 0, exp: "However, I disagree", diff: "M5-M6" },
+                        { q: "Apostrophe in 'the dog's bone' shows?", opts: ["Possession", "Plural", "Contraction", "Nothing"], ans: 0, exp: "Dog owns the bone", diff: "A3-A4" }
                     ],
                     "Writing": [
-                        { q: "Topic sentence purpose?", opts: ["Introduce main idea", "Conclude", "Examples", "Cite"], ans: 0, exp: "Sets direction", diff: "M5-M6" },
+                        { q: "Purpose of topic sentence?", opts: ["Introduce main idea", "Conclude", "Give examples", "Cite sources"], ans: 0, exp: "Sets paragraph direction", diff: "M5-M6" },
                         { q: "Which shows contrast?", opts: ["However", "Therefore", "Furthermore", "Similarly"], ans: 0, exp: "However = but", diff: "M5-M6" },
-                        { q: "Writing to convince = ?", opts: ["Persuasive", "Narrative", "Descriptive", "Expository"], ans: 0, exp: "Persuade = convince", diff: "A3-A4" }
+                        { q: "Which shows addition?", opts: ["Furthermore", "However", "Although", "But"], ans: 0, exp: "Furthermore = also", diff: "M5-M6" },
+                        { q: "Which shows cause?", opts: ["Because", "Although", "But", "However"], ans: 0, exp: "Because = reason", diff: "A3-A4" },
+                        { q: "Writing to convince = ?", opts: ["Persuasive", "Narrative", "Descriptive", "Expository"], ans: 0, exp: "Persuade = convince", diff: "A3-A4" },
+                        { q: "Writing a story = ?", opts: ["Narrative", "Persuasive", "Expository", "Technical"], ans: 0, exp: "Narrative = story", diff: "A3-A4" },
+                        { q: "A good conclusion should?", opts: ["Summarize main points", "Introduce new ideas", "Ask questions", "Give examples"], ans: 0, exp: "Wrap up, don't add new", diff: "M5-M6" },
+                        { q: "Formal writing avoids?", opts: ["Slang", "Facts", "Evidence", "Punctuation"], ans: 0, exp: "No informal language", diff: "M5-M6" }
+                    ],
+                    "Reading Comprehension": [
+                        { q: "The main idea is?", opts: ["What the text is mainly about", "A small detail", "The title only", "The last sentence"], ans: 0, exp: "Central message", diff: "A3-A4" },
+                        { q: "An inference is?", opts: ["A conclusion from clues", "A direct quote", "The title", "The author's name"], ans: 0, exp: "Reading between lines", diff: "M5-M6" },
+                        { q: "A summary should be?", opts: ["Brief and main points only", "Longer than original", "Include opinions", "Copy exact words"], ans: 0, exp: "Short, key ideas", diff: "M5-M6" },
+                        { q: "Fact vs opinion: 'NZ is beautiful' is?", opts: ["Opinion", "Fact", "Neither", "Both"], ans: 0, exp: "Can't be proven", diff: "A3-A4" },
+                        { q: "Fact vs opinion: 'Water freezes at 0°C' is?", opts: ["Fact", "Opinion", "Neither", "Both"], ans: 0, exp: "Can be proven", diff: "A3-A4" },
+                        { q: "Author's purpose: to inform means?", opts: ["Give information", "Entertain", "Convince", "Sell"], ans: 0, exp: "Share facts", diff: "A3-A4" }
                     ]
                 }
             },
@@ -286,22 +444,63 @@
                 name: "Science", icon: "🔬", from: "#22c55e", to: "#14b8a6",
                 topics: {
                     "Chemistry": [
-                        { q: "Water symbol?", opts: ["H₂O", "CO₂", "NaCl", "O₂"], ans: 0, exp: "2H + 1O", diff: "A3-A4" },
-                        { q: "NOT chemical reaction sign?", opts: ["Shape change", "Colour change", "Gas", "Heat"], ans: 0, exp: "Shape = physical", diff: "M5-M6" },
-                        { q: "3 states of matter?", opts: ["Solid, liquid, gas", "Hot, warm, cold", "Big, medium, small", "Hard, soft, flexible"], ans: 0, exp: "Basic states", diff: "A3-A4" },
-                        { q: "Metals on periodic table?", opts: ["Left", "Right", "Top", "Bottom"], ans: 0, exp: "Left side", diff: "M5-M6" },
-                        { q: "What is an atom?", opts: ["Smallest particle", "Molecule", "Reaction", "State"], ans: 0, exp: "Building block", diff: "A3-A4" }
+                        // Atoms & Elements
+                        { q: "What is an atom?", opts: ["Smallest particle of element", "A molecule", "A reaction", "A mixture"], ans: 0, exp: "Building block of matter", diff: "A3-A4" },
+                        { q: "Protons have what charge?", opts: ["Positive", "Negative", "Neutral", "None"], ans: 0, exp: "Protons = positive", diff: "A3-A4" },
+                        { q: "Electrons have what charge?", opts: ["Negative", "Positive", "Neutral", "None"], ans: 0, exp: "Electrons = negative", diff: "A3-A4" },
+                        { q: "Neutrons have what charge?", opts: ["Neutral", "Positive", "Negative", "Both"], ans: 0, exp: "Neutrons = no charge", diff: "A3-A4" },
+                        { q: "Where are protons located?", opts: ["Nucleus", "Orbiting", "Outside atom", "Everywhere"], ans: 0, exp: "Center of atom", diff: "M5-M6" },
+                        { q: "Chemical symbol for water?", opts: ["H₂O", "CO₂", "NaCl", "O₂"], ans: 0, exp: "2 Hydrogen + 1 Oxygen", diff: "A3-A4" },
+                        { q: "What is CO₂?", opts: ["Carbon dioxide", "Carbon monoxide", "Calcium oxide", "Copper oxide"], ans: 0, exp: "CO₂ = carbon dioxide", diff: "A3-A4" },
+                        { q: "Where are metals on periodic table?", opts: ["Left side", "Right side", "Top only", "Bottom only"], ans: 0, exp: "Metals on left", diff: "M5-M6" },
+                        // Chemical Reactions
+                        { q: "NOT a sign of chemical reaction?", opts: ["Shape change", "Colour change", "Gas production", "Heat change"], ans: 0, exp: "Shape = physical change", diff: "M5-M6" },
+                        { q: "Reactants are?", opts: ["Starting substances", "End products", "Catalysts", "Solvents"], ans: 0, exp: "Before reaction", diff: "M5-M6" },
+                        { q: "Products are?", opts: ["End substances", "Starting materials", "Catalysts", "Solvents"], ans: 0, exp: "After reaction", diff: "M5-M6" },
+                        { q: "A catalyst does what?", opts: ["Speeds up reaction", "Slows reaction", "Stops reaction", "Nothing"], ans: 0, exp: "Faster without being used up", diff: "E7-E8" },
+                        { q: "Burning is an example of?", opts: ["Combustion", "Photosynthesis", "Freezing", "Melting"], ans: 0, exp: "Combustion = burning", diff: "A3-A4" },
+                        // States of Matter
+                        { q: "Three states of matter?", opts: ["Solid, liquid, gas", "Hot, warm, cold", "Big, medium, small", "Hard, soft, flexible"], ans: 0, exp: "Basic states", diff: "A3-A4" },
+                        { q: "Solid → liquid is called?", opts: ["Melting", "Freezing", "Evaporation", "Condensation"], ans: 0, exp: "Melting = solid to liquid", diff: "A3-A4" },
+                        { q: "Liquid → gas is called?", opts: ["Evaporation", "Condensation", "Melting", "Freezing"], ans: 0, exp: "Evaporation = liquid to gas", diff: "A3-A4" },
+                        { q: "Gas → liquid is called?", opts: ["Condensation", "Evaporation", "Melting", "Sublimation"], ans: 0, exp: "Condensation = gas to liquid", diff: "M5-M6" }
                     ],
                     "Biology": [
-                        { q: "Cell powerhouse?", opts: ["Mitochondria", "Nucleus", "Membrane", "Ribosome"], ans: 0, exp: "Makes energy", diff: "A3-A4" },
-                        { q: "Plants make food by?", opts: ["Photosynthesis", "Respiration", "Digestion", "Fermentation"], ans: 0, exp: "Light+CO₂+H₂O", diff: "A3-A4" },
-                        { q: "Nucleus function?", opts: ["Controls cell, DNA", "Energy", "Proteins", "Water"], ans: 0, exp: "Control center", diff: "M5-M6" },
-                        { q: "Ecosystem is?", opts: ["Living + environment", "One organism", "Plants only", "Animals only"], ans: 0, exp: "All together", diff: "M5-M6" }
+                        // Cells
+                        { q: "Powerhouse of the cell?", opts: ["Mitochondria", "Nucleus", "Membrane", "Ribosome"], ans: 0, exp: "Makes energy (ATP)", diff: "A3-A4" },
+                        { q: "Function of nucleus?", opts: ["Controls cell, has DNA", "Energy", "Proteins", "Water"], ans: 0, exp: "Control center, DNA", diff: "M5-M6" },
+                        { q: "Cell membrane function?", opts: ["Controls entry/exit", "Makes energy", "Stores DNA", "Makes proteins"], ans: 0, exp: "Selective barrier", diff: "M5-M6" },
+                        { q: "Plant cells have but animal cells don't?", opts: ["Cell wall", "Nucleus", "Mitochondria", "Cytoplasm"], ans: 0, exp: "Cell wall = plants only", diff: "M5-M6" },
+                        { q: "Where is chlorophyll found?", opts: ["Chloroplast", "Mitochondria", "Nucleus", "Ribosome"], ans: 0, exp: "Green pigment in chloroplast", diff: "M5-M6" },
+                        // Photosynthesis
+                        { q: "Plants make food by?", opts: ["Photosynthesis", "Respiration", "Digestion", "Fermentation"], ans: 0, exp: "Light+CO₂+H₂O → sugar", diff: "A3-A4" },
+                        { q: "Photosynthesis needs?", opts: ["Sunlight, CO₂, water", "Oxygen only", "Darkness", "Sugar"], ans: 0, exp: "Light, carbon dioxide, water", diff: "M5-M6" },
+                        { q: "Photosynthesis produces?", opts: ["Glucose and oxygen", "CO₂ and water", "Only oxygen", "Only glucose"], ans: 0, exp: "Sugar + O₂", diff: "M5-M6" },
+                        { q: "Where does photosynthesis occur?", opts: ["Leaves/chloroplasts", "Roots", "Stem", "Flowers"], ans: 0, exp: "In green parts", diff: "A3-A4" },
+                        // Organisms & Ecosystems
+                        { q: "What is an ecosystem?", opts: ["Living things + environment", "Only animals", "Only plants", "Just rocks"], ans: 0, exp: "Biotic + abiotic", diff: "M5-M6" },
+                        { q: "Producer in food chain?", opts: ["Plants", "Lions", "Humans", "Fungi"], ans: 0, exp: "Makes own food", diff: "A3-A4" },
+                        { q: "Consumer in food chain?", opts: ["Animals", "Plants", "Sunlight", "Water"], ans: 0, exp: "Eats other organisms", diff: "A3-A4" },
+                        { q: "Decomposer example?", opts: ["Fungi/bacteria", "Lion", "Tree", "Fish"], ans: 0, exp: "Breaks down dead matter", diff: "M5-M6" }
                     ],
                     "Physics": [
-                        { q: "Force unit?", opts: ["Newton", "Joule", "Watt", "Metre"], ans: 0, exp: "Named after Newton", diff: "A3-A4" },
-                        { q: "Moving car energy?", opts: ["Kinetic", "Potential", "Chemical", "Nuclear"], ans: 0, exp: "Kinetic = motion", diff: "A3-A4" },
-                        { q: "Light through prism?", opts: ["Separates colours", "Brighter", "Disappears", "Laser"], ans: 0, exp: "Spectrum", diff: "M5-M6" }
+                        // Forces
+                        { q: "Unit of force?", opts: ["Newton", "Joule", "Watt", "Metre"], ans: 0, exp: "Named after Isaac Newton", diff: "A3-A4" },
+                        { q: "Gravity pulls objects?", opts: ["Downward", "Upward", "Sideways", "Nowhere"], ans: 0, exp: "Toward Earth's center", diff: "A3-A4" },
+                        { q: "Friction is a force that?", opts: ["Opposes motion", "Helps motion", "Creates heat only", "Does nothing"], ans: 0, exp: "Slows things down", diff: "A3-A4" },
+                        { q: "Balanced forces result in?", opts: ["No change in motion", "Acceleration", "Deceleration", "Spinning"], ans: 0, exp: "Stays still or constant speed", diff: "M5-M6" },
+                        { q: "Mass is measured in?", opts: ["Kilograms", "Newtons", "Metres", "Seconds"], ans: 0, exp: "kg = mass unit", diff: "A3-A4" },
+                        { q: "Weight is measured in?", opts: ["Newtons", "Kilograms", "Metres", "Litres"], ans: 0, exp: "Weight = force = Newtons", diff: "M5-M6" },
+                        // Energy
+                        { q: "Moving car has what energy?", opts: ["Kinetic", "Potential", "Chemical", "Nuclear"], ans: 0, exp: "Kinetic = motion energy", diff: "A3-A4" },
+                        { q: "Stored energy is called?", opts: ["Potential", "Kinetic", "Thermal", "Sound"], ans: 0, exp: "Potential = stored", diff: "A3-A4" },
+                        { q: "Energy cannot be ___ or ___?", opts: ["Created, destroyed", "Stored, used", "Changed, moved", "Measured, seen"], ans: 0, exp: "Conservation of energy", diff: "M5-M6" },
+                        { q: "Battery stores what energy?", opts: ["Chemical", "Kinetic", "Sound", "Light"], ans: 0, exp: "Chemical → electrical", diff: "M5-M6" },
+                        { q: "Food provides what energy?", opts: ["Chemical", "Kinetic", "Electrical", "Nuclear"], ans: 0, exp: "Chemical energy in food", diff: "A3-A4" },
+                        // Light & Sound
+                        { q: "Light travels in?", opts: ["Straight lines", "Curves", "Circles", "Zigzags"], ans: 0, exp: "Light travels straight", diff: "A3-A4" },
+                        { q: "Light through prism does what?", opts: ["Separates into colours", "Gets brighter", "Disappears", "Becomes laser"], ans: 0, exp: "Creates spectrum", diff: "M5-M6" },
+                        { q: "Sound needs ___ to travel?", opts: ["A medium", "Nothing", "Light", "Electricity"], ans: 0, exp: "Needs particles (solid/liquid/gas)", diff: "M5-M6" }
                     ]
                 }
             },
@@ -309,18 +508,31 @@
                 name: "Social Science", icon: "🌏", from: "#f97316", to: "#ef4444",
                 topics: {
                     "NZ History": [
-                        { q: "Treaty of Waitangi year?", opts: ["1840", "1800", "1900", "1776"], ans: 0, exp: "6 Feb 1840", diff: "A3-A4" },
-                        { q: "First NZ settlers?", opts: ["Māori", "British", "Dutch", "Australian"], ans: 0, exp: "Polynesian ~1300AD", diff: "A3-A4" },
-                        { q: "Treaty principles?", opts: ["Partnership, Protection, Participation", "Peace, Power, Prosperity", "Land, Law, Liberty", "King, Country, Crown"], ans: 0, exp: "The 3 P's", diff: "M5-M6" }
+                        { q: "Treaty of Waitangi signed?", opts: ["1840", "1800", "1900", "1776"], ans: 0, exp: "6 February 1840", diff: "A3-A4" },
+                        { q: "First NZ settlers?", opts: ["Māori", "British", "Dutch", "Australian"], ans: 0, exp: "Polynesian voyagers ~1300AD", diff: "A3-A4" },
+                        { q: "Treaty principles?", opts: ["Partnership, Protection, Participation", "Peace, Power, Prosperity", "Land, Law, Liberty", "King, Country, Crown"], ans: 0, exp: "The 3 P's", diff: "M5-M6" },
+                        { q: "Who signed Treaty for British?", opts: ["Captain Hobson", "Captain Cook", "Queen Victoria", "King George"], ans: 0, exp: "William Hobson", diff: "M5-M6" },
+                        { q: "Waitangi Day is?", opts: ["6 February", "25 December", "1 January", "26 January"], ans: 0, exp: "Treaty anniversary", diff: "A3-A4" },
+                        { q: "NZ became independent from Britain in?", opts: ["1907", "1840", "1776", "1950"], ans: 0, exp: "Dominion status 1907", diff: "E7-E8" },
+                        { q: "First European to see NZ?", opts: ["Abel Tasman", "James Cook", "William Hobson", "Edmund Hillary"], ans: 0, exp: "Dutch explorer 1642", diff: "M5-M6" }
                     ],
                     "Geography": [
-                        { q: "NZ earthquakes from?", opts: ["Convergent boundary", "Divergent", "Transform", "None"], ans: 0, exp: "Pacific+Australian plates", diff: "M5-M6" },
-                        { q: "Sustainability means?", opts: ["Meet needs, protect future", "Use quickly", "Ignore", "Build more"], ans: 0, exp: "Future generations", diff: "A3-A4" },
-                        { q: "Climate change cause?", opts: ["Greenhouse gases", "Moon", "Volcanoes only", "Oceans only"], ans: 0, exp: "Human CO₂", diff: "M5-M6" }
+                        { q: "NZ earthquakes caused by?", opts: ["Tectonic plates meeting", "Volcanoes only", "Wind", "Rain"], ans: 0, exp: "Pacific + Australian plates", diff: "M5-M6" },
+                        { q: "What is sustainability?", opts: ["Meet needs without harming future", "Use resources quickly", "Ignore problems", "Build more"], ans: 0, exp: "Future generations", diff: "A3-A4" },
+                        { q: "Main cause of climate change?", opts: ["Greenhouse gases", "Moon changes", "Volcanoes only", "Ocean currents"], ans: 0, exp: "Human CO₂ emissions", diff: "M5-M6" },
+                        { q: "What is the water cycle?", opts: ["Water moving through environment", "Drinking water only", "Ocean waves", "River flow only"], ans: 0, exp: "Evaporation→condensation→precipitation", diff: "A3-A4" },
+                        { q: "Renewable energy example?", opts: ["Solar", "Coal", "Oil", "Gas"], ans: 0, exp: "Sun won't run out", diff: "A3-A4" },
+                        { q: "Non-renewable energy example?", opts: ["Coal", "Solar", "Wind", "Hydro"], ans: 0, exp: "Fossil fuels will run out", diff: "A3-A4" },
+                        { q: "NZ is part of which continent?", opts: ["Oceania/Australasia", "Asia", "Europe", "Antarctica"], ans: 0, exp: "Oceania region", diff: "A3-A4" }
                     ],
                     "Civics": [
-                        { q: "NZ government type?", opts: ["Parliamentary democracy", "Presidential", "Monarchy", "Dictatorship"], ans: 0, exp: "Elected parliament", diff: "A3-A4" },
-                        { q: "NZ voting age?", opts: ["18", "16", "21", "25"], ans: 0, exp: "18 years", diff: "A3-A4" }
+                        { q: "NZ government type?", opts: ["Parliamentary democracy", "Presidential republic", "Absolute monarchy", "Dictatorship"], ans: 0, exp: "Elected parliament", diff: "A3-A4" },
+                        { q: "NZ voting age?", opts: ["18", "16", "21", "25"], ans: 0, exp: "18 years old", diff: "A3-A4" },
+                        { q: "Head of NZ government?", opts: ["Prime Minister", "President", "King", "Governor"], ans: 0, exp: "PM leads government", diff: "A3-A4" },
+                        { q: "NZ Parliament has how many MPs?", opts: ["120", "100", "200", "50"], ans: 0, exp: "120 Members of Parliament", diff: "M5-M6" },
+                        { q: "MMP stands for?", opts: ["Mixed Member Proportional", "Multiple Member Parliament", "Main Member Party", "Most Members Participate"], ans: 0, exp: "NZ voting system", diff: "M5-M6" },
+                        { q: "Human rights include?", opts: ["Freedom of speech", "Right to harm others", "Unlimited power", "No responsibilities"], ans: 0, exp: "Basic freedoms", diff: "A3-A4" },
+                        { q: "A citizen's responsibility includes?", opts: ["Obeying laws", "Ignoring rules", "Avoiding taxes", "Breaking rules"], ans: 0, exp: "Follow the law", diff: "A3-A4" }
                     ]
                 }
             }
@@ -395,6 +607,14 @@
                 }
             });
             return goal > 0 ? Math.round((done / goal) * 100) : 0;
+        }
+        
+        function getTotalQuestions() {
+            let total = 0;
+            Object.values(questions).forEach(sub => {
+                Object.values(sub.topics).forEach(qs => { total += qs.length; });
+            });
+            return total;
         }
 
         function updateStreak() {
@@ -484,7 +704,8 @@
                     <div class="text-6xl mb-4 floating">🎓</div>
                     <h1 class="text-4xl font-bold mb-4">Rangitoto</h1>
                     <h2 class="text-2xl text-purple mb-6">Year 9 Review Hub</h2>
-                    <p class="text-gray mb-6">6-Week Summer Study Plan<br>Dec 6, 2025 - Jan 17, 2026</p>
+                    <p class="text-gray mb-2">6-Week Summer Study Plan</p>
+                    <p class="text-sm text-gray mb-6">Dec 6, 2025 - Jan 17, 2026 · ${getTotalQuestions()}+ questions</p>
                     <input class="input" type="text" id="nameInput" placeholder="Enter your name...">
                     <button class="btn" onclick="startApp()">Start Learning! 🚀</button>
                     <div style="border-top:1px solid rgba(255,255,255,0.2);padding-top:20px;margin-top:20px;">
@@ -541,18 +762,78 @@
                 </div>
                 
                 <div class="nav">
-                    <button class="nav-btn ${view === 'plan' ? 'active' : ''}" onclick="setView('plan')">📅 Plan</button>
                     <button class="nav-btn ${view === 'dashboard' ? 'active' : ''}" onclick="setView('dashboard')">🏠 Home</button>
+                    <button class="nav-btn ${view === 'plan' ? 'active' : ''}" onclick="setView('plan')">📅 Plan</button>
                     <button class="nav-btn ${view === 'subjects' ? 'active' : ''}" onclick="setView('subjects')">📚 Subjects</button>
                     <button class="nav-btn ${view === 'badges' ? 'active' : ''}" onclick="setView('badges')">🏅 Badges</button>
                     <button class="nav-btn ${view === 'stats' ? 'active' : ''}" onclick="setView('stats')">📊 Stats</button>
                 </div>
                 
-                ${view === 'plan' ? planHTML() : view === 'dashboard' ? dashboardHTML() : view === 'subjects' ? subjectsHTML() : view === 'badges' ? badgesHTML() : statsHTML()}
+                ${view === 'dashboard' ? dashboardHTML() : view === 'plan' ? planHTML() : view === 'subjects' ? subjectsHTML() : view === 'badges' ? badgesHTML() : statsHTML()}
             `;
         }
 
         function setView(v) { view = v; render(); }
+
+        function dashboardHTML() {
+            const today = getTodayStr();
+            const todayPlan = getDayPlan(today);
+            const todayProgress = getDayProgress(today);
+            const overallProgress = getOverallProgress();
+            
+            return `
+                ${todayPlan ? `
+                <div class="glass" style="background:linear-gradient(135deg, ${todayPlan.weekPlan.color.from}22, ${todayPlan.weekPlan.color.to}22)">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center gap-3">
+                            <span style="font-size:40px">${todayPlan.icon}</span>
+                            <div>
+                                <h2 class="text-xl font-bold">Today's Focus</h2>
+                                <p class="text-gray">${todayPlan.isRest ? 'Rest Day! 🎉' : todayPlan.topic}</p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">${todayProgress.exams}/${todayPlan.goal}</div>
+                        </div>
+                    </div>
+                    ${!todayPlan.isRest ? `
+                    <div class="progress-bar mb-4"><div class="progress-fill ${todayProgress.completed ? 'green' : ''}" style="width:${Math.min(100, (todayProgress.exams / todayPlan.goal) * 100)}%"></div></div>
+                    ${!todayProgress.completed ? `<button class="btn btn-green" onclick="startDayTask('${today}')">🚀 Study Now</button>` : `<p class="text-green font-bold text-center">✅ Done!</p>`}
+                    ` : ''}
+                </div>
+                ` : ''}
+                
+                <div class="glass">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">📅 6-Week Progress</h2>
+                        <span class="font-bold">${overallProgress}%</span>
+                    </div>
+                    <div class="progress-bar mb-4"><div class="progress-fill green" style="width:${overallProgress}%"></div></div>
+                    <button class="btn btn-small btn-secondary" onclick="setView('plan')">View Full Plan →</button>
+                </div>
+                
+                <div class="glass">
+                    <h2 class="text-xl font-bold mb-4">📊 Quick Stats</h2>
+                    <div class="stats-row"><span>XP</span><span class="text-yellow font-bold">⚡ ${state.xp}</span></div>
+                    <div class="stats-row"><span>Exams</span><span class="text-green font-bold">✅ ${state.exams}</span></div>
+                    <div class="stats-row"><span>Streak</span><span style="color:#f97316" class="font-bold">🔥 ${state.streak}</span></div>
+                    <div class="stats-row"><span>Badges</span><span class="font-bold">🏅 ${state.badges.length}/${Object.keys(badgesDef).length}</span></div>
+                </div>
+                
+                <div class="glass">
+                    <h2 class="text-xl font-bold mb-4">⚡ Quick Practice</h2>
+                    <div class="grid grid-2 gap-4">
+                        ${Object.entries(questions).map(([k, v]) => `
+                            <button class="subject-card" style="--from:${v.from};--to:${v.to}" onclick="setView('subjects')">
+                                <div class="icon">${v.icon}</div>
+                                <div class="font-bold">${v.name}</div>
+                                <div class="text-sm" style="opacity:0.7">${state.subjects[k]} done</div>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
 
         function planHTML() {
             const today = getTodayStr();
@@ -562,12 +843,13 @@
             const todayProgress = getDayProgress(today);
             
             return `
+                <!-- Overview -->
                 <div class="glass">
                     <div class="flex justify-between items-center mb-2">
                         <h2 class="text-xl font-bold">📅 6-Week Study Plan</h2>
                         <span class="badge-tag badge-purple">Week ${currentWeek}/6</span>
                     </div>
-                    <p class="text-gray text-sm mb-4">Dec 6, 2025 - Jan 17, 2026</p>
+                    <p class="text-gray text-sm mb-4">Dec 6, 2025 - Jan 17, 2026 · ${getTotalQuestions()}+ questions</p>
                     
                     <div class="mb-4">
                         <div class="flex justify-between text-sm mb-2">
@@ -577,31 +859,53 @@
                         <div class="progress-bar"><div class="progress-fill green" style="width:${overallProgress}%"></div></div>
                     </div>
                     
-                    ${todayPlan ? `
+                    ${todayPlan && !todayPlan.isRest ? `
                     <div class="day-task-card" style="background:linear-gradient(135deg, ${todayPlan.weekPlan.color.from}33, ${todayPlan.weekPlan.color.to}33); border-left: 4px solid ${todayPlan.weekPlan.color.from}">
                         <div class="flex justify-between items-center mb-2">
                             <div class="flex items-center gap-3">
                                 <span style="font-size:28px">${todayPlan.icon}</span>
                                 <div>
                                     <div class="font-bold">Today's Task</div>
-                                    <div class="text-sm text-gray">${todayPlan.isRest ? 'Rest Day! 🎉' : todayPlan.topic}</div>
+                                    <div class="text-sm text-gray">${todayPlan.topic}</div>
                                 </div>
                             </div>
                             <span class="task-status ${todayProgress.completed ? 'status-complete' : todayProgress.exams > 0 ? 'status-partial' : 'status-pending'}">
                                 ${todayProgress.completed ? '✓ Done' : `${todayProgress.exams}/${todayPlan.goal}`}
                             </span>
                         </div>
-                        ${!todayPlan.isRest && !todayProgress.completed ? `
-                        <button class="btn btn-small btn-green" onclick="startDayTask('${today}')">
-                            ${todayProgress.exams > 0 ? 'Continue' : 'Start'} →
-                        </button>
-                        ` : ''}
+                        ${!todayProgress.completed ? `<button class="btn btn-small btn-green" onclick="startDayTask('${today}')">Start →</button>` : ''}
                     </div>
                     ` : ''}
                 </div>
                 
+                <!-- Detailed Weekly Plan -->
                 <div class="glass">
-                    <h3 class="text-lg font-bold mb-4">📆 Calendar</h3>
+                    <h3 class="text-lg font-bold mb-4">📖 Detailed Study Plan</h3>
+                    ${weeklyPlan.map((week, i) => `
+                        <div class="week-plan-card" style="--from:${week.color.from};--to:${week.color.to}">
+                            <span class="week-number">${week.week}</span>
+                            <div class="flex items-center gap-3 mb-2">
+                                <span style="font-size:32px">${week.icon}</span>
+                                <div>
+                                    <div class="font-bold text-lg">${week.name}: ${week.topic}</div>
+                                    <div class="text-sm" style="opacity:0.8">${week.dates} · ${week.dailyGoal}</div>
+                                </div>
+                            </div>
+                            <p class="text-sm mb-3" style="opacity:0.9">${week.description}</p>
+                            <div class="topics-list">
+                                ${week.keyTopics.map(t => `<div class="topic-item">${t}</div>`).join('')}
+                            </div>
+                            <div class="flex justify-between items-center mt-3" style="opacity:0.8">
+                                <span class="text-sm">Target: <span class="badge-tag badge-yellow">${week.targetGrade}</span></span>
+                                ${week.note ? `<span class="text-sm">${week.note}</span>` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <!-- Calendar View -->
+                <div class="glass">
+                    <h3 class="text-lg font-bold mb-4">📆 Calendar View</h3>
                     ${[1,2,3,4,5,6].map(weekNum => {
                         const weekData = weeklyPlan[weekNum - 1];
                         const weekDays = dailyPlan.filter(d => d.week === weekNum);
@@ -631,6 +935,7 @@
                     }).join('')}
                 </div>
                 
+                <!-- Legend -->
                 <div class="glass">
                     <h3 class="text-lg font-bold mb-2">📖 Legend</h3>
                     <div class="flex flex-wrap gap-3 text-sm">
@@ -698,7 +1003,7 @@
                         <span style="font-size:48px">${day.icon}</span>
                         <div>
                             <h2 class="text-2xl font-bold">${dateFormatted}</h2>
-                            <p class="text-gray">${day.isRest ? 'Rest Day 🎄' : day.topic}</p>
+                            <p class="text-gray">${day.isRest ? 'Rest Day 🎄' : `${day.weekPlan.name} · ${day.topic}`}</p>
                         </div>
                     </div>
                     
@@ -721,17 +1026,17 @@
                 
                 ${!day.isRest ? `
                 <div class="glass">
-                    <h3 class="text-lg font-bold mb-4">📚 Topics</h3>
+                    <h3 class="text-lg font-bold mb-4">📚 Available Topics</h3>
                     ${day.subject === 'all' ? 
                         Object.entries(questions).map(([k, v]) => `
                             <button class="topic-btn" onclick="startExamFromDay('${selectedDay}', '${k}', '${Object.keys(v.topics)[0]}')">
-                                <span>${v.icon} ${v.name}</span><span class="text-gray">→</span>
+                                <span>${v.icon} ${v.name}</span><span class="text-gray">${Object.values(v.topics).flat().length} Qs →</span>
                             </button>
                         `).join('')
                     :
-                        Object.entries(questions[day.subject].topics).map(([topic]) => `
+                        Object.entries(questions[day.subject].topics).map(([topic, qs]) => `
                             <button class="topic-btn" onclick="startExamFromDay('${selectedDay}', '${day.subject}', '${topic}')">
-                                <span>${topic}</span><span class="text-gray">→</span>
+                                <span>${topic}</span><span class="text-gray">${qs.length} Qs →</span>
                             </button>
                         `).join('')
                     }
@@ -750,7 +1055,9 @@
                 const topics = Object.keys(questions[sub].topics);
                 startExamFromDay(dateStr, sub, topics[Math.floor(Math.random() * topics.length)]);
             } else {
-                startExamFromDay(dateStr, day.subject, day.topic);
+                const topics = Object.keys(questions[day.subject].topics);
+                const topic = topics.find(t => t.toLowerCase().includes(day.topic.toLowerCase().split(' ')[0])) || topics[0];
+                startExamFromDay(dateStr, day.subject, topic);
             }
         }
         
@@ -763,65 +1070,6 @@
             selectedDay = null;
             render();
             startTimer();
-        }
-
-        function dashboardHTML() {
-            const today = getTodayStr();
-            const todayPlan = getDayPlan(today);
-            const todayProgress = getDayProgress(today);
-            const overallProgress = getOverallProgress();
-            
-            return `
-                ${todayPlan ? `
-                <div class="glass" style="background:linear-gradient(135deg, ${todayPlan.weekPlan.color.from}22, ${todayPlan.weekPlan.color.to}22)">
-                    <div class="flex justify-between items-center mb-4">
-                        <div class="flex items-center gap-3">
-                            <span style="font-size:40px">${todayPlan.icon}</span>
-                            <div>
-                                <h2 class="text-xl font-bold">Today</h2>
-                                <p class="text-gray">${todayPlan.isRest ? 'Rest Day!' : todayPlan.topic}</p>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold">${todayProgress.exams}/${todayPlan.goal}</div>
-                        </div>
-                    </div>
-                    ${!todayPlan.isRest ? `
-                    <div class="progress-bar mb-4"><div class="progress-fill ${todayProgress.completed ? 'green' : ''}" style="width:${Math.min(100, (todayProgress.exams / todayPlan.goal) * 100)}%"></div></div>
-                    ${!todayProgress.completed ? `<button class="btn btn-green" onclick="startDayTask('${today}')">🚀 Study Now</button>` : `<p class="text-green font-bold text-center">✅ Done!</p>`}
-                    ` : ''}
-                </div>
-                ` : ''}
-                
-                <div class="glass">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-bold">📅 6-Week Progress</h2>
-                        <span class="font-bold">${overallProgress}%</span>
-                    </div>
-                    <div class="progress-bar mb-4"><div class="progress-fill green" style="width:${overallProgress}%"></div></div>
-                    <button class="btn btn-small btn-secondary" onclick="setView('plan')">View Calendar →</button>
-                </div>
-                
-                <div class="glass">
-                    <h2 class="text-xl font-bold mb-4">📊 Stats</h2>
-                    <div class="stats-row"><span>XP</span><span class="text-yellow font-bold">⚡ ${state.xp}</span></div>
-                    <div class="stats-row"><span>Exams</span><span class="text-green font-bold">✅ ${state.exams}</span></div>
-                    <div class="stats-row"><span>Streak</span><span style="color:#f97316" class="font-bold">🔥 ${state.streak}</span></div>
-                    <div class="stats-row"><span>Badges</span><span class="font-bold">🏅 ${state.badges.length}/${Object.keys(badgesDef).length}</span></div>
-                </div>
-                
-                <div class="glass">
-                    <h2 class="text-xl font-bold mb-4">⚡ Quick Practice</h2>
-                    <div class="grid grid-2 gap-4">
-                        ${Object.entries(questions).map(([k, v]) => `
-                            <button class="subject-card" style="--from:${v.from};--to:${v.to}" onclick="setView('subjects')">
-                                <div class="icon">${v.icon}</div>
-                                <div class="font-bold">${v.name}</div>
-                            </button>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
         }
 
         function badgesHTML() {
@@ -847,15 +1095,19 @@
         function subjectsHTML() {
             return `
                 <div class="glass">
-                    <h2 class="text-xl font-bold mb-4">📚 Subjects</h2>
+                    <h2 class="text-xl font-bold mb-4">📚 All Subjects</h2>
+                    <p class="text-gray text-sm mb-4">Total: ${getTotalQuestions()} questions across 4 subjects</p>
                     ${Object.entries(questions).map(([k, v]) => `
                         <div class="subject-card mb-4" style="--from:${v.from};--to:${v.to};cursor:default">
                             <div class="flex items-center gap-4 mb-2">
                                 <span class="text-4xl">${v.icon}</span>
-                                <div><div class="font-bold">${v.name}</div><div class="text-sm" style="opacity:0.7">${state.subjects[k]} done</div></div>
+                                <div>
+                                    <div class="font-bold">${v.name}</div>
+                                    <div class="text-sm" style="opacity:0.7">${state.subjects[k]} done · ${Object.values(v.topics).flat().length} questions</div>
+                                </div>
                             </div>
-                            ${Object.entries(v.topics).map(([topic]) => `
-                                <button class="topic-btn" onclick="startExam('${k}','${topic}')"><span>${topic}</span><span class="text-gray">→</span></button>
+                            ${Object.entries(v.topics).map(([topic, qs]) => `
+                                <button class="topic-btn" onclick="startExam('${k}','${topic}')"><span>${topic}</span><span class="text-gray">${qs.length} Qs →</span></button>
                             `).join('')}
                         </div>
                     `).join('')}
@@ -866,15 +1118,26 @@
         function statsHTML() {
             return `
                 <div class="glass">
-                    <h2 class="text-xl font-bold mb-4">📊 Stats</h2>
+                    <h2 class="text-xl font-bold mb-4">📊 All Stats</h2>
                     <div class="stats-row"><span>XP</span><span class="text-yellow font-bold">⚡ ${state.xp}</span></div>
                     <div class="stats-row"><span>Exams</span><span class="text-green font-bold">✅ ${state.exams}</span></div>
                     <div class="stats-row"><span>Streak</span><span style="color:#f97316" class="font-bold">🔥 ${state.streak}</span></div>
                     <div class="stats-row"><span>Perfect</span><span class="text-purple font-bold">💯 ${state.perfect}</span></div>
                     <div class="stats-row"><span>Excellence</span><span style="color:#8b5cf6" class="font-bold">🏆 ${state.excellence}</span></div>
                     <h3 class="text-lg font-bold mt-4 mb-2">By Subject</h3>
-                    ${Object.entries(questions).map(([k, v]) => `<div class="stats-row"><span>${v.icon} ${v.name}</span><span>${state.subjects[k]}</span></div>`).join('')}
+                    ${Object.entries(questions).map(([k, v]) => `<div class="stats-row"><span>${v.icon} ${v.name}</span><span>${state.subjects[k]} / ${Object.values(v.topics).flat().length}</span></div>`).join('')}
                 </div>
+                ${state.history.length > 0 ? `
+                <div class="glass">
+                    <h2 class="text-xl font-bold mb-4">📜 Recent</h2>
+                    ${state.history.slice(0, 8).map(h => `
+                        <div class="stats-row">
+                            <span>${questions[h.subject].icon} ${h.topic.substring(0,15)}${h.topic.length>15?'...':''}</span>
+                            <span><span class="badge-tag" style="background:${getGrade(h.score).color}">${h.grade}</span></span>
+                        </div>
+                    `).join('')}
+                </div>
+                ` : ''}
             `;
         }
 
@@ -894,7 +1157,10 @@
                 if (examState.time > 0 && !examState.feedback) {
                     examState.time--;
                     const el = document.getElementById('timer');
-                    if (el) el.textContent = `${Math.floor(examState.time/60)}:${(examState.time%60).toString().padStart(2,'0')}`;
+                    if (el) {
+                        el.textContent = `${Math.floor(examState.time/60)}:${(examState.time%60).toString().padStart(2,'0')}`;
+                        if (examState.time < 30) el.style.color = '#f87171';
+                    }
                 }
             }, 1000);
         }
@@ -1011,12 +1277,12 @@
             `;
         }
 
-        function backToMain() { currentExam = null; newBadges = []; view = 'plan'; render(); }
-        function exitExam() { clearInterval(timerInterval); currentExam = null; view = 'plan'; render(); }
+        function backToMain() { currentExam = null; newBadges = []; view = 'dashboard'; render(); }
+        function exitExam() { clearInterval(timerInterval); currentExam = null; view = 'dashboard'; render(); }
 
         // Init
         if (!state.dailyProgress) state.dailyProgress = {};
-        view = state.name ? 'plan' : 'welcome';
+        view = state.name ? 'dashboard' : 'welcome';
         render();
     </script>
 </body>
