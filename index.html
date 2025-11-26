@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangitoto Year 9 Review - Study Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #1e1b4b;
+            --light: #f8fafc;
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+            min-height: 100vh;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.8),
+                         0 0 20px rgba(99, 102, 241, 0.6),
+                         0 0 30px rgba(99, 102, 241, 0.4);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8); }
+        }
+        
+        .streak-fire {
+            animation: fireAnimation 0.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes fireAnimation {
+            0% { transform: scale(1) rotate(-5deg); }
+            100% { transform: scale(1.1) rotate(5deg); }
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #a855f7);
+            background-size: 200% 100%;
+            animation: progressShine 2s ease-in-out infinite;
+        }
+        
+        @keyframes progressShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .bounce-in {
+            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .timer-urgent {
+            animation: timerPulse 0.5s ease-in-out infinite;
+        }
+        
+        @keyframes timerPulse {
+            0%, 100% { color: #ef4444; }
+            50% { color: #fbbf24; }
+        }
+        
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .health-excellent { background: linear-gradient(135deg, #10b981, #34d399); }
+        .health-good { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
+        .health-warning { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+        .health-danger { background: linear-gradient(135deg, #ef4444, #f87171); }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #6366f1, #8b5cf6);
+            border-radius: 4px;
+        }
+        
+        .question-option {
+            transition: all 0.2s ease;
+        }
+        
+        .question-option:hover {
+            transform: translateX(8px);
+            background: rgba(99, 102, 241, 0.3);
+        }
+        
+        .correct-answer {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(52, 211, 153, 0.3)) !important;
+            border-color: #10b981 !important;
+        }
+        
+        .wrong-answer {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(248, 113, 113, 0.3)) !important;
+            border-color: #ef4444 !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // ============ QUESTION DATABASE ============
+        const questionDatabase = {
+            math: {
+                name: "Mathematics",
+                icon: "📐",
+                color: "from-blue-500 to-cyan-500",
+                topics: {
+                    "Number & Algebra": [
+                        {
+                            id: "m1",
+                            type: "multiple",
+                            question: "Simplify: 3x + 5x - 2x",
+                            options: ["6x", "8x", "10x", "4x"],
+                            correct: 0,
+                            explanation: "Combine like terms: 3x + 5x - 2x = (3+5-2)x = 6x",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "m2",
+                            type: "multiple",
+                            question: "What is the value of 2³ × 2²?",
+                            options: ["32", "16", "64", "8"],
+                            correct: 0,
+                            explanation: "Using index laws: 2³ × 2² = 2^(3+2) = 2⁵ = 32",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "m3",
+                            type: "multiple",
+                            question: "Solve for x: 2x + 7 = 15",
+                            options: ["x = 4", "x = 8", "x = 11", "x = 3"],
+                            correct: 0,
+                            explanation: "2x + 7 = 15 → 2x = 15 - 7 → 2x = 8 → x = 4",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "m4",
+                            type: "multiple",
+                            question: "What is 15% of 80?",
+                            options: ["12", "15", "8", "10"],
+                            correct: 0,
+                            explanation: "15% of 80 = 0.15 × 80 = 12",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "m5",
+                            type: "short",
+                            question: "Express 3/5 as a decimal",
+                            correct: ["0.6", ".6"],
+                            explanation: "3 ÷ 5 = 0.6",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "m6",
+                            type: "multiple",
+                            question: "What is the next term in the sequence: 2, 6, 18, 54, ...?",
+                            options: ["162", "108", "72", "216"],
+                            correct: 0,
+                            explanation: "Each term is multiplied by 3. 54 × 3 = 162",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "m7",
+                            type: "multiple",
+                            question: "Factorise: x² - 9",
+                            options: ["(x+3)(x-3)", "(x+9)(x-1)", "(x-3)²", "(x+3)²"],
+                            correct: 0,
+                            explanation: "This is a difference of squares: a² - b² = (a+b)(a-b). So x² - 9 = (x+3)(x-3)",
+                            difficulty: "E7-E8"
+                        },
+                        {
+                            id: "m8",
+                            type: "multiple",
+                            question: "If the ratio of boys to girls is 3:5 and there are 24 boys, how many girls are there?",
+                            options: ["40", "30", "45", "35"],
+                            correct: 0,
+                            explanation: "3 parts = 24 boys, so 1 part = 8. Girls = 5 parts = 5 × 8 = 40",
+                            difficulty: "M5-M6"
+                        }
+                    ],
+                    "Geometry & Measurement": [
+                        {
+                            id: "m9",
+                            type: "multiple",
+                            question: "What is the area of a rectangle with length 8cm and width 5cm?",
+                            options: ["40 cm²", "26 cm²", "13 cm²", "80 cm²"],
+                            correct: 0,
+                            explanation: "Area = length × width = 8 × 5 = 40 cm²",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "m10",
+                            type: "multiple",
+                            question: "What is the sum of interior angles in a triangle?",
+                            options: ["180°", "360°", "90°", "270°"],
+                            correct: 0,
+                            explanation: "The sum of all interior angles in any triangle is always 180°",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "m11",
+                            type: "multiple",
+                            question: "Calculate the circumference of a circle with radius 7cm (use π = 22/7)",
+                            options: ["44 cm", "154 cm", "22 cm", "88 cm"],
+                            correct: 0,
+                            explanation: "Circumference = 2πr = 2 × (22/7) × 7 = 44 cm",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "m12",
+                            type: "multiple",
+                            question: "What type of angle is 135°?",
+                            options: ["Obtuse", "Acute", "Right", "Reflex"],
+                            correct: 0,
+                            explanation: "An obtuse angle is between 90° and 180°. 135° falls in this range.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "m13",
+                            type: "short",
+                            question: "What is the volume of a cube with side length 4cm? (answer in cm³, numbers only)",
+                            correct: ["64"],
+                            explanation: "Volume of cube = side³ = 4³ = 64 cm³",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "m14",
+                            type: "multiple",
+                            question: "In a right-angled triangle with legs 3cm and 4cm, what is the hypotenuse?",
+                            options: ["5 cm", "7 cm", "6 cm", "12 cm"],
+                            correct: 0,
+                            explanation: "Using Pythagoras: c² = 3² + 4² = 9 + 16 = 25, so c = 5 cm",
+                            difficulty: "E7-E8"
+                        }
+                    ],
+                    "Statistics": [
+                        {
+                            id: "m15",
+                            type: "multiple",
+                            question: "What is the mean of: 4, 7, 8, 9, 12?",
+                            options: ["8", "7", "9", "8.5"],
+                            correct: 0,
+                            explanation: "Mean = (4+7+8+9+12) ÷ 5 = 40 ÷ 5 = 8",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "m16",
+                            type: "multiple",
+                            question: "What is the median of: 3, 7, 9, 12, 15?",
+                            options: ["9", "7", "12", "9.2"],
+                            correct: 0,
+                            explanation: "The median is the middle value when ordered. Here it's 9.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "m17",
+                            type: "multiple",
+                            question: "What is the mode of: 2, 4, 4, 5, 7, 4, 8?",
+                            options: ["4", "5", "2", "7"],
+                            correct: 0,
+                            explanation: "The mode is the most frequent value. 4 appears 3 times.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "m18",
+                            type: "multiple",
+                            question: "What is the range of: 15, 22, 8, 31, 19?",
+                            options: ["23", "31", "8", "19"],
+                            correct: 0,
+                            explanation: "Range = highest - lowest = 31 - 8 = 23",
+                            difficulty: "A3-A4"
+                        }
+                    ]
+                }
+            },
+            english: {
+                name: "English ESOL",
+                icon: "📚",
+                color: "from-purple-500 to-pink-500",
+                topics: {
+                    "Reading & Vocabulary": [
+                        {
+                            id: "e1",
+                            type: "multiple",
+                            question: "What is a synonym for 'happy'?",
+                            options: ["Joyful", "Sad", "Angry", "Tired"],
+                            correct: 0,
+                            explanation: "A synonym is a word with similar meaning. 'Joyful' means the same as 'happy'.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "e2",
+                            type: "multiple",
+                            question: "What is an antonym for 'ancient'?",
+                            options: ["Modern", "Old", "Historic", "Traditional"],
+                            correct: 0,
+                            explanation: "An antonym is a word with opposite meaning. 'Modern' is the opposite of 'ancient'.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "e3",
+                            type: "fill",
+                            question: "Complete the sentence: She _____ (go) to school yesterday.",
+                            correct: ["went"],
+                            explanation: "Past tense of 'go' is 'went'. The word 'yesterday' indicates past tense.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "e4",
+                            type: "multiple",
+                            question: "Which word is a noun?",
+                            options: ["Happiness", "Happy", "Happily", "Happier"],
+                            correct: 0,
+                            explanation: "'Happiness' is a noun (thing/concept). 'Happy' is adjective, 'Happily' is adverb, 'Happier' is comparative adjective.",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "e5",
+                            type: "fill",
+                            question: "The plural of 'child' is _____.",
+                            correct: ["children"],
+                            explanation: "'Child' has an irregular plural form: 'children'.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "e6",
+                            type: "multiple",
+                            question: "What does the prefix 'un-' mean in 'unhappy'?",
+                            options: ["Not", "Very", "Before", "After"],
+                            correct: 0,
+                            explanation: "The prefix 'un-' means 'not'. Unhappy = not happy.",
+                            difficulty: "A3-A4"
+                        }
+                    ],
+                    "Grammar": [
+                        {
+                            id: "e7",
+                            type: "multiple",
+                            question: "Which sentence is correct?",
+                            options: ["She doesn't like apples.", "She don't like apples.", "She not like apples.", "She no like apples."],
+                            correct: 0,
+                            explanation: "With 'she/he/it', we use 'doesn't' for negative sentences.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "e8",
+                            type: "fill",
+                            question: "I have _____ (be) waiting for an hour.",
+                            correct: ["been"],
+                            explanation: "Present perfect continuous: have/has + been + verb-ing",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "e9",
+                            type: "multiple",
+                            question: "Choose the correct pronoun: 'The book belongs to Maria. It is _____.'",
+                            options: ["hers", "her", "she", "herself"],
+                            correct: 0,
+                            explanation: "'Hers' is a possessive pronoun used when no noun follows.",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "e10",
+                            type: "fill",
+                            question: "If it _____ (rain) tomorrow, we will stay home.",
+                            correct: ["rains"],
+                            explanation: "First conditional: If + present simple, will + base verb",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "e11",
+                            type: "multiple",
+                            question: "Which is a compound sentence?",
+                            options: ["I went to the shop, and I bought milk.", "Although it rained, we went out.", "The big red car.", "Running quickly."],
+                            correct: 0,
+                            explanation: "A compound sentence has two independent clauses joined by 'and', 'but', 'or', etc.",
+                            difficulty: "E7-E8"
+                        }
+                    ],
+                    "Writing Skills": [
+                        {
+                            id: "e12",
+                            type: "multiple",
+                            question: "What is the purpose of a topic sentence?",
+                            options: ["To introduce the main idea of a paragraph", "To conclude an essay", "To provide examples", "To cite sources"],
+                            correct: 0,
+                            explanation: "A topic sentence introduces the main idea and sets the direction for the paragraph.",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "e13",
+                            type: "multiple",
+                            question: "Which transition word shows contrast?",
+                            options: ["However", "Therefore", "Furthermore", "Similarly"],
+                            correct: 0,
+                            explanation: "'However' shows contrast. 'Therefore' shows result. 'Furthermore' and 'Similarly' show addition.",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "e14",
+                            type: "multiple",
+                            question: "What type of writing is used to convince the reader?",
+                            options: ["Persuasive", "Narrative", "Descriptive", "Expository"],
+                            correct: 0,
+                            explanation: "Persuasive writing aims to convince the reader of a particular viewpoint.",
+                            difficulty: "A3-A4"
+                        }
+                    ]
+                }
+            },
+            science: {
+                name: "Science",
+                icon: "🔬",
+                color: "from-green-500 to-teal-500",
+                topics: {
+                    "Chemistry": [
+                        {
+                            id: "s1",
+                            type: "multiple",
+                            question: "What is the chemical symbol for water?",
+                            options: ["H₂O", "CO₂", "NaCl", "O₂"],
+                            correct: 0,
+                            explanation: "Water is made of 2 hydrogen atoms and 1 oxygen atom: H₂O",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "s2",
+                            type: "multiple",
+                            question: "Which of these is NOT a sign of a chemical reaction?",
+                            options: ["Changing shape", "Colour change", "Gas production", "Temperature change"],
+                            correct: 0,
+                            explanation: "Changing shape is a physical change. Chemical reactions show colour change, gas production, temperature change, or precipitate formation.",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "s3",
+                            type: "multiple",
+                            question: "What are the three states of matter?",
+                            options: ["Solid, liquid, gas", "Hot, warm, cold", "Big, medium, small", "Hard, soft, flexible"],
+                            correct: 0,
+                            explanation: "The three common states of matter are solid, liquid, and gas.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "s4",
+                            type: "multiple",
+                            question: "Where are metals found on the periodic table?",
+                            options: ["Left side", "Right side", "Top only", "Bottom only"],
+                            correct: 0,
+                            explanation: "Metals are found on the left side of the periodic table, non-metals on the right.",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "s5",
+                            type: "multiple",
+                            question: "What is an atom?",
+                            options: ["The smallest particle of an element", "A type of molecule", "A chemical reaction", "A state of matter"],
+                            correct: 0,
+                            explanation: "An atom is the smallest particle of an element that retains the element's properties.",
+                            difficulty: "A3-A4"
+                        }
+                    ],
+                    "Biology": [
+                        {
+                            id: "s6",
+                            type: "multiple",
+                            question: "What is the powerhouse of the cell?",
+                            options: ["Mitochondria", "Nucleus", "Cell membrane", "Ribosome"],
+                            correct: 0,
+                            explanation: "Mitochondria produce energy (ATP) for the cell, earning the name 'powerhouse'.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "s7",
+                            type: "multiple",
+                            question: "What process do plants use to make food?",
+                            options: ["Photosynthesis", "Respiration", "Digestion", "Fermentation"],
+                            correct: 0,
+                            explanation: "Photosynthesis uses sunlight, water, and CO₂ to produce glucose and oxygen.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "s8",
+                            type: "multiple",
+                            question: "What is the function of the nucleus in a cell?",
+                            options: ["Controls cell activities and contains DNA", "Produces energy", "Makes proteins", "Stores water"],
+                            correct: 0,
+                            explanation: "The nucleus is the control center, containing genetic material (DNA) that directs cell activities.",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "s9",
+                            type: "multiple",
+                            question: "What is an ecosystem?",
+                            options: ["A community of living things and their environment", "A single organism", "Only the plants in an area", "Only the animals in an area"],
+                            correct: 0,
+                            explanation: "An ecosystem includes all living organisms (biotic) and non-living components (abiotic) interacting together.",
+                            difficulty: "M5-M6"
+                        }
+                    ],
+                    "Physics": [
+                        {
+                            id: "s10",
+                            type: "multiple",
+                            question: "What is the unit of force?",
+                            options: ["Newton", "Joule", "Watt", "Metre"],
+                            correct: 0,
+                            explanation: "Force is measured in Newtons (N), named after Isaac Newton.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "s11",
+                            type: "multiple",
+                            question: "What type of energy does a moving car have?",
+                            options: ["Kinetic energy", "Potential energy", "Chemical energy", "Nuclear energy"],
+                            correct: 0,
+                            explanation: "Kinetic energy is the energy of motion. A moving car has kinetic energy.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "s12",
+                            type: "multiple",
+                            question: "What happens when light passes through a prism?",
+                            options: ["It separates into colours (spectrum)", "It becomes brighter", "It disappears", "It becomes a laser"],
+                            correct: 0,
+                            explanation: "A prism refracts white light into its component colours, creating a spectrum.",
+                            difficulty: "M5-M6"
+                        }
+                    ]
+                }
+            },
+            social: {
+                name: "Social Science",
+                icon: "🌏",
+                color: "from-orange-500 to-red-500",
+                topics: {
+                    "NZ History": [
+                        {
+                            id: "ss1",
+                            type: "multiple",
+                            question: "When was the Treaty of Waitangi signed?",
+                            options: ["1840", "1800", "1900", "1776"],
+                            correct: 0,
+                            explanation: "Te Tiriti o Waitangi was signed on 6 February 1840 at Waitangi.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "ss2",
+                            type: "multiple",
+                            question: "Who were the first people to settle in New Zealand?",
+                            options: ["Māori (Polynesian settlers)", "British colonists", "Dutch explorers", "Australian settlers"],
+                            correct: 0,
+                            explanation: "Māori, who arrived from Polynesia around 1250-1300 AD, were the first settlers.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "ss3",
+                            type: "multiple",
+                            question: "What are the three principles of the Treaty of Waitangi?",
+                            options: ["Partnership, Protection, Participation", "Peace, Power, Prosperity", "Land, Law, Liberty", "King, Country, Crown"],
+                            correct: 0,
+                            explanation: "The Treaty principles are Partnership (working together), Protection (of Māori rights), and Participation (in decision-making).",
+                            difficulty: "M5-M6"
+                        }
+                    ],
+                    "Geography": [
+                        {
+                            id: "ss4",
+                            type: "multiple",
+                            question: "What type of plate boundary causes earthquakes in New Zealand?",
+                            options: ["Convergent boundary", "Divergent boundary", "Transform boundary", "None of the above"],
+                            correct: 0,
+                            explanation: "NZ sits on a convergent boundary where the Pacific and Australian plates meet.",
+                            difficulty: "M5-M6"
+                        },
+                        {
+                            id: "ss5",
+                            type: "multiple",
+                            question: "What is sustainability?",
+                            options: ["Meeting present needs without harming future generations", "Using all resources quickly", "Ignoring environmental problems", "Building more factories"],
+                            correct: 0,
+                            explanation: "Sustainability means using resources responsibly so future generations can also meet their needs.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "ss6",
+                            type: "multiple",
+                            question: "What is climate change mainly caused by?",
+                            options: ["Greenhouse gas emissions", "Changes in the moon", "Volcanic eruptions only", "Ocean currents only"],
+                            correct: 0,
+                            explanation: "Human activities releasing greenhouse gases (like CO₂) are the main cause of current climate change.",
+                            difficulty: "M5-M6"
+                        }
+                    ],
+                    "Civics": [
+                        {
+                            id: "ss7",
+                            type: "multiple",
+                            question: "What type of government does New Zealand have?",
+                            options: ["Parliamentary democracy", "Presidential republic", "Absolute monarchy", "Dictatorship"],
+                            correct: 0,
+                            explanation: "NZ is a parliamentary democracy with an elected parliament and constitutional monarch.",
+                            difficulty: "A3-A4"
+                        },
+                        {
+                            id: "ss8",
+                            type: "multiple",
+                            question: "What is the minimum voting age in New Zealand?",
+                            options: ["18 years old", "16 years old", "21 years old", "25 years old"],
+                            correct: 0,
+                            explanation: "New Zealanders can vote from age 18.",
+                            difficulty: "A3-A4"
+                        }
+                    ]
+                }
+            }
+        };
+
+        // ============ NCEA GRADE SYSTEM ============
+        const gradeSystem = {
+            "N0": { min: 0, max: 9, label: "Not Achieved", color: "#ef4444", emoji: "😔" },
+            "N1": { min: 10, max: 19, label: "Not Achieved", color: "#ef4444", emoji: "😕" },
+            "N2": { min: 20, max: 39, label: "Not Achieved", color: "#f97316", emoji: "🤔" },
+            "A3": { min: 40, max: 49, label: "Achieved", color: "#eab308", emoji: "😊" },
+            "A4": { min: 50, max: 59, label: "Achieved", color: "#84cc16", emoji: "🙂" },
+            "M5": { min: 60, max: 69, label: "Merit", color: "#22c55e", emoji: "😄" },
+            "M6": { min: 70, max: 79, label: "Merit", color: "#14b8a6", emoji: "😃" },
+            "E7": { min: 80, max: 89, label: "Excellence", color: "#3b82f6", emoji: "🌟" },
+            "E8": { min: 90, max: 100, label: "Excellence", color: "#8b5cf6", emoji: "🏆" }
+        };
+
+        const getGrade = (percentage) => {
+            for (const [grade, data] of Object.entries(gradeSystem)) {
+                if (percentage >= data.min && percentage <= data.max) {
+                    return { grade, ...data };
+                }
+            }
+            return { grade: "N0", ...gradeSystem["N0"] };
+        };
+
+        // ============ STUDY PLAN ============
+        const studyPlan = [
+            { week: 1, dates: "Dec 6-12", subject: "math", topic: "Number & Algebra", hours: 2, focus: "Algebra basics, equations, percentages" },
+            { week: 2, dates: "Dec 13-19", subject: "english", topic: "Reading & Vocabulary", hours: 2, focus: "Vocabulary building, reading comprehension" },
+            { week: 3, dates: "Dec 20-26", subject: "math", topic: "Geometry & Measurement", hours: 1.5, focus: "Shapes, angles, area, volume" },
+            { week: 4, dates: "Dec 27 - Jan 2", subject: "science", topic: "Chemistry & Biology", hours: 1.5, focus: "Atoms, cells, ecosystems" },
+            { week: 5, dates: "Jan 3-9", subject: "english", topic: "Grammar & Writing", hours: 2, focus: "Grammar rules, essay structure" },
+            { week: 6, dates: "Jan 10-17", subject: "all", topic: "Full Review", hours: 2, focus: "Practice exams for all subjects" }
+        ];
+
+        // ============ BADGES ============
+        const allBadges = [
+            { id: "first_exam", name: "First Steps", icon: "🎯", desc: "Complete your first exam", requirement: (stats) => stats.examsCompleted >= 1 },
+            { id: "streak_3", name: "On Fire", icon: "🔥", desc: "3 day study streak", requirement: (stats) => stats.currentStreak >= 3 },
+            { id: "streak_7", name: "Week Warrior", icon: "⚔️", desc: "7 day study streak", requirement: (stats) => stats.currentStreak >= 7 },
+            { id: "perfect_score", name: "Perfectionist", icon: "💯", desc: "Get 100% on an exam", requirement: (stats) => stats.perfectScores >= 1 },
+            { id: "math_master", name: "Math Wizard", icon: "🧙", desc: "Complete 5 Math exams", requirement: (stats) => (stats.subjectExams?.math || 0) >= 5 },
+            { id: "english_expert", name: "Wordsmith", icon: "📖", desc: "Complete 5 English exams", requirement: (stats) => (stats.subjectExams?.english || 0) >= 5 },
+            { id: "science_star", name: "Scientist", icon: "🔭", desc: "Complete 5 Science exams", requirement: (stats) => (stats.subjectExams?.science || 0) >= 5 },
+            { id: "excellence", name: "Excellence Achiever", icon: "🏆", desc: "Get E7 or E8 grade", requirement: (stats) => stats.excellenceGrades >= 1 },
+            { id: "ten_exams", name: "Dedicated Learner", icon: "📚", desc: "Complete 10 exams", requirement: (stats) => stats.examsCompleted >= 10 },
+            { id: "time_master", name: "Speed Demon", icon: "⚡", desc: "Complete a timed exam under 2 minutes", requirement: (stats) => stats.fastExams >= 1 }
+        ];
+
+        // ============ MAIN APP ============
+        function App() {
+            const [currentView, setCurrentView] = useState('dashboard');
+            const [userData, setUserData] = useState(() => {
+                const saved = localStorage.getItem('rangiReviewData');
+                return saved ? JSON.parse(saved) : {
+                    name: '',
+                    totalXP: 0,
+                    currentStreak: 0,
+                    lastStudyDate: null,
+                    examsCompleted: 0,
+                    perfectScores: 0,
+                    excellenceGrades: 0,
+                    fastExams: 0,
+                    subjectExams: { math: 0, english: 0, science: 0, social: 0 },
+                    examHistory: [],
+                    badges: [],
+                    weeklyProgress: [0, 0, 0, 0, 0, 0]
+                };
+            });
+            const [selectedSubject, setSelectedSubject] = useState(null);
+            const [selectedTopic, setSelectedTopic] = useState(null);
+            const [examMode, setExamMode] = useState(false);
+            const [currentExam, setCurrentExam] = useState(null);
+
+            useEffect(() => {
+                localStorage.setItem('rangiReviewData', JSON.stringify(userData));
+            }, [userData]);
+
+            useEffect(() => {
+                checkStreak();
+                checkBadges();
+            }, []);
+
+            const checkStreak = () => {
+                const today = new Date().toDateString();
+                const lastStudy = userData.lastStudyDate;
+                
+                if (lastStudy) {
+                    const lastDate = new Date(lastStudy);
+                    const todayDate = new Date(today);
+                    const diffDays = Math.floor((todayDate - lastDate) / (1000 * 60 * 60 * 24));
+                    
+                    if (diffDays > 1) {
+                        setUserData(prev => ({ ...prev, currentStreak: 0 }));
+                    }
+                }
+            };
+
+            const checkBadges = () => {
+                const newBadges = [];
+                allBadges.forEach(badge => {
+                    if (!userData.badges.includes(badge.id) && badge.requirement(userData)) {
+                        newBadges.push(badge.id);
+                    }
+                });
+                if (newBadges.length > 0) {
+                    setUserData(prev => ({ ...prev, badges: [...prev.badges, ...newBadges] }));
+                }
+            };
+
+            const calculateHealthIndex = () => {
+                const currentWeek = Math.min(6, Math.max(1, Math.ceil((new Date() - new Date('2025-12-06')) / (7 * 24 * 60 * 60 * 1000))));
+                const expectedExams = currentWeek * 3;
+                const actualExams = userData.examsCompleted;
+                const ratio = Math.min(1, actualExams / Math.max(1, expectedExams));
+                
+                const streakBonus = Math.min(0.2, userData.currentStreak * 0.03);
+                const health = Math.round((ratio * 0.8 + streakBonus) * 100);
+                
+                return Math.min(100, Math.max(0, health));
+            };
+
+            const startExam = (subject, topic) => {
+                const questions = questionDatabase[subject].topics[topic];
+                const shuffled = [...questions].sort(() => Math.random() - 0.5).slice(0, Math.min(5, questions.length));
+                
+                setCurrentExam({
+                    subject,
+                    topic,
+                    questions: shuffled,
+                    currentQuestion: 0,
+                    answers: [],
+                    startTime: Date.now(),
+                    timerEnabled: true
+                });
+                setExamMode(true);
+            };
+
+            const submitExam = (results) => {
+                const { subject, topic, questions, answers, startTime } = results;
+                const timeTaken = Math.floor((Date.now() - startTime) / 1000);
+                
+                let correct = 0;
+                questions.forEach((q, i) => {
+                    if (q.type === 'multiple' && answers[i] === q.correct) correct++;
+                    else if ((q.type === 'short' || q.type === 'fill') && 
+                             q.correct.some(ans => answers[i]?.toLowerCase().trim() === ans.toLowerCase())) correct++;
+                });
+                
+                const percentage = Math.round((correct / questions.length) * 100);
+                const gradeInfo = getGrade(percentage);
+                const xpEarned = Math.round(percentage * 2 + (timeTaken < 120 ? 50 : 0));
+
+                if (percentage === 100) {
+                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                }
+
+                const newExamRecord = {
+                    id: Date.now(),
+                    subject,
+                    topic,
+                    score: percentage,
+                    grade: gradeInfo.grade,
+                    xp: xpEarned,
+                    date: new Date().toISOString(),
+                    timeTaken,
+                    details: questions.map((q, i) => ({
+                        question: q.question,
+                        userAnswer: answers[i],
+                        correct: q.type === 'multiple' ? q.options[q.correct] : q.correct[0],
+                        isCorrect: q.type === 'multiple' ? answers[i] === q.correct : 
+                                   q.correct.some(ans => answers[i]?.toLowerCase().trim() === ans.toLowerCase()),
+                        explanation: q.explanation
+                    }))
+                };
+
+                setUserData(prev => {
+                    const currentWeek = Math.min(5, Math.max(0, Math.ceil((new Date() - new Date('2025-12-06')) / (7 * 24 * 60 * 60 * 1000)) - 1));
+                    const newWeeklyProgress = [...prev.weeklyProgress];
+                    newWeeklyProgress[currentWeek] = Math.min(100, newWeeklyProgress[currentWeek] + 15);
+
+                    return {
+                        ...prev,
+                        totalXP: prev.totalXP + xpEarned,
+                        examsCompleted: prev.examsCompleted + 1,
+                        perfectScores: percentage === 100 ? prev.perfectScores + 1 : prev.perfectScores,
+                        excellenceGrades: percentage >= 80 ? prev.excellenceGrades + 1 : prev.excellenceGrades,
+                        fastExams: timeTaken < 120 ? prev.fastExams + 1 : prev.fastExams,
+                        subjectExams: { ...prev.subjectExams, [subject]: (prev.subjectExams[subject] || 0) + 1 },
+                        examHistory: [newExamRecord, ...prev.examHistory].slice(0, 50),
+                        lastStudyDate: new Date().toDateString(),
+                        currentStreak: prev.lastStudyDate === new Date().toDateString() ? prev.currentStreak : prev.currentStreak + 1,
+                        weeklyProgress: newWeeklyProgress
+                    };
+                });
+
+                setTimeout(checkBadges, 100);
+                return { ...newExamRecord, gradeInfo };
+            };
+
+            return (
+                <div className="min-h-screen p-4 md:p-8">
+                    {!userData.name ? (
+                        <WelcomeScreen onComplete={(name) => setUserData(prev => ({ ...prev, name }))} />
+                    ) : examMode ? (
+                        <ExamScreen 
+                            exam={currentExam} 
+                            onComplete={(results) => {
+                                const finalResults = submitExam(results);
+                                setCurrentExam({ ...currentExam, results: finalResults });
+                            }}
+                            onExit={() => {
+                                setExamMode(false);
+                                setCurrentExam(null);
+                            }}
+                        />
+                    ) : (
+                        <div className="max-w-7xl mx-auto">
+                            <Header 
+                                userData={userData} 
+                                healthIndex={calculateHealthIndex()} 
+                                currentView={currentView}
+                                setCurrentView={setCurrentView}
+                            />
+                            
+                            {currentView === 'dashboard' && (
+                                <Dashboard 
+                                    userData={userData}
+                                    healthIndex={calculateHealthIndex()}
+                                    onStartExam={startExam}
+                                />
+                            )}
+                            {currentView === 'subjects' && (
+                                <SubjectsView 
+                                    onSelectSubject={(subject, topic) => startExam(subject, topic)}
+                                />
+                            )}
+                            {currentView === 'progress' && (
+                                <ProgressView userData={userData} />
+                            )}
+                            {currentView === 'badges' && (
+                                <BadgesView userData={userData} />
+                            )}
+                            {currentView === 'plan' && (
+                                <StudyPlanView userData={userData} />
+                            )}
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        // ============ WELCOME SCREEN ============
+        function WelcomeScreen({ onComplete }) {
+            const [name, setName] = useState('');
+
+            return (
+                <div className="min-h-screen flex items-center justify-center">
+                    <div className="glass rounded-3xl p-12 max-w-lg w-full text-center bounce-in">
+                        <div className="text-6xl mb-6 floating">🎓</div>
+                        <h1 className="text-4xl font-bold text-white mb-2 neon-text">Rangitoto</h1>
+                        <h2 className="text-2xl text-purple-300 mb-8">Year 9 Review Hub</h2>
+                        
+                        <p className="text-gray-300 mb-8">
+                            Welcome! Get ready to review your Year 9 subjects with fun quizzes, 
+                            earn badges, and track your progress!
+                        </p>
+                        
+                        <input
+                            type="text"
+                            placeholder="Enter your name..."
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full px-6 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 text-lg mb-6 focus:outline-none focus:border-purple-400 transition"
+                        />
+                        
+                        <button
+                            onClick={() => name.trim() && onComplete(name.trim())}
+                            disabled={!name.trim()}
+                            className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-all pulse-glow"
+                        >
+                            Start Learning! 🚀
+                        </button>
+                    </div>
+                </div>
+            );
+        }
+
+        // ============ HEADER ============
+        function Header({ userData, healthIndex, currentView, setCurrentView }) {
+            const healthClass = healthIndex >= 80 ? 'health-excellent' : 
+                               healthIndex >= 60 ? 'health-good' : 
+                               healthIndex >= 40 ? 'health-warning' : 'health-danger';
+
+            const navItems = [
+                { id: 'dashboard', icon: '🏠', label: 'Home' },
+                { id: 'subjects', icon: '📚', label: 'Subjects' },
+                { id: 'progress', icon: '📊', label: 'Progress' },
+                { id: 'badges', icon: '🏅', label: 'Badges' },
+                { id: 'plan', icon: '📅', label: 'Plan' }
+            ];
+
+            return (
+                <header className="glass rounded-2xl p-4 mb-6">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div className="flex items-center gap-4">
+                            <div className="text-4xl floating">🎓</div>
+                            <div>
+                                <h1 className="text-xl font-bold text-white">Kia ora, {userData.name}!</h1>
+                                <div className="flex items-center gap-4 text-sm">
+                                    <span className="text-yellow-400 font-mono">⚡ {userData.totalXP} XP</span>
+                                    {userData.currentStreak > 0 && (
+                                        <span className="text-orange-400 streak-fire">🔥 {userData.currentStreak} day streak</span>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className="flex items-center gap-3">
+                            <div className={`${healthClass} px-4 py-2 rounded-xl text-white font-bold`}>
+                                Health: {healthIndex}%
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <nav className="flex gap-2 mt-4 overflow-x-auto pb-2">
+                        {navItems.map(item => (
+                            <button
+                                key={item.id}
+                                onClick={() => setCurrentView(item.id)}
+                                className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition whitespace-nowrap ${
+                                    currentView === item.id 
+                                        ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white' 
+                                        : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                                }`}
+                            >
+                                <span>{item.icon}</span>
+                                <span className="hidden sm:inline">{item.label}</span>
+                            </button>
+                        ))}
+                    </nav>
+                </header>
+            );
+        }
+
+        // ============ DASHBOARD ============
+        function Dashboard({ userData, healthIndex, onStartExam }) {
+            const currentWeek = Math.min(6, Math.max(1, Math.ceil((new Date() - new Date('2025-12-06')) / (7 * 24 * 60 * 60 * 1000))));
+            const currentPlan = studyPlan[Math.min(currentWeek - 1, 5)];
+
+            const quickActions = [
+                { subject: 'math', topic: 'Number & Algebra', icon: '📐', color: 'from-blue-500 to-cyan-500' },
+                { subject: 'english', topic: 'Grammar', icon: '📚', color: 'from-purple-500 to-pink-500' },
+                { subject: 'science', topic: 'Chemistry', icon: '🔬', color: 'from-green-500 to-teal-500' },
+                { subject: 'social', topic: 'NZ History', icon: '🌏', color: 'from-orange-500 to-red-500' }
+            ];
+
+            return (
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {/* Main Content */}
+                    <div className="lg:col-span-2 space-y-6">
+                        {/* Week Card */}
+                        <div className="glass rounded-2xl p-6 card-hover">
+                            <div className="flex items-center justify-between mb-4">
+                                <h2 className="text-xl font-bold text-white">📅 Week {currentWeek} Focus</h2>
+                                <span className="text-sm text-purple-300">{currentPlan.dates}</span>
+                            </div>
+                            <div className={`bg-gradient-to-r ${questionDatabase[currentPlan.subject === 'all' ? 'math' : currentPlan.subject].color} p-4 rounded-xl mb-4`}>
+                                <p className="text-white font-bold text-lg">{currentPlan.topic}</p>
+                                <p className="text-white/80">{currentPlan.focus}</p>
+                                <p className="text-white/60 text-sm mt-2">📚 {currentPlan.hours} hours/day recommended</p>
+                            </div>
+                            
+                            {currentPlan.subject !== 'all' && (
+                                <button
+                                    onClick={() => onStartExam(currentPlan.subject, Object.keys(questionDatabase[currentPlan.subject].topics)[0])}
+                                    className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold hover:scale-[1.02] transition-all"
+                                >
+                                    Start Today's Quiz 🚀
+                                </button>
+                            )}
+                        </div>
+
+                        {/* Quick Start */}
+                        <div className="glass rounded-2xl p-6">
+                            <h2 className="text-xl font-bold text-white mb-4">⚡ Quick Start</h2>
+                            <div className="grid grid-cols-2 gap-3">
+                                {quickActions.map((action, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => onStartExam(action.subject, action.topic)}
+                                        className={`bg-gradient-to-r ${action.color} p-4 rounded-xl text-white text-left card-hover`}
+                                    >
+                                        <span className="text-2xl">{action.icon}</span>
+                                        <p className="font-bold mt-2">{questionDatabase[action.subject].name}</p>
+                                        <p className="text-sm opacity-80">{action.topic}</p>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Sidebar */}
+                    <div className="space-y-6">
+                        {/* Stats */}
+                        <div className="glass rounded-2xl p-6">
+                            <h3 className="text-lg font-bold text-white mb-4">📊 Your Stats</h3>
+                            <div className="space-y-4">
+                                <StatItem label="Total XP" value={userData.totalXP} icon="⚡" color="text-yellow-400" />
+                                <StatItem label="Exams Completed" value={userData.examsCompleted} icon="✅" color="text-green-400" />
+                                <StatItem label="Current Streak" value={`${userData.currentStreak} days`} icon="🔥" color="text-orange-400" />
+                                <StatItem label="Perfect Scores" value={userData.perfectScores} icon="💯" color="text-purple-400" />
+                                <StatItem label="Badges Earned" value={`${userData.badges.length}/${allBadges.length}`} icon="🏅" color="text-blue-400" />
+                            </div>
+                        </div>
+
+                        {/* Recent Activity */}
+                        <div className="glass rounded-2xl p-6">
+                            <h3 className="text-lg font-bold text-white mb-4">🕒 Recent Exams</h3>
+                            {userData.examHistory.length === 0 ? (
+                                <p className="text-gray-400 text-sm">No exams yet. Start your first quiz!</p>
+                            ) : (
+                                <div className="space-y-3">
+                                    {userData.examHistory.slice(0, 3).map((exam, i) => (
+                                        <div key={i} className="bg-white/5 rounded-lg p-3">
+                                            <div className="flex justify-between items-center">
+                                                <span className="text-white font-medium">{questionDatabase[exam.subject].name}</span>
+                                                <span className={`px-2 py-1 rounded text-xs font-bold`} style={{ backgroundColor: getGrade(exam.score).color }}>
+                                                    {exam.grade}
+                                                </span>
+                                            </div>
+                                            <p className="text-gray-400 text-xs mt-1">{exam.topic} • {exam.score}%</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function StatItem({ label, value, icon, color }) {
+            return (
+                <div className="flex items-center justify-between">
+                    <span className="text-gray-300">{label}</span>
+                    <span className={`font-bold mono ${color}`}>{icon} {value}</span>
+                </div>
+            );
+        }
+
+        // ============ SUBJECTS VIEW ============
+        function SubjectsView({ onSelectSubject }) {
+            const [expandedSubject, setExpandedSubject] = useState(null);
+
+            return (
+                <div className="space-y-6">
+                    <div className="glass rounded-2xl p-6">
+                        <h2 className="text-2xl font-bold text-white mb-6">📚 Choose Your Subject</h2>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {Object.entries(questionDatabase).map(([key, subject]) => (
+                                <div key={key} className="glass rounded-xl overflow-hidden card-hover">
+                                    <button
+                                        onClick={() => setExpandedSubject(expandedSubject === key ? null : key)}
+                                        className={`w-full bg-gradient-to-r ${subject.color} p-6 text-left`}
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <span className="text-4xl">{subject.icon}</span>
+                                            <div>
+                                                <h3 className="text-xl font-bold text-white">{subject.name}</h3>
+                                                <p className="text-white/70">{Object.keys(subject.topics).length} topics available</p>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    
+                                    {expandedSubject === key && (
+                                        <div className="p-4 space-y-2 slide-in">
+                                            {Object.entries(subject.topics).map(([topicName, questions]) => (
+                                                <button
+                                                    key={topicName}
+                                                    onClick={() => onSelectSubject(key, topicName)}
+                                                    className="w-full p-3 rounded-lg bg-white/10 text-white text-left hover:bg-white/20 transition flex justify-between items-center"
+                                                >
+                                                    <span>{topicName}</span>
+                                                    <span className="text-sm text-gray-400">{questions.length} questions</span>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        // ============ EXAM SCREEN ============
+        function ExamScreen({ exam, onComplete, onExit }) {
+            const [currentQ, setCurrentQ] = useState(0);
+            const [answers, setAnswers] = useState([]);
+            const [showResults, setShowResults] = useState(false);
+            const [timeLeft, setTimeLeft] = useState(180);
+            const [inputValue, setInputValue] = useState('');
+            const [showFeedback, setShowFeedback] = useState(false);
+            const [selectedOption, setSelectedOption] = useState(null);
+
+            useEffect(() => {
+                if (!showResults && timeLeft > 0) {
+                    const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+                    return () => clearTimeout(timer);
+                }
+            }, [timeLeft, showResults]);
+
+            const question = exam.questions[currentQ];
+            const progress = ((currentQ + 1) / exam.questions.length) * 100;
+
+            const handleAnswer = (answer) => {
+                setSelectedOption(answer);
+                setShowFeedback(true);
+                
+                setTimeout(() => {
+                    const newAnswers = [...answers, answer];
+                    setAnswers(newAnswers);
+                    setShowFeedback(false);
+                    setSelectedOption(null);
+                    setInputValue('');
+                    
+                    if (currentQ < exam.questions.length - 1) {
+                        setCurrentQ(currentQ + 1);
+                    } else {
+                        const results = { ...exam, answers: newAnswers };
+                        onComplete(results);
+                        setShowResults(true);
+                    }
+                }, 1000);
+            };
+
+            const isCorrect = (answer) => {
+                if (question.type === 'multiple') return answer === question.correct;
+                return question.correct.some(c => answer?.toLowerCase().trim() === c.toLowerCase());
+            };
+
+            if (showResults && exam.results) {
+                return <ResultsScreen results={exam.results} onExit={onExit} />;
+            }
+
+            return (
+                <div className="max-w-3xl mx-auto">
+                    <div className="glass rounded-2xl p-6 mb-6">
+                        <div className="flex justify-between items-center mb-4">
+                            <div className="flex items-center gap-2">
+                                <span className="text-2xl">{questionDatabase[exam.subject].icon}</span>
+                                <span className="text-white font-bold">{exam.topic}</span>
+                            </div>
+                            <div className={`mono font-bold text-xl ${timeLeft < 30 ? 'timer-urgent' : 'text-white'}`}>
+                                ⏱️ {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+                            </div>
+                        </div>
+                        
+                        <div className="h-2 bg-white/20 rounded-full overflow-hidden">
+                            <div className="h-full progress-bar rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
+                        </div>
+                        <p className="text-gray-400 text-sm mt-2">Question {currentQ + 1} of {exam.questions.length}</p>
+                    </div>
+
+                    <div className="glass rounded-2xl p-8 bounce-in">
+                        <div className="mb-2">
+                            <span className={`text-xs px-2 py-1 rounded-full ${
+                                question.difficulty.includes('E') ? 'bg-purple-500' :
+                                question.difficulty.includes('M') ? 'bg-green-500' :
+                                'bg-blue-500'
+                            } text-white`}>
+                                {question.difficulty}
+                            </span>
+                        </div>
+                        
+                        <h2 className="text-xl md:text-2xl font-bold text-white mb-8">{question.question}</h2>
+
+                        {question.type === 'multiple' && (
+                            <div className="space-y-3">
+                                {question.options.map((option, i) => {
+                                    let optionClass = "question-option p-4 rounded-xl border-2 border-white/20 text-white cursor-pointer";
+                                    if (showFeedback && selectedOption === i) {
+                                        optionClass += isCorrect(i) ? " correct-answer" : " wrong-answer";
+                                    }
+                                    if (showFeedback && i === question.correct && selectedOption !== i) {
+                                        optionClass += " correct-answer";
+                                    }
+                                    
+                                    return (
+                                        <button
+                                            key={i}
+                                            onClick={() => !showFeedback && handleAnswer(i)}
+                                            disabled={showFeedback}
+                                            className={optionClass}
+                                        >
+                                            <span className="font-bold mr-3">{String.fromCharCode(65 + i)}.</span>
+                                            {option}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        )}
+
+                        {(question.type === 'short' || question.type === 'fill') && (
+                            <div className="space-y-4">
+                                <input
+                                    type="text"
+                                    value={inputValue}
+                                    onChange={(e) => setInputValue(e.target.value)}
+                                    placeholder={question.type === 'fill' ? "Fill in the blank..." : "Type your answer..."}
+                                    className="w-full p-4 rounded-xl bg-white/10 border-2 border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
+                                    disabled={showFeedback}
+                                />
+                                <button
+                                    onClick={() => inputValue.trim() && handleAnswer(inputValue.trim())}
+                                    disabled={!inputValue.trim() || showFeedback}
+                                    className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold disabled:opacity-50"
+                                >
+                                    Submit Answer
+                                </button>
+                            </div>
+                        )}
+
+                        {showFeedback && (
+                            <div className={`mt-6 p-4 rounded-xl ${isCorrect(selectedOption ?? inputValue) ? 'bg-green-500/20 border border-green-500' : 'bg-red-500/20 border border-red-500'}`}>
+                                <p className={`font-bold ${isCorrect(selectedOption ?? inputValue) ? 'text-green-400' : 'text-red-400'}`}>
+                                    {isCorrect(selectedOption ?? inputValue) ? '✅ Correct!' : '❌ Not quite!'}
+                                </p>
+                            </div>
+                        )}
+                    </div>
+
+                    <button
+                        onClick={onExit}
+                        className="mt-6 text-gray-400 hover:text-white transition"
+                    >
+                        ← Exit Quiz
+                    </button>
+                </div>
+            );
+        }
+
+        // ============ RESULTS SCREEN ============
+        function ResultsScreen({ results, onExit }) {
+            const { score, grade, gradeInfo, xp, timeTaken, details } = results;
+
+            useEffect(() => {
+                if (score >= 80) {
+                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                }
+            }, []);
+
+            return (
+                <div className="max-w-3xl mx-auto">
+                    <div className="glass rounded-2xl p-8 text-center mb-6 bounce-in">
+                        <div className="text-6xl mb-4">{gradeInfo.emoji}</div>
+                        <h1 className="text-3xl font-bold text-white mb-2">Exam Complete!</h1>
+                        
+                        <div className="flex justify-center gap-6 my-6">
+                            <div className="text-center">
+                                <div className="text-4xl font-bold gradient-text">{score}%</div>
+                                <div className="text-gray-400">Score</div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-4xl font-bold" style={{ color: gradeInfo.color }}>{grade}</div>
+                                <div className="text-gray-400">{gradeInfo.label}</div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-4xl font-bold text-yellow-400">+{xp}</div>
+                                <div className="text-gray-400">XP Earned</div>
+                            </div>
+                        </div>
+
+                        <p className="text-gray-400">Completed in {Math.floor(timeTaken / 60)}:{(timeTaken % 60).toString().padStart(2, '0')}</p>
+                    </div>
+
+                    <div className="glass rounded-2xl p-6 mb-6">
+                        <h2 className="text-xl font-bold text-white mb-4">📝 Review Your Answers</h2>
+                        <div className="space-y-4">
+                            {details.map((item, i) => (
+                                <div key={i} className={`p-4 rounded-xl ${item.isCorrect ? 'bg-green-500/10 border border-green-500/30' : 'bg-red-500/10 border border-red-500/30'}`}>
+                                    <div className="flex items-start gap-3">
+                                        <span className="text-2xl">{item.isCorrect ? '✅' : '❌'}</span>
+                                        <div className="flex-1">
+                                            <p className="text-white font-medium">{item.question}</p>
+                                            <p className="text-gray-400 text-sm mt-1">
+                                                Your answer: <span className={item.isCorrect ? 'text-green-400' : 'text-red-400'}>
+                                                    {typeof item.userAnswer === 'number' ? String.fromCharCode(65 + item.userAnswer) : item.userAnswer || 'No answer'}
+                                                </span>
+                                            </p>
+                                            {!item.isCorrect && (
+                                                <p className="text-green-400 text-sm">Correct: {item.correct}</p>
+                                            )}
+                                            <p className="text-purple-300 text-sm mt-2 italic">💡 {item.explanation}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <button
+                        onClick={onExit}
+                        className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold hover:scale-[1.02] transition-all"
+                    >
+                        Continue Learning 🚀
+                    </button>
+                </div>
+            );
+        }
+
+        // ============ PROGRESS VIEW ============
+        function ProgressView({ userData }) {
+            const chartRef = useRef(null);
+            const chartInstance = useRef(null);
+
+            useEffect(() => {
+                if (chartRef.current) {
+                    if (chartInstance.current) {
+                        chartInstance.current.destroy();
+                    }
+
+                    chartInstance.current = new Chart(chartRef.current, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                            datasets: [{
+                                label: 'Progress %',
+                                data: userData.weeklyProgress,
+                                backgroundColor: [
+                                    'rgba(99, 102, 241, 0.8)',
+                                    'rgba(139, 92, 246, 0.8)',
+                                    'rgba(168, 85, 247, 0.8)',
+                                    'rgba(217, 70, 239, 0.8)',
+                                    'rgba(236, 72, 153, 0.8)',
+                                    'rgba(244, 114, 182, 0.8)'
+                                ],
+                                borderRadius: 8
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 100,
+                                    grid: { color: 'rgba(255,255,255,0.1)' },
+                                    ticks: { color: 'white' }
+                                },
+                                x: {
+                                    grid: { display: false },
+                                    ticks: { color: 'white' }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                return () => {
+                    if (chartInstance.current) {
+                        chartInstance.current.destroy();
+                    }
+                };
+            }, [userData.weeklyProgress]);
+
+            const subjectStats = Object.entries(userData.subjectExams).map(([key, count]) => ({
+                name: questionDatabase[key].name,
+                icon: questionDatabase[key].icon,
+                count,
+                color: questionDatabase[key].color
+            }));
+
+            return (
+                <div className="space-y-6">
+                    <div className="glass rounded-2xl p-6">
+                        <h2 className="text-2xl font-bold text-white mb-6">📊 Weekly Progress</h2>
+                        <div className="h-64">
+                            <canvas ref={chartRef}></canvas>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="glass rounded-2xl p-6">
+                            <h3 className="text-xl font-bold text-white mb-4">📚 Subject Breakdown</h3>
+                            <div className="space-y-4">
+                                {subjectStats.map((stat, i) => (
+                                    <div key={i} className="flex items-center gap-4">
+                                        <span className="text-2xl">{stat.icon}</span>
+                                        <div className="flex-1">
+                                            <div className="flex justify-between text-white mb-1">
+                                                <span>{stat.name}</span>
+                                                <span className="font-bold">{stat.count} exams</span>
+                                            </div>
+                                            <div className="h-2 bg-white/20 rounded-full overflow-hidden">
+                                                <div 
+                                                    className={`h-full bg-gradient-to-r ${stat.color} rounded-full`}
+                                                    style={{ width: `${Math.min(100, stat.count * 10)}%` }}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="glass rounded-2xl p-6">
+                            <h3 className="text-xl font-bold text-white mb-4">🎯 Grade Distribution</h3>
+                            {userData.examHistory.length === 0 ? (
+                                <p className="text-gray-400">Complete exams to see your grade distribution!</p>
+                            ) : (
+                                <div className="space-y-3">
+                                    {Object.entries(gradeSystem).reverse().map(([grade, data]) => {
+                                        const count = userData.examHistory.filter(e => e.grade === grade).length;
+                                        return (
+                                            <div key={grade} className="flex items-center gap-3">
+                                                <span className="w-8 font-bold" style={{ color: data.color }}>{grade}</span>
+                                                <div className="flex-1 h-4 bg-white/10 rounded-full overflow-hidden">
+                                                    <div 
+                                                        className="h-full rounded-full"
+                                                        style={{ 
+                                                            width: `${(count / userData.examHistory.length) * 100}%`,
+                                                            backgroundColor: data.color
+                                                        }}
+                                                    />
+                                                </div>
+                                                <span className="text-white text-sm w-8 text-right">{count}</span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="glass rounded-2xl p-6">
+                        <h3 className="text-xl font-bold text-white mb-4">📜 Exam History</h3>
+                        {userData.examHistory.length === 0 ? (
+                            <p className="text-gray-400">No exam history yet. Start learning!</p>
+                        ) : (
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left">
+                                    <thead>
+                                        <tr className="text-gray-400 border-b border-white/10">
+                                            <th className="py-3">Subject</th>
+                                            <th className="py-3">Topic</th>
+                                            <th className="py-3">Score</th>
+                                            <th className="py-3">Grade</th>
+                                            <th className="py-3">XP</th>
+                                            <th className="py-3">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {userData.examHistory.slice(0, 10).map((exam, i) => (
+                                            <tr key={i} className="text-white border-b border-white/5">
+                                                <td className="py-3">{questionDatabase[exam.subject].icon} {questionDatabase[exam.subject].name}</td>
+                                                <td className="py-3">{exam.topic}</td>
+                                                <td className="py-3">{exam.score}%</td>
+                                                <td className="py-3">
+                                                    <span className="px-2 py-1 rounded text-xs font-bold" style={{ backgroundColor: getGrade(exam.score).color }}>
+                                                        {exam.grade}
+                                                    </span>
+                                                </td>
+                                                <td className="py-3 text-yellow-400">+{exam.xp}</td>
+                                                <td className="py-3 text-gray-400">{new Date(exam.date).toLocaleDateString()}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        // ============ BADGES VIEW ============
+        function BadgesView({ userData }) {
+            return (
+                <div className="glass rounded-2xl p-6">
+                    <h2 className="text-2xl font-bold text-white mb-6">🏅 Your Badges</h2>
+                    <p className="text-gray-400 mb-6">Earned: {userData.badges.length} / {allBadges.length}</p>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                        {allBadges.map((badge, i) => {
+                            const earned = userData.badges.includes(badge.id);
+                            return (
+                                <div 
+                                    key={i}
+                                    className={`p-4 rounded-xl text-center transition-all ${
+                                        earned 
+                                            ? 'bg-gradient-to-br from-yellow-500/30 to-orange-500/30 border border-yellow-500/50 card-hover' 
+                                            : 'bg-white/5 opacity-50'
+                                    }`}
+                                >
+                                    <div className={`text-4xl mb-2 ${earned ? '' : 'grayscale'}`}>{badge.icon}</div>
+                                    <h3 className="text-white font-bold text-sm">{badge.name}</h3>
+                                    <p className="text-gray-400 text-xs mt-1">{badge.desc}</p>
+                                    {earned && <span className="text-green-400 text-xs">✓ Earned!</span>}
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            );
+        }
+
+        // ============ STUDY PLAN VIEW ============
+        function StudyPlanView({ userData }) {
+            const currentWeek = Math.min(6, Math.max(1, Math.ceil((new Date() - new Date('2025-12-06')) / (7 * 24 * 60 * 60 * 1000))));
+
+            return (
+                <div className="space-y-6">
+                    <div className="glass rounded-2xl p-6">
+                        <h2 className="text-2xl font-bold text-white mb-6">📅 6-Week Study Plan</h2>
+                        <p className="text-gray-400 mb-6">December 6, 2025 - January 17, 2026</p>
+                        
+                        <div className="space-y-4">
+                            {studyPlan.map((week, i) => {
+                                const isCurrentWeek = week.week === currentWeek;
+                                const isPast = week.week < currentWeek;
+                                
+                                return (
+                                    <div 
+                                        key={i}
+                                        className={`p-4 rounded-xl border-2 transition-all ${
+                                            isCurrentWeek 
+                                                ? 'border-purple-500 bg-purple-500/20 pulse-glow' 
+                                                : isPast 
+                                                    ? 'border-green-500/50 bg-green-500/10' 
+                                                    : 'border-white/20 bg-white/5'
+                                        }`}
+                                    >
+                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                            <div className="flex items-center gap-4">
+                                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold ${
+                                                    isCurrentWeek ? 'bg-purple-500' : isPast ? 'bg-green-500' : 'bg-white/20'
+                                                } text-white`}>
+                                                    {isPast ? '✓' : week.week}
+                                                </div>
+                                                <div>
+                                                    <h3 className="text-white font-bold">
+                                                        Week {week.week}: {week.topic}
+                                                        {isCurrentWeek && <span className="ml-2 text-purple-300 text-sm">← Current Week</span>}
+                                                    </h3>
+                                                    <p className="text-gray-400 text-sm">{week.dates}</p>
+                                                </div>
+                                            </div>
+                                            <div className="text-right">
+                                                <p className="text-white">{week.subject === 'all' ? '📚 All Subjects' : questionDatabase[week.subject].icon + ' ' + questionDatabase[week.subject].name}</p>
+                                                <p className="text-gray-400 text-sm">{week.hours} hrs/day • {week.focus}</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="mt-4 h-2 bg-white/20 rounded-full overflow-hidden">
+                                            <div 
+                                                className={`h-full rounded-full ${isPast || isCurrentWeek ? 'progress-bar' : 'bg-white/30'}`}
+                                                style={{ width: `${userData.weeklyProgress[i]}%` }}
+                                            />
+                                        </div>
+                                        <p className="text-right text-xs text-gray-400 mt-1">{userData.weeklyProgress[i]}% complete</p>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    <div className="glass rounded-2xl p-6">
+                        <h3 className="text-xl font-bold text-white mb-4">📌 Study Tips</h3>
+                        <ul className="space-y-3 text-gray-300">
+                            <li className="flex items-start gap-3">
+                                <span className="text-purple-400">•</span>
+                                <span>Study for <strong className="text-white">2 hours daily</strong> for best results</span>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <span className="text-purple-400">•</span>
+                                <span>Take <strong className="text-white">short breaks</strong> every 25-30 minutes</span>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <span className="text-purple-400">•</span>
+                                <span>Focus on <strong className="text-white">Math and English</strong> as your priority subjects</span>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <span className="text-purple-400">•</span>
+                                <span>Complete at least <strong className="text-white">3 exams per week</strong> to stay on track</span>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <span className="text-purple-400">•</span>
+                                <span>Review your <strong className="text-white">wrong answers</strong> to learn from mistakes</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            );
+        }
+
+        // ============ RENDER APP ============
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
