@@ -3,1695 +3,843 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rangitoto Year 9 Review - Study Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Rangitoto Year 9 Review Hub</title>
     <style>
-        :root {
-            --primary: #6366f1;
-            --secondary: #8b5cf6;
-            --accent: #f59e0b;
-            --success: #10b981;
-            --danger: #ef4444;
-            --dark: #1e1b4b;
-            --light: #f8fafc;
-        }
-        
-        * {
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
-            min-height: 100vh;
-        }
-        
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .neon-text {
-            text-shadow: 0 0 10px rgba(99, 102, 241, 0.8),
-                         0 0 20px rgba(99, 102, 241, 0.6),
-                         0 0 30px rgba(99, 102, 241, 0.4);
-        }
-        
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
-        }
-        
-        .pulse-glow {
-            animation: pulseGlow 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
-            50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8); }
-        }
-        
-        .streak-fire {
-            animation: fireAnimation 0.5s ease-in-out infinite alternate;
-        }
-        
-        @keyframes fireAnimation {
-            0% { transform: scale(1) rotate(-5deg); }
-            100% { transform: scale(1.1) rotate(5deg); }
-        }
-        
-        .progress-bar {
-            background: linear-gradient(90deg, #6366f1, #8b5cf6, #a855f7);
-            background-size: 200% 100%;
-            animation: progressShine 2s ease-in-out infinite;
-        }
-        
-        @keyframes progressShine {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .slide-in {
-            animation: slideIn 0.5s ease-out forwards;
-        }
-        
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        .bounce-in {
-            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        
-        @keyframes bounceIn {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        .timer-urgent {
-            animation: timerPulse 0.5s ease-in-out infinite;
-        }
-        
-        @keyframes timerPulse {
-            0%, 100% { color: #ef4444; }
-            50% { color: #fbbf24; }
-        }
-        
-        .mono {
-            font-family: 'Space Mono', monospace;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .health-excellent { background: linear-gradient(135deg, #10b981, #34d399); }
-        .health-good { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%); min-height: 100vh; color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 30px; margin-bottom: 20px; }
+        .btn { background: linear-gradient(135deg, #8b5cf6, #ec4899); border: none; color: white; padding: 15px 30px; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; width: 100%; margin-bottom: 10px; }
+        .btn:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(139,92,246,0.4); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-secondary { background: rgba(255,255,255,0.2); }
+        .btn-small { padding: 10px 16px; font-size: 14px; width: auto; }
+        .btn-green { background: linear-gradient(135deg, #22c55e, #14b8a6); }
+        .btn-blue { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+        .btn-orange { background: linear-gradient(135deg, #f97316, #eab308); }
+        .input { width: 100%; padding: 15px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; font-size: 16px; margin-bottom: 15px; }
+        .input::placeholder { color: rgba(255,255,255,0.5); }
+        .input:focus { outline: none; border-color: #8b5cf6; }
+        textarea.input { min-height: 120px; resize: vertical; font-family: monospace; font-size: 12px; }
+        .text-center { text-align: center; }
+        .mb-4 { margin-bottom: 16px; }
+        .mb-6 { margin-bottom: 24px; }
+        .mt-4 { margin-top: 16px; }
+        .text-6xl { font-size: 60px; }
+        .text-5xl { font-size: 48px; }
+        .text-4xl { font-size: 36px; }
+        .text-3xl { font-size: 30px; }
+        .text-2xl { font-size: 24px; }
+        .text-xl { font-size: 20px; }
+        .text-lg { font-size: 18px; }
+        .text-sm { font-size: 14px; }
+        .text-xs { font-size: 12px; }
+        .text-gray { color: rgba(255,255,255,0.6); }
+        .text-yellow { color: #fbbf24; }
+        .text-green { color: #34d399; }
+        .text-red { color: #f87171; }
+        .text-purple { color: #c084fc; }
+        .text-blue { color: #60a5fa; }
+        .text-orange { color: #fb923c; }
+        .font-bold { font-weight: bold; }
+        .hidden { display: none; }
+        .flex { display: flex; }
+        .flex-wrap { flex-wrap: wrap; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .gap-2 { gap: 8px; }
+        .gap-3 { gap: 12px; }
+        .gap-4 { gap: 16px; }
+        .grid { display: grid; }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .subject-card { background: linear-gradient(135deg, var(--from), var(--to)); padding: 20px; border-radius: 16px; cursor: pointer; transition: transform 0.2s; text-align: left; border: none; color: white; width: 100%; }
+        .subject-card:hover { transform: translateY(-5px); }
+        .subject-card .icon { font-size: 40px; margin-bottom: 10px; }
+        .option-btn { background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); color: white; padding: 15px 20px; border-radius: 12px; cursor: pointer; text-align: left; transition: all 0.2s; margin-bottom: 10px; display: block; width: 100%; font-size: 16px; }
+        .option-btn:hover { background: rgba(139,92,246,0.3); transform: translateX(5px); }
+        .option-btn.correct { background: rgba(34,197,94,0.3); border-color: #22c55e; }
+        .option-btn.wrong { background: rgba(239,68,68,0.3); border-color: #ef4444; }
+        .progress-bar { height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; margin-bottom: 10px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #8b5cf6, #ec4899); border-radius: 4px; transition: width 0.3s; }
+        .stats-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .badge-tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .badge-green { background: #22c55e; }
+        .badge-yellow { background: #eab308; }
+        .badge-purple { background: #8b5cf6; }
+        .badge-blue { background: #3b82f6; }
+        .nav { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .nav-btn { background: rgba(255,255,255,0.1); border: none; color: white; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-size: 14px; }
+        .nav-btn.active { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+        .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }
+        .health-bar { padding: 8px 16px; border-radius: 10px; font-weight: bold; }
+        .health-good { background: linear-gradient(135deg, #22c55e, #34d399); }
         .health-warning { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
         .health-danger { background: linear-gradient(135deg, #ef4444, #f87171); }
+        .alert { padding: 15px; border-radius: 12px; margin-bottom: 15px; }
+        .alert-info { background: rgba(59,130,246,0.2); border: 1px solid rgba(59,130,246,0.5); }
+        .alert-success { background: rgba(34,197,94,0.2); border: 1px solid rgba(34,197,94,0.5); }
+        .alert-warning { background: rgba(245,158,11,0.2); border: 1px solid rgba(245,158,11,0.5); }
+        .alert-error { background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.5); }
+        .tabs { display: flex; gap: 5px; margin-bottom: 20px; }
+        .tab { padding: 10px 20px; background: rgba(255,255,255,0.1); border: none; color: white; border-radius: 10px 10px 0 0; cursor: pointer; }
+        .tab.active { background: rgba(255,255,255,0.2); }
         
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #6366f1, #8b5cf6);
-            border-radius: 4px;
-        }
+        /* Badge Card Styles */
+        .badge-card { background: rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; text-align: center; transition: all 0.3s; position: relative; overflow: hidden; }
+        .badge-card.earned { background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(236,72,153,0.3)); border: 2px solid rgba(139,92,246,0.5); }
+        .badge-card.locked { opacity: 0.5; filter: grayscale(0.8); }
+        .badge-card .badge-icon { font-size: 48px; margin-bottom: 10px; display: block; }
+        .badge-card.locked .badge-icon { filter: grayscale(1); }
+        .badge-card .badge-name { font-weight: bold; font-size: 14px; margin-bottom: 5px; }
+        .badge-card .badge-desc { font-size: 12px; color: rgba(255,255,255,0.6); }
+        .badge-card .badge-progress { margin-top: 10px; }
+        .badge-card.earned::after { content: '✓'; position: absolute; top: 10px; right: 10px; background: #22c55e; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; }
+        .new-badge { animation: pulse 0.5s ease-in-out 3; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
         
-        .question-option {
-            transition: all 0.2s ease;
-        }
-        
-        .question-option:hover {
-            transform: translateX(8px);
-            background: rgba(99, 102, 241, 0.3);
-        }
-        
-        .correct-answer {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(52, 211, 153, 0.3)) !important;
-            border-color: #10b981 !important;
-        }
-        
-        .wrong-answer {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(248, 113, 113, 0.3)) !important;
-            border-color: #ef4444 !important;
-        }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .floating { animation: float 3s ease-in-out infinite; }
+        @keyframes bounce { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+        .bounce-in { animation: bounce 0.5s cubic-bezier(0.68,-0.55,0.265,1.55); }
+        @keyframes celebrate { 0% { transform: scale(1) rotate(0deg); } 25% { transform: scale(1.2) rotate(-5deg); } 50% { transform: scale(1.2) rotate(5deg); } 75% { transform: scale(1.1) rotate(-3deg); } 100% { transform: scale(1) rotate(0deg); } }
+        .celebrate { animation: celebrate 0.6s ease-in-out; }
+        .topic-btn { background: rgba(255,255,255,0.1); border: none; color: white; padding: 12px 16px; border-radius: 10px; cursor: pointer; width: 100%; text-align: left; margin-top: 8px; display: flex; justify-content: space-between; }
+        .topic-btn:hover { background: rgba(255,255,255,0.2); }
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal { background: linear-gradient(135deg, #1e1b4b, #312e81); border-radius: 20px; padding: 30px; max-width: 550px; width: 100%; max-height: 90vh; overflow-y: auto; }
+        @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } .grid-3 { grid-template-columns: repeat(2, 1fr); } .header { flex-direction: column; align-items: flex-start; } }
     </style>
 </head>
 <body>
-    <div id="root"></div>
-    
-    <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
+    <div class="container" id="app"></div>
+
+    <script>
+        // ============ BADGES DEFINITION ============
+        const badgesDef = {
+            first_steps: { id: 'first_steps', icon: '🎯', name: 'First Steps', desc: 'Complete your first exam', check: s => s.exams >= 1 },
+            on_fire: { id: 'on_fire', icon: '🔥', name: 'On Fire', desc: '3-day study streak', check: s => s.streak >= 3 },
+            week_warrior: { id: 'week_warrior', icon: '⚔️', name: 'Week Warrior', desc: '7-day study streak', check: s => s.streak >= 7 },
+            perfectionist: { id: 'perfectionist', icon: '💯', name: 'Perfectionist', desc: 'Get 100% on any exam', check: s => s.perfect >= 1 },
+            math_wizard: { id: 'math_wizard', icon: '🧙', name: 'Math Wizard', desc: 'Complete 5 Math exams', check: s => s.subjects.math >= 5 },
+            wordsmith: { id: 'wordsmith', icon: '📖', name: 'Wordsmith', desc: 'Complete 5 English exams', check: s => s.subjects.english >= 5 },
+            scientist: { id: 'scientist', icon: '🔭', name: 'Scientist', desc: 'Complete 5 Science exams', check: s => s.subjects.science >= 5 },
+            historian: { id: 'historian', icon: '🌏', name: 'Historian', desc: 'Complete 5 Social Science exams', check: s => s.subjects.social >= 5 },
+            excellence: { id: 'excellence', icon: '🏆', name: 'Excellence Achiever', desc: 'Get E7 or E8 grade', check: s => s.excellence >= 1 },
+            dedicated: { id: 'dedicated', icon: '📚', name: 'Dedicated Learner', desc: 'Complete 10 exams total', check: s => s.exams >= 10 },
+            speed_demon: { id: 'speed_demon', icon: '⚡', name: 'Speed Demon', desc: 'Finish exam under 2 minutes', check: s => s.fastExams >= 1 },
+            unstoppable: { id: 'unstoppable', icon: '🚀', name: 'Unstoppable', desc: 'Complete 25 exams total', check: s => s.exams >= 25 },
+            master: { id: 'master', icon: '👑', name: 'Master Student', desc: 'Earn 5000+ XP', check: s => s.xp >= 5000 },
+            streak_king: { id: 'streak_king', icon: '👑', name: 'Streak King', desc: '14-day study streak', check: s => s.streak >= 14 },
+            all_rounder: { id: 'all_rounder', icon: '🌟', name: 'All Rounder', desc: 'Complete 3+ exams in each subject', check: s => s.subjects.math >= 3 && s.subjects.english >= 3 && s.subjects.science >= 3 && s.subjects.social >= 3 }
+        };
 
         // ============ QUESTION DATABASE ============
-        const questionDatabase = {
+        const questions = {
             math: {
-                name: "Mathematics",
-                icon: "📐",
-                color: "from-blue-500 to-cyan-500",
+                name: "Mathematics", icon: "📐", from: "#3b82f6", to: "#06b6d4",
                 topics: {
                     "Number & Algebra": [
-                        {
-                            id: "m1",
-                            type: "multiple",
-                            question: "Simplify: 3x + 5x - 2x",
-                            options: ["6x", "8x", "10x", "4x"],
-                            correct: 0,
-                            explanation: "Combine like terms: 3x + 5x - 2x = (3+5-2)x = 6x",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "m2",
-                            type: "multiple",
-                            question: "What is the value of 2³ × 2²?",
-                            options: ["32", "16", "64", "8"],
-                            correct: 0,
-                            explanation: "Using index laws: 2³ × 2² = 2^(3+2) = 2⁵ = 32",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "m3",
-                            type: "multiple",
-                            question: "Solve for x: 2x + 7 = 15",
-                            options: ["x = 4", "x = 8", "x = 11", "x = 3"],
-                            correct: 0,
-                            explanation: "2x + 7 = 15 → 2x = 15 - 7 → 2x = 8 → x = 4",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "m4",
-                            type: "multiple",
-                            question: "What is 15% of 80?",
-                            options: ["12", "15", "8", "10"],
-                            correct: 0,
-                            explanation: "15% of 80 = 0.15 × 80 = 12",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "m5",
-                            type: "short",
-                            question: "Express 3/5 as a decimal",
-                            correct: ["0.6", ".6"],
-                            explanation: "3 ÷ 5 = 0.6",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "m6",
-                            type: "multiple",
-                            question: "What is the next term in the sequence: 2, 6, 18, 54, ...?",
-                            options: ["162", "108", "72", "216"],
-                            correct: 0,
-                            explanation: "Each term is multiplied by 3. 54 × 3 = 162",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "m7",
-                            type: "multiple",
-                            question: "Factorise: x² - 9",
-                            options: ["(x+3)(x-3)", "(x+9)(x-1)", "(x-3)²", "(x+3)²"],
-                            correct: 0,
-                            explanation: "This is a difference of squares: a² - b² = (a+b)(a-b). So x² - 9 = (x+3)(x-3)",
-                            difficulty: "E7-E8"
-                        },
-                        {
-                            id: "m8",
-                            type: "multiple",
-                            question: "If the ratio of boys to girls is 3:5 and there are 24 boys, how many girls are there?",
-                            options: ["40", "30", "45", "35"],
-                            correct: 0,
-                            explanation: "3 parts = 24 boys, so 1 part = 8. Girls = 5 parts = 5 × 8 = 40",
-                            difficulty: "M5-M6"
-                        }
+                        { q: "Simplify: 3x + 5x - 2x", opts: ["6x", "8x", "10x", "4x"], ans: 0, exp: "Combine like terms: (3+5-2)x = 6x", diff: "A3-A4" },
+                        { q: "What is 2³ × 2²?", opts: ["32", "16", "64", "8"], ans: 0, exp: "2³ × 2² = 2⁵ = 32", diff: "M5-M6" },
+                        { q: "Solve: 2x + 7 = 15", opts: ["x = 4", "x = 8", "x = 11", "x = 3"], ans: 0, exp: "2x = 8, so x = 4", diff: "A3-A4" },
+                        { q: "What is 15% of 80?", opts: ["12", "15", "8", "10"], ans: 0, exp: "0.15 × 80 = 12", diff: "A3-A4" },
+                        { q: "Next term: 2, 6, 18, 54, ...?", opts: ["162", "108", "72", "216"], ans: 0, exp: "×3 pattern: 54×3=162", diff: "M5-M6" },
+                        { q: "Factorise: x² - 9", opts: ["(x+3)(x-3)", "(x+9)(x-1)", "(x-3)²", "(x+3)²"], ans: 0, exp: "Difference of squares", diff: "E7-E8" },
+                        { q: "Ratio boys:girls is 3:5, 24 boys. How many girls?", opts: ["40", "30", "45", "35"], ans: 0, exp: "3 parts=24, so 1 part=8, girls=5×8=40", diff: "M5-M6" }
                     ],
-                    "Geometry & Measurement": [
-                        {
-                            id: "m9",
-                            type: "multiple",
-                            question: "What is the area of a rectangle with length 8cm and width 5cm?",
-                            options: ["40 cm²", "26 cm²", "13 cm²", "80 cm²"],
-                            correct: 0,
-                            explanation: "Area = length × width = 8 × 5 = 40 cm²",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "m10",
-                            type: "multiple",
-                            question: "What is the sum of interior angles in a triangle?",
-                            options: ["180°", "360°", "90°", "270°"],
-                            correct: 0,
-                            explanation: "The sum of all interior angles in any triangle is always 180°",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "m11",
-                            type: "multiple",
-                            question: "Calculate the circumference of a circle with radius 7cm (use π = 22/7)",
-                            options: ["44 cm", "154 cm", "22 cm", "88 cm"],
-                            correct: 0,
-                            explanation: "Circumference = 2πr = 2 × (22/7) × 7 = 44 cm",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "m12",
-                            type: "multiple",
-                            question: "What type of angle is 135°?",
-                            options: ["Obtuse", "Acute", "Right", "Reflex"],
-                            correct: 0,
-                            explanation: "An obtuse angle is between 90° and 180°. 135° falls in this range.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "m13",
-                            type: "short",
-                            question: "What is the volume of a cube with side length 4cm? (answer in cm³, numbers only)",
-                            correct: ["64"],
-                            explanation: "Volume of cube = side³ = 4³ = 64 cm³",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "m14",
-                            type: "multiple",
-                            question: "In a right-angled triangle with legs 3cm and 4cm, what is the hypotenuse?",
-                            options: ["5 cm", "7 cm", "6 cm", "12 cm"],
-                            correct: 0,
-                            explanation: "Using Pythagoras: c² = 3² + 4² = 9 + 16 = 25, so c = 5 cm",
-                            difficulty: "E7-E8"
-                        }
+                    "Geometry": [
+                        { q: "Area of rectangle 8cm × 5cm?", opts: ["40 cm²", "26 cm²", "13 cm²", "80 cm²"], ans: 0, exp: "Area = 8×5 = 40", diff: "A3-A4" },
+                        { q: "Sum of angles in a triangle?", opts: ["180°", "360°", "90°", "270°"], ans: 0, exp: "Always 180°", diff: "A3-A4" },
+                        { q: "What type of angle is 135°?", opts: ["Obtuse", "Acute", "Right", "Reflex"], ans: 0, exp: "Between 90° and 180°", diff: "A3-A4" },
+                        { q: "Pythagoras: legs 3cm & 4cm, hypotenuse?", opts: ["5 cm", "7 cm", "6 cm", "12 cm"], ans: 0, exp: "3²+4²=25, √25=5", diff: "E7-E8" },
+                        { q: "Circumference of circle, radius 7cm (π=22/7)?", opts: ["44 cm", "154 cm", "22 cm", "88 cm"], ans: 0, exp: "2πr = 2×22/7×7 = 44", diff: "M5-M6" }
                     ],
                     "Statistics": [
-                        {
-                            id: "m15",
-                            type: "multiple",
-                            question: "What is the mean of: 4, 7, 8, 9, 12?",
-                            options: ["8", "7", "9", "8.5"],
-                            correct: 0,
-                            explanation: "Mean = (4+7+8+9+12) ÷ 5 = 40 ÷ 5 = 8",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "m16",
-                            type: "multiple",
-                            question: "What is the median of: 3, 7, 9, 12, 15?",
-                            options: ["9", "7", "12", "9.2"],
-                            correct: 0,
-                            explanation: "The median is the middle value when ordered. Here it's 9.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "m17",
-                            type: "multiple",
-                            question: "What is the mode of: 2, 4, 4, 5, 7, 4, 8?",
-                            options: ["4", "5", "2", "7"],
-                            correct: 0,
-                            explanation: "The mode is the most frequent value. 4 appears 3 times.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "m18",
-                            type: "multiple",
-                            question: "What is the range of: 15, 22, 8, 31, 19?",
-                            options: ["23", "31", "8", "19"],
-                            correct: 0,
-                            explanation: "Range = highest - lowest = 31 - 8 = 23",
-                            difficulty: "A3-A4"
-                        }
+                        { q: "Mean of 4, 7, 8, 9, 12?", opts: ["8", "7", "9", "8.5"], ans: 0, exp: "40÷5=8", diff: "A3-A4" },
+                        { q: "Median of 3, 7, 9, 12, 15?", opts: ["9", "7", "12", "9.2"], ans: 0, exp: "Middle value = 9", diff: "A3-A4" },
+                        { q: "Mode of 2, 4, 4, 5, 7, 4, 8?", opts: ["4", "5", "2", "7"], ans: 0, exp: "4 appears most (3×)", diff: "A3-A4" },
+                        { q: "Range of 15, 22, 8, 31, 19?", opts: ["23", "31", "8", "19"], ans: 0, exp: "31-8=23", diff: "A3-A4" }
                     ]
                 }
             },
             english: {
-                name: "English ESOL",
-                icon: "📚",
-                color: "from-purple-500 to-pink-500",
+                name: "English ESOL", icon: "📚", from: "#8b5cf6", to: "#ec4899",
                 topics: {
-                    "Reading & Vocabulary": [
-                        {
-                            id: "e1",
-                            type: "multiple",
-                            question: "What is a synonym for 'happy'?",
-                            options: ["Joyful", "Sad", "Angry", "Tired"],
-                            correct: 0,
-                            explanation: "A synonym is a word with similar meaning. 'Joyful' means the same as 'happy'.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "e2",
-                            type: "multiple",
-                            question: "What is an antonym for 'ancient'?",
-                            options: ["Modern", "Old", "Historic", "Traditional"],
-                            correct: 0,
-                            explanation: "An antonym is a word with opposite meaning. 'Modern' is the opposite of 'ancient'.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "e3",
-                            type: "fill",
-                            question: "Complete the sentence: She _____ (go) to school yesterday.",
-                            correct: ["went"],
-                            explanation: "Past tense of 'go' is 'went'. The word 'yesterday' indicates past tense.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "e4",
-                            type: "multiple",
-                            question: "Which word is a noun?",
-                            options: ["Happiness", "Happy", "Happily", "Happier"],
-                            correct: 0,
-                            explanation: "'Happiness' is a noun (thing/concept). 'Happy' is adjective, 'Happily' is adverb, 'Happier' is comparative adjective.",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "e5",
-                            type: "fill",
-                            question: "The plural of 'child' is _____.",
-                            correct: ["children"],
-                            explanation: "'Child' has an irregular plural form: 'children'.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "e6",
-                            type: "multiple",
-                            question: "What does the prefix 'un-' mean in 'unhappy'?",
-                            options: ["Not", "Very", "Before", "After"],
-                            correct: 0,
-                            explanation: "The prefix 'un-' means 'not'. Unhappy = not happy.",
-                            difficulty: "A3-A4"
-                        }
+                    "Vocabulary": [
+                        { q: "Synonym for 'happy'?", opts: ["Joyful", "Sad", "Angry", "Tired"], ans: 0, exp: "Joyful = happy", diff: "A3-A4" },
+                        { q: "Antonym for 'ancient'?", opts: ["Modern", "Old", "Historic", "Traditional"], ans: 0, exp: "Modern = opposite", diff: "A3-A4" },
+                        { q: "Which is a noun?", opts: ["Happiness", "Happy", "Happily", "Happier"], ans: 0, exp: "Happiness is a thing", diff: "M5-M6" },
+                        { q: "Prefix 'un-' means?", opts: ["Not", "Very", "Before", "After"], ans: 0, exp: "un- = not", diff: "A3-A4" },
+                        { q: "Suffix '-ful' means?", opts: ["Full of", "Without", "Before", "Again"], ans: 0, exp: "hopeful = full of hope", diff: "A3-A4" }
                     ],
                     "Grammar": [
-                        {
-                            id: "e7",
-                            type: "multiple",
-                            question: "Which sentence is correct?",
-                            options: ["She doesn't like apples.", "She don't like apples.", "She not like apples.", "She no like apples."],
-                            correct: 0,
-                            explanation: "With 'she/he/it', we use 'doesn't' for negative sentences.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "e8",
-                            type: "fill",
-                            question: "I have _____ (be) waiting for an hour.",
-                            correct: ["been"],
-                            explanation: "Present perfect continuous: have/has + been + verb-ing",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "e9",
-                            type: "multiple",
-                            question: "Choose the correct pronoun: 'The book belongs to Maria. It is _____.'",
-                            options: ["hers", "her", "she", "herself"],
-                            correct: 0,
-                            explanation: "'Hers' is a possessive pronoun used when no noun follows.",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "e10",
-                            type: "fill",
-                            question: "If it _____ (rain) tomorrow, we will stay home.",
-                            correct: ["rains"],
-                            explanation: "First conditional: If + present simple, will + base verb",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "e11",
-                            type: "multiple",
-                            question: "Which is a compound sentence?",
-                            options: ["I went to the shop, and I bought milk.", "Although it rained, we went out.", "The big red car.", "Running quickly."],
-                            correct: 0,
-                            explanation: "A compound sentence has two independent clauses joined by 'and', 'but', 'or', etc.",
-                            difficulty: "E7-E8"
-                        }
+                        { q: "Correct sentence?", opts: ["She doesn't like apples.", "She don't like apples.", "She not like apples.", "She no like apples."], ans: 0, exp: "Use 'doesn't' with she/he/it", diff: "A3-A4" },
+                        { q: "'The book is _____' (Maria's)", opts: ["hers", "her", "she", "herself"], ans: 0, exp: "Possessive pronoun", diff: "M5-M6" },
+                        { q: "Which is compound sentence?", opts: ["I went to the shop, and I bought milk.", "Although it rained.", "The big red car.", "Running quickly."], ans: 0, exp: "Two clauses with 'and'", diff: "E7-E8" },
+                        { q: "Past tense of 'go'?", opts: ["went", "goed", "gone", "going"], ans: 0, exp: "Irregular verb", diff: "A3-A4" }
                     ],
-                    "Writing Skills": [
-                        {
-                            id: "e12",
-                            type: "multiple",
-                            question: "What is the purpose of a topic sentence?",
-                            options: ["To introduce the main idea of a paragraph", "To conclude an essay", "To provide examples", "To cite sources"],
-                            correct: 0,
-                            explanation: "A topic sentence introduces the main idea and sets the direction for the paragraph.",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "e13",
-                            type: "multiple",
-                            question: "Which transition word shows contrast?",
-                            options: ["However", "Therefore", "Furthermore", "Similarly"],
-                            correct: 0,
-                            explanation: "'However' shows contrast. 'Therefore' shows result. 'Furthermore' and 'Similarly' show addition.",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "e14",
-                            type: "multiple",
-                            question: "What type of writing is used to convince the reader?",
-                            options: ["Persuasive", "Narrative", "Descriptive", "Expository"],
-                            correct: 0,
-                            explanation: "Persuasive writing aims to convince the reader of a particular viewpoint.",
-                            difficulty: "A3-A4"
-                        }
+                    "Writing": [
+                        { q: "Purpose of topic sentence?", opts: ["Introduce main idea", "Conclude essay", "Provide examples", "Cite sources"], ans: 0, exp: "Sets paragraph direction", diff: "M5-M6" },
+                        { q: "Which shows contrast?", opts: ["However", "Therefore", "Furthermore", "Similarly"], ans: 0, exp: "However = but", diff: "M5-M6" },
+                        { q: "Writing to convince = ?", opts: ["Persuasive", "Narrative", "Descriptive", "Expository"], ans: 0, exp: "Persuade = convince", diff: "A3-A4" }
                     ]
                 }
             },
             science: {
-                name: "Science",
-                icon: "🔬",
-                color: "from-green-500 to-teal-500",
+                name: "Science", icon: "🔬", from: "#22c55e", to: "#14b8a6",
                 topics: {
                     "Chemistry": [
-                        {
-                            id: "s1",
-                            type: "multiple",
-                            question: "What is the chemical symbol for water?",
-                            options: ["H₂O", "CO₂", "NaCl", "O₂"],
-                            correct: 0,
-                            explanation: "Water is made of 2 hydrogen atoms and 1 oxygen atom: H₂O",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "s2",
-                            type: "multiple",
-                            question: "Which of these is NOT a sign of a chemical reaction?",
-                            options: ["Changing shape", "Colour change", "Gas production", "Temperature change"],
-                            correct: 0,
-                            explanation: "Changing shape is a physical change. Chemical reactions show colour change, gas production, temperature change, or precipitate formation.",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "s3",
-                            type: "multiple",
-                            question: "What are the three states of matter?",
-                            options: ["Solid, liquid, gas", "Hot, warm, cold", "Big, medium, small", "Hard, soft, flexible"],
-                            correct: 0,
-                            explanation: "The three common states of matter are solid, liquid, and gas.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "s4",
-                            type: "multiple",
-                            question: "Where are metals found on the periodic table?",
-                            options: ["Left side", "Right side", "Top only", "Bottom only"],
-                            correct: 0,
-                            explanation: "Metals are found on the left side of the periodic table, non-metals on the right.",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "s5",
-                            type: "multiple",
-                            question: "What is an atom?",
-                            options: ["The smallest particle of an element", "A type of molecule", "A chemical reaction", "A state of matter"],
-                            correct: 0,
-                            explanation: "An atom is the smallest particle of an element that retains the element's properties.",
-                            difficulty: "A3-A4"
-                        }
+                        { q: "Chemical symbol for water?", opts: ["H₂O", "CO₂", "NaCl", "O₂"], ans: 0, exp: "2 Hydrogen + 1 Oxygen", diff: "A3-A4" },
+                        { q: "NOT a sign of chemical reaction?", opts: ["Changing shape", "Colour change", "Gas production", "Heat change"], ans: 0, exp: "Shape change = physical", diff: "M5-M6" },
+                        { q: "Three states of matter?", opts: ["Solid, liquid, gas", "Hot, warm, cold", "Big, medium, small", "Hard, soft, flexible"], ans: 0, exp: "Basic states", diff: "A3-A4" },
+                        { q: "Where are metals on periodic table?", opts: ["Left side", "Right side", "Top only", "Bottom only"], ans: 0, exp: "Metals on left", diff: "M5-M6" },
+                        { q: "What is an atom?", opts: ["Smallest particle of element", "A molecule", "A reaction", "A state"], ans: 0, exp: "Building block of matter", diff: "A3-A4" }
                     ],
                     "Biology": [
-                        {
-                            id: "s6",
-                            type: "multiple",
-                            question: "What is the powerhouse of the cell?",
-                            options: ["Mitochondria", "Nucleus", "Cell membrane", "Ribosome"],
-                            correct: 0,
-                            explanation: "Mitochondria produce energy (ATP) for the cell, earning the name 'powerhouse'.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "s7",
-                            type: "multiple",
-                            question: "What process do plants use to make food?",
-                            options: ["Photosynthesis", "Respiration", "Digestion", "Fermentation"],
-                            correct: 0,
-                            explanation: "Photosynthesis uses sunlight, water, and CO₂ to produce glucose and oxygen.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "s8",
-                            type: "multiple",
-                            question: "What is the function of the nucleus in a cell?",
-                            options: ["Controls cell activities and contains DNA", "Produces energy", "Makes proteins", "Stores water"],
-                            correct: 0,
-                            explanation: "The nucleus is the control center, containing genetic material (DNA) that directs cell activities.",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "s9",
-                            type: "multiple",
-                            question: "What is an ecosystem?",
-                            options: ["A community of living things and their environment", "A single organism", "Only the plants in an area", "Only the animals in an area"],
-                            correct: 0,
-                            explanation: "An ecosystem includes all living organisms (biotic) and non-living components (abiotic) interacting together.",
-                            difficulty: "M5-M6"
-                        }
+                        { q: "Powerhouse of the cell?", opts: ["Mitochondria", "Nucleus", "Cell membrane", "Ribosome"], ans: 0, exp: "Makes energy (ATP)", diff: "A3-A4" },
+                        { q: "Plants make food by?", opts: ["Photosynthesis", "Respiration", "Digestion", "Fermentation"], ans: 0, exp: "Light + CO₂ + H₂O", diff: "A3-A4" },
+                        { q: "Function of nucleus?", opts: ["Controls cell, has DNA", "Makes energy", "Makes proteins", "Stores water"], ans: 0, exp: "Control center", diff: "M5-M6" },
+                        { q: "What is an ecosystem?", opts: ["Living things + environment", "Single organism", "Only plants", "Only animals"], ans: 0, exp: "All living + non-living together", diff: "M5-M6" }
                     ],
                     "Physics": [
-                        {
-                            id: "s10",
-                            type: "multiple",
-                            question: "What is the unit of force?",
-                            options: ["Newton", "Joule", "Watt", "Metre"],
-                            correct: 0,
-                            explanation: "Force is measured in Newtons (N), named after Isaac Newton.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "s11",
-                            type: "multiple",
-                            question: "What type of energy does a moving car have?",
-                            options: ["Kinetic energy", "Potential energy", "Chemical energy", "Nuclear energy"],
-                            correct: 0,
-                            explanation: "Kinetic energy is the energy of motion. A moving car has kinetic energy.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "s12",
-                            type: "multiple",
-                            question: "What happens when light passes through a prism?",
-                            options: ["It separates into colours (spectrum)", "It becomes brighter", "It disappears", "It becomes a laser"],
-                            correct: 0,
-                            explanation: "A prism refracts white light into its component colours, creating a spectrum.",
-                            difficulty: "M5-M6"
-                        }
+                        { q: "Unit of force?", opts: ["Newton", "Joule", "Watt", "Metre"], ans: 0, exp: "Named after Isaac Newton", diff: "A3-A4" },
+                        { q: "Moving car has what energy?", opts: ["Kinetic", "Potential", "Chemical", "Nuclear"], ans: 0, exp: "Kinetic = motion", diff: "A3-A4" },
+                        { q: "Light through prism does what?", opts: ["Separates into colours", "Gets brighter", "Disappears", "Becomes laser"], ans: 0, exp: "Creates spectrum", diff: "M5-M6" }
                     ]
                 }
             },
             social: {
-                name: "Social Science",
-                icon: "🌏",
-                color: "from-orange-500 to-red-500",
+                name: "Social Science", icon: "🌏", from: "#f97316", to: "#ef4444",
                 topics: {
                     "NZ History": [
-                        {
-                            id: "ss1",
-                            type: "multiple",
-                            question: "When was the Treaty of Waitangi signed?",
-                            options: ["1840", "1800", "1900", "1776"],
-                            correct: 0,
-                            explanation: "Te Tiriti o Waitangi was signed on 6 February 1840 at Waitangi.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "ss2",
-                            type: "multiple",
-                            question: "Who were the first people to settle in New Zealand?",
-                            options: ["Māori (Polynesian settlers)", "British colonists", "Dutch explorers", "Australian settlers"],
-                            correct: 0,
-                            explanation: "Māori, who arrived from Polynesia around 1250-1300 AD, were the first settlers.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "ss3",
-                            type: "multiple",
-                            question: "What are the three principles of the Treaty of Waitangi?",
-                            options: ["Partnership, Protection, Participation", "Peace, Power, Prosperity", "Land, Law, Liberty", "King, Country, Crown"],
-                            correct: 0,
-                            explanation: "The Treaty principles are Partnership (working together), Protection (of Māori rights), and Participation (in decision-making).",
-                            difficulty: "M5-M6"
-                        }
+                        { q: "Treaty of Waitangi signed?", opts: ["1840", "1800", "1900", "1776"], ans: 0, exp: "6 February 1840", diff: "A3-A4" },
+                        { q: "First NZ settlers?", opts: ["Māori", "British", "Dutch", "Australian"], ans: 0, exp: "Polynesian settlers ~1300AD", diff: "A3-A4" },
+                        { q: "Treaty principles?", opts: ["Partnership, Protection, Participation", "Peace, Power, Prosperity", "Land, Law, Liberty", "King, Country, Crown"], ans: 0, exp: "The 3 P's", diff: "M5-M6" }
                     ],
                     "Geography": [
-                        {
-                            id: "ss4",
-                            type: "multiple",
-                            question: "What type of plate boundary causes earthquakes in New Zealand?",
-                            options: ["Convergent boundary", "Divergent boundary", "Transform boundary", "None of the above"],
-                            correct: 0,
-                            explanation: "NZ sits on a convergent boundary where the Pacific and Australian plates meet.",
-                            difficulty: "M5-M6"
-                        },
-                        {
-                            id: "ss5",
-                            type: "multiple",
-                            question: "What is sustainability?",
-                            options: ["Meeting present needs without harming future generations", "Using all resources quickly", "Ignoring environmental problems", "Building more factories"],
-                            correct: 0,
-                            explanation: "Sustainability means using resources responsibly so future generations can also meet their needs.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "ss6",
-                            type: "multiple",
-                            question: "What is climate change mainly caused by?",
-                            options: ["Greenhouse gas emissions", "Changes in the moon", "Volcanic eruptions only", "Ocean currents only"],
-                            correct: 0,
-                            explanation: "Human activities releasing greenhouse gases (like CO₂) are the main cause of current climate change.",
-                            difficulty: "M5-M6"
-                        }
+                        { q: "NZ earthquakes caused by?", opts: ["Convergent boundary", "Divergent boundary", "Transform boundary", "None"], ans: 0, exp: "Pacific + Australian plates", diff: "M5-M6" },
+                        { q: "What is sustainability?", opts: ["Meet needs without harming future", "Use resources quickly", "Ignore problems", "Build more"], ans: 0, exp: "Think of future generations", diff: "A3-A4" },
+                        { q: "Main cause of climate change?", opts: ["Greenhouse gases", "Moon changes", "Volcanoes only", "Ocean currents only"], ans: 0, exp: "Human CO₂ emissions", diff: "M5-M6" }
                     ],
                     "Civics": [
-                        {
-                            id: "ss7",
-                            type: "multiple",
-                            question: "What type of government does New Zealand have?",
-                            options: ["Parliamentary democracy", "Presidential republic", "Absolute monarchy", "Dictatorship"],
-                            correct: 0,
-                            explanation: "NZ is a parliamentary democracy with an elected parliament and constitutional monarch.",
-                            difficulty: "A3-A4"
-                        },
-                        {
-                            id: "ss8",
-                            type: "multiple",
-                            question: "What is the minimum voting age in New Zealand?",
-                            options: ["18 years old", "16 years old", "21 years old", "25 years old"],
-                            correct: 0,
-                            explanation: "New Zealanders can vote from age 18.",
-                            difficulty: "A3-A4"
-                        }
+                        { q: "NZ government type?", opts: ["Parliamentary democracy", "Presidential republic", "Absolute monarchy", "Dictatorship"], ans: 0, exp: "Elected parliament", diff: "A3-A4" },
+                        { q: "NZ voting age?", opts: ["18", "16", "21", "25"], ans: 0, exp: "18 years old", diff: "A3-A4" }
                     ]
                 }
             }
         };
 
-        // ============ NCEA GRADE SYSTEM ============
-        const gradeSystem = {
-            "N0": { min: 0, max: 9, label: "Not Achieved", color: "#ef4444", emoji: "😔" },
-            "N1": { min: 10, max: 19, label: "Not Achieved", color: "#ef4444", emoji: "😕" },
-            "N2": { min: 20, max: 39, label: "Not Achieved", color: "#f97316", emoji: "🤔" },
-            "A3": { min: 40, max: 49, label: "Achieved", color: "#eab308", emoji: "😊" },
-            "A4": { min: 50, max: 59, label: "Achieved", color: "#84cc16", emoji: "🙂" },
-            "M5": { min: 60, max: 69, label: "Merit", color: "#22c55e", emoji: "😄" },
-            "M6": { min: 70, max: 79, label: "Merit", color: "#14b8a6", emoji: "😃" },
-            "E7": { min: 80, max: 89, label: "Excellence", color: "#3b82f6", emoji: "🌟" },
-            "E8": { min: 90, max: 100, label: "Excellence", color: "#8b5cf6", emoji: "🏆" }
+        // ============ GRADE SYSTEM ============
+        const grades = {
+            N0: { min: 0, max: 9, label: "Not Achieved", color: "#ef4444", emoji: "😔" },
+            N1: { min: 10, max: 19, label: "Not Achieved", color: "#ef4444", emoji: "😕" },
+            N2: { min: 20, max: 39, label: "Not Achieved", color: "#f97316", emoji: "🤔" },
+            A3: { min: 40, max: 49, label: "Achieved", color: "#eab308", emoji: "😊" },
+            A4: { min: 50, max: 59, label: "Achieved", color: "#84cc16", emoji: "🙂" },
+            M5: { min: 60, max: 69, label: "Merit", color: "#22c55e", emoji: "😄" },
+            M6: { min: 70, max: 79, label: "Merit", color: "#14b8a6", emoji: "😃" },
+            E7: { min: 80, max: 89, label: "Excellence", color: "#3b82f6", emoji: "🌟" },
+            E8: { min: 90, max: 100, label: "Excellence", color: "#8b5cf6", emoji: "🏆" }
         };
 
-        const getGrade = (percentage) => {
-            for (const [grade, data] of Object.entries(gradeSystem)) {
-                if (percentage >= data.min && percentage <= data.max) {
-                    return { grade, ...data };
-                }
+        function getGrade(pct) {
+            for (const [g, d] of Object.entries(grades)) {
+                if (pct >= d.min && pct <= d.max) return { grade: g, ...d };
             }
-            return { grade: "N0", ...gradeSystem["N0"] };
-        };
-
-        // ============ STUDY PLAN ============
-        const studyPlan = [
-            { week: 1, dates: "Dec 6-12", subject: "math", topic: "Number & Algebra", hours: 2, focus: "Algebra basics, equations, percentages" },
-            { week: 2, dates: "Dec 13-19", subject: "english", topic: "Reading & Vocabulary", hours: 2, focus: "Vocabulary building, reading comprehension" },
-            { week: 3, dates: "Dec 20-26", subject: "math", topic: "Geometry & Measurement", hours: 1.5, focus: "Shapes, angles, area, volume" },
-            { week: 4, dates: "Dec 27 - Jan 2", subject: "science", topic: "Chemistry & Biology", hours: 1.5, focus: "Atoms, cells, ecosystems" },
-            { week: 5, dates: "Jan 3-9", subject: "english", topic: "Grammar & Writing", hours: 2, focus: "Grammar rules, essay structure" },
-            { week: 6, dates: "Jan 10-17", subject: "all", topic: "Full Review", hours: 2, focus: "Practice exams for all subjects" }
-        ];
-
-        // ============ BADGES ============
-        const allBadges = [
-            { id: "first_exam", name: "First Steps", icon: "🎯", desc: "Complete your first exam", requirement: (stats) => stats.examsCompleted >= 1 },
-            { id: "streak_3", name: "On Fire", icon: "🔥", desc: "3 day study streak", requirement: (stats) => stats.currentStreak >= 3 },
-            { id: "streak_7", name: "Week Warrior", icon: "⚔️", desc: "7 day study streak", requirement: (stats) => stats.currentStreak >= 7 },
-            { id: "perfect_score", name: "Perfectionist", icon: "💯", desc: "Get 100% on an exam", requirement: (stats) => stats.perfectScores >= 1 },
-            { id: "math_master", name: "Math Wizard", icon: "🧙", desc: "Complete 5 Math exams", requirement: (stats) => (stats.subjectExams?.math || 0) >= 5 },
-            { id: "english_expert", name: "Wordsmith", icon: "📖", desc: "Complete 5 English exams", requirement: (stats) => (stats.subjectExams?.english || 0) >= 5 },
-            { id: "science_star", name: "Scientist", icon: "🔭", desc: "Complete 5 Science exams", requirement: (stats) => (stats.subjectExams?.science || 0) >= 5 },
-            { id: "excellence", name: "Excellence Achiever", icon: "🏆", desc: "Get E7 or E8 grade", requirement: (stats) => stats.excellenceGrades >= 1 },
-            { id: "ten_exams", name: "Dedicated Learner", icon: "📚", desc: "Complete 10 exams", requirement: (stats) => stats.examsCompleted >= 10 },
-            { id: "time_master", name: "Speed Demon", icon: "⚡", desc: "Complete a timed exam under 2 minutes", requirement: (stats) => stats.fastExams >= 1 }
-        ];
-
-        // ============ MAIN APP ============
-        function App() {
-            const [currentView, setCurrentView] = useState('dashboard');
-            const [userData, setUserData] = useState(() => {
-                const saved = localStorage.getItem('rangiReviewData');
-                return saved ? JSON.parse(saved) : {
-                    name: '',
-                    totalXP: 0,
-                    currentStreak: 0,
-                    lastStudyDate: null,
-                    examsCompleted: 0,
-                    perfectScores: 0,
-                    excellenceGrades: 0,
-                    fastExams: 0,
-                    subjectExams: { math: 0, english: 0, science: 0, social: 0 },
-                    examHistory: [],
-                    badges: [],
-                    weeklyProgress: [0, 0, 0, 0, 0, 0]
-                };
-            });
-            const [selectedSubject, setSelectedSubject] = useState(null);
-            const [selectedTopic, setSelectedTopic] = useState(null);
-            const [examMode, setExamMode] = useState(false);
-            const [currentExam, setCurrentExam] = useState(null);
-
-            useEffect(() => {
-                localStorage.setItem('rangiReviewData', JSON.stringify(userData));
-            }, [userData]);
-
-            useEffect(() => {
-                checkStreak();
-                checkBadges();
-            }, []);
-
-            const checkStreak = () => {
-                const today = new Date().toDateString();
-                const lastStudy = userData.lastStudyDate;
-                
-                if (lastStudy) {
-                    const lastDate = new Date(lastStudy);
-                    const todayDate = new Date(today);
-                    const diffDays = Math.floor((todayDate - lastDate) / (1000 * 60 * 60 * 24));
-                    
-                    if (diffDays > 1) {
-                        setUserData(prev => ({ ...prev, currentStreak: 0 }));
-                    }
-                }
-            };
-
-            const checkBadges = () => {
-                const newBadges = [];
-                allBadges.forEach(badge => {
-                    if (!userData.badges.includes(badge.id) && badge.requirement(userData)) {
-                        newBadges.push(badge.id);
-                    }
-                });
-                if (newBadges.length > 0) {
-                    setUserData(prev => ({ ...prev, badges: [...prev.badges, ...newBadges] }));
-                }
-            };
-
-            const calculateHealthIndex = () => {
-                const currentWeek = Math.min(6, Math.max(1, Math.ceil((new Date() - new Date('2025-12-06')) / (7 * 24 * 60 * 60 * 1000))));
-                const expectedExams = currentWeek * 3;
-                const actualExams = userData.examsCompleted;
-                const ratio = Math.min(1, actualExams / Math.max(1, expectedExams));
-                
-                const streakBonus = Math.min(0.2, userData.currentStreak * 0.03);
-                const health = Math.round((ratio * 0.8 + streakBonus) * 100);
-                
-                return Math.min(100, Math.max(0, health));
-            };
-
-            const startExam = (subject, topic) => {
-                const questions = questionDatabase[subject].topics[topic];
-                const shuffled = [...questions].sort(() => Math.random() - 0.5).slice(0, Math.min(5, questions.length));
-                
-                setCurrentExam({
-                    subject,
-                    topic,
-                    questions: shuffled,
-                    currentQuestion: 0,
-                    answers: [],
-                    startTime: Date.now(),
-                    timerEnabled: true
-                });
-                setExamMode(true);
-            };
-
-            const submitExam = (results) => {
-                const { subject, topic, questions, answers, startTime } = results;
-                const timeTaken = Math.floor((Date.now() - startTime) / 1000);
-                
-                let correct = 0;
-                questions.forEach((q, i) => {
-                    if (q.type === 'multiple' && answers[i] === q.correct) correct++;
-                    else if ((q.type === 'short' || q.type === 'fill') && 
-                             q.correct.some(ans => answers[i]?.toLowerCase().trim() === ans.toLowerCase())) correct++;
-                });
-                
-                const percentage = Math.round((correct / questions.length) * 100);
-                const gradeInfo = getGrade(percentage);
-                const xpEarned = Math.round(percentage * 2 + (timeTaken < 120 ? 50 : 0));
-
-                if (percentage === 100) {
-                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-                }
-
-                const newExamRecord = {
-                    id: Date.now(),
-                    subject,
-                    topic,
-                    score: percentage,
-                    grade: gradeInfo.grade,
-                    xp: xpEarned,
-                    date: new Date().toISOString(),
-                    timeTaken,
-                    details: questions.map((q, i) => ({
-                        question: q.question,
-                        userAnswer: answers[i],
-                        correct: q.type === 'multiple' ? q.options[q.correct] : q.correct[0],
-                        isCorrect: q.type === 'multiple' ? answers[i] === q.correct : 
-                                   q.correct.some(ans => answers[i]?.toLowerCase().trim() === ans.toLowerCase()),
-                        explanation: q.explanation
-                    }))
-                };
-
-                setUserData(prev => {
-                    const currentWeek = Math.min(5, Math.max(0, Math.ceil((new Date() - new Date('2025-12-06')) / (7 * 24 * 60 * 60 * 1000)) - 1));
-                    const newWeeklyProgress = [...prev.weeklyProgress];
-                    newWeeklyProgress[currentWeek] = Math.min(100, newWeeklyProgress[currentWeek] + 15);
-
-                    return {
-                        ...prev,
-                        totalXP: prev.totalXP + xpEarned,
-                        examsCompleted: prev.examsCompleted + 1,
-                        perfectScores: percentage === 100 ? prev.perfectScores + 1 : prev.perfectScores,
-                        excellenceGrades: percentage >= 80 ? prev.excellenceGrades + 1 : prev.excellenceGrades,
-                        fastExams: timeTaken < 120 ? prev.fastExams + 1 : prev.fastExams,
-                        subjectExams: { ...prev.subjectExams, [subject]: (prev.subjectExams[subject] || 0) + 1 },
-                        examHistory: [newExamRecord, ...prev.examHistory].slice(0, 50),
-                        lastStudyDate: new Date().toDateString(),
-                        currentStreak: prev.lastStudyDate === new Date().toDateString() ? prev.currentStreak : prev.currentStreak + 1,
-                        weeklyProgress: newWeeklyProgress
-                    };
-                });
-
-                setTimeout(checkBadges, 100);
-                return { ...newExamRecord, gradeInfo };
-            };
-
-            return (
-                <div className="min-h-screen p-4 md:p-8">
-                    {!userData.name ? (
-                        <WelcomeScreen onComplete={(name) => setUserData(prev => ({ ...prev, name }))} />
-                    ) : examMode ? (
-                        <ExamScreen 
-                            exam={currentExam} 
-                            onComplete={(results) => {
-                                const finalResults = submitExam(results);
-                                setCurrentExam({ ...currentExam, results: finalResults });
-                            }}
-                            onExit={() => {
-                                setExamMode(false);
-                                setCurrentExam(null);
-                            }}
-                        />
-                    ) : (
-                        <div className="max-w-7xl mx-auto">
-                            <Header 
-                                userData={userData} 
-                                healthIndex={calculateHealthIndex()} 
-                                currentView={currentView}
-                                setCurrentView={setCurrentView}
-                            />
-                            
-                            {currentView === 'dashboard' && (
-                                <Dashboard 
-                                    userData={userData}
-                                    healthIndex={calculateHealthIndex()}
-                                    onStartExam={startExam}
-                                />
-                            )}
-                            {currentView === 'subjects' && (
-                                <SubjectsView 
-                                    onSelectSubject={(subject, topic) => startExam(subject, topic)}
-                                />
-                            )}
-                            {currentView === 'progress' && (
-                                <ProgressView userData={userData} />
-                            )}
-                            {currentView === 'badges' && (
-                                <BadgesView userData={userData} />
-                            )}
-                            {currentView === 'plan' && (
-                                <StudyPlanView userData={userData} />
-                            )}
-                        </div>
-                    )}
-                </div>
-            );
+            return { grade: "N0", ...grades.N0 };
         }
 
-        // ============ WELCOME SCREEN ============
-        function WelcomeScreen({ onComplete }) {
-            const [name, setName] = useState('');
+        // ============ APP STATE ============
+        let state = JSON.parse(localStorage.getItem('rangiData') || 'null') || {
+            name: '', xp: 0, streak: 0, exams: 0, perfect: 0, excellence: 0, fastExams: 0,
+            subjects: { math: 0, english: 0, science: 0, social: 0 },
+            history: [], badges: [], lastStudyDate: null, lastBackup: null
+        };
 
-            return (
-                <div className="min-h-screen flex items-center justify-center">
-                    <div className="glass rounded-3xl p-12 max-w-lg w-full text-center bounce-in">
-                        <div className="text-6xl mb-6 floating">🎓</div>
-                        <h1 className="text-4xl font-bold text-white mb-2 neon-text">Rangitoto</h1>
-                        <h2 className="text-2xl text-purple-300 mb-8">Year 9 Review Hub</h2>
-                        
-                        <p className="text-gray-300 mb-8">
-                            Welcome! Get ready to review your Year 9 subjects with fun quizzes, 
-                            earn badges, and track your progress!
-                        </p>
-                        
-                        <input
-                            type="text"
-                            placeholder="Enter your name..."
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            className="w-full px-6 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 text-lg mb-6 focus:outline-none focus:border-purple-400 transition"
-                        />
-                        
-                        <button
-                            onClick={() => name.trim() && onComplete(name.trim())}
-                            disabled={!name.trim()}
-                            className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-all pulse-glow"
-                        >
-                            Start Learning! 🚀
+        let view = 'welcome';
+        let currentExam = null;
+        let examState = { q: 0, answers: [], time: 180, feedback: false, selected: null };
+        let showSyncModal = false;
+        let syncTab = 'export';
+        let syncMessage = null;
+        let newBadges = []; // Track newly earned badges for animation
+
+        // ============ STREAK LOGIC ============
+        function updateStreak() {
+            const today = new Date().toDateString();
+            const lastDate = state.lastStudyDate ? new Date(state.lastStudyDate).toDateString() : null;
+            
+            if (lastDate === today) {
+                // Already studied today
+                return;
+            }
+            
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            
+            if (lastDate === yesterday.toDateString()) {
+                // Studied yesterday, increment streak
+                state.streak++;
+            } else if (lastDate !== today) {
+                // Missed a day, reset streak
+                state.streak = 1;
+            }
+            
+            state.lastStudyDate = new Date().toISOString();
+        }
+
+        // ============ BADGE CHECKING ============
+        function checkBadges() {
+            newBadges = [];
+            for (const [id, badge] of Object.entries(badgesDef)) {
+                if (!state.badges.includes(id) && badge.check(state)) {
+                    state.badges.push(id);
+                    newBadges.push(id);
+                }
+            }
+            return newBadges;
+        }
+
+        // ============ SAVE / EXPORT / IMPORT ============
+        function save() { 
+            localStorage.setItem('rangiData', JSON.stringify(state)); 
+        }
+
+        function exportData() {
+            const dataStr = JSON.stringify(state, null, 2);
+            const textarea = document.getElementById('exportData');
+            if (textarea) {
+                textarea.value = dataStr;
+                textarea.select();
+                document.execCommand('copy');
+                syncMessage = { type: 'success', text: '✅ Data copied to clipboard!' };
+                state.lastBackup = new Date().toISOString();
+                save();
+                render();
+            }
+        }
+
+        function downloadData() {
+            const dataStr = JSON.stringify(state, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `rangitoto-backup-${state.name}-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            state.lastBackup = new Date().toISOString();
+            save();
+            syncMessage = { type: 'success', text: '✅ Backup downloaded!' };
+            render();
+        }
+
+        function importData() {
+            const textarea = document.getElementById('importData');
+            if (textarea && textarea.value.trim()) {
+                try {
+                    const imported = JSON.parse(textarea.value.trim());
+                    if (imported.name && typeof imported.xp === 'number') {
+                        state = { ...state, ...imported };
+                        save();
+                        syncMessage = { type: 'success', text: '✅ Data imported successfully!' };
+                        showSyncModal = false;
+                        render();
+                    } else {
+                        syncMessage = { type: 'error', text: '❌ Invalid data format.' };
+                        render();
+                    }
+                } catch (e) {
+                    syncMessage = { type: 'error', text: '❌ Could not parse data.' };
+                    render();
+                }
+            }
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('importData').value = e.target.result;
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        // ============ RENDER FUNCTIONS ============
+        function render() {
+            const app = document.getElementById('app');
+            let html = '';
+            
+            if (showSyncModal) html += syncModalHTML();
+            
+            if (!state.name) {
+                html += welcomeHTML();
+            } else if (currentExam) {
+                html += examHTML();
+            } else {
+                html += mainHTML();
+            }
+            
+            app.innerHTML = html;
+        }
+
+        function welcomeHTML() {
+            return `
+                <div class="glass text-center bounce-in" style="max-width:500px;margin:50px auto;">
+                    <div class="text-6xl mb-4 floating">🎓</div>
+                    <h1 class="text-4xl font-bold mb-4">Rangitoto</h1>
+                    <h2 class="text-2xl text-purple mb-6">Year 9 Review Hub</h2>
+                    <p class="text-gray mb-6">Get ready to review your subjects with fun quizzes!</p>
+                    <input class="input" type="text" id="nameInput" placeholder="Enter your name...">
+                    <button class="btn" onclick="startApp()">Start Learning! 🚀</button>
+                    
+                    <div style="border-top:1px solid rgba(255,255,255,0.2);padding-top:20px;margin-top:20px;">
+                        <p class="text-gray text-sm mb-4">📂 Have a backup from another device?</p>
+                        <button class="btn btn-secondary" onclick="showSyncModal=true;syncTab='import';render()">
+                            Import Backup Data
                         </button>
                     </div>
                 </div>
-            );
+            `;
         }
 
-        // ============ HEADER ============
-        function Header({ userData, healthIndex, currentView, setCurrentView }) {
-            const healthClass = healthIndex >= 80 ? 'health-excellent' : 
-                               healthIndex >= 60 ? 'health-good' : 
-                               healthIndex >= 40 ? 'health-warning' : 'health-danger';
-
-            const navItems = [
-                { id: 'dashboard', icon: '🏠', label: 'Home' },
-                { id: 'subjects', icon: '📚', label: 'Subjects' },
-                { id: 'progress', icon: '📊', label: 'Progress' },
-                { id: 'badges', icon: '🏅', label: 'Badges' },
-                { id: 'plan', icon: '📅', label: 'Plan' }
-            ];
-
-            return (
-                <header className="glass rounded-2xl p-4 mb-6">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                        <div className="flex items-center gap-4">
-                            <div className="text-4xl floating">🎓</div>
-                            <div>
-                                <h1 className="text-xl font-bold text-white">Kia ora, {userData.name}!</h1>
-                                <div className="flex items-center gap-4 text-sm">
-                                    <span className="text-yellow-400 font-mono">⚡ {userData.totalXP} XP</span>
-                                    {userData.currentStreak > 0 && (
-                                        <span className="text-orange-400 streak-fire">🔥 {userData.currentStreak} day streak</span>
-                                    )}
-                                </div>
-                            </div>
+        function syncModalHTML() {
+            return `
+                <div class="modal-overlay" onclick="if(event.target===this){showSyncModal=false;syncMessage=null;render();}">
+                    <div class="modal">
+                        <h2 class="text-2xl font-bold mb-4">💾 Backup & Sync</h2>
+                        
+                        <div class="tabs">
+                            <button class="tab ${syncTab === 'export' ? 'active' : ''}" onclick="syncTab='export';syncMessage=null;render()">📤 Export</button>
+                            <button class="tab ${syncTab === 'import' ? 'active' : ''}" onclick="syncTab='import';syncMessage=null;render()">📥 Import</button>
                         </div>
                         
-                        <div className="flex items-center gap-3">
-                            <div className={`${healthClass} px-4 py-2 rounded-xl text-white font-bold`}>
-                                Health: {healthIndex}%
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <nav className="flex gap-2 mt-4 overflow-x-auto pb-2">
-                        {navItems.map(item => (
-                            <button
-                                key={item.id}
-                                onClick={() => setCurrentView(item.id)}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition whitespace-nowrap ${
-                                    currentView === item.id 
-                                        ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white' 
-                                        : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                                }`}
-                            >
-                                <span>{item.icon}</span>
-                                <span className="hidden sm:inline">{item.label}</span>
-                            </button>
-                        ))}
-                    </nav>
-                </header>
-            );
-        }
-
-        // ============ DASHBOARD ============
-        function Dashboard({ userData, healthIndex, onStartExam }) {
-            const currentWeek = Math.min(6, Math.max(1, Math.ceil((new Date() - new Date('2025-12-06')) / (7 * 24 * 60 * 60 * 1000))));
-            const currentPlan = studyPlan[Math.min(currentWeek - 1, 5)];
-
-            const quickActions = [
-                { subject: 'math', topic: 'Number & Algebra', icon: '📐', color: 'from-blue-500 to-cyan-500' },
-                { subject: 'english', topic: 'Grammar', icon: '📚', color: 'from-purple-500 to-pink-500' },
-                { subject: 'science', topic: 'Chemistry', icon: '🔬', color: 'from-green-500 to-teal-500' },
-                { subject: 'social', topic: 'NZ History', icon: '🌏', color: 'from-orange-500 to-red-500' }
-            ];
-
-            return (
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {/* Main Content */}
-                    <div className="lg:col-span-2 space-y-6">
-                        {/* Week Card */}
-                        <div className="glass rounded-2xl p-6 card-hover">
-                            <div className="flex items-center justify-between mb-4">
-                                <h2 className="text-xl font-bold text-white">📅 Week {currentWeek} Focus</h2>
-                                <span className="text-sm text-purple-300">{currentPlan.dates}</span>
-                            </div>
-                            <div className={`bg-gradient-to-r ${questionDatabase[currentPlan.subject === 'all' ? 'math' : currentPlan.subject].color} p-4 rounded-xl mb-4`}>
-                                <p className="text-white font-bold text-lg">{currentPlan.topic}</p>
-                                <p className="text-white/80">{currentPlan.focus}</p>
-                                <p className="text-white/60 text-sm mt-2">📚 {currentPlan.hours} hours/day recommended</p>
-                            </div>
-                            
-                            {currentPlan.subject !== 'all' && (
-                                <button
-                                    onClick={() => onStartExam(currentPlan.subject, Object.keys(questionDatabase[currentPlan.subject].topics)[0])}
-                                    className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold hover:scale-[1.02] transition-all"
-                                >
-                                    Start Today's Quiz 🚀
-                                </button>
-                            )}
-                        </div>
-
-                        {/* Quick Start */}
-                        <div className="glass rounded-2xl p-6">
-                            <h2 className="text-xl font-bold text-white mb-4">⚡ Quick Start</h2>
-                            <div className="grid grid-cols-2 gap-3">
-                                {quickActions.map((action, i) => (
-                                    <button
-                                        key={i}
-                                        onClick={() => onStartExam(action.subject, action.topic)}
-                                        className={`bg-gradient-to-r ${action.color} p-4 rounded-xl text-white text-left card-hover`}
-                                    >
-                                        <span className="text-2xl">{action.icon}</span>
-                                        <p className="font-bold mt-2">{questionDatabase[action.subject].name}</p>
-                                        <p className="text-sm opacity-80">{action.topic}</p>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Sidebar */}
-                    <div className="space-y-6">
-                        {/* Stats */}
-                        <div className="glass rounded-2xl p-6">
-                            <h3 className="text-lg font-bold text-white mb-4">📊 Your Stats</h3>
-                            <div className="space-y-4">
-                                <StatItem label="Total XP" value={userData.totalXP} icon="⚡" color="text-yellow-400" />
-                                <StatItem label="Exams Completed" value={userData.examsCompleted} icon="✅" color="text-green-400" />
-                                <StatItem label="Current Streak" value={`${userData.currentStreak} days`} icon="🔥" color="text-orange-400" />
-                                <StatItem label="Perfect Scores" value={userData.perfectScores} icon="💯" color="text-purple-400" />
-                                <StatItem label="Badges Earned" value={`${userData.badges.length}/${allBadges.length}`} icon="🏅" color="text-blue-400" />
-                            </div>
-                        </div>
-
-                        {/* Recent Activity */}
-                        <div className="glass rounded-2xl p-6">
-                            <h3 className="text-lg font-bold text-white mb-4">🕒 Recent Exams</h3>
-                            {userData.examHistory.length === 0 ? (
-                                <p className="text-gray-400 text-sm">No exams yet. Start your first quiz!</p>
-                            ) : (
-                                <div className="space-y-3">
-                                    {userData.examHistory.slice(0, 3).map((exam, i) => (
-                                        <div key={i} className="bg-white/5 rounded-lg p-3">
-                                            <div className="flex justify-between items-center">
-                                                <span className="text-white font-medium">{questionDatabase[exam.subject].name}</span>
-                                                <span className={`px-2 py-1 rounded text-xs font-bold`} style={{ backgroundColor: getGrade(exam.score).color }}>
-                                                    {exam.grade}
-                                                </span>
-                                            </div>
-                                            <p className="text-gray-400 text-xs mt-1">{exam.topic} • {exam.score}%</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            );
-        }
-
-        function StatItem({ label, value, icon, color }) {
-            return (
-                <div className="flex items-center justify-between">
-                    <span className="text-gray-300">{label}</span>
-                    <span className={`font-bold mono ${color}`}>{icon} {value}</span>
-                </div>
-            );
-        }
-
-        // ============ SUBJECTS VIEW ============
-        function SubjectsView({ onSelectSubject }) {
-            const [expandedSubject, setExpandedSubject] = useState(null);
-
-            return (
-                <div className="space-y-6">
-                    <div className="glass rounded-2xl p-6">
-                        <h2 className="text-2xl font-bold text-white mb-6">📚 Choose Your Subject</h2>
+                        ${syncMessage ? `<div class="alert alert-${syncMessage.type === 'success' ? 'success' : 'error'} mb-4">${syncMessage.text}</div>` : ''}
                         
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {Object.entries(questionDatabase).map(([key, subject]) => (
-                                <div key={key} className="glass rounded-xl overflow-hidden card-hover">
-                                    <button
-                                        onClick={() => setExpandedSubject(expandedSubject === key ? null : key)}
-                                        className={`w-full bg-gradient-to-r ${subject.color} p-6 text-left`}
-                                    >
-                                        <div className="flex items-center gap-4">
-                                            <span className="text-4xl">{subject.icon}</span>
-                                            <div>
-                                                <h3 className="text-xl font-bold text-white">{subject.name}</h3>
-                                                <p className="text-white/70">{Object.keys(subject.topics).length} topics available</p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    
-                                    {expandedSubject === key && (
-                                        <div className="p-4 space-y-2 slide-in">
-                                            {Object.entries(subject.topics).map(([topicName, questions]) => (
-                                                <button
-                                                    key={topicName}
-                                                    onClick={() => onSelectSubject(key, topicName)}
-                                                    className="w-full p-3 rounded-lg bg-white/10 text-white text-left hover:bg-white/20 transition flex justify-between items-center"
-                                                >
-                                                    <span>{topicName}</span>
-                                                    <span className="text-sm text-gray-400">{questions.length} questions</span>
-                                                </button>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
+                        ${syncTab === 'export' ? `
+                            <button class="btn btn-green" onclick="downloadData()">📥 Download Backup File</button>
+                            <p class="text-gray text-sm text-center mb-4">— or copy as text —</p>
+                            <textarea class="input" id="exportData" readonly>${JSON.stringify(state, null, 2)}</textarea>
+                            <button class="btn btn-blue" onclick="exportData()">📋 Copy to Clipboard</button>
+                        ` : `
+                            <div class="alert alert-warning mb-4"><p class="font-bold text-orange">⚠️ Warning: This will replace your current data!</p></div>
+                            <input type="file" accept=".json" onchange="handleFileUpload(event)" class="input" style="padding:10px;">
+                            <p class="text-gray text-sm text-center mb-2">— or paste data —</p>
+                            <textarea class="input" id="importData" placeholder="Paste backup data here..."></textarea>
+                            <button class="btn btn-orange" onclick="importData()">📥 Import Data</button>
+                        `}
+                        
+                        <button class="btn btn-secondary mt-4" onclick="showSyncModal=false;syncMessage=null;render()">Close</button>
                     </div>
                 </div>
-            );
+            `;
         }
 
-        // ============ EXAM SCREEN ============
-        function ExamScreen({ exam, onComplete, onExit }) {
-            const [currentQ, setCurrentQ] = useState(0);
-            const [answers, setAnswers] = useState([]);
-            const [showResults, setShowResults] = useState(false);
-            const [timeLeft, setTimeLeft] = useState(180);
-            const [inputValue, setInputValue] = useState('');
-            const [showFeedback, setShowFeedback] = useState(false);
-            const [selectedOption, setSelectedOption] = useState(null);
-
-            useEffect(() => {
-                if (!showResults && timeLeft > 0) {
-                    const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-                    return () => clearTimeout(timer);
-                }
-            }, [timeLeft, showResults]);
-
-            const question = exam.questions[currentQ];
-            const progress = ((currentQ + 1) / exam.questions.length) * 100;
-
-            const handleAnswer = (answer) => {
-                setSelectedOption(answer);
-                setShowFeedback(true);
-                
-                setTimeout(() => {
-                    const newAnswers = [...answers, answer];
-                    setAnswers(newAnswers);
-                    setShowFeedback(false);
-                    setSelectedOption(null);
-                    setInputValue('');
-                    
-                    if (currentQ < exam.questions.length - 1) {
-                        setCurrentQ(currentQ + 1);
-                    } else {
-                        const results = { ...exam, answers: newAnswers };
-                        onComplete(results);
-                        setShowResults(true);
-                    }
-                }, 1000);
-            };
-
-            const isCorrect = (answer) => {
-                if (question.type === 'multiple') return answer === question.correct;
-                return question.correct.some(c => answer?.toLowerCase().trim() === c.toLowerCase());
-            };
-
-            if (showResults && exam.results) {
-                return <ResultsScreen results={exam.results} onExit={onExit} />;
+        function startApp() {
+            const name = document.getElementById('nameInput').value.trim();
+            if (name) { 
+                state.name = name; 
+                save(); 
+                render(); 
             }
-
-            return (
-                <div className="max-w-3xl mx-auto">
-                    <div className="glass rounded-2xl p-6 mb-6">
-                        <div className="flex justify-between items-center mb-4">
-                            <div className="flex items-center gap-2">
-                                <span className="text-2xl">{questionDatabase[exam.subject].icon}</span>
-                                <span className="text-white font-bold">{exam.topic}</span>
-                            </div>
-                            <div className={`mono font-bold text-xl ${timeLeft < 30 ? 'timer-urgent' : 'text-white'}`}>
-                                ⏱️ {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
-                            </div>
-                        </div>
-                        
-                        <div className="h-2 bg-white/20 rounded-full overflow-hidden">
-                            <div className="h-full progress-bar rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
-                        </div>
-                        <p className="text-gray-400 text-sm mt-2">Question {currentQ + 1} of {exam.questions.length}</p>
-                    </div>
-
-                    <div className="glass rounded-2xl p-8 bounce-in">
-                        <div className="mb-2">
-                            <span className={`text-xs px-2 py-1 rounded-full ${
-                                question.difficulty.includes('E') ? 'bg-purple-500' :
-                                question.difficulty.includes('M') ? 'bg-green-500' :
-                                'bg-blue-500'
-                            } text-white`}>
-                                {question.difficulty}
-                            </span>
-                        </div>
-                        
-                        <h2 className="text-xl md:text-2xl font-bold text-white mb-8">{question.question}</h2>
-
-                        {question.type === 'multiple' && (
-                            <div className="space-y-3">
-                                {question.options.map((option, i) => {
-                                    let optionClass = "question-option p-4 rounded-xl border-2 border-white/20 text-white cursor-pointer";
-                                    if (showFeedback && selectedOption === i) {
-                                        optionClass += isCorrect(i) ? " correct-answer" : " wrong-answer";
-                                    }
-                                    if (showFeedback && i === question.correct && selectedOption !== i) {
-                                        optionClass += " correct-answer";
-                                    }
-                                    
-                                    return (
-                                        <button
-                                            key={i}
-                                            onClick={() => !showFeedback && handleAnswer(i)}
-                                            disabled={showFeedback}
-                                            className={optionClass}
-                                        >
-                                            <span className="font-bold mr-3">{String.fromCharCode(65 + i)}.</span>
-                                            {option}
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                        )}
-
-                        {(question.type === 'short' || question.type === 'fill') && (
-                            <div className="space-y-4">
-                                <input
-                                    type="text"
-                                    value={inputValue}
-                                    onChange={(e) => setInputValue(e.target.value)}
-                                    placeholder={question.type === 'fill' ? "Fill in the blank..." : "Type your answer..."}
-                                    className="w-full p-4 rounded-xl bg-white/10 border-2 border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
-                                    disabled={showFeedback}
-                                />
-                                <button
-                                    onClick={() => inputValue.trim() && handleAnswer(inputValue.trim())}
-                                    disabled={!inputValue.trim() || showFeedback}
-                                    className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold disabled:opacity-50"
-                                >
-                                    Submit Answer
-                                </button>
-                            </div>
-                        )}
-
-                        {showFeedback && (
-                            <div className={`mt-6 p-4 rounded-xl ${isCorrect(selectedOption ?? inputValue) ? 'bg-green-500/20 border border-green-500' : 'bg-red-500/20 border border-red-500'}`}>
-                                <p className={`font-bold ${isCorrect(selectedOption ?? inputValue) ? 'text-green-400' : 'text-red-400'}`}>
-                                    {isCorrect(selectedOption ?? inputValue) ? '✅ Correct!' : '❌ Not quite!'}
-                                </p>
-                            </div>
-                        )}
-                    </div>
-
-                    <button
-                        onClick={onExit}
-                        className="mt-6 text-gray-400 hover:text-white transition"
-                    >
-                        ← Exit Quiz
-                    </button>
-                </div>
-            );
         }
 
-        // ============ RESULTS SCREEN ============
-        function ResultsScreen({ results, onExit }) {
-            const { score, grade, gradeInfo, xp, timeTaken, details } = results;
-
-            useEffect(() => {
-                if (score >= 80) {
-                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-                }
-            }, []);
-
-            return (
-                <div className="max-w-3xl mx-auto">
-                    <div className="glass rounded-2xl p-8 text-center mb-6 bounce-in">
-                        <div className="text-6xl mb-4">{gradeInfo.emoji}</div>
-                        <h1 className="text-3xl font-bold text-white mb-2">Exam Complete!</h1>
-                        
-                        <div className="flex justify-center gap-6 my-6">
-                            <div className="text-center">
-                                <div className="text-4xl font-bold gradient-text">{score}%</div>
-                                <div className="text-gray-400">Score</div>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-4xl font-bold" style={{ color: gradeInfo.color }}>{grade}</div>
-                                <div className="text-gray-400">{gradeInfo.label}</div>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-4xl font-bold text-yellow-400">+{xp}</div>
-                                <div className="text-gray-400">XP Earned</div>
-                            </div>
-                        </div>
-
-                        <p className="text-gray-400">Completed in {Math.floor(timeTaken / 60)}:{(timeTaken % 60).toString().padStart(2, '0')}</p>
-                    </div>
-
-                    <div className="glass rounded-2xl p-6 mb-6">
-                        <h2 className="text-xl font-bold text-white mb-4">📝 Review Your Answers</h2>
-                        <div className="space-y-4">
-                            {details.map((item, i) => (
-                                <div key={i} className={`p-4 rounded-xl ${item.isCorrect ? 'bg-green-500/10 border border-green-500/30' : 'bg-red-500/10 border border-red-500/30'}`}>
-                                    <div className="flex items-start gap-3">
-                                        <span className="text-2xl">{item.isCorrect ? '✅' : '❌'}</span>
-                                        <div className="flex-1">
-                                            <p className="text-white font-medium">{item.question}</p>
-                                            <p className="text-gray-400 text-sm mt-1">
-                                                Your answer: <span className={item.isCorrect ? 'text-green-400' : 'text-red-400'}>
-                                                    {typeof item.userAnswer === 'number' ? String.fromCharCode(65 + item.userAnswer) : item.userAnswer || 'No answer'}
-                                                </span>
-                                            </p>
-                                            {!item.isCorrect && (
-                                                <p className="text-green-400 text-sm">Correct: {item.correct}</p>
-                                            )}
-                                            <p className="text-purple-300 text-sm mt-2 italic">💡 {item.explanation}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
+        function mainHTML() {
+            const health = Math.min(100, Math.round((state.exams / 3) * 80 + state.streak * 3));
+            const healthClass = health >= 60 ? 'health-good' : health >= 30 ? 'health-warning' : 'health-danger';
+            
+            return `
+                <div class="header">
+                    <div class="flex items-center gap-4">
+                        <span class="text-4xl floating">🎓</span>
+                        <div>
+                            <h1 class="text-xl font-bold">Kia ora, ${state.name}!</h1>
+                            <span class="text-yellow">⚡ ${state.xp} XP</span>
+                            ${state.streak > 0 ? `<span class="text-gray"> | 🔥 ${state.streak} day streak</span>` : ''}
                         </div>
                     </div>
-
-                    <button
-                        onClick={onExit}
-                        className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold hover:scale-[1.02] transition-all"
-                    >
-                        Continue Learning 🚀
-                    </button>
-                </div>
-            );
-        }
-
-        // ============ PROGRESS VIEW ============
-        function ProgressView({ userData }) {
-            const chartRef = useRef(null);
-            const chartInstance = useRef(null);
-
-            useEffect(() => {
-                if (chartRef.current) {
-                    if (chartInstance.current) {
-                        chartInstance.current.destroy();
-                    }
-
-                    chartInstance.current = new Chart(chartRef.current, {
-                        type: 'bar',
-                        data: {
-                            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
-                            datasets: [{
-                                label: 'Progress %',
-                                data: userData.weeklyProgress,
-                                backgroundColor: [
-                                    'rgba(99, 102, 241, 0.8)',
-                                    'rgba(139, 92, 246, 0.8)',
-                                    'rgba(168, 85, 247, 0.8)',
-                                    'rgba(217, 70, 239, 0.8)',
-                                    'rgba(236, 72, 153, 0.8)',
-                                    'rgba(244, 114, 182, 0.8)'
-                                ],
-                                borderRadius: 8
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: { display: false }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: true,
-                                    max: 100,
-                                    grid: { color: 'rgba(255,255,255,0.1)' },
-                                    ticks: { color: 'white' }
-                                },
-                                x: {
-                                    grid: { display: false },
-                                    ticks: { color: 'white' }
-                                }
-                            }
-                        }
-                    });
-                }
-
-                return () => {
-                    if (chartInstance.current) {
-                        chartInstance.current.destroy();
-                    }
-                };
-            }, [userData.weeklyProgress]);
-
-            const subjectStats = Object.entries(userData.subjectExams).map(([key, count]) => ({
-                name: questionDatabase[key].name,
-                icon: questionDatabase[key].icon,
-                count,
-                color: questionDatabase[key].color
-            }));
-
-            return (
-                <div className="space-y-6">
-                    <div className="glass rounded-2xl p-6">
-                        <h2 className="text-2xl font-bold text-white mb-6">📊 Weekly Progress</h2>
-                        <div className="h-64">
-                            <canvas ref={chartRef}></canvas>
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="glass rounded-2xl p-6">
-                            <h3 className="text-xl font-bold text-white mb-4">📚 Subject Breakdown</h3>
-                            <div className="space-y-4">
-                                {subjectStats.map((stat, i) => (
-                                    <div key={i} className="flex items-center gap-4">
-                                        <span className="text-2xl">{stat.icon}</span>
-                                        <div className="flex-1">
-                                            <div className="flex justify-between text-white mb-1">
-                                                <span>{stat.name}</span>
-                                                <span className="font-bold">{stat.count} exams</span>
-                                            </div>
-                                            <div className="h-2 bg-white/20 rounded-full overflow-hidden">
-                                                <div 
-                                                    className={`h-full bg-gradient-to-r ${stat.color} rounded-full`}
-                                                    style={{ width: `${Math.min(100, stat.count * 10)}%` }}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="glass rounded-2xl p-6">
-                            <h3 className="text-xl font-bold text-white mb-4">🎯 Grade Distribution</h3>
-                            {userData.examHistory.length === 0 ? (
-                                <p className="text-gray-400">Complete exams to see your grade distribution!</p>
-                            ) : (
-                                <div className="space-y-3">
-                                    {Object.entries(gradeSystem).reverse().map(([grade, data]) => {
-                                        const count = userData.examHistory.filter(e => e.grade === grade).length;
-                                        return (
-                                            <div key={grade} className="flex items-center gap-3">
-                                                <span className="w-8 font-bold" style={{ color: data.color }}>{grade}</span>
-                                                <div className="flex-1 h-4 bg-white/10 rounded-full overflow-hidden">
-                                                    <div 
-                                                        className="h-full rounded-full"
-                                                        style={{ 
-                                                            width: `${(count / userData.examHistory.length) * 100}%`,
-                                                            backgroundColor: data.color
-                                                        }}
-                                                    />
-                                                </div>
-                                                <span className="text-white text-sm w-8 text-right">{count}</span>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="glass rounded-2xl p-6">
-                        <h3 className="text-xl font-bold text-white mb-4">📜 Exam History</h3>
-                        {userData.examHistory.length === 0 ? (
-                            <p className="text-gray-400">No exam history yet. Start learning!</p>
-                        ) : (
-                            <div className="overflow-x-auto">
-                                <table className="w-full text-left">
-                                    <thead>
-                                        <tr className="text-gray-400 border-b border-white/10">
-                                            <th className="py-3">Subject</th>
-                                            <th className="py-3">Topic</th>
-                                            <th className="py-3">Score</th>
-                                            <th className="py-3">Grade</th>
-                                            <th className="py-3">XP</th>
-                                            <th className="py-3">Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {userData.examHistory.slice(0, 10).map((exam, i) => (
-                                            <tr key={i} className="text-white border-b border-white/5">
-                                                <td className="py-3">{questionDatabase[exam.subject].icon} {questionDatabase[exam.subject].name}</td>
-                                                <td className="py-3">{exam.topic}</td>
-                                                <td className="py-3">{exam.score}%</td>
-                                                <td className="py-3">
-                                                    <span className="px-2 py-1 rounded text-xs font-bold" style={{ backgroundColor: getGrade(exam.score).color }}>
-                                                        {exam.grade}
-                                                    </span>
-                                                </td>
-                                                <td className="py-3 text-yellow-400">+{exam.xp}</td>
-                                                <td className="py-3 text-gray-400">{new Date(exam.date).toLocaleDateString()}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        )}
+                    <div class="flex gap-2 items-center flex-wrap">
+                        <button class="btn btn-small btn-secondary" onclick="showSyncModal=true;syncTab='export';render()">💾</button>
+                        <div class="health-bar ${healthClass}">Health: ${health}%</div>
                     </div>
                 </div>
-            );
+                
+                <div class="nav">
+                    <button class="nav-btn ${view === 'dashboard' ? 'active' : ''}" onclick="setView('dashboard')">🏠 Home</button>
+                    <button class="nav-btn ${view === 'subjects' ? 'active' : ''}" onclick="setView('subjects')">📚 Subjects</button>
+                    <button class="nav-btn ${view === 'badges' ? 'active' : ''}" onclick="setView('badges')">🏅 Badges</button>
+                    <button class="nav-btn ${view === 'stats' ? 'active' : ''}" onclick="setView('stats')">📊 Stats</button>
+                </div>
+                
+                ${view === 'dashboard' ? dashboardHTML() : view === 'subjects' ? subjectsHTML() : view === 'badges' ? badgesHTML() : statsHTML()}
+            `;
         }
 
-        // ============ BADGES VIEW ============
-        function BadgesView({ userData }) {
-            return (
-                <div className="glass rounded-2xl p-6">
-                    <h2 className="text-2xl font-bold text-white mb-6">🏅 Your Badges</h2>
-                    <p className="text-gray-400 mb-6">Earned: {userData.badges.length} / {allBadges.length}</p>
+        function setView(v) { view = v; render(); }
+
+        function dashboardHTML() {
+            const earnedCount = state.badges.length;
+            const totalCount = Object.keys(badgesDef).length;
+            
+            return `
+                <div class="glass">
+                    <h2 class="text-xl font-bold mb-4">⚡ Quick Start</h2>
+                    <div class="grid grid-2 gap-4">
+                        ${Object.entries(questions).map(([k, v]) => `
+                            <button class="subject-card" style="--from:${v.from};--to:${v.to}" onclick="setView('subjects')">
+                                <div class="icon">${v.icon}</div>
+                                <div class="font-bold">${v.name}</div>
+                                <div class="text-sm" style="opacity:0.7">${Object.keys(v.topics).length} topics</div>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="glass">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">🏅 Badges</h2>
+                        <span class="text-gray">${earnedCount}/${totalCount} earned</span>
+                    </div>
+                    <div class="flex gap-3 flex-wrap">
+                        ${state.badges.slice(0, 6).map(id => `
+                            <div class="text-center" title="${badgesDef[id].name}">
+                                <span style="font-size:32px">${badgesDef[id].icon}</span>
+                            </div>
+                        `).join('')}
+                        ${state.badges.length === 0 ? '<p class="text-gray">Complete exams to earn badges!</p>' : ''}
+                        ${state.badges.length > 6 ? `<span class="text-gray text-sm">+${state.badges.length - 6} more</span>` : ''}
+                    </div>
+                    <button class="btn btn-small btn-secondary mt-4" onclick="setView('badges')">View All Badges →</button>
+                </div>
+                
+                <div class="glass">
+                    <h2 class="text-xl font-bold mb-4">📊 Progress</h2>
+                    <div class="stats-row"><span>Total XP</span><span class="text-yellow font-bold">⚡ ${state.xp}</span></div>
+                    <div class="stats-row"><span>Exams Done</span><span class="text-green font-bold">✅ ${state.exams}</span></div>
+                    <div class="stats-row"><span>Current Streak</span><span style="color:#f97316" class="font-bold">🔥 ${state.streak} days</span></div>
+                    <div class="stats-row"><span>Excellence Grades</span><span class="font-bold" style="color:#8b5cf6">🏆 ${state.excellence}</span></div>
+                </div>
+            `;
+        }
+
+        function badgesHTML() {
+            const earnedCount = state.badges.length;
+            const totalCount = Object.keys(badgesDef).length;
+            
+            return `
+                <div class="glass">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">🏅 All Badges</h2>
+                        <span class="badge-tag badge-purple">${earnedCount}/${totalCount}</span>
+                    </div>
                     
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                        {allBadges.map((badge, i) => {
-                            const earned = userData.badges.includes(badge.id);
-                            return (
-                                <div 
-                                    key={i}
-                                    className={`p-4 rounded-xl text-center transition-all ${
-                                        earned 
-                                            ? 'bg-gradient-to-br from-yellow-500/30 to-orange-500/30 border border-yellow-500/50 card-hover' 
-                                            : 'bg-white/5 opacity-50'
-                                    }`}
-                                >
-                                    <div className={`text-4xl mb-2 ${earned ? '' : 'grayscale'}`}>{badge.icon}</div>
-                                    <h3 className="text-white font-bold text-sm">{badge.name}</h3>
-                                    <p className="text-gray-400 text-xs mt-1">{badge.desc}</p>
-                                    {earned && <span className="text-green-400 text-xs">✓ Earned!</span>}
+                    <div class="grid grid-3 gap-4">
+                        ${Object.entries(badgesDef).map(([id, badge]) => {
+                            const earned = state.badges.includes(id);
+                            const isNew = newBadges.includes(id);
+                            return `
+                                <div class="badge-card ${earned ? 'earned' : 'locked'} ${isNew ? 'new-badge' : ''}">
+                                    <span class="badge-icon">${badge.icon}</span>
+                                    <div class="badge-name">${badge.name}</div>
+                                    <div class="badge-desc">${badge.desc}</div>
+                                    ${!earned ? `<div class="badge-progress"><span class="text-xs text-gray">🔒 Locked</span></div>` : ''}
                                 </div>
-                            );
-                        })}
+                            `;
+                        }).join('')}
                     </div>
                 </div>
-            );
+                
+                <div class="glass">
+                    <h2 class="text-xl font-bold mb-4">💡 Tips to Earn More</h2>
+                    <ul style="padding-left:20px;line-height:2;">
+                        ${!state.badges.includes('first_steps') ? '<li>Complete your first exam to get <b>First Steps</b> 🎯</li>' : ''}
+                        ${!state.badges.includes('on_fire') ? '<li>Study 3 days in a row for <b>On Fire</b> 🔥</li>' : ''}
+                        ${!state.badges.includes('perfectionist') ? '<li>Get 100% on any exam for <b>Perfectionist</b> 💯</li>' : ''}
+                        ${!state.badges.includes('speed_demon') ? '<li>Finish an exam in under 2 minutes for <b>Speed Demon</b> ⚡</li>' : ''}
+                        ${state.badges.length >= 4 ? '<li class="text-green">Great progress! Keep going! 🚀</li>' : ''}
+                    </ul>
+                </div>
+            `;
         }
 
-        // ============ STUDY PLAN VIEW ============
-        function StudyPlanView({ userData }) {
-            const currentWeek = Math.min(6, Math.max(1, Math.ceil((new Date() - new Date('2025-12-06')) / (7 * 24 * 60 * 60 * 1000))));
+        function subjectsHTML() {
+            return `
+                <div class="glass">
+                    <h2 class="text-xl font-bold mb-4">📚 Choose a Subject</h2>
+                    ${Object.entries(questions).map(([k, v]) => `
+                        <div class="subject-card mb-4" style="--from:${v.from};--to:${v.to};cursor:default">
+                            <div class="flex items-center gap-4">
+                                <span class="text-4xl">${v.icon}</span>
+                                <div>
+                                    <div class="font-bold">${v.name}</div>
+                                    <div class="text-sm" style="opacity:0.7">${Object.keys(v.topics).length} topics • ${state.subjects[k]} exams done</div>
+                                </div>
+                            </div>
+                            <div>
+                                ${Object.entries(v.topics).map(([topic, qs]) => `
+                                    <button class="topic-btn" onclick="startExam('${k}','${topic}')">
+                                        <span>${topic}</span>
+                                        <span class="text-sm text-gray">${qs.length} questions →</span>
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
 
-            return (
-                <div className="space-y-6">
-                    <div className="glass rounded-2xl p-6">
-                        <h2 className="text-2xl font-bold text-white mb-6">📅 6-Week Study Plan</h2>
-                        <p className="text-gray-400 mb-6">December 6, 2025 - January 17, 2026</p>
-                        
-                        <div className="space-y-4">
-                            {studyPlan.map((week, i) => {
-                                const isCurrentWeek = week.week === currentWeek;
-                                const isPast = week.week < currentWeek;
-                                
-                                return (
-                                    <div 
-                                        key={i}
-                                        className={`p-4 rounded-xl border-2 transition-all ${
-                                            isCurrentWeek 
-                                                ? 'border-purple-500 bg-purple-500/20 pulse-glow' 
-                                                : isPast 
-                                                    ? 'border-green-500/50 bg-green-500/10' 
-                                                    : 'border-white/20 bg-white/5'
-                                        }`}
-                                    >
-                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                                            <div className="flex items-center gap-4">
-                                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold ${
-                                                    isCurrentWeek ? 'bg-purple-500' : isPast ? 'bg-green-500' : 'bg-white/20'
-                                                } text-white`}>
-                                                    {isPast ? '✓' : week.week}
-                                                </div>
-                                                <div>
-                                                    <h3 className="text-white font-bold">
-                                                        Week {week.week}: {week.topic}
-                                                        {isCurrentWeek && <span className="ml-2 text-purple-300 text-sm">← Current Week</span>}
-                                                    </h3>
-                                                    <p className="text-gray-400 text-sm">{week.dates}</p>
-                                                </div>
-                                            </div>
-                                            <div className="text-right">
-                                                <p className="text-white">{week.subject === 'all' ? '📚 All Subjects' : questionDatabase[week.subject].icon + ' ' + questionDatabase[week.subject].name}</p>
-                                                <p className="text-gray-400 text-sm">{week.hours} hrs/day • {week.focus}</p>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="mt-4 h-2 bg-white/20 rounded-full overflow-hidden">
-                                            <div 
-                                                className={`h-full rounded-full ${isPast || isCurrentWeek ? 'progress-bar' : 'bg-white/30'}`}
-                                                style={{ width: `${userData.weeklyProgress[i]}%` }}
-                                            />
-                                        </div>
-                                        <p className="text-right text-xs text-gray-400 mt-1">{userData.weeklyProgress[i]}% complete</p>
-                                    </div>
-                                );
-                            })}
+        function statsHTML() {
+            return `
+                <div class="glass">
+                    <h2 class="text-xl font-bold mb-4">📊 Detailed Stats</h2>
+                    <div class="stats-row"><span>Total XP</span><span class="text-yellow font-bold">⚡ ${state.xp}</span></div>
+                    <div class="stats-row"><span>Exams Completed</span><span class="text-green font-bold">✅ ${state.exams}</span></div>
+                    <div class="stats-row"><span>Current Streak</span><span style="color:#f97316" class="font-bold">🔥 ${state.streak} days</span></div>
+                    <div class="stats-row"><span>Perfect Scores (100%)</span><span class="text-purple font-bold">💯 ${state.perfect}</span></div>
+                    <div class="stats-row"><span>Excellence Grades</span><span class="font-bold" style="color:#8b5cf6">🏆 ${state.excellence}</span></div>
+                    <div class="stats-row"><span>Fast Exams (<2min)</span><span class="text-blue font-bold">⚡ ${state.fastExams || 0}</span></div>
+                    <div class="stats-row"><span>Badges Earned</span><span class="font-bold">🏅 ${state.badges.length}/${Object.keys(badgesDef).length}</span></div>
+                    
+                    <h3 class="text-lg font-bold mb-2" style="margin-top:20px">By Subject</h3>
+                    ${Object.entries(questions).map(([k, v]) => `
+                        <div class="stats-row"><span>${v.icon} ${v.name}</span><span class="font-bold">${state.subjects[k]} exams</span></div>
+                    `).join('')}
+                </div>
+                
+                ${state.history.length > 0 ? `
+                <div class="glass">
+                    <h2 class="text-xl font-bold mb-4">📜 Recent Exams</h2>
+                    ${state.history.slice(0, 5).map(h => `
+                        <div class="stats-row">
+                            <span>${questions[h.subject].icon} ${h.topic}</span>
+                            <span><span class="badge-tag" style="background:${getGrade(h.score).color}">${h.grade}</span> ${h.score}%</span>
+                        </div>
+                    `).join('')}
+                </div>
+                ` : ''}
+            `;
+        }
+
+        function startExam(subject, topic) {
+            const qs = questions[subject].topics[topic];
+            const shuffled = [...qs].sort(() => Math.random() - 0.5).slice(0, Math.min(5, qs.length));
+            currentExam = { subject, topic, questions: shuffled, startTime: Date.now() };
+            examState = { q: 0, answers: [], time: 180, feedback: false, selected: null };
+            render();
+            startTimer();
+        }
+
+        let timerInterval;
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (examState.time > 0 && !examState.feedback) {
+                    examState.time--;
+                    const timerEl = document.getElementById('timer');
+                    if (timerEl) {
+                        timerEl.textContent = `⏱️ ${Math.floor(examState.time/60)}:${(examState.time%60).toString().padStart(2,'0')}`;
+                        if (examState.time < 30) timerEl.className = 'font-bold text-red';
+                    }
+                }
+            }, 1000);
+        }
+
+        function examHTML() {
+            const q = currentExam.questions[examState.q];
+            const progress = ((examState.q + 1) / currentExam.questions.length) * 100;
+            const sub = questions[currentExam.subject];
+            
+            return `
+                <div class="glass">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl">${sub.icon}</span>
+                            <span class="font-bold">${currentExam.topic}</span>
+                        </div>
+                        <span id="timer" class="font-bold ${examState.time < 30 ? 'text-red' : ''}">
+                            ⏱️ ${Math.floor(examState.time/60)}:${(examState.time%60).toString().padStart(2,'0')}
+                        </span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+                    <p class="text-gray text-sm">Question ${examState.q + 1} of ${currentExam.questions.length}</p>
+                </div>
+                
+                <div class="glass bounce-in">
+                    <span class="badge-tag ${q.diff.includes('E') ? 'badge-purple' : q.diff.includes('M') ? 'badge-green' : 'badge-yellow'}">${q.diff}</span>
+                    <h2 class="text-xl font-bold" style="margin:15px 0 25px">${q.q}</h2>
+                    
+                    ${q.opts.map((opt, i) => {
+                        let cls = 'option-btn';
+                        if (examState.feedback) {
+                            if (i === q.ans) cls += ' correct';
+                            else if (i === examState.selected) cls += ' wrong';
+                        }
+                        return `<button class="${cls}" ${examState.feedback ? 'disabled' : ''} onclick="answer(${i})">${String.fromCharCode(65+i)}. ${opt}</button>`;
+                    }).join('')}
+                    
+                    ${examState.feedback ? `
+                        <div class="glass" style="margin-top:20px;background:${examState.selected === q.ans ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)'}">
+                            <p class="font-bold ${examState.selected === q.ans ? 'text-green' : 'text-red'}">
+                                ${examState.selected === q.ans ? '✅ Correct!' : '❌ Not quite!'}
+                            </p>
+                            <p class="text-purple text-sm" style="margin-top:8px">💡 ${q.exp}</p>
+                        </div>
+                    ` : ''}
+                </div>
+                
+                <button onclick="exitExam()" class="text-gray" style="background:none;border:none;cursor:pointer;margin-top:10px">← Exit Quiz</button>
+            `;
+        }
+
+        function answer(i) {
+            if (examState.feedback) return;
+            examState.selected = i;
+            examState.feedback = true;
+            render();
+            
+            setTimeout(() => {
+                examState.answers.push(i);
+                examState.feedback = false;
+                examState.selected = null;
+                
+                if (examState.q < currentExam.questions.length - 1) {
+                    examState.q++;
+                    render();
+                } else {
+                    finishExam();
+                }
+            }, 1500);
+        }
+
+        function finishExam() {
+            clearInterval(timerInterval);
+            let correct = 0;
+            currentExam.questions.forEach((q, i) => { if (examState.answers[i] === q.ans) correct++; });
+            
+            const score = Math.round((correct / currentExam.questions.length) * 100);
+            const gradeInfo = getGrade(score);
+            const timeTaken = Math.floor((Date.now() - currentExam.startTime) / 1000);
+            const isFast = timeTaken < 120;
+            const xp = Math.round(score * 2 + (isFast ? 50 : 0));
+            
+            // Update state
+            state.xp += xp;
+            state.exams++;
+            state.subjects[currentExam.subject]++;
+            if (score === 100) state.perfect++;
+            if (score >= 80) state.excellence++;
+            if (isFast) state.fastExams = (state.fastExams || 0) + 1;
+            
+            // Update streak
+            updateStreak();
+            
+            // Add to history
+            state.history.unshift({
+                subject: currentExam.subject,
+                topic: currentExam.topic,
+                score, grade: gradeInfo.grade, xp,
+                date: new Date().toISOString()
+            });
+            state.history = state.history.slice(0, 20);
+            
+            // Check for new badges
+            const earned = checkBadges();
+            
+            save();
+            showResults(score, gradeInfo, xp, timeTaken, correct, earned);
+        }
+
+        function showResults(score, gradeInfo, xp, timeTaken, correct, newlyEarned) {
+            const app = document.getElementById('app');
+            app.innerHTML = `
+                <div class="glass text-center bounce-in">
+                    <div class="text-6xl mb-4 ${newlyEarned.length > 0 ? 'celebrate' : ''}">${gradeInfo.emoji}</div>
+                    <h1 class="text-4xl font-bold mb-4">Exam Complete!</h1>
+                    
+                    <div class="flex justify-center gap-4 mb-6" style="flex-wrap:wrap">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold" style="color:${gradeInfo.color}">${score}%</div>
+                            <div class="text-gray">Score</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold" style="color:${gradeInfo.color}">${gradeInfo.grade}</div>
+                            <div class="text-gray">${gradeInfo.label}</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-yellow">+${xp}</div>
+                            <div class="text-gray">XP Earned</div>
                         </div>
                     </div>
-
-                    <div className="glass rounded-2xl p-6">
-                        <h3 className="text-xl font-bold text-white mb-4">📌 Study Tips</h3>
-                        <ul className="space-y-3 text-gray-300">
-                            <li className="flex items-start gap-3">
-                                <span className="text-purple-400">•</span>
-                                <span>Study for <strong className="text-white">2 hours daily</strong> for best results</span>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <span className="text-purple-400">•</span>
-                                <span>Take <strong className="text-white">short breaks</strong> every 25-30 minutes</span>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <span className="text-purple-400">•</span>
-                                <span>Focus on <strong className="text-white">Math and English</strong> as your priority subjects</span>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <span className="text-purple-400">•</span>
-                                <span>Complete at least <strong className="text-white">3 exams per week</strong> to stay on track</span>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <span className="text-purple-400">•</span>
-                                <span>Review your <strong className="text-white">wrong answers</strong> to learn from mistakes</span>
-                            </li>
-                        </ul>
-                    </div>
+                    
+                    <p class="text-gray mb-4">Completed in ${Math.floor(timeTaken/60)}:${(timeTaken%60).toString().padStart(2,'0')}</p>
+                    <p class="mb-6">${correct} of ${currentExam.questions.length} correct</p>
+                    
+                    ${newlyEarned.length > 0 ? `
+                        <div class="glass mb-6" style="background:linear-gradient(135deg, rgba(139,92,246,0.3), rgba(236,72,153,0.3));">
+                            <h3 class="text-xl font-bold mb-4">🎉 New Badge${newlyEarned.length > 1 ? 's' : ''} Earned!</h3>
+                            <div class="flex justify-center gap-4 flex-wrap">
+                                ${newlyEarned.map(id => `
+                                    <div class="text-center new-badge">
+                                        <span style="font-size:48px;display:block">${badgesDef[id].icon}</span>
+                                        <span class="font-bold">${badgesDef[id].name}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <button class="btn" onclick="backToMain()">Continue Learning 🚀</button>
                 </div>
-            );
+                
+                <div class="glass">
+                    <h2 class="text-xl font-bold mb-4">📝 Review Answers</h2>
+                    ${currentExam.questions.map((q, i) => {
+                        const isCorrect = examState.answers[i] === q.ans;
+                        return `
+                            <div class="glass mb-4" style="background:${isCorrect ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'}">
+                                <div class="flex gap-2">
+                                    <span class="text-2xl">${isCorrect ? '✅' : '❌'}</span>
+                                    <div>
+                                        <p class="font-bold">${q.q}</p>
+                                        <p class="text-sm ${isCorrect ? 'text-green' : 'text-red'}">
+                                            Your answer: ${q.opts[examState.answers[i]] || 'None'}
+                                        </p>
+                                        ${!isCorrect ? `<p class="text-green text-sm">Correct: ${q.opts[q.ans]}</p>` : ''}
+                                        <p class="text-purple text-sm" style="margin-top:8px">💡 ${q.exp}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
         }
 
-        // ============ RENDER APP ============
-        ReactDOM.render(<App />, document.getElementById('root'));
+        function backToMain() {
+            currentExam = null;
+            newBadges = [];
+            view = 'dashboard';
+            render();
+        }
+
+        function exitExam() {
+            clearInterval(timerInterval);
+            currentExam = null;
+            view = 'dashboard';
+            render();
+        }
+
+        // ============ INITIALIZE ============
+        render();
     </script>
 </body>
 </html>

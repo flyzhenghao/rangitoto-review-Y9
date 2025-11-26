@@ -1,116 +1,59 @@
 # 🎓 Rangitoto Year 9 Review Hub
 
-A gamified learning platform to help Year 9 students review their subjects during the summer holidays.
+A gamified learning website for Year 9 students at Rangitoto College to review Mathematics, English ESOL, Science, and Social Science.
 
-![Screenshot](screenshot.png)
+## 🌐 Live Demo
+**[https://flyzhenghao.github.io/rangitoto-review](https://flyzhenghao.github.io/rangitoto-review)**
 
 ## ✨ Features
 
-### 📚 Subjects Covered
-- **Mathematics** - Number & Algebra, Geometry & Measurement, Statistics
-- **English ESOL** - Reading & Vocabulary, Grammar, Writing Skills
-- **Science** - Chemistry, Biology, Physics
-- **Social Science** - NZ History, Geography, Civics
+- 📚 **4 Subjects**: Math, English ESOL, Science, Social Science
+- 🎯 **60+ Questions**: Multiple choice with explanations
+- 🏅 **15 Badges**: Earn rewards for achievements
+- 🔥 **Streak System**: Track daily study consistency
+- ⚡ **XP System**: Earn points for every exam
+- 📊 **NCEA Grading**: N0-E8 grade system
+- 💾 **Backup/Restore**: Export and import your progress
+- 📱 **Responsive**: Works on desktop, tablet, and mobile
 
-### 🎮 Gamification Elements
-- ⚡ **XP Points** - Earn experience for every exam
-- 🔥 **Daily Streaks** - Build consistency with streak tracking
-- 🏅 **Badges** - Unlock achievements for milestones
-- 📊 **Progress Charts** - Visual tracking of your learning
-- ⏱️ **Timed Challenges** - Race against the clock for bonus XP
+## 🏅 Badges
 
-### 📈 NCEA Grading System
-Your scores are automatically converted to NCEA grades:
-- **N0-N2**: Not Achieved (0-39%)
-- **A3-A4**: Achieved (40-59%)
-- **M5-M6**: Merit (60-79%)
-- **E7-E8**: Excellence (80-100%)
+| Badge | Name | Requirement |
+|-------|------|-------------|
+| 🎯 | First Steps | Complete 1 exam |
+| 🔥 | On Fire | 3-day streak |
+| ⚔️ | Week Warrior | 7-day streak |
+| 💯 | Perfectionist | Get 100% score |
+| 🧙 | Math Wizard | 5 Math exams |
+| 📖 | Wordsmith | 5 English exams |
+| 🔭 | Scientist | 5 Science exams |
+| 🌏 | Historian | 5 Social Science exams |
+| 🏆 | Excellence | Get E7 or E8 grade |
+| 📚 | Dedicated | 10 total exams |
+| ⚡ | Speed Demon | Finish in <2 min |
+| 🚀 | Unstoppable | 25 total exams |
+| 👑 | Master | 5000+ XP |
+| 👑 | Streak King | 14-day streak |
+| 🌟 | All Rounder | 3+ exams each subject |
 
-### 📅 6-Week Study Plan
-Pre-built study schedule from December 6, 2025 to January 17, 2026:
-1. Week 1: Math - Number & Algebra
-2. Week 2: English - Reading & Vocabulary
-3. Week 3: Math - Geometry & Measurement
-4. Week 4: Science - Chemistry & Biology
-5. Week 5: English - Grammar & Writing
-6. Week 6: All Subjects Review
+## 📅 6-Week Study Plan
 
-### 💪 Health Index
-Track how well you're keeping up with your study plan!
+| Week | Dates | Focus |
+|------|-------|-------|
+| 1 | Dec 6-12 | Math: Number & Algebra |
+| 2 | Dec 13-19 | English: Vocabulary |
+| 3 | Dec 20-26 | Math: Geometry |
+| 4 | Dec 27-Jan 2 | Science: All Topics |
+| 5 | Jan 3-9 | English: Grammar |
+| 6 | Jan 10-17 | Final Review |
 
-## 🚀 Quick Start
+## 🛠️ Tech Stack
 
-### Option 1: Use GitHub Pages (Recommended)
-1. Fork this repository
-2. Go to Settings → Pages
-3. Set Source to "Deploy from a branch"
-4. Select "main" branch and "/ (root)" folder
-5. Your site will be live at `https://YOUR_USERNAME.github.io/rangitoto-review-app`
+- Pure HTML/CSS/JavaScript
+- No external dependencies
+- LocalStorage for data persistence
+- Single file deployment
 
-### Option 2: Run Locally
-Just open `index.html` in your web browser!
+## 📝 License
 
-## 📱 Works On
-- ✅ Desktop browsers (Chrome, Firefox, Safari, Edge)
-- ✅ Tablets
-- ✅ Mobile phones
-
-## 💾 Data Storage
-All your progress is saved automatically in your browser's local storage. Your data includes:
-- XP and streaks
-- Exam history
-- Earned badges
-- Weekly progress
-
-**Note**: Data is stored per browser. If you switch browsers or clear browser data, your progress will reset.
-
-## 🔧 For Developers
-
-### Tech Stack
-- React 18 (via CDN)
-- Tailwind CSS
-- Chart.js for progress visualization
-- Canvas Confetti for celebrations
-- Pure JavaScript (no build step required!)
-
-### File Structure
-```
-rangitoto-review-app/
-├── index.html      # Main application (everything in one file!)
-├── README.md       # This file
-└── .nojekyll       # Tells GitHub to skip Jekyll processing
-```
-
-### Adding More Questions
-Edit the `questionDatabase` object in index.html. Each question follows this format:
-
-```javascript
-{
-    id: "unique_id",
-    type: "multiple", // or "short" or "fill"
-    question: "Your question here?",
-    options: ["A", "B", "C", "D"], // for multiple choice
-    correct: 0, // index of correct answer (or array of strings for short/fill)
-    explanation: "Why this is the answer",
-    difficulty: "A3-A4" // NCEA grade level
-}
-```
-
-## 🎯 Future Enhancements
-- [ ] Cloud sync with Firebase
-- [ ] More questions per topic
-- [ ] Multiplayer quiz mode
-- [ ] Parent/teacher dashboard
-- [ ] PDF export of progress reports
-
-## 📄 License
-MIT License - Feel free to use and modify!
-
-## 🙏 Acknowledgments
-- Curriculum based on New Zealand Year 9 standards
-- Inspired by Duolingo, Khan Academy, and other gamified learning platforms
-- Built for Rangitoto College students
-
----
-
-Made with 💜 for Year 9 students preparing for Year 10!
+Made for educational purposes. © 2025
