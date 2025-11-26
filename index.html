@@ -7,8 +7,8 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%); min-height: 100vh; color: white; }
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        .glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 30px; margin-bottom: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 25px; margin-bottom: 20px; }
         .btn { background: linear-gradient(135deg, #8b5cf6, #ec4899); border: none; color: white; padding: 15px 30px; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; width: 100%; margin-bottom: 10px; }
         .btn:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(139,92,246,0.4); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
@@ -20,10 +20,12 @@
         .input { width: 100%; padding: 15px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; font-size: 16px; margin-bottom: 15px; }
         .input::placeholder { color: rgba(255,255,255,0.5); }
         .input:focus { outline: none; border-color: #8b5cf6; }
-        textarea.input { min-height: 120px; resize: vertical; font-family: monospace; font-size: 12px; }
+        textarea.input { min-height: 100px; resize: vertical; font-family: monospace; font-size: 12px; }
         .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 8px; }
         .mb-4 { margin-bottom: 16px; }
         .mb-6 { margin-bottom: 24px; }
+        .mt-2 { margin-top: 8px; }
         .mt-4 { margin-top: 16px; }
         .text-6xl { font-size: 60px; }
         .text-5xl { font-size: 48px; }
@@ -55,6 +57,7 @@
         .grid { display: grid; }
         .grid-2 { grid-template-columns: repeat(2, 1fr); }
         .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-7 { grid-template-columns: repeat(7, 1fr); }
         .subject-card { background: linear-gradient(135deg, var(--from), var(--to)); padding: 20px; border-radius: 16px; cursor: pointer; transition: transform 0.2s; text-align: left; border: none; color: white; width: 100%; }
         .subject-card:hover { transform: translateY(-5px); }
         .subject-card .icon { font-size: 40px; margin-bottom: 10px; }
@@ -62,16 +65,17 @@
         .option-btn:hover { background: rgba(139,92,246,0.3); transform: translateX(5px); }
         .option-btn.correct { background: rgba(34,197,94,0.3); border-color: #22c55e; }
         .option-btn.wrong { background: rgba(239,68,68,0.3); border-color: #ef4444; }
-        .progress-bar { height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; margin-bottom: 10px; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #8b5cf6, #ec4899); border-radius: 4px; transition: width 0.3s; }
+        .progress-bar { height: 10px; background: rgba(255,255,255,0.2); border-radius: 5px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #8b5cf6, #ec4899); border-radius: 5px; transition: width 0.5s ease-out; }
+        .progress-fill.green { background: linear-gradient(90deg, #22c55e, #14b8a6); }
         .stats-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .badge-tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
         .badge-green { background: #22c55e; }
         .badge-yellow { background: #eab308; }
         .badge-purple { background: #8b5cf6; }
         .badge-blue { background: #3b82f6; }
-        .nav { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .nav-btn { background: rgba(255,255,255,0.1); border: none; color: white; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-size: 14px; }
+        .nav { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .nav-btn { background: rgba(255,255,255,0.1); border: none; color: white; padding: 10px 16px; border-radius: 10px; cursor: pointer; font-size: 14px; }
         .nav-btn.active { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
         .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }
         .health-bar { padding: 8px 16px; border-radius: 10px; font-weight: bold; }
@@ -82,86 +86,176 @@
         .alert-info { background: rgba(59,130,246,0.2); border: 1px solid rgba(59,130,246,0.5); }
         .alert-success { background: rgba(34,197,94,0.2); border: 1px solid rgba(34,197,94,0.5); }
         .alert-warning { background: rgba(245,158,11,0.2); border: 1px solid rgba(245,158,11,0.5); }
-        .alert-error { background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.5); }
         .tabs { display: flex; gap: 5px; margin-bottom: 20px; }
         .tab { padding: 10px 20px; background: rgba(255,255,255,0.1); border: none; color: white; border-radius: 10px 10px 0 0; cursor: pointer; }
         .tab.active { background: rgba(255,255,255,0.2); }
         
-        /* Badge Card Styles */
-        .badge-card { background: rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; text-align: center; transition: all 0.3s; position: relative; overflow: hidden; }
+        /* Calendar Styles */
+        .week-card { background: rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; margin-bottom: 15px; border-left: 4px solid var(--accent); }
+        .week-card.current { background: rgba(139,92,246,0.2); border-left-color: #8b5cf6; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+        .calendar-day-header { text-align: center; font-size: 11px; color: rgba(255,255,255,0.5); padding: 5px; font-weight: bold; }
+        .calendar-day { 
+            aspect-ratio: 1; 
+            border-radius: 10px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+            position: relative;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid transparent;
+            min-height: 60px;
+        }
+        .calendar-day:hover { transform: scale(1.08); background: rgba(255,255,255,0.15); }
+        .calendar-day.today { border: 2px solid #fbbf24; box-shadow: 0 0 15px rgba(251,191,36,0.5); }
+        .calendar-day.completed { background: linear-gradient(135deg, rgba(34,197,94,0.4), rgba(20,184,166,0.4)); border-color: #22c55e; }
+        .calendar-day.partial { background: linear-gradient(135deg, rgba(251,191,36,0.4), rgba(249,115,22,0.4)); border-color: #f59e0b; }
+        .calendar-day.future { opacity: 0.4; }
+        .calendar-day.past-incomplete { background: linear-gradient(135deg, rgba(239,68,68,0.3), rgba(239,68,68,0.2)); border-color: rgba(239,68,68,0.6); }
+        .calendar-day.rest-day { background: rgba(139,92,246,0.3); }
+        .calendar-day .day-num { font-size: 14px; font-weight: bold; }
+        .calendar-day .day-icon { font-size: 18px; margin-top: 2px; }
+        .calendar-day .day-progress { position: absolute; bottom: 3px; left: 3px; right: 3px; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden; }
+        .calendar-day .day-progress-fill { height: 100%; background: #22c55e; border-radius: 2px; }
+        .calendar-day.disabled { pointer-events: none; opacity: 0.2; }
+        
+        .day-task-card { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; margin-bottom: 10px; }
+        .task-status { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .status-complete { background: #22c55e; }
+        .status-partial { background: #f59e0b; }
+        .status-pending { background: rgba(255,255,255,0.2); }
+        
+        .badge-card { background: rgba(255,255,255,0.1); border-radius: 16px; padding: 15px; text-align: center; transition: all 0.3s; position: relative; overflow: hidden; }
         .badge-card.earned { background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(236,72,153,0.3)); border: 2px solid rgba(139,92,246,0.5); }
         .badge-card.locked { opacity: 0.5; filter: grayscale(0.8); }
-        .badge-card .badge-icon { font-size: 48px; margin-bottom: 10px; display: block; }
-        .badge-card.locked .badge-icon { filter: grayscale(1); }
-        .badge-card .badge-name { font-weight: bold; font-size: 14px; margin-bottom: 5px; }
-        .badge-card .badge-desc { font-size: 12px; color: rgba(255,255,255,0.6); }
-        .badge-card .badge-progress { margin-top: 10px; }
-        .badge-card.earned::after { content: '✓'; position: absolute; top: 10px; right: 10px; background: #22c55e; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; }
-        .new-badge { animation: pulse 0.5s ease-in-out 3; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .badge-card .badge-icon { font-size: 32px; margin-bottom: 6px; display: block; }
+        .badge-card .badge-name { font-weight: bold; font-size: 11px; margin-bottom: 3px; }
+        .badge-card .badge-desc { font-size: 9px; color: rgba(255,255,255,0.6); }
+        .badge-card.earned::after { content: '✓'; position: absolute; top: 6px; right: 6px; background: #22c55e; color: white; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+        
+        .topic-btn { background: rgba(255,255,255,0.1); border: none; color: white; padding: 12px 16px; border-radius: 10px; cursor: pointer; width: 100%; text-align: left; margin-top: 8px; display: flex; justify-content: space-between; }
+        .topic-btn:hover { background: rgba(255,255,255,0.2); }
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal { background: linear-gradient(135deg, #1e1b4b, #312e81); border-radius: 20px; padding: 30px; max-width: 550px; width: 100%; max-height: 90vh; overflow-y: auto; }
         
         @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .floating { animation: float 3s ease-in-out infinite; }
         @keyframes bounce { 0% { transform: scale(0); } 100% { transform: scale(1); } }
         .bounce-in { animation: bounce 0.5s cubic-bezier(0.68,-0.55,0.265,1.55); }
-        @keyframes celebrate { 0% { transform: scale(1) rotate(0deg); } 25% { transform: scale(1.2) rotate(-5deg); } 50% { transform: scale(1.2) rotate(5deg); } 75% { transform: scale(1.1) rotate(-3deg); } 100% { transform: scale(1) rotate(0deg); } }
-        .celebrate { animation: celebrate 0.6s ease-in-out; }
-        .topic-btn { background: rgba(255,255,255,0.1); border: none; color: white; padding: 12px 16px; border-radius: 10px; cursor: pointer; width: 100%; text-align: left; margin-top: 8px; display: flex; justify-content: space-between; }
-        .topic-btn:hover { background: rgba(255,255,255,0.2); }
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
-        .modal { background: linear-gradient(135deg, #1e1b4b, #312e81); border-radius: 20px; padding: 30px; max-width: 550px; width: 100%; max-height: 90vh; overflow-y: auto; }
-        @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } .grid-3 { grid-template-columns: repeat(2, 1fr); } .header { flex-direction: column; align-items: flex-start; } }
+        @keyframes glow { 0%, 100% { box-shadow: 0 0 10px rgba(251,191,36,0.4); } 50% { box-shadow: 0 0 25px rgba(251,191,36,0.8); } }
+        .today-glow { animation: glow 2s ease-in-out infinite; }
+        
+        @media (max-width: 700px) { 
+            .grid-2 { grid-template-columns: 1fr; } 
+            .grid-3 { grid-template-columns: repeat(3, 1fr); } 
+            .header { flex-direction: column; align-items: flex-start; } 
+            .calendar-day { min-height: 50px; }
+            .calendar-day .day-num { font-size: 12px; }
+            .calendar-day .day-icon { font-size: 14px; }
+            .nav-btn { padding: 8px 12px; font-size: 12px; }
+        }
     </style>
 </head>
 <body>
     <div class="container" id="app"></div>
 
     <script>
-        // ============ BADGES DEFINITION ============
+        // ============ 6-WEEK STUDY PLAN ============
+        const PLAN_START = new Date('2025-12-06');
+        const PLAN_END = new Date('2026-01-17');
+        const DAILY_GOAL = 2;
+        
+        const weeklyPlan = [
+            { week: 1, name: "Week 1", dates: "Dec 6-12", subject: "math", topic: "Number & Algebra", icon: "📐", color: { from: "#3b82f6", to: "#06b6d4" } },
+            { week: 2, name: "Week 2", dates: "Dec 13-19", subject: "english", topic: "Vocabulary", icon: "📚", color: { from: "#8b5cf6", to: "#ec4899" } },
+            { week: 3, name: "Week 3", dates: "Dec 20-26", subject: "math", topic: "Geometry", icon: "📐", color: { from: "#3b82f6", to: "#06b6d4" }, holiday: true },
+            { week: 4, name: "Week 4", dates: "Dec 27-Jan 2", subject: "science", topic: "Chemistry", icon: "🔬", color: { from: "#22c55e", to: "#14b8a6" }, holiday: true },
+            { week: 5, name: "Week 5", dates: "Jan 3-9", subject: "english", topic: "Grammar", icon: "📚", color: { from: "#8b5cf6", to: "#ec4899" } },
+            { week: 6, name: "Week 6", dates: "Jan 10-17", subject: "all", topic: "Final Review", icon: "🎯", color: { from: "#f97316", to: "#ef4444" } }
+        ];
+        
+        const restDays = ['2025-12-25', '2026-01-01'];
+        
+        function generateDailyPlan() {
+            const days = [];
+            let current = new Date(PLAN_START);
+            let dayIndex = 0;
+            
+            while (current <= PLAN_END) {
+                const dateStr = current.toISOString().split('T')[0];
+                const weekNum = Math.floor(dayIndex / 7);
+                const weekPlan = weeklyPlan[Math.min(weekNum, 5)];
+                const isRest = restDays.includes(dateStr);
+                
+                days.push({
+                    date: dateStr,
+                    dayIndex,
+                    week: weekNum + 1,
+                    weekPlan,
+                    subject: isRest ? null : weekPlan.subject,
+                    topic: isRest ? null : weekPlan.topic,
+                    icon: isRest ? '🎄' : weekPlan.icon,
+                    isRest,
+                    goal: isRest ? 0 : (weekPlan.holiday ? 1 : DAILY_GOAL),
+                    dayOfWeek: current.getDay()
+                });
+                
+                current.setDate(current.getDate() + 1);
+                dayIndex++;
+            }
+            return days;
+        }
+        
+        const dailyPlan = generateDailyPlan();
+
+        // ============ BADGES ============
         const badgesDef = {
-            first_steps: { id: 'first_steps', icon: '🎯', name: 'First Steps', desc: 'Complete your first exam', check: s => s.exams >= 1 },
-            on_fire: { id: 'on_fire', icon: '🔥', name: 'On Fire', desc: '3-day study streak', check: s => s.streak >= 3 },
-            week_warrior: { id: 'week_warrior', icon: '⚔️', name: 'Week Warrior', desc: '7-day study streak', check: s => s.streak >= 7 },
-            perfectionist: { id: 'perfectionist', icon: '💯', name: 'Perfectionist', desc: 'Get 100% on any exam', check: s => s.perfect >= 1 },
-            math_wizard: { id: 'math_wizard', icon: '🧙', name: 'Math Wizard', desc: 'Complete 5 Math exams', check: s => s.subjects.math >= 5 },
-            wordsmith: { id: 'wordsmith', icon: '📖', name: 'Wordsmith', desc: 'Complete 5 English exams', check: s => s.subjects.english >= 5 },
-            scientist: { id: 'scientist', icon: '🔭', name: 'Scientist', desc: 'Complete 5 Science exams', check: s => s.subjects.science >= 5 },
-            historian: { id: 'historian', icon: '🌏', name: 'Historian', desc: 'Complete 5 Social Science exams', check: s => s.subjects.social >= 5 },
-            excellence: { id: 'excellence', icon: '🏆', name: 'Excellence Achiever', desc: 'Get E7 or E8 grade', check: s => s.excellence >= 1 },
-            dedicated: { id: 'dedicated', icon: '📚', name: 'Dedicated Learner', desc: 'Complete 10 exams total', check: s => s.exams >= 10 },
-            speed_demon: { id: 'speed_demon', icon: '⚡', name: 'Speed Demon', desc: 'Finish exam under 2 minutes', check: s => s.fastExams >= 1 },
-            unstoppable: { id: 'unstoppable', icon: '🚀', name: 'Unstoppable', desc: 'Complete 25 exams total', check: s => s.exams >= 25 },
-            master: { id: 'master', icon: '👑', name: 'Master Student', desc: 'Earn 5000+ XP', check: s => s.xp >= 5000 },
-            streak_king: { id: 'streak_king', icon: '👑', name: 'Streak King', desc: '14-day study streak', check: s => s.streak >= 14 },
-            all_rounder: { id: 'all_rounder', icon: '🌟', name: 'All Rounder', desc: 'Complete 3+ exams in each subject', check: s => s.subjects.math >= 3 && s.subjects.english >= 3 && s.subjects.science >= 3 && s.subjects.social >= 3 }
+            first_steps: { icon: '🎯', name: 'First Steps', desc: 'Complete 1 exam', check: s => s.exams >= 1 },
+            on_fire: { icon: '🔥', name: 'On Fire', desc: '3-day streak', check: s => s.streak >= 3 },
+            week_warrior: { icon: '⚔️', name: 'Week Warrior', desc: '7-day streak', check: s => s.streak >= 7 },
+            perfectionist: { icon: '💯', name: 'Perfectionist', desc: 'Get 100%', check: s => s.perfect >= 1 },
+            math_wizard: { icon: '🧙', name: 'Math Wizard', desc: '5 Math exams', check: s => s.subjects.math >= 5 },
+            wordsmith: { icon: '📖', name: 'Wordsmith', desc: '5 English exams', check: s => s.subjects.english >= 5 },
+            scientist: { icon: '🔭', name: 'Scientist', desc: '5 Science exams', check: s => s.subjects.science >= 5 },
+            historian: { icon: '🌏', name: 'Historian', desc: '5 Social exams', check: s => s.subjects.social >= 5 },
+            excellence: { icon: '🏆', name: 'Excellence', desc: 'Get E7/E8', check: s => s.excellence >= 1 },
+            dedicated: { icon: '📚', name: 'Dedicated', desc: '10 exams', check: s => s.exams >= 10 },
+            speed_demon: { icon: '⚡', name: 'Speed Demon', desc: 'Finish <2min', check: s => s.fastExams >= 1 },
+            unstoppable: { icon: '🚀', name: 'Unstoppable', desc: '25 exams', check: s => s.exams >= 25 },
+            master: { icon: '👑', name: 'Master', desc: '5000+ XP', check: s => s.xp >= 5000 },
+            streak_king: { icon: '🔥', name: 'Streak King', desc: '14-day streak', check: s => s.streak >= 14 },
+            all_rounder: { icon: '🌟', name: 'All Rounder', desc: '3+ each subject', check: s => s.subjects.math >= 3 && s.subjects.english >= 3 && s.subjects.science >= 3 && s.subjects.social >= 3 }
         };
 
-        // ============ QUESTION DATABASE ============
+        // ============ QUESTIONS ============
         const questions = {
             math: {
                 name: "Mathematics", icon: "📐", from: "#3b82f6", to: "#06b6d4",
                 topics: {
                     "Number & Algebra": [
-                        { q: "Simplify: 3x + 5x - 2x", opts: ["6x", "8x", "10x", "4x"], ans: 0, exp: "Combine like terms: (3+5-2)x = 6x", diff: "A3-A4" },
+                        { q: "Simplify: 3x + 5x - 2x", opts: ["6x", "8x", "10x", "4x"], ans: 0, exp: "(3+5-2)x = 6x", diff: "A3-A4" },
                         { q: "What is 2³ × 2²?", opts: ["32", "16", "64", "8"], ans: 0, exp: "2³ × 2² = 2⁵ = 32", diff: "M5-M6" },
-                        { q: "Solve: 2x + 7 = 15", opts: ["x = 4", "x = 8", "x = 11", "x = 3"], ans: 0, exp: "2x = 8, so x = 4", diff: "A3-A4" },
+                        { q: "Solve: 2x + 7 = 15", opts: ["x = 4", "x = 8", "x = 11", "x = 3"], ans: 0, exp: "2x = 8, x = 4", diff: "A3-A4" },
                         { q: "What is 15% of 80?", opts: ["12", "15", "8", "10"], ans: 0, exp: "0.15 × 80 = 12", diff: "A3-A4" },
-                        { q: "Next term: 2, 6, 18, 54, ...?", opts: ["162", "108", "72", "216"], ans: 0, exp: "×3 pattern: 54×3=162", diff: "M5-M6" },
+                        { q: "Next: 2, 6, 18, 54, ...?", opts: ["162", "108", "72", "216"], ans: 0, exp: "×3: 54×3=162", diff: "M5-M6" },
                         { q: "Factorise: x² - 9", opts: ["(x+3)(x-3)", "(x+9)(x-1)", "(x-3)²", "(x+3)²"], ans: 0, exp: "Difference of squares", diff: "E7-E8" },
-                        { q: "Ratio boys:girls is 3:5, 24 boys. How many girls?", opts: ["40", "30", "45", "35"], ans: 0, exp: "3 parts=24, so 1 part=8, girls=5×8=40", diff: "M5-M6" }
+                        { q: "Ratio 3:5, 24 boys. Girls?", opts: ["40", "30", "45", "35"], ans: 0, exp: "1 part=8, 5×8=40", diff: "M5-M6" }
                     ],
                     "Geometry": [
-                        { q: "Area of rectangle 8cm × 5cm?", opts: ["40 cm²", "26 cm²", "13 cm²", "80 cm²"], ans: 0, exp: "Area = 8×5 = 40", diff: "A3-A4" },
-                        { q: "Sum of angles in a triangle?", opts: ["180°", "360°", "90°", "270°"], ans: 0, exp: "Always 180°", diff: "A3-A4" },
-                        { q: "What type of angle is 135°?", opts: ["Obtuse", "Acute", "Right", "Reflex"], ans: 0, exp: "Between 90° and 180°", diff: "A3-A4" },
-                        { q: "Pythagoras: legs 3cm & 4cm, hypotenuse?", opts: ["5 cm", "7 cm", "6 cm", "12 cm"], ans: 0, exp: "3²+4²=25, √25=5", diff: "E7-E8" },
-                        { q: "Circumference of circle, radius 7cm (π=22/7)?", opts: ["44 cm", "154 cm", "22 cm", "88 cm"], ans: 0, exp: "2πr = 2×22/7×7 = 44", diff: "M5-M6" }
+                        { q: "Area: 8cm × 5cm?", opts: ["40 cm²", "26 cm²", "13 cm²", "80 cm²"], ans: 0, exp: "8×5 = 40", diff: "A3-A4" },
+                        { q: "Triangle angles sum?", opts: ["180°", "360°", "90°", "270°"], ans: 0, exp: "Always 180°", diff: "A3-A4" },
+                        { q: "135° is what angle?", opts: ["Obtuse", "Acute", "Right", "Reflex"], ans: 0, exp: "90°-180° = obtuse", diff: "A3-A4" },
+                        { q: "Pythagoras: 3,4 → ?", opts: ["5", "7", "6", "12"], ans: 0, exp: "9+16=25, √25=5", diff: "E7-E8" },
+                        { q: "Circumference r=7 (π=22/7)?", opts: ["44 cm", "154 cm", "22 cm", "88 cm"], ans: 0, exp: "2πr = 44", diff: "M5-M6" }
                     ],
                     "Statistics": [
-                        { q: "Mean of 4, 7, 8, 9, 12?", opts: ["8", "7", "9", "8.5"], ans: 0, exp: "40÷5=8", diff: "A3-A4" },
-                        { q: "Median of 3, 7, 9, 12, 15?", opts: ["9", "7", "12", "9.2"], ans: 0, exp: "Middle value = 9", diff: "A3-A4" },
-                        { q: "Mode of 2, 4, 4, 5, 7, 4, 8?", opts: ["4", "5", "2", "7"], ans: 0, exp: "4 appears most (3×)", diff: "A3-A4" },
-                        { q: "Range of 15, 22, 8, 31, 19?", opts: ["23", "31", "8", "19"], ans: 0, exp: "31-8=23", diff: "A3-A4" }
+                        { q: "Mean: 4,7,8,9,12?", opts: ["8", "7", "9", "8.5"], ans: 0, exp: "40÷5=8", diff: "A3-A4" },
+                        { q: "Median: 3,7,9,12,15?", opts: ["9", "7", "12", "9.2"], ans: 0, exp: "Middle = 9", diff: "A3-A4" },
+                        { q: "Mode: 2,4,4,5,7,4,8?", opts: ["4", "5", "2", "7"], ans: 0, exp: "4 appears most", diff: "A3-A4" },
+                        { q: "Range: 15,22,8,31,19?", opts: ["23", "31", "8", "19"], ans: 0, exp: "31-8=23", diff: "A3-A4" }
                     ]
                 }
             },
@@ -171,18 +265,18 @@
                     "Vocabulary": [
                         { q: "Synonym for 'happy'?", opts: ["Joyful", "Sad", "Angry", "Tired"], ans: 0, exp: "Joyful = happy", diff: "A3-A4" },
                         { q: "Antonym for 'ancient'?", opts: ["Modern", "Old", "Historic", "Traditional"], ans: 0, exp: "Modern = opposite", diff: "A3-A4" },
-                        { q: "Which is a noun?", opts: ["Happiness", "Happy", "Happily", "Happier"], ans: 0, exp: "Happiness is a thing", diff: "M5-M6" },
+                        { q: "Which is a noun?", opts: ["Happiness", "Happy", "Happily", "Happier"], ans: 0, exp: "Happiness = thing", diff: "M5-M6" },
                         { q: "Prefix 'un-' means?", opts: ["Not", "Very", "Before", "After"], ans: 0, exp: "un- = not", diff: "A3-A4" },
                         { q: "Suffix '-ful' means?", opts: ["Full of", "Without", "Before", "Again"], ans: 0, exp: "hopeful = full of hope", diff: "A3-A4" }
                     ],
                     "Grammar": [
-                        { q: "Correct sentence?", opts: ["She doesn't like apples.", "She don't like apples.", "She not like apples.", "She no like apples."], ans: 0, exp: "Use 'doesn't' with she/he/it", diff: "A3-A4" },
-                        { q: "'The book is _____' (Maria's)", opts: ["hers", "her", "she", "herself"], ans: 0, exp: "Possessive pronoun", diff: "M5-M6" },
-                        { q: "Which is compound sentence?", opts: ["I went to the shop, and I bought milk.", "Although it rained.", "The big red car.", "Running quickly."], ans: 0, exp: "Two clauses with 'and'", diff: "E7-E8" },
+                        { q: "Correct sentence?", opts: ["She doesn't like apples.", "She don't like apples.", "She not like apples.", "She no like apples."], ans: 0, exp: "doesn't with she/he/it", diff: "A3-A4" },
+                        { q: "'The book is _____' (Maria)", opts: ["hers", "her", "she", "herself"], ans: 0, exp: "Possessive pronoun", diff: "M5-M6" },
+                        { q: "Compound sentence?", opts: ["I went to shop, and bought milk.", "Although it rained.", "The big red car.", "Running quickly."], ans: 0, exp: "Two clauses + 'and'", diff: "E7-E8" },
                         { q: "Past tense of 'go'?", opts: ["went", "goed", "gone", "going"], ans: 0, exp: "Irregular verb", diff: "A3-A4" }
                     ],
                     "Writing": [
-                        { q: "Purpose of topic sentence?", opts: ["Introduce main idea", "Conclude essay", "Provide examples", "Cite sources"], ans: 0, exp: "Sets paragraph direction", diff: "M5-M6" },
+                        { q: "Topic sentence purpose?", opts: ["Introduce main idea", "Conclude", "Examples", "Cite"], ans: 0, exp: "Sets direction", diff: "M5-M6" },
                         { q: "Which shows contrast?", opts: ["However", "Therefore", "Furthermore", "Similarly"], ans: 0, exp: "However = but", diff: "M5-M6" },
                         { q: "Writing to convince = ?", opts: ["Persuasive", "Narrative", "Descriptive", "Expository"], ans: 0, exp: "Persuade = convince", diff: "A3-A4" }
                     ]
@@ -192,22 +286,22 @@
                 name: "Science", icon: "🔬", from: "#22c55e", to: "#14b8a6",
                 topics: {
                     "Chemistry": [
-                        { q: "Chemical symbol for water?", opts: ["H₂O", "CO₂", "NaCl", "O₂"], ans: 0, exp: "2 Hydrogen + 1 Oxygen", diff: "A3-A4" },
-                        { q: "NOT a sign of chemical reaction?", opts: ["Changing shape", "Colour change", "Gas production", "Heat change"], ans: 0, exp: "Shape change = physical", diff: "M5-M6" },
-                        { q: "Three states of matter?", opts: ["Solid, liquid, gas", "Hot, warm, cold", "Big, medium, small", "Hard, soft, flexible"], ans: 0, exp: "Basic states", diff: "A3-A4" },
-                        { q: "Where are metals on periodic table?", opts: ["Left side", "Right side", "Top only", "Bottom only"], ans: 0, exp: "Metals on left", diff: "M5-M6" },
-                        { q: "What is an atom?", opts: ["Smallest particle of element", "A molecule", "A reaction", "A state"], ans: 0, exp: "Building block of matter", diff: "A3-A4" }
+                        { q: "Water symbol?", opts: ["H₂O", "CO₂", "NaCl", "O₂"], ans: 0, exp: "2H + 1O", diff: "A3-A4" },
+                        { q: "NOT chemical reaction sign?", opts: ["Shape change", "Colour change", "Gas", "Heat"], ans: 0, exp: "Shape = physical", diff: "M5-M6" },
+                        { q: "3 states of matter?", opts: ["Solid, liquid, gas", "Hot, warm, cold", "Big, medium, small", "Hard, soft, flexible"], ans: 0, exp: "Basic states", diff: "A3-A4" },
+                        { q: "Metals on periodic table?", opts: ["Left", "Right", "Top", "Bottom"], ans: 0, exp: "Left side", diff: "M5-M6" },
+                        { q: "What is an atom?", opts: ["Smallest particle", "Molecule", "Reaction", "State"], ans: 0, exp: "Building block", diff: "A3-A4" }
                     ],
                     "Biology": [
-                        { q: "Powerhouse of the cell?", opts: ["Mitochondria", "Nucleus", "Cell membrane", "Ribosome"], ans: 0, exp: "Makes energy (ATP)", diff: "A3-A4" },
-                        { q: "Plants make food by?", opts: ["Photosynthesis", "Respiration", "Digestion", "Fermentation"], ans: 0, exp: "Light + CO₂ + H₂O", diff: "A3-A4" },
-                        { q: "Function of nucleus?", opts: ["Controls cell, has DNA", "Makes energy", "Makes proteins", "Stores water"], ans: 0, exp: "Control center", diff: "M5-M6" },
-                        { q: "What is an ecosystem?", opts: ["Living things + environment", "Single organism", "Only plants", "Only animals"], ans: 0, exp: "All living + non-living together", diff: "M5-M6" }
+                        { q: "Cell powerhouse?", opts: ["Mitochondria", "Nucleus", "Membrane", "Ribosome"], ans: 0, exp: "Makes energy", diff: "A3-A4" },
+                        { q: "Plants make food by?", opts: ["Photosynthesis", "Respiration", "Digestion", "Fermentation"], ans: 0, exp: "Light+CO₂+H₂O", diff: "A3-A4" },
+                        { q: "Nucleus function?", opts: ["Controls cell, DNA", "Energy", "Proteins", "Water"], ans: 0, exp: "Control center", diff: "M5-M6" },
+                        { q: "Ecosystem is?", opts: ["Living + environment", "One organism", "Plants only", "Animals only"], ans: 0, exp: "All together", diff: "M5-M6" }
                     ],
                     "Physics": [
-                        { q: "Unit of force?", opts: ["Newton", "Joule", "Watt", "Metre"], ans: 0, exp: "Named after Isaac Newton", diff: "A3-A4" },
-                        { q: "Moving car has what energy?", opts: ["Kinetic", "Potential", "Chemical", "Nuclear"], ans: 0, exp: "Kinetic = motion", diff: "A3-A4" },
-                        { q: "Light through prism does what?", opts: ["Separates into colours", "Gets brighter", "Disappears", "Becomes laser"], ans: 0, exp: "Creates spectrum", diff: "M5-M6" }
+                        { q: "Force unit?", opts: ["Newton", "Joule", "Watt", "Metre"], ans: 0, exp: "Named after Newton", diff: "A3-A4" },
+                        { q: "Moving car energy?", opts: ["Kinetic", "Potential", "Chemical", "Nuclear"], ans: 0, exp: "Kinetic = motion", diff: "A3-A4" },
+                        { q: "Light through prism?", opts: ["Separates colours", "Brighter", "Disappears", "Laser"], ans: 0, exp: "Spectrum", diff: "M5-M6" }
                     ]
                 }
             },
@@ -215,24 +309,24 @@
                 name: "Social Science", icon: "🌏", from: "#f97316", to: "#ef4444",
                 topics: {
                     "NZ History": [
-                        { q: "Treaty of Waitangi signed?", opts: ["1840", "1800", "1900", "1776"], ans: 0, exp: "6 February 1840", diff: "A3-A4" },
-                        { q: "First NZ settlers?", opts: ["Māori", "British", "Dutch", "Australian"], ans: 0, exp: "Polynesian settlers ~1300AD", diff: "A3-A4" },
+                        { q: "Treaty of Waitangi year?", opts: ["1840", "1800", "1900", "1776"], ans: 0, exp: "6 Feb 1840", diff: "A3-A4" },
+                        { q: "First NZ settlers?", opts: ["Māori", "British", "Dutch", "Australian"], ans: 0, exp: "Polynesian ~1300AD", diff: "A3-A4" },
                         { q: "Treaty principles?", opts: ["Partnership, Protection, Participation", "Peace, Power, Prosperity", "Land, Law, Liberty", "King, Country, Crown"], ans: 0, exp: "The 3 P's", diff: "M5-M6" }
                     ],
                     "Geography": [
-                        { q: "NZ earthquakes caused by?", opts: ["Convergent boundary", "Divergent boundary", "Transform boundary", "None"], ans: 0, exp: "Pacific + Australian plates", diff: "M5-M6" },
-                        { q: "What is sustainability?", opts: ["Meet needs without harming future", "Use resources quickly", "Ignore problems", "Build more"], ans: 0, exp: "Think of future generations", diff: "A3-A4" },
-                        { q: "Main cause of climate change?", opts: ["Greenhouse gases", "Moon changes", "Volcanoes only", "Ocean currents only"], ans: 0, exp: "Human CO₂ emissions", diff: "M5-M6" }
+                        { q: "NZ earthquakes from?", opts: ["Convergent boundary", "Divergent", "Transform", "None"], ans: 0, exp: "Pacific+Australian plates", diff: "M5-M6" },
+                        { q: "Sustainability means?", opts: ["Meet needs, protect future", "Use quickly", "Ignore", "Build more"], ans: 0, exp: "Future generations", diff: "A3-A4" },
+                        { q: "Climate change cause?", opts: ["Greenhouse gases", "Moon", "Volcanoes only", "Oceans only"], ans: 0, exp: "Human CO₂", diff: "M5-M6" }
                     ],
                     "Civics": [
-                        { q: "NZ government type?", opts: ["Parliamentary democracy", "Presidential republic", "Absolute monarchy", "Dictatorship"], ans: 0, exp: "Elected parliament", diff: "A3-A4" },
-                        { q: "NZ voting age?", opts: ["18", "16", "21", "25"], ans: 0, exp: "18 years old", diff: "A3-A4" }
+                        { q: "NZ government type?", opts: ["Parliamentary democracy", "Presidential", "Monarchy", "Dictatorship"], ans: 0, exp: "Elected parliament", diff: "A3-A4" },
+                        { q: "NZ voting age?", opts: ["18", "16", "21", "25"], ans: 0, exp: "18 years", diff: "A3-A4" }
                     ]
                 }
             }
         };
 
-        // ============ GRADE SYSTEM ============
+        // ============ GRADES ============
         const grades = {
             N0: { min: 0, max: 9, label: "Not Achieved", color: "#ef4444", emoji: "😔" },
             N1: { min: 10, max: 19, label: "Not Achieved", color: "#ef4444", emoji: "😕" },
@@ -252,11 +346,12 @@
             return { grade: "N0", ...grades.N0 };
         }
 
-        // ============ APP STATE ============
+        // ============ STATE ============
         let state = JSON.parse(localStorage.getItem('rangiData') || 'null') || {
             name: '', xp: 0, streak: 0, exams: 0, perfect: 0, excellence: 0, fastExams: 0,
             subjects: { math: 0, english: 0, science: 0, social: 0 },
-            history: [], badges: [], lastStudyDate: null, lastBackup: null
+            history: [], badges: [], lastStudyDate: null, lastBackup: null,
+            dailyProgress: {}
         };
 
         let view = 'welcome';
@@ -265,33 +360,61 @@
         let showSyncModal = false;
         let syncTab = 'export';
         let syncMessage = null;
-        let newBadges = []; // Track newly earned badges for animation
+        let newBadges = [];
+        let selectedDay = null;
 
-        // ============ STREAK LOGIC ============
+        // ============ HELPERS ============
+        function getTodayStr() { return new Date().toISOString().split('T')[0]; }
+        function getDayProgress(dateStr) { return state.dailyProgress[dateStr] || { exams: 0, completed: false }; }
+        function getDayPlan(dateStr) { return dailyPlan.find(d => d.date === dateStr); }
+        function getCurrentWeek() {
+            const diffDays = Math.floor((new Date() - PLAN_START) / (1000 * 60 * 60 * 24));
+            return Math.max(1, Math.min(6, Math.floor(diffDays / 7) + 1));
+        }
+        
+        function getOverallProgress() {
+            let totalGoal = 0, totalDone = 0;
+            const today = getTodayStr();
+            dailyPlan.forEach(day => {
+                if (day.date <= today) {
+                    totalGoal += day.goal;
+                    totalDone += Math.min(getDayProgress(day.date).exams, day.goal);
+                }
+            });
+            return totalGoal > 0 ? Math.round((totalDone / totalGoal) * 100) : 0;
+        }
+        
+        function getWeekProgress(weekNum) {
+            const weekDays = dailyPlan.filter(d => d.week === weekNum);
+            let goal = 0, done = 0;
+            const today = getTodayStr();
+            weekDays.forEach(day => {
+                if (day.date <= today) {
+                    goal += day.goal;
+                    done += Math.min(getDayProgress(day.date).exams, day.goal);
+                }
+            });
+            return goal > 0 ? Math.round((done / goal) * 100) : 0;
+        }
+
         function updateStreak() {
             const today = new Date().toDateString();
             const lastDate = state.lastStudyDate ? new Date(state.lastStudyDate).toDateString() : null;
-            
-            if (lastDate === today) {
-                // Already studied today
-                return;
-            }
-            
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-            
-            if (lastDate === yesterday.toDateString()) {
-                // Studied yesterday, increment streak
-                state.streak++;
-            } else if (lastDate !== today) {
-                // Missed a day, reset streak
-                state.streak = 1;
-            }
-            
+            if (lastDate === today) return;
+            const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+            if (lastDate === yesterday.toDateString()) state.streak++;
+            else state.streak = 1;
             state.lastStudyDate = new Date().toISOString();
         }
+        
+        function updateDailyProgress() {
+            const today = getTodayStr();
+            const dayPlan = getDayPlan(today);
+            if (!state.dailyProgress[today]) state.dailyProgress[today] = { exams: 0, completed: false };
+            state.dailyProgress[today].exams++;
+            if (dayPlan && state.dailyProgress[today].exams >= dayPlan.goal) state.dailyProgress[today].completed = true;
+        }
 
-        // ============ BADGE CHECKING ============
         function checkBadges() {
             newBadges = [];
             for (const [id, badge] of Object.entries(badgesDef)) {
@@ -303,91 +426,55 @@
             return newBadges;
         }
 
-        // ============ SAVE / EXPORT / IMPORT ============
-        function save() { 
-            localStorage.setItem('rangiData', JSON.stringify(state)); 
-        }
-
-        function exportData() {
-            const dataStr = JSON.stringify(state, null, 2);
-            const textarea = document.getElementById('exportData');
-            if (textarea) {
-                textarea.value = dataStr;
-                textarea.select();
-                document.execCommand('copy');
-                syncMessage = { type: 'success', text: '✅ Data copied to clipboard!' };
-                state.lastBackup = new Date().toISOString();
-                save();
-                render();
-            }
-        }
+        function save() { localStorage.setItem('rangiData', JSON.stringify(state)); }
 
         function downloadData() {
-            const dataStr = JSON.stringify(state, null, 2);
-            const blob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
+            const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
             const a = document.createElement('a');
-            a.href = url;
-            a.download = `rangitoto-backup-${state.name}-${new Date().toISOString().split('T')[0]}.json`;
-            document.body.appendChild(a);
+            a.href = URL.createObjectURL(blob);
+            a.download = `rangitoto-backup-${getTodayStr()}.json`;
             a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
             state.lastBackup = new Date().toISOString();
             save();
-            syncMessage = { type: 'success', text: '✅ Backup downloaded!' };
+            syncMessage = { type: 'success', text: '✅ Downloaded!' };
             render();
         }
 
         function importData() {
             const textarea = document.getElementById('importData');
-            if (textarea && textarea.value.trim()) {
+            if (textarea?.value.trim()) {
                 try {
                     const imported = JSON.parse(textarea.value.trim());
-                    if (imported.name && typeof imported.xp === 'number') {
+                    if (imported.name) {
                         state = { ...state, ...imported };
+                        if (!state.dailyProgress) state.dailyProgress = {};
                         save();
-                        syncMessage = { type: 'success', text: '✅ Data imported successfully!' };
+                        syncMessage = { type: 'success', text: '✅ Imported!' };
                         showSyncModal = false;
                         render();
-                    } else {
-                        syncMessage = { type: 'error', text: '❌ Invalid data format.' };
-                        render();
                     }
-                } catch (e) {
-                    syncMessage = { type: 'error', text: '❌ Could not parse data.' };
-                    render();
-                }
+                } catch (e) { syncMessage = { type: 'error', text: '❌ Error' }; render(); }
             }
         }
 
-        function handleFileUpload(event) {
-            const file = event.target.files[0];
+        function handleFileUpload(e) {
+            const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = (e) => {
-                    document.getElementById('importData').value = e.target.result;
-                };
+                reader.onload = (e) => { document.getElementById('importData').value = e.target.result; };
                 reader.readAsText(file);
             }
         }
 
-        // ============ RENDER FUNCTIONS ============
+        // ============ RENDER ============
         function render() {
             const app = document.getElementById('app');
             let html = '';
-            
             if (showSyncModal) html += syncModalHTML();
-            
-            if (!state.name) {
-                html += welcomeHTML();
-            } else if (currentExam) {
-                html += examHTML();
-            } else {
-                html += mainHTML();
-            }
-            
+            if (!state.name) html += welcomeHTML();
+            else if (currentExam) html += examHTML();
+            else if (selectedDay) html += dayDetailHTML();
+            else html += mainHTML();
             app.innerHTML = html;
         }
 
@@ -397,15 +484,11 @@
                     <div class="text-6xl mb-4 floating">🎓</div>
                     <h1 class="text-4xl font-bold mb-4">Rangitoto</h1>
                     <h2 class="text-2xl text-purple mb-6">Year 9 Review Hub</h2>
-                    <p class="text-gray mb-6">Get ready to review your subjects with fun quizzes!</p>
+                    <p class="text-gray mb-6">6-Week Summer Study Plan<br>Dec 6, 2025 - Jan 17, 2026</p>
                     <input class="input" type="text" id="nameInput" placeholder="Enter your name...">
                     <button class="btn" onclick="startApp()">Start Learning! 🚀</button>
-                    
                     <div style="border-top:1px solid rgba(255,255,255,0.2);padding-top:20px;margin-top:20px;">
-                        <p class="text-gray text-sm mb-4">📂 Have a backup from another device?</p>
-                        <button class="btn btn-secondary" onclick="showSyncModal=true;syncTab='import';render()">
-                            Import Backup Data
-                        </button>
+                        <button class="btn btn-secondary" onclick="showSyncModal=true;syncTab='import';render()">📂 Import Backup</button>
                     </div>
                 </div>
             `;
@@ -415,28 +498,17 @@
             return `
                 <div class="modal-overlay" onclick="if(event.target===this){showSyncModal=false;syncMessage=null;render();}">
                     <div class="modal">
-                        <h2 class="text-2xl font-bold mb-4">💾 Backup & Sync</h2>
-                        
+                        <h2 class="text-2xl font-bold mb-4">💾 Backup</h2>
                         <div class="tabs">
-                            <button class="tab ${syncTab === 'export' ? 'active' : ''}" onclick="syncTab='export';syncMessage=null;render()">📤 Export</button>
-                            <button class="tab ${syncTab === 'import' ? 'active' : ''}" onclick="syncTab='import';syncMessage=null;render()">📥 Import</button>
+                            <button class="tab ${syncTab === 'export' ? 'active' : ''}" onclick="syncTab='export';render()">📤 Export</button>
+                            <button class="tab ${syncTab === 'import' ? 'active' : ''}" onclick="syncTab='import';render()">📥 Import</button>
                         </div>
-                        
-                        ${syncMessage ? `<div class="alert alert-${syncMessage.type === 'success' ? 'success' : 'error'} mb-4">${syncMessage.text}</div>` : ''}
-                        
-                        ${syncTab === 'export' ? `
-                            <button class="btn btn-green" onclick="downloadData()">📥 Download Backup File</button>
-                            <p class="text-gray text-sm text-center mb-4">— or copy as text —</p>
-                            <textarea class="input" id="exportData" readonly>${JSON.stringify(state, null, 2)}</textarea>
-                            <button class="btn btn-blue" onclick="exportData()">📋 Copy to Clipboard</button>
-                        ` : `
-                            <div class="alert alert-warning mb-4"><p class="font-bold text-orange">⚠️ Warning: This will replace your current data!</p></div>
-                            <input type="file" accept=".json" onchange="handleFileUpload(event)" class="input" style="padding:10px;">
-                            <p class="text-gray text-sm text-center mb-2">— or paste data —</p>
-                            <textarea class="input" id="importData" placeholder="Paste backup data here..."></textarea>
-                            <button class="btn btn-orange" onclick="importData()">📥 Import Data</button>
+                        ${syncMessage ? `<div class="alert alert-${syncMessage.type === 'success' ? 'success' : 'warning'}">${syncMessage.text}</div>` : ''}
+                        ${syncTab === 'export' ? `<button class="btn btn-green" onclick="downloadData()">📥 Download Backup</button>` : `
+                            <input type="file" accept=".json" onchange="handleFileUpload(event)" class="input">
+                            <textarea class="input" id="importData" placeholder="Or paste data..."></textarea>
+                            <button class="btn btn-orange" onclick="importData()">📥 Import</button>
                         `}
-                        
                         <button class="btn btn-secondary mt-4" onclick="showSyncModal=false;syncMessage=null;render()">Close</button>
                     </div>
                 </div>
@@ -445,11 +517,7 @@
 
         function startApp() {
             const name = document.getElementById('nameInput').value.trim();
-            if (name) { 
-                state.name = name; 
-                save(); 
-                render(); 
-            }
+            if (name) { state.name = name; if (!state.dailyProgress) state.dailyProgress = {}; save(); render(); }
         }
 
         function mainHTML() {
@@ -463,109 +531,315 @@
                         <div>
                             <h1 class="text-xl font-bold">Kia ora, ${state.name}!</h1>
                             <span class="text-yellow">⚡ ${state.xp} XP</span>
-                            ${state.streak > 0 ? `<span class="text-gray"> | 🔥 ${state.streak} day streak</span>` : ''}
+                            ${state.streak > 0 ? `<span class="text-gray"> | 🔥 ${state.streak}</span>` : ''}
                         </div>
                     </div>
                     <div class="flex gap-2 items-center flex-wrap">
                         <button class="btn btn-small btn-secondary" onclick="showSyncModal=true;syncTab='export';render()">💾</button>
-                        <div class="health-bar ${healthClass}">Health: ${health}%</div>
+                        <div class="health-bar ${healthClass}">${health}%</div>
                     </div>
                 </div>
                 
                 <div class="nav">
+                    <button class="nav-btn ${view === 'plan' ? 'active' : ''}" onclick="setView('plan')">📅 Plan</button>
                     <button class="nav-btn ${view === 'dashboard' ? 'active' : ''}" onclick="setView('dashboard')">🏠 Home</button>
                     <button class="nav-btn ${view === 'subjects' ? 'active' : ''}" onclick="setView('subjects')">📚 Subjects</button>
                     <button class="nav-btn ${view === 'badges' ? 'active' : ''}" onclick="setView('badges')">🏅 Badges</button>
                     <button class="nav-btn ${view === 'stats' ? 'active' : ''}" onclick="setView('stats')">📊 Stats</button>
                 </div>
                 
-                ${view === 'dashboard' ? dashboardHTML() : view === 'subjects' ? subjectsHTML() : view === 'badges' ? badgesHTML() : statsHTML()}
+                ${view === 'plan' ? planHTML() : view === 'dashboard' ? dashboardHTML() : view === 'subjects' ? subjectsHTML() : view === 'badges' ? badgesHTML() : statsHTML()}
             `;
         }
 
         function setView(v) { view = v; render(); }
 
-        function dashboardHTML() {
-            const earnedCount = state.badges.length;
-            const totalCount = Object.keys(badgesDef).length;
+        function planHTML() {
+            const today = getTodayStr();
+            const currentWeek = getCurrentWeek();
+            const overallProgress = getOverallProgress();
+            const todayPlan = getDayPlan(today);
+            const todayProgress = getDayProgress(today);
             
             return `
                 <div class="glass">
-                    <h2 class="text-xl font-bold mb-4">⚡ Quick Start</h2>
+                    <div class="flex justify-between items-center mb-2">
+                        <h2 class="text-xl font-bold">📅 6-Week Study Plan</h2>
+                        <span class="badge-tag badge-purple">Week ${currentWeek}/6</span>
+                    </div>
+                    <p class="text-gray text-sm mb-4">Dec 6, 2025 - Jan 17, 2026</p>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span>Overall Progress</span>
+                            <span class="font-bold">${overallProgress}%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill green" style="width:${overallProgress}%"></div></div>
+                    </div>
+                    
+                    ${todayPlan ? `
+                    <div class="day-task-card" style="background:linear-gradient(135deg, ${todayPlan.weekPlan.color.from}33, ${todayPlan.weekPlan.color.to}33); border-left: 4px solid ${todayPlan.weekPlan.color.from}">
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="flex items-center gap-3">
+                                <span style="font-size:28px">${todayPlan.icon}</span>
+                                <div>
+                                    <div class="font-bold">Today's Task</div>
+                                    <div class="text-sm text-gray">${todayPlan.isRest ? 'Rest Day! 🎉' : todayPlan.topic}</div>
+                                </div>
+                            </div>
+                            <span class="task-status ${todayProgress.completed ? 'status-complete' : todayProgress.exams > 0 ? 'status-partial' : 'status-pending'}">
+                                ${todayProgress.completed ? '✓ Done' : `${todayProgress.exams}/${todayPlan.goal}`}
+                            </span>
+                        </div>
+                        ${!todayPlan.isRest && !todayProgress.completed ? `
+                        <button class="btn btn-small btn-green" onclick="startDayTask('${today}')">
+                            ${todayProgress.exams > 0 ? 'Continue' : 'Start'} →
+                        </button>
+                        ` : ''}
+                    </div>
+                    ` : ''}
+                </div>
+                
+                <div class="glass">
+                    <h3 class="text-lg font-bold mb-4">📆 Calendar</h3>
+                    ${[1,2,3,4,5,6].map(weekNum => {
+                        const weekData = weeklyPlan[weekNum - 1];
+                        const weekDays = dailyPlan.filter(d => d.week === weekNum);
+                        const weekProgress = getWeekProgress(weekNum);
+                        const isCurrent = weekNum === currentWeek;
+                        
+                        return `
+                        <div class="week-card ${isCurrent ? 'current' : ''}" style="--accent:${weekData.color.from}">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="flex items-center gap-2">
+                                    <span style="font-size:20px">${weekData.icon}</span>
+                                    <span class="font-bold">${weekData.name}</span>
+                                    <span class="text-sm text-gray">${weekData.dates}</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    ${isCurrent ? '<span class="badge-tag badge-yellow" style="font-size:10px">NOW</span>' : ''}
+                                    <span class="text-sm font-bold">${weekProgress}%</span>
+                                </div>
+                            </div>
+                            <div class="text-sm text-gray mb-3">${weekData.topic}</div>
+                            <div class="calendar-grid">
+                                ${['S','M','T','W','T','F','S'].map(d => `<div class="calendar-day-header">${d}</div>`).join('')}
+                                ${renderWeekDays(weekDays, today)}
+                            </div>
+                        </div>
+                        `;
+                    }).join('')}
+                </div>
+                
+                <div class="glass">
+                    <h3 class="text-lg font-bold mb-2">📖 Legend</h3>
+                    <div class="flex flex-wrap gap-3 text-sm">
+                        <span>✅ Complete</span>
+                        <span>📝 In Progress</span>
+                        <span>❌ Missed</span>
+                        <span>⭐ Today</span>
+                        <span>🎄 Rest</span>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function renderWeekDays(weekDays, today) {
+            let html = '';
+            const firstDay = weekDays[0]?.dayOfWeek || 0;
+            for (let i = 0; i < firstDay; i++) html += '<div class="calendar-day disabled"></div>';
+            
+            weekDays.forEach(day => {
+                const progress = getDayProgress(day.date);
+                const isToday = day.date === today;
+                const isPast = day.date < today;
+                const isFuture = day.date > today;
+                const pct = day.goal > 0 ? Math.min(100, (progress.exams / day.goal) * 100) : 100;
+                
+                let statusClass = '';
+                if (day.isRest) statusClass = 'rest-day';
+                else if (progress.completed) statusClass = 'completed';
+                else if (progress.exams > 0) statusClass = 'partial';
+                else if (isPast) statusClass = 'past-incomplete';
+                else if (isFuture) statusClass = 'future';
+                
+                const icon = day.isRest ? '🎄' : (progress.completed ? '✅' : (progress.exams > 0 ? '📝' : (isPast ? '❌' : day.icon)));
+                
+                html += `
+                    <div class="calendar-day ${statusClass} ${isToday ? 'today today-glow' : ''}" onclick="openDayDetail('${day.date}')">
+                        <span class="day-num">${new Date(day.date).getDate()}</span>
+                        <span class="day-icon">${icon}</span>
+                        ${!day.isRest && day.goal > 0 ? `<div class="day-progress"><div class="day-progress-fill" style="width:${pct}%"></div></div>` : ''}
+                    </div>
+                `;
+            });
+            
+            const lastDay = weekDays[weekDays.length - 1]?.dayOfWeek || 6;
+            for (let i = lastDay + 1; i <= 6; i++) html += '<div class="calendar-day disabled"></div>';
+            return html;
+        }
+        
+        function openDayDetail(dateStr) { selectedDay = dateStr; render(); }
+        function closeDayDetail() { selectedDay = null; render(); }
+        
+        function dayDetailHTML() {
+            const day = getDayPlan(selectedDay);
+            const progress = getDayProgress(selectedDay);
+            if (!day) { selectedDay = null; return ''; }
+            
+            const dateObj = new Date(selectedDay);
+            const dateFormatted = dateObj.toLocaleDateString('en-NZ', { weekday: 'long', month: 'short', day: 'numeric' });
+            
+            return `
+                <div class="glass">
+                    <button onclick="closeDayDetail()" class="text-gray mb-4" style="background:none;border:none;cursor:pointer">← Back</button>
+                    
+                    <div class="flex items-center gap-4 mb-4">
+                        <span style="font-size:48px">${day.icon}</span>
+                        <div>
+                            <h2 class="text-2xl font-bold">${dateFormatted}</h2>
+                            <p class="text-gray">${day.isRest ? 'Rest Day 🎄' : day.topic}</p>
+                        </div>
+                    </div>
+                    
+                    ${day.isRest ? `<div class="alert alert-success"><p class="text-xl">🎉 Enjoy your break!</p></div>` : `
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-2">
+                                <span>Progress</span>
+                                <span class="font-bold">${progress.exams}/${day.goal}</span>
+                            </div>
+                            <div class="progress-bar"><div class="progress-fill ${progress.completed ? 'green' : ''}" style="width:${Math.min(100, (progress.exams / day.goal) * 100)}%"></div></div>
+                        </div>
+                        
+                        ${progress.completed ? `<div class="alert alert-success"><p class="font-bold">✅ Complete!</p></div>` : ''}
+                        
+                        <button class="btn btn-green" onclick="startDayTask('${selectedDay}')">
+                            ${progress.completed ? '📝 Extra Practice' : '🚀 Start'} - ${day.topic}
+                        </button>
+                    `}
+                </div>
+                
+                ${!day.isRest ? `
+                <div class="glass">
+                    <h3 class="text-lg font-bold mb-4">📚 Topics</h3>
+                    ${day.subject === 'all' ? 
+                        Object.entries(questions).map(([k, v]) => `
+                            <button class="topic-btn" onclick="startExamFromDay('${selectedDay}', '${k}', '${Object.keys(v.topics)[0]}')">
+                                <span>${v.icon} ${v.name}</span><span class="text-gray">→</span>
+                            </button>
+                        `).join('')
+                    :
+                        Object.entries(questions[day.subject].topics).map(([topic]) => `
+                            <button class="topic-btn" onclick="startExamFromDay('${selectedDay}', '${day.subject}', '${topic}')">
+                                <span>${topic}</span><span class="text-gray">→</span>
+                            </button>
+                        `).join('')
+                    }
+                </div>
+                ` : ''}
+            `;
+        }
+        
+        function startDayTask(dateStr) {
+            const day = getDayPlan(dateStr);
+            if (!day || day.isRest) return;
+            selectedDay = dateStr;
+            if (day.subject === 'all') {
+                const subjects = ['math', 'english', 'science', 'social'];
+                const sub = subjects[Math.floor(Math.random() * subjects.length)];
+                const topics = Object.keys(questions[sub].topics);
+                startExamFromDay(dateStr, sub, topics[Math.floor(Math.random() * topics.length)]);
+            } else {
+                startExamFromDay(dateStr, day.subject, day.topic);
+            }
+        }
+        
+        function startExamFromDay(dateStr, subject, topic) {
+            const qs = questions[subject].topics[topic];
+            if (!qs) return;
+            const shuffled = [...qs].sort(() => Math.random() - 0.5).slice(0, Math.min(5, qs.length));
+            currentExam = { subject, topic, questions: shuffled, startTime: Date.now(), forDate: dateStr };
+            examState = { q: 0, answers: [], time: 180, feedback: false, selected: null };
+            selectedDay = null;
+            render();
+            startTimer();
+        }
+
+        function dashboardHTML() {
+            const today = getTodayStr();
+            const todayPlan = getDayPlan(today);
+            const todayProgress = getDayProgress(today);
+            const overallProgress = getOverallProgress();
+            
+            return `
+                ${todayPlan ? `
+                <div class="glass" style="background:linear-gradient(135deg, ${todayPlan.weekPlan.color.from}22, ${todayPlan.weekPlan.color.to}22)">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center gap-3">
+                            <span style="font-size:40px">${todayPlan.icon}</span>
+                            <div>
+                                <h2 class="text-xl font-bold">Today</h2>
+                                <p class="text-gray">${todayPlan.isRest ? 'Rest Day!' : todayPlan.topic}</p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">${todayProgress.exams}/${todayPlan.goal}</div>
+                        </div>
+                    </div>
+                    ${!todayPlan.isRest ? `
+                    <div class="progress-bar mb-4"><div class="progress-fill ${todayProgress.completed ? 'green' : ''}" style="width:${Math.min(100, (todayProgress.exams / todayPlan.goal) * 100)}%"></div></div>
+                    ${!todayProgress.completed ? `<button class="btn btn-green" onclick="startDayTask('${today}')">🚀 Study Now</button>` : `<p class="text-green font-bold text-center">✅ Done!</p>`}
+                    ` : ''}
+                </div>
+                ` : ''}
+                
+                <div class="glass">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">📅 6-Week Progress</h2>
+                        <span class="font-bold">${overallProgress}%</span>
+                    </div>
+                    <div class="progress-bar mb-4"><div class="progress-fill green" style="width:${overallProgress}%"></div></div>
+                    <button class="btn btn-small btn-secondary" onclick="setView('plan')">View Calendar →</button>
+                </div>
+                
+                <div class="glass">
+                    <h2 class="text-xl font-bold mb-4">📊 Stats</h2>
+                    <div class="stats-row"><span>XP</span><span class="text-yellow font-bold">⚡ ${state.xp}</span></div>
+                    <div class="stats-row"><span>Exams</span><span class="text-green font-bold">✅ ${state.exams}</span></div>
+                    <div class="stats-row"><span>Streak</span><span style="color:#f97316" class="font-bold">🔥 ${state.streak}</span></div>
+                    <div class="stats-row"><span>Badges</span><span class="font-bold">🏅 ${state.badges.length}/${Object.keys(badgesDef).length}</span></div>
+                </div>
+                
+                <div class="glass">
+                    <h2 class="text-xl font-bold mb-4">⚡ Quick Practice</h2>
                     <div class="grid grid-2 gap-4">
                         ${Object.entries(questions).map(([k, v]) => `
                             <button class="subject-card" style="--from:${v.from};--to:${v.to}" onclick="setView('subjects')">
                                 <div class="icon">${v.icon}</div>
                                 <div class="font-bold">${v.name}</div>
-                                <div class="text-sm" style="opacity:0.7">${Object.keys(v.topics).length} topics</div>
                             </button>
                         `).join('')}
                     </div>
-                </div>
-                
-                <div class="glass">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-bold">🏅 Badges</h2>
-                        <span class="text-gray">${earnedCount}/${totalCount} earned</span>
-                    </div>
-                    <div class="flex gap-3 flex-wrap">
-                        ${state.badges.slice(0, 6).map(id => `
-                            <div class="text-center" title="${badgesDef[id].name}">
-                                <span style="font-size:32px">${badgesDef[id].icon}</span>
-                            </div>
-                        `).join('')}
-                        ${state.badges.length === 0 ? '<p class="text-gray">Complete exams to earn badges!</p>' : ''}
-                        ${state.badges.length > 6 ? `<span class="text-gray text-sm">+${state.badges.length - 6} more</span>` : ''}
-                    </div>
-                    <button class="btn btn-small btn-secondary mt-4" onclick="setView('badges')">View All Badges →</button>
-                </div>
-                
-                <div class="glass">
-                    <h2 class="text-xl font-bold mb-4">📊 Progress</h2>
-                    <div class="stats-row"><span>Total XP</span><span class="text-yellow font-bold">⚡ ${state.xp}</span></div>
-                    <div class="stats-row"><span>Exams Done</span><span class="text-green font-bold">✅ ${state.exams}</span></div>
-                    <div class="stats-row"><span>Current Streak</span><span style="color:#f97316" class="font-bold">🔥 ${state.streak} days</span></div>
-                    <div class="stats-row"><span>Excellence Grades</span><span class="font-bold" style="color:#8b5cf6">🏆 ${state.excellence}</span></div>
                 </div>
             `;
         }
 
         function badgesHTML() {
-            const earnedCount = state.badges.length;
-            const totalCount = Object.keys(badgesDef).length;
-            
             return `
                 <div class="glass">
                     <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-bold">🏅 All Badges</h2>
-                        <span class="badge-tag badge-purple">${earnedCount}/${totalCount}</span>
+                        <h2 class="text-xl font-bold">🏅 Badges</h2>
+                        <span class="badge-tag badge-purple">${state.badges.length}/${Object.keys(badgesDef).length}</span>
                     </div>
-                    
-                    <div class="grid grid-3 gap-4">
-                        ${Object.entries(badgesDef).map(([id, badge]) => {
-                            const earned = state.badges.includes(id);
-                            const isNew = newBadges.includes(id);
-                            return `
-                                <div class="badge-card ${earned ? 'earned' : 'locked'} ${isNew ? 'new-badge' : ''}">
-                                    <span class="badge-icon">${badge.icon}</span>
-                                    <div class="badge-name">${badge.name}</div>
-                                    <div class="badge-desc">${badge.desc}</div>
-                                    ${!earned ? `<div class="badge-progress"><span class="text-xs text-gray">🔒 Locked</span></div>` : ''}
-                                </div>
-                            `;
-                        }).join('')}
+                    <div class="grid grid-3 gap-3">
+                        ${Object.entries(badgesDef).map(([id, badge]) => `
+                            <div class="badge-card ${state.badges.includes(id) ? 'earned' : 'locked'}">
+                                <span class="badge-icon">${badge.icon}</span>
+                                <div class="badge-name">${badge.name}</div>
+                                <div class="badge-desc">${badge.desc}</div>
+                            </div>
+                        `).join('')}
                     </div>
-                </div>
-                
-                <div class="glass">
-                    <h2 class="text-xl font-bold mb-4">💡 Tips to Earn More</h2>
-                    <ul style="padding-left:20px;line-height:2;">
-                        ${!state.badges.includes('first_steps') ? '<li>Complete your first exam to get <b>First Steps</b> 🎯</li>' : ''}
-                        ${!state.badges.includes('on_fire') ? '<li>Study 3 days in a row for <b>On Fire</b> 🔥</li>' : ''}
-                        ${!state.badges.includes('perfectionist') ? '<li>Get 100% on any exam for <b>Perfectionist</b> 💯</li>' : ''}
-                        ${!state.badges.includes('speed_demon') ? '<li>Finish an exam in under 2 minutes for <b>Speed Demon</b> ⚡</li>' : ''}
-                        ${state.badges.length >= 4 ? '<li class="text-green">Great progress! Keep going! 🚀</li>' : ''}
-                    </ul>
                 </div>
             `;
         }
@@ -573,24 +847,16 @@
         function subjectsHTML() {
             return `
                 <div class="glass">
-                    <h2 class="text-xl font-bold mb-4">📚 Choose a Subject</h2>
+                    <h2 class="text-xl font-bold mb-4">📚 Subjects</h2>
                     ${Object.entries(questions).map(([k, v]) => `
                         <div class="subject-card mb-4" style="--from:${v.from};--to:${v.to};cursor:default">
-                            <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-4 mb-2">
                                 <span class="text-4xl">${v.icon}</span>
-                                <div>
-                                    <div class="font-bold">${v.name}</div>
-                                    <div class="text-sm" style="opacity:0.7">${Object.keys(v.topics).length} topics • ${state.subjects[k]} exams done</div>
-                                </div>
+                                <div><div class="font-bold">${v.name}</div><div class="text-sm" style="opacity:0.7">${state.subjects[k]} done</div></div>
                             </div>
-                            <div>
-                                ${Object.entries(v.topics).map(([topic, qs]) => `
-                                    <button class="topic-btn" onclick="startExam('${k}','${topic}')">
-                                        <span>${topic}</span>
-                                        <span class="text-sm text-gray">${qs.length} questions →</span>
-                                    </button>
-                                `).join('')}
-                            </div>
+                            ${Object.entries(v.topics).map(([topic]) => `
+                                <button class="topic-btn" onclick="startExam('${k}','${topic}')"><span>${topic}</span><span class="text-gray">→</span></button>
+                            `).join('')}
                         </div>
                     `).join('')}
                 </div>
@@ -600,39 +866,22 @@
         function statsHTML() {
             return `
                 <div class="glass">
-                    <h2 class="text-xl font-bold mb-4">📊 Detailed Stats</h2>
-                    <div class="stats-row"><span>Total XP</span><span class="text-yellow font-bold">⚡ ${state.xp}</span></div>
-                    <div class="stats-row"><span>Exams Completed</span><span class="text-green font-bold">✅ ${state.exams}</span></div>
-                    <div class="stats-row"><span>Current Streak</span><span style="color:#f97316" class="font-bold">🔥 ${state.streak} days</span></div>
-                    <div class="stats-row"><span>Perfect Scores (100%)</span><span class="text-purple font-bold">💯 ${state.perfect}</span></div>
-                    <div class="stats-row"><span>Excellence Grades</span><span class="font-bold" style="color:#8b5cf6">🏆 ${state.excellence}</span></div>
-                    <div class="stats-row"><span>Fast Exams (<2min)</span><span class="text-blue font-bold">⚡ ${state.fastExams || 0}</span></div>
-                    <div class="stats-row"><span>Badges Earned</span><span class="font-bold">🏅 ${state.badges.length}/${Object.keys(badgesDef).length}</span></div>
-                    
-                    <h3 class="text-lg font-bold mb-2" style="margin-top:20px">By Subject</h3>
-                    ${Object.entries(questions).map(([k, v]) => `
-                        <div class="stats-row"><span>${v.icon} ${v.name}</span><span class="font-bold">${state.subjects[k]} exams</span></div>
-                    `).join('')}
+                    <h2 class="text-xl font-bold mb-4">📊 Stats</h2>
+                    <div class="stats-row"><span>XP</span><span class="text-yellow font-bold">⚡ ${state.xp}</span></div>
+                    <div class="stats-row"><span>Exams</span><span class="text-green font-bold">✅ ${state.exams}</span></div>
+                    <div class="stats-row"><span>Streak</span><span style="color:#f97316" class="font-bold">🔥 ${state.streak}</span></div>
+                    <div class="stats-row"><span>Perfect</span><span class="text-purple font-bold">💯 ${state.perfect}</span></div>
+                    <div class="stats-row"><span>Excellence</span><span style="color:#8b5cf6" class="font-bold">🏆 ${state.excellence}</span></div>
+                    <h3 class="text-lg font-bold mt-4 mb-2">By Subject</h3>
+                    ${Object.entries(questions).map(([k, v]) => `<div class="stats-row"><span>${v.icon} ${v.name}</span><span>${state.subjects[k]}</span></div>`).join('')}
                 </div>
-                
-                ${state.history.length > 0 ? `
-                <div class="glass">
-                    <h2 class="text-xl font-bold mb-4">📜 Recent Exams</h2>
-                    ${state.history.slice(0, 5).map(h => `
-                        <div class="stats-row">
-                            <span>${questions[h.subject].icon} ${h.topic}</span>
-                            <span><span class="badge-tag" style="background:${getGrade(h.score).color}">${h.grade}</span> ${h.score}%</span>
-                        </div>
-                    `).join('')}
-                </div>
-                ` : ''}
             `;
         }
 
         function startExam(subject, topic) {
             const qs = questions[subject].topics[topic];
             const shuffled = [...qs].sort(() => Math.random() - 0.5).slice(0, Math.min(5, qs.length));
-            currentExam = { subject, topic, questions: shuffled, startTime: Date.now() };
+            currentExam = { subject, topic, questions: shuffled, startTime: Date.now(), forDate: getTodayStr() };
             examState = { q: 0, answers: [], time: 180, feedback: false, selected: null };
             render();
             startTimer();
@@ -644,39 +893,30 @@
             timerInterval = setInterval(() => {
                 if (examState.time > 0 && !examState.feedback) {
                     examState.time--;
-                    const timerEl = document.getElementById('timer');
-                    if (timerEl) {
-                        timerEl.textContent = `⏱️ ${Math.floor(examState.time/60)}:${(examState.time%60).toString().padStart(2,'0')}`;
-                        if (examState.time < 30) timerEl.className = 'font-bold text-red';
-                    }
+                    const el = document.getElementById('timer');
+                    if (el) el.textContent = `${Math.floor(examState.time/60)}:${(examState.time%60).toString().padStart(2,'0')}`;
                 }
             }, 1000);
         }
 
         function examHTML() {
             const q = currentExam.questions[examState.q];
-            const progress = ((examState.q + 1) / currentExam.questions.length) * 100;
+            const pct = ((examState.q + 1) / currentExam.questions.length) * 100;
             const sub = questions[currentExam.subject];
             
             return `
                 <div class="glass">
                     <div class="flex justify-between items-center mb-4">
-                        <div class="flex items-center gap-2">
-                            <span class="text-2xl">${sub.icon}</span>
-                            <span class="font-bold">${currentExam.topic}</span>
-                        </div>
-                        <span id="timer" class="font-bold ${examState.time < 30 ? 'text-red' : ''}">
-                            ⏱️ ${Math.floor(examState.time/60)}:${(examState.time%60).toString().padStart(2,'0')}
-                        </span>
+                        <div class="flex items-center gap-2"><span class="text-2xl">${sub.icon}</span><span class="font-bold">${currentExam.topic}</span></div>
+                        <span id="timer" class="font-bold">${Math.floor(examState.time/60)}:${(examState.time%60).toString().padStart(2,'0')}</span>
                     </div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
-                    <p class="text-gray text-sm">Question ${examState.q + 1} of ${currentExam.questions.length}</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+                    <p class="text-gray text-sm mt-2">Q${examState.q + 1}/${currentExam.questions.length}</p>
                 </div>
                 
                 <div class="glass bounce-in">
                     <span class="badge-tag ${q.diff.includes('E') ? 'badge-purple' : q.diff.includes('M') ? 'badge-green' : 'badge-yellow'}">${q.diff}</span>
                     <h2 class="text-xl font-bold" style="margin:15px 0 25px">${q.q}</h2>
-                    
                     ${q.opts.map((opt, i) => {
                         let cls = 'option-btn';
                         if (examState.feedback) {
@@ -685,18 +925,14 @@
                         }
                         return `<button class="${cls}" ${examState.feedback ? 'disabled' : ''} onclick="answer(${i})">${String.fromCharCode(65+i)}. ${opt}</button>`;
                     }).join('')}
-                    
                     ${examState.feedback ? `
-                        <div class="glass" style="margin-top:20px;background:${examState.selected === q.ans ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)'}">
-                            <p class="font-bold ${examState.selected === q.ans ? 'text-green' : 'text-red'}">
-                                ${examState.selected === q.ans ? '✅ Correct!' : '❌ Not quite!'}
-                            </p>
-                            <p class="text-purple text-sm" style="margin-top:8px">💡 ${q.exp}</p>
+                        <div class="glass mt-4" style="background:${examState.selected === q.ans ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)'}">
+                            <p class="font-bold ${examState.selected === q.ans ? 'text-green' : 'text-red'}">${examState.selected === q.ans ? '✅ Correct!' : '❌ Wrong'}</p>
+                            <p class="text-purple text-sm mt-2">💡 ${q.exp}</p>
                         </div>
                     ` : ''}
                 </div>
-                
-                <button onclick="exitExam()" class="text-gray" style="background:none;border:none;cursor:pointer;margin-top:10px">← Exit Quiz</button>
+                <button onclick="exitExam()" class="text-gray mt-2" style="background:none;border:none;cursor:pointer">← Exit</button>
             `;
         }
 
@@ -705,18 +941,12 @@
             examState.selected = i;
             examState.feedback = true;
             render();
-            
             setTimeout(() => {
                 examState.answers.push(i);
                 examState.feedback = false;
                 examState.selected = null;
-                
-                if (examState.q < currentExam.questions.length - 1) {
-                    examState.q++;
-                    render();
-                } else {
-                    finishExam();
-                }
+                if (examState.q < currentExam.questions.length - 1) { examState.q++; render(); }
+                else finishExam();
             }, 1500);
         }
 
@@ -731,7 +961,6 @@
             const isFast = timeTaken < 120;
             const xp = Math.round(score * 2 + (isFast ? 50 : 0));
             
-            // Update state
             state.xp += xp;
             state.exams++;
             state.subjects[currentExam.subject]++;
@@ -739,106 +968,55 @@
             if (score >= 80) state.excellence++;
             if (isFast) state.fastExams = (state.fastExams || 0) + 1;
             
-            // Update streak
             updateStreak();
+            updateDailyProgress();
             
-            // Add to history
-            state.history.unshift({
-                subject: currentExam.subject,
-                topic: currentExam.topic,
-                score, grade: gradeInfo.grade, xp,
-                date: new Date().toISOString()
-            });
+            state.history.unshift({ subject: currentExam.subject, topic: currentExam.topic, score, grade: gradeInfo.grade, xp, date: new Date().toISOString() });
             state.history = state.history.slice(0, 20);
             
-            // Check for new badges
             const earned = checkBadges();
-            
             save();
-            showResults(score, gradeInfo, xp, timeTaken, correct, earned);
+            showResults(score, gradeInfo, xp, correct, earned);
         }
 
-        function showResults(score, gradeInfo, xp, timeTaken, correct, newlyEarned) {
-            const app = document.getElementById('app');
-            app.innerHTML = `
+        function showResults(score, gradeInfo, xp, correct, newlyEarned) {
+            const today = getTodayStr();
+            const todayPlan = getDayPlan(today);
+            const todayProgress = getDayProgress(today);
+            
+            document.getElementById('app').innerHTML = `
                 <div class="glass text-center bounce-in">
-                    <div class="text-6xl mb-4 ${newlyEarned.length > 0 ? 'celebrate' : ''}">${gradeInfo.emoji}</div>
-                    <h1 class="text-4xl font-bold mb-4">Exam Complete!</h1>
-                    
-                    <div class="flex justify-center gap-4 mb-6" style="flex-wrap:wrap">
-                        <div class="text-center">
-                            <div class="text-4xl font-bold" style="color:${gradeInfo.color}">${score}%</div>
-                            <div class="text-gray">Score</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold" style="color:${gradeInfo.color}">${gradeInfo.grade}</div>
-                            <div class="text-gray">${gradeInfo.label}</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-yellow">+${xp}</div>
-                            <div class="text-gray">XP Earned</div>
-                        </div>
+                    <div class="text-6xl mb-4">${gradeInfo.emoji}</div>
+                    <h1 class="text-3xl font-bold mb-4">Complete!</h1>
+                    <div class="flex justify-center gap-4 mb-6 flex-wrap">
+                        <div><div class="text-3xl font-bold" style="color:${gradeInfo.color}">${score}%</div><div class="text-gray text-sm">Score</div></div>
+                        <div><div class="text-3xl font-bold" style="color:${gradeInfo.color}">${gradeInfo.grade}</div><div class="text-gray text-sm">${gradeInfo.label}</div></div>
+                        <div><div class="text-3xl font-bold text-yellow">+${xp}</div><div class="text-gray text-sm">XP</div></div>
                     </div>
-                    
-                    <p class="text-gray mb-4">Completed in ${Math.floor(timeTaken/60)}:${(timeTaken%60).toString().padStart(2,'0')}</p>
-                    <p class="mb-6">${correct} of ${currentExam.questions.length} correct</p>
-                    
+                    ${todayPlan && !todayPlan.isRest ? `
+                    <div class="mb-4">
+                        <p class="text-sm text-gray mb-2">Today: ${todayProgress.exams}/${todayPlan.goal}</p>
+                        <div class="progress-bar"><div class="progress-fill ${todayProgress.completed ? 'green' : ''}" style="width:${Math.min(100, (todayProgress.exams / todayPlan.goal) * 100)}%"></div></div>
+                        ${todayProgress.completed ? '<p class="text-green font-bold mt-2">✅ Today done!</p>' : ''}
+                    </div>
+                    ` : ''}
                     ${newlyEarned.length > 0 ? `
-                        <div class="glass mb-6" style="background:linear-gradient(135deg, rgba(139,92,246,0.3), rgba(236,72,153,0.3));">
-                            <h3 class="text-xl font-bold mb-4">🎉 New Badge${newlyEarned.length > 1 ? 's' : ''} Earned!</h3>
-                            <div class="flex justify-center gap-4 flex-wrap">
-                                ${newlyEarned.map(id => `
-                                    <div class="text-center new-badge">
-                                        <span style="font-size:48px;display:block">${badgesDef[id].icon}</span>
-                                        <span class="font-bold">${badgesDef[id].name}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
+                        <div class="glass mb-4" style="background:linear-gradient(135deg, rgba(139,92,246,0.3), rgba(236,72,153,0.3));">
+                            <h3 class="font-bold mb-2">🎉 New Badge!</h3>
+                            <div class="flex justify-center gap-3">${newlyEarned.map(id => `<span style="font-size:40px">${badgesDef[id].icon}</span>`).join('')}</div>
                         </div>
                     ` : ''}
-                    
-                    <button class="btn" onclick="backToMain()">Continue Learning 🚀</button>
-                </div>
-                
-                <div class="glass">
-                    <h2 class="text-xl font-bold mb-4">📝 Review Answers</h2>
-                    ${currentExam.questions.map((q, i) => {
-                        const isCorrect = examState.answers[i] === q.ans;
-                        return `
-                            <div class="glass mb-4" style="background:${isCorrect ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'}">
-                                <div class="flex gap-2">
-                                    <span class="text-2xl">${isCorrect ? '✅' : '❌'}</span>
-                                    <div>
-                                        <p class="font-bold">${q.q}</p>
-                                        <p class="text-sm ${isCorrect ? 'text-green' : 'text-red'}">
-                                            Your answer: ${q.opts[examState.answers[i]] || 'None'}
-                                        </p>
-                                        ${!isCorrect ? `<p class="text-green text-sm">Correct: ${q.opts[q.ans]}</p>` : ''}
-                                        <p class="text-purple text-sm" style="margin-top:8px">💡 ${q.exp}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                    }).join('')}
+                    <button class="btn" onclick="backToMain()">Continue 🚀</button>
                 </div>
             `;
         }
 
-        function backToMain() {
-            currentExam = null;
-            newBadges = [];
-            view = 'dashboard';
-            render();
-        }
+        function backToMain() { currentExam = null; newBadges = []; view = 'plan'; render(); }
+        function exitExam() { clearInterval(timerInterval); currentExam = null; view = 'plan'; render(); }
 
-        function exitExam() {
-            clearInterval(timerInterval);
-            currentExam = null;
-            view = 'dashboard';
-            render();
-        }
-
-        // ============ INITIALIZE ============
+        // Init
+        if (!state.dailyProgress) state.dailyProgress = {};
+        view = state.name ? 'plan' : 'welcome';
         render();
     </script>
 </body>
