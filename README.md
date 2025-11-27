@@ -3,7 +3,7 @@
 A gamified learning website for Year 9 students at Rangitoto College to review Mathematics, English ESOL, Science, and Social Science.
 
 ## 🌐 Live Demo
-**[https://flyzhenghao.github.io/rangitoto-review](https://flyzhenghao.github.io/rangitoto-review)**
+**[https://flyzhenghao.github.io/rangitoto-review-Y9](https://flyzhenghao.github.io/rangitoto-review-Y9)**
 
 ## ✨ Features
 
