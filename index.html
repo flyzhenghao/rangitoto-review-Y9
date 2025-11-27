@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <title>Rangitoto Year 9 Review Hub</title>
-=======
     <title>Rangitoto Year 9 Review Hub v8</title>
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%); min-height: 100vh; color: white; }
@@ -25,8 +21,6 @@
         .input::placeholder { color: rgba(255,255,255,0.5); }
         .input:focus { outline: none; border-color: #8b5cf6; }
         textarea.input { min-height: 100px; resize: vertical; font-family: monospace; font-size: 12px; }
-<<<<<<< HEAD
-=======
         /* New Question Type Styles */
         .fill-input { padding: 12px 16px; border-radius: 8px; border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.15); color: white; font-size: 18px; width: 200px; text-align: center; }
         .fill-input:focus { outline: none; border-color: #8b5cf6; background: rgba(139,92,246,0.2); }
@@ -57,7 +51,6 @@
         .type-multi { background: #8b5cf6; }
         .type-match { background: #ec4899; }
         .type-short { background: #14b8a6; }
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
         .text-center { text-align: center; }
         .mb-2 { margin-bottom: 8px; }
         .mb-4 { margin-bottom: 16px; }
@@ -237,77 +230,6 @@ const questions = {
         name: "Mathematics", icon: "📐", from: "#3b82f6", to: "#06b6d4", target: "E7-E8",
         topics: {
             "Integers": [
-<<<<<<< HEAD
-                { q: "-5 + 8 = ?", opts: ["3", "-3", "13", "-13"], ans: 0, exp: "-5 + 8 = 3", diff: "A3" },
-                { q: "-12 ÷ (-4) = ?", opts: ["3", "-3", "8", "-8"], ans: 0, exp: "Negative ÷ negative = positive", diff: "A4" },
-                { q: "(-3) × (-7) = ?", opts: ["21", "-21", "10", "-10"], ans: 0, exp: "Negative × negative = positive", diff: "A4" },
-                { q: "-15 + (-8) = ?", opts: ["-23", "23", "-7", "7"], ans: 0, exp: "Adding negatives: -15-8=-23", diff: "M5" },
-                { q: "20 - (-5) = ?", opts: ["25", "15", "-25", "-15"], ans: 0, exp: "Subtracting negative = adding", diff: "M5" },
-                { q: "(-6)² = ?", opts: ["36", "-36", "12", "-12"], ans: 0, exp: "(-6)×(-6) = 36", diff: "M6" },
-                { q: "|-7| + |-3| = ?", opts: ["10", "-10", "4", "-4"], ans: 0, exp: "7 + 3 = 10", diff: "M5" },
-                { q: "-2 × (-3) × (-4) = ?", opts: ["-24", "24", "-9", "9"], ans: 0, exp: "Odd number of negatives = negative", diff: "M6" },
-                { q: "(-5)³ = ?", opts: ["-125", "125", "-15", "15"], ans: 0, exp: "(-5)×(-5)×(-5) = -125", diff: "E7" },
-                { q: "If a = -3 and b = 4, find a² - b", opts: ["5", "-5", "13", "-7"], ans: 0, exp: "9 - 4 = 5", diff: "E7" },
-                { q: "Solve: -3x = 24", opts: ["-8", "8", "-21", "21"], ans: 0, exp: "x = 24 ÷ (-3) = -8", diff: "M6" },
-                { q: "(-2)⁴ × (-1)³ = ?", opts: ["-16", "16", "-8", "8"], ans: 0, exp: "16 × (-1) = -16", diff: "E7" },
-                { q: "Order: -5, 3, -8, 2, -1 from smallest", opts: ["-8,-5,-1,2,3", "-1,-5,-8,2,3", "3,2,-1,-5,-8", "-8,-1,-5,2,3"], ans: 0, exp: "Most negative first", diff: "M5" },
-                { q: "(-4)² - (-3)² = ?", opts: ["7", "-7", "25", "1"], ans: 0, exp: "16 - 9 = 7", diff: "E7" },
-                { q: "If x = -2, find 3x² - 2x", opts: ["16", "8", "-16", "-8"], ans: 0, exp: "12 - (-4) = 16", diff: "E8" }
-            ],
-            "Fractions": [
-                { q: "Simplify: 12/18", opts: ["2/3", "3/4", "1/2", "4/6"], ans: 0, exp: "÷6 each = 2/3", diff: "A4" },
-                { q: "1/4 + 2/4 = ?", opts: ["3/4", "3/8", "1/2", "2/4"], ans: 0, exp: "Same denominator: 1+2=3", diff: "A3" },
-                { q: "2/3 × 3/4 = ?", opts: ["1/2", "6/7", "5/12", "2/4"], ans: 0, exp: "6/12 = 1/2", diff: "M5" },
-                { q: "1/2 + 1/3 = ?", opts: ["5/6", "2/5", "1/5", "2/6"], ans: 0, exp: "3/6 + 2/6 = 5/6", diff: "M5" },
-                { q: "3/4 ÷ 1/2 = ?", opts: ["3/2", "3/8", "1/2", "6/4"], ans: 0, exp: "3/4 × 2/1 = 3/2", diff: "M6" },
-                { q: "2/5 + 3/10 = ?", opts: ["7/10", "5/15", "1/2", "5/10"], ans: 0, exp: "4/10 + 3/10 = 7/10", diff: "M6" },
-                { q: "5/6 - 1/4 = ?", opts: ["7/12", "4/2", "1/2", "6/10"], ans: 0, exp: "10/12 - 3/12 = 7/12", diff: "E7" },
-                { q: "2¾ + 1½ = ?", opts: ["4¼", "3¼", "4½", "3¾"], ans: 0, exp: "2.75 + 1.5 = 4.25", diff: "E7" },
-                { q: "(2/3)² = ?", opts: ["4/9", "4/6", "2/9", "2/6"], ans: 0, exp: "4/9", diff: "E7" },
-                { q: "3/4 of 2/5 = ?", opts: ["3/10", "5/9", "6/20", "5/20"], ans: 0, exp: "6/20 = 3/10", diff: "M6" },
-                { q: "1⅓ × 2¼ = ?", opts: ["3", "2½", "3½", "2¾"], ans: 0, exp: "4/3 × 9/4 = 3", diff: "E8" },
-                { q: "If x/4 = 3/8, find x", opts: ["1.5", "2", "3", "6"], ans: 0, exp: "x = 12/8 = 1.5", diff: "E7" },
-                { q: "3½ - 1¾ = ?", opts: ["1¾", "2¼", "1½", "2"], ans: 0, exp: "7/2 - 7/4 = 7/4", diff: "E7" },
-                { q: "2/3 ÷ 4/5 = ?", opts: ["5/6", "8/15", "6/5", "10/12"], ans: 0, exp: "2/3 × 5/4 = 10/12 = 5/6", diff: "E7" },
-                { q: "Solve: x/3 + x/4 = 7", opts: ["12", "7", "21", "84"], ans: 0, exp: "7x/12 = 7, x = 12", diff: "E8" }
-            ],
-            "Percentages": [
-                { q: "25% of 200 = ?", opts: ["50", "25", "75", "100"], ans: 0, exp: "0.25 × 200 = 50", diff: "A3" },
-                { q: "15% of 80 = ?", opts: ["12", "15", "8", "10"], ans: 0, exp: "0.15 × 80 = 12", diff: "A4" },
-                { q: "Convert 3/5 to %", opts: ["60%", "35%", "53%", "65%"], ans: 0, exp: "3÷5 = 0.6 = 60%", diff: "M5" },
-                { q: "$40 with 20% off = ?", opts: ["$32", "$36", "$28", "$38"], ans: 0, exp: "40 - 8 = 32", diff: "M5" },
-                { q: "30 out of 50 = ?%", opts: ["60%", "30%", "50%", "80%"], ans: 0, exp: "30÷50 = 60%", diff: "M5" },
-                { q: "Price rises 25% from $80. New price?", opts: ["$100", "$85", "$105", "$90"], ans: 0, exp: "80 + 20 = 100", diff: "M6" },
-                { q: "$60 to $45 = what % off?", opts: ["25%", "15%", "30%", "20%"], ans: 0, exp: "15÷60 = 25%", diff: "E7" },
-                { q: "After 20% increase, price is $60. Original?", opts: ["$50", "$48", "$52", "$55"], ans: 0, exp: "60÷1.2 = 50", diff: "E7" },
-                { q: "200% of 25 = ?", opts: ["50", "25", "100", "125"], ans: 0, exp: "2 × 25 = 50", diff: "M5" },
-                { q: "Decrease 80 by 35%", opts: ["52", "45", "28", "55"], ans: 0, exp: "80 × 0.65 = 52", diff: "M6" },
-                { q: "A is 20% more than B. If A=60, B=?", opts: ["50", "48", "72", "52"], ans: 0, exp: "60÷1.2 = 50", diff: "E7" },
-                { q: "Compound: $100, 10%/year, 2 years", opts: ["$121", "$120", "$110", "$122"], ans: 0, exp: "100×1.1×1.1 = 121", diff: "E8" },
-                { q: "What % is 18 of 72?", opts: ["25%", "18%", "72%", "4%"], ans: 0, exp: "18÷72 = 0.25", diff: "M6" },
-                { q: "Profit margin: cost $40, sell $50", opts: ["25%", "20%", "10%", "50%"], ans: 0, exp: "10÷40 = 25%", diff: "E7" },
-                { q: "Sale price $75 after 25% off. Original?", opts: ["$100", "$93.75", "$56.25", "$90"], ans: 0, exp: "75÷0.75 = 100", diff: "E8" }
-            ],
-            "Algebra": [
-                { q: "Simplify: 3x + 5x - 2x", opts: ["6x", "8x", "10x", "4x"], ans: 0, exp: "(3+5-2)x = 6x", diff: "A4" },
-                { q: "Solve: 2x + 7 = 15", opts: ["x = 4", "x = 8", "x = 11", "x = 3"], ans: 0, exp: "2x = 8, x = 4", diff: "M5" },
-                { q: "Expand: 2(x + 3)", opts: ["2x + 6", "2x + 3", "x + 6", "2x + 5"], ans: 0, exp: "2×x + 2×3", diff: "M5" },
-                { q: "Simplify: 4x + 3y - 2x + y", opts: ["2x + 4y", "6x + 4y", "2x + 2y", "6x + 2y"], ans: 0, exp: "Combine like terms", diff: "M5" },
-                { q: "Expand: 3(2x - 4)", opts: ["6x - 12", "6x - 4", "5x - 7", "6x + 12"], ans: 0, exp: "3×2x - 3×4", diff: "M6" },
-                { q: "Factorise: 6x + 12", opts: ["6(x + 2)", "6(x + 12)", "3(2x + 4)", "2(3x + 6)"], ans: 0, exp: "6 is common factor", diff: "M6" },
-                { q: "Solve: 2(x + 3) = 14", opts: ["4", "7", "5.5", "8"], ans: 0, exp: "2x + 6 = 14, x = 4", diff: "M6" },
-                { q: "Factorise: x² - 9", opts: ["(x+3)(x-3)", "(x+9)(x-1)", "(x-3)²", "(x+3)²"], ans: 0, exp: "Difference of squares", diff: "E7" },
-                { q: "Solve: 4x - 3 = 2x + 7", opts: ["5", "2", "10", "4"], ans: 0, exp: "2x = 10, x = 5", diff: "E7" },
-                { q: "Expand: (x+2)(x+3)", opts: ["x²+5x+6", "x²+6x+5", "x²+5x+5", "2x+5"], ans: 0, exp: "x² + 3x + 2x + 6", diff: "E7" },
-                { q: "Solve: x² = 49", opts: ["±7", "7", "-7", "49"], ans: 0, exp: "x = +7 or -7", diff: "E7" },
-                { q: "Factorise: x² + 5x + 6", opts: ["(x+2)(x+3)", "(x+1)(x+6)", "(x+5)(x+1)", "(x+3)²"], ans: 0, exp: "2+3=5, 2×3=6", diff: "E8" },
-                { q: "Solve: 3(x-2) = 2(x+1)", opts: ["8", "4", "6", "10"], ans: 0, exp: "3x-6=2x+2, x=8", diff: "E8" },
-                { q: "Simplify: (2x²)(3x³)", opts: ["6x⁵", "5x⁵", "6x⁶", "5x⁶"], ans: 0, exp: "2×3=6, 2+3=5", diff: "E7" },
-                { q: "Expand: (x-4)(x+4)", opts: ["x²-16", "x²+16", "x²-8x", "2x"], ans: 0, exp: "Difference of squares", diff: "E7" },
-                { q: "Solve: x/2 + 3 = 7", opts: ["8", "2", "20", "14"], ans: 0, exp: "x/2 = 4, x = 8", diff: "M6" },
-                { q: "Factorise: 2x² + 6x", opts: ["2x(x+3)", "2(x²+3x)", "x(2x+6)", "6x(x+1)"], ans: 0, exp: "2x is common", diff: "E7" },
-                { q: "Solve: x² - 5x + 6 = 0", opts: ["2,3", "1,6", "-2,-3", "5,6"], ans: 0, exp: "(x-2)(x-3)=0", diff: "E8" }
-=======
                 { type: "mcq", q: "-5 + 8 = ?", opts: ["3", "-3", "13", "-13"], ans: 0, exp: "-5 + 8 = 3", diff: "A3" },
                 { type: "mcq", q: "-12 ÷ (-4) = ?", opts: ["3", "-3", "8", "-8"], ans: 0, exp: "Negative ÷ negative = positive", diff: "A4" },
                 { type: "fill", q: "Calculate: (-3) × (-7) = ___", ans: "21", exp: "Negative × negative = positive", diff: "A4" },
@@ -377,7 +299,6 @@ const questions = {
                 { type: "fill", q: "Solve: x/2 + 3 = 7, x = ___", ans: "8", exp: "x/2 = 4, x = 8", diff: "M6" },
                 { type: "mcq", q: "Factorise: 2x² + 6x", opts: ["2x(x+3)", "2(x²+3x)", "x(2x+6)", "6x(x+1)"], ans: 0, exp: "2x is common", diff: "E7" },
                 { type: "fill", q: "Solve: x² - 5x + 6 = 0. Smaller x = ___", ans: "2", exp: "(x-2)(x-3)=0", diff: "E8" }
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
             ],
             "Indices": [
                 { q: "2³ = ?", opts: ["8", "6", "9", "5"], ans: 0, exp: "2×2×2 = 8", diff: "A3" },
@@ -480,21 +401,6 @@ const questions = {
                 { q: "Square diagonal 10√2. Side?", opts: ["10", "20", "5", "10√2"], ans: 0, exp: "d = s√2", diff: "E8" }
             ],
             "Statistics": [
-<<<<<<< HEAD
-                { q: "Mean: 4, 7, 8, 9, 12?", opts: ["8", "7", "9", "8.5"], ans: 0, exp: "40÷5=8", diff: "A4" },
-                { q: "Median: 3, 7, 9, 12, 15?", opts: ["9", "7", "12", "9.2"], ans: 0, exp: "Middle = 9", diff: "A4" },
-                { q: "Mode: 2, 4, 4, 5, 7, 4, 8?", opts: ["4", "5", "2", "7"], ans: 0, exp: "4 appears most", diff: "A4" },
-                { q: "Range: 15, 22, 8, 31, 19?", opts: ["23", "31", "8", "19"], ans: 0, exp: "31-8=23", diff: "M5" },
-                { q: "Median: 2, 4, 6, 8?", opts: ["5", "4", "6", "20"], ans: 0, exp: "(4+6)/2=5", diff: "M5" },
-                { q: "Probability: rolling 6?", opts: ["1/6", "1/3", "6", "1/2"], ans: 0, exp: "1 of 6 outcomes", diff: "M5" },
-                { q: "Mean after adding 10 to each?", opts: ["Increases by 10", "Same", "Doubles", "Halves"], ans: 0, exp: "Mean shifts same", diff: "M6" },
-                { q: "Which unaffected by outliers?", opts: ["Median", "Mean", "Sum", "Range"], ans: 0, exp: "Median is robust", diff: "E7" },
-                { q: "P(A)=0.3, P(B)=0.4, independent. P(A and B)?", opts: ["0.12", "0.7", "0.1", "0.5"], ans: 0, exp: "0.3×0.4=0.12", diff: "E7" },
-                { q: "Std dev measures?", opts: ["Spread from mean", "Average", "Middle", "Most common"], ans: 0, exp: "Data spread", diff: "E8" },
-                { q: "Two dice. P(sum=7)?", opts: ["6/36", "7/36", "1/6", "1/12"], ans: 0, exp: "6 ways out of 36", diff: "E7" },
-                { q: "Mean=70, 5 scores. Total?", opts: ["350", "70", "14", "75"], ans: 0, exp: "70×5 = 350", diff: "M6" },
-                { q: "IQR is?", opts: ["Q3-Q1", "Max-Min", "Mean", "Median"], ans: 0, exp: "Interquartile range", diff: "E7" }
-=======
                 { type: "fill", q: "Mean of 4, 7, 8, 9, 12 = ___", ans: "8", exp: "40÷5=8", diff: "A4" },
                 { type: "mcq", q: "Median: 3, 7, 9, 12, 15?", opts: ["9", "7", "12", "9.2"], ans: 0, exp: "Middle = 9", diff: "A4" },
                 { type: "fill", q: "Mode of 2, 4, 4, 5, 7, 4, 8 = ___", ans: "4", exp: "4 appears most", diff: "A4" },
@@ -508,7 +414,6 @@ const questions = {
                 { type: "mcq", q: "Two dice. P(sum=7)?", opts: ["6/36", "7/36", "1/6", "1/12"], ans: 0, exp: "6 ways out of 36", diff: "E7" },
                 { type: "fill", q: "Mean=70, 5 scores. Total = ___", ans: "350", exp: "70×5 = 350", diff: "M6" },
                 { type: "tf", q: "IQR means Interquartile Range (Q3-Q1)", ans: true, exp: "Interquartile range", diff: "E7" }
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
             ]
         }
     },
@@ -516,42 +421,6 @@ const questions = {
         name: "English ESOL", icon: "📚", from: "#8b5cf6", to: "#ec4899", target: "M5-M6",
         topics: {
             "Synonyms": [
-<<<<<<< HEAD
-                { q: "Synonym: 'happy'?", opts: ["Joyful", "Sad", "Angry", "Tired"], ans: 0, exp: "Joyful = happy", diff: "A3" },
-                { q: "Synonym: 'big'?", opts: ["Large", "Small", "Tiny", "Short"], ans: 0, exp: "Large = big", diff: "A3" },
-                { q: "Synonym: 'fast'?", opts: ["Quick", "Slow", "Heavy", "Light"], ans: 0, exp: "Quick = fast", diff: "A4" },
-                { q: "Synonym: 'intelligent'?", opts: ["Smart", "Stupid", "Lazy", "Weak"], ans: 0, exp: "Smart = intelligent", diff: "M5" },
-                { q: "Synonym: 'beautiful'?", opts: ["Gorgeous", "Ugly", "Plain", "Dull"], ans: 0, exp: "Gorgeous = beautiful", diff: "M5" },
-                { q: "Synonym: 'exhausted'?", opts: ["Fatigued", "Energetic", "Active", "Lively"], ans: 0, exp: "Fatigued = very tired", diff: "M5" },
-                { q: "Synonym: 'courageous'?", opts: ["Brave", "Timid", "Scared", "Weak"], ans: 0, exp: "Brave = courageous", diff: "M5" },
-                { q: "Synonym: 'meticulous'?", opts: ["Careful", "Careless", "Sloppy", "Hasty"], ans: 0, exp: "Very careful, precise", diff: "M6" },
-                { q: "Synonym: 'abundant'?", opts: ["Plentiful", "Scarce", "Rare", "Few"], ans: 0, exp: "Plentiful = abundant", diff: "M6" },
-                { q: "Synonym: 'concise'?", opts: ["Brief", "Lengthy", "Verbose", "Rambling"], ans: 0, exp: "Brief and clear", diff: "M6" },
-                { q: "Synonym: 'ancient'?", opts: ["Old", "New", "Modern", "Recent"], ans: 0, exp: "Old = ancient", diff: "A4" },
-                { q: "Synonym: 'difficult'?", opts: ["Hard", "Easy", "Simple", "Clear"], ans: 0, exp: "Hard = difficult", diff: "A4" },
-                { q: "Synonym: 'furious'?", opts: ["Angry", "Happy", "Calm", "Peaceful"], ans: 0, exp: "Very angry", diff: "M5" },
-                { q: "Synonym: 'commence'?", opts: ["Begin", "End", "Stop", "Continue"], ans: 0, exp: "Commence = start", diff: "M5" },
-                { q: "Synonym: 'enormous'?", opts: ["Huge", "Tiny", "Small", "Little"], ans: 0, exp: "Enormous = very big", diff: "A4" },
-                { q: "Synonym: 'assist'?", opts: ["Help", "Hinder", "Block", "Stop"], ans: 0, exp: "Assist = help", diff: "A4" }
-            ],
-            "Antonyms": [
-                { q: "Antonym: 'hot'?", opts: ["Cold", "Warm", "Burning", "Humid"], ans: 0, exp: "Cold ≠ hot", diff: "A3" },
-                { q: "Antonym: 'ancient'?", opts: ["Modern", "Old", "Historic", "Traditional"], ans: 0, exp: "Modern ≠ ancient", diff: "A4" },
-                { q: "Antonym: 'generous'?", opts: ["Selfish", "Kind", "Giving", "Wealthy"], ans: 0, exp: "Selfish ≠ generous", diff: "M5" },
-                { q: "Antonym: 'temporary'?", opts: ["Permanent", "Brief", "Short", "Fleeting"], ans: 0, exp: "Permanent ≠ temporary", diff: "M5" },
-                { q: "Antonym: 'optimistic'?", opts: ["Pessimistic", "Hopeful", "Positive", "Cheerful"], ans: 0, exp: "Pessimistic = negative outlook", diff: "M5" },
-                { q: "Antonym: 'expand'?", opts: ["Contract", "Grow", "Enlarge", "Increase"], ans: 0, exp: "Contract = shrink", diff: "M5" },
-                { q: "Antonym: 'conceal'?", opts: ["Reveal", "Hide", "Cover", "Mask"], ans: 0, exp: "Reveal = show", diff: "M6" },
-                { q: "Antonym: 'profound'?", opts: ["Superficial", "Deep", "Meaningful", "Significant"], ans: 0, exp: "Superficial = shallow", diff: "M6" },
-                { q: "Antonym: 'abundant'?", opts: ["Scarce", "Plentiful", "Numerous", "Ample"], ans: 0, exp: "Scarce = rare", diff: "M6" },
-                { q: "Antonym: 'benevolent'?", opts: ["Malevolent", "Kind", "Generous", "Caring"], ans: 0, exp: "Malevolent = wishing harm", diff: "M6" },
-                { q: "Antonym: 'brave'?", opts: ["Cowardly", "Bold", "Fearless", "Heroic"], ans: 0, exp: "Cowardly = afraid", diff: "M5" },
-                { q: "Antonym: 'simple'?", opts: ["Complex", "Easy", "Basic", "Plain"], ans: 0, exp: "Complex ≠ simple", diff: "A4" },
-                { q: "Antonym: 'victory'?", opts: ["Defeat", "Win", "Success", "Triumph"], ans: 0, exp: "Defeat = loss", diff: "M5" },
-                { q: "Antonym: 'remember'?", opts: ["Forget", "Recall", "Memorize", "Think"], ans: 0, exp: "Forget ≠ remember", diff: "A4" },
-                { q: "Antonym: 'increase'?", opts: ["Decrease", "Grow", "Rise", "Expand"], ans: 0, exp: "Decrease = reduce", diff: "A4" },
-                { q: "Antonym: 'arrive'?", opts: ["Depart", "Come", "Reach", "Enter"], ans: 0, exp: "Depart = leave", diff: "A4" }
-=======
                 { type: "mcq", q: "Synonym: 'happy'?", opts: ["Joyful", "Sad", "Angry", "Tired"], ans: 0, exp: "Joyful = happy", diff: "A3" },
                 { type: "mcq", q: "Synonym: 'big'?", opts: ["Large", "Small", "Tiny", "Short"], ans: 0, exp: "Large = big", diff: "A3" },
                 { type: "fill", q: "Find the synonym for 'fast': q___k", ans: "quick", exp: "Quick = fast", diff: "A4" },
@@ -586,7 +455,6 @@ const questions = {
                 { type: "fill", q: "Antonym of 'remember': f_rg_t", ans: "forget", exp: "Forget ≠ remember", diff: "A4" },
                 { type: "mcq", q: "Antonym: 'increase'?", opts: ["Decrease", "Grow", "Rise", "Expand"], ans: 0, exp: "Decrease = reduce", diff: "A4" },
                 { type: "mcq", q: "Antonym: 'arrive'?", opts: ["Depart", "Come", "Reach", "Enter"], ans: 0, exp: "Depart = leave", diff: "A4" }
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
             ],
             "Prefixes": [
                 { q: "Prefix 'un-' means?", opts: ["Not", "Very", "Before", "After"], ans: 0, exp: "un- = not", diff: "A3" },
@@ -714,23 +582,6 @@ const questions = {
         name: "Science", icon: "🔬", from: "#22c55e", to: "#14b8a6", target: "M6-E7",
         topics: {
             "Atoms-Elements": [
-<<<<<<< HEAD
-                { q: "What is an atom?", opts: ["Smallest particle of element", "Molecule", "Reaction", "Mixture"], ans: 0, exp: "Building block", diff: "A4" },
-                { q: "Protons are?", opts: ["Positive", "Negative", "Neutral", "None"], ans: 0, exp: "Protons = +", diff: "A4" },
-                { q: "Electrons are?", opts: ["Negative", "Positive", "Neutral", "None"], ans: 0, exp: "Electrons = -", diff: "A4" },
-                { q: "Neutrons are?", opts: ["Neutral", "Positive", "Negative", "Both"], ans: 0, exp: "No charge", diff: "M5" },
-                { q: "Protons located in?", opts: ["Nucleus", "Orbiting", "Outside", "Everywhere"], ans: 0, exp: "Center of atom", diff: "M5" },
-                { q: "Atomic number = ?", opts: ["Protons", "Neutrons", "Electrons + neutrons", "Mass"], ans: 0, exp: "Proton count", diff: "M6" },
-                { q: "Mass number = ?", opts: ["Protons + neutrons", "Protons only", "Electrons", "Charge"], ans: 0, exp: "P + N", diff: "M6" },
-                { q: "Isotopes have same?", opts: ["Protons, different neutrons", "Electrons", "Mass", "Everything"], ans: 0, exp: "Same element, diff mass", diff: "E7" },
-                { q: "Carbon-12 has how many neutrons?", opts: ["6", "12", "4", "8"], ans: 0, exp: "12-6=6 neutrons", diff: "E7" },
-                { q: "Electron configuration Na (11)?", opts: ["2,8,1", "2,9", "8,3", "11"], ans: 0, exp: "2 then 8 then 1", diff: "E7" },
-                { q: "Metals on periodic table?", opts: ["Left side", "Right side", "Top only", "Bottom only"], ans: 0, exp: "Metals left", diff: "M5" },
-                { q: "Noble gases are?", opts: ["Unreactive", "Very reactive", "Metals", "Liquids"], ans: 0, exp: "Full outer shell", diff: "M6" },
-                { q: "Symbol for sodium?", opts: ["Na", "So", "Sd", "S"], ans: 0, exp: "From Latin Natrium", diff: "M5" },
-                { q: "Group 1 elements are?", opts: ["Alkali metals", "Halogens", "Noble gases", "Alkaline"], ans: 0, exp: "Li, Na, K...", diff: "M6" },
-                { q: "Chlorine-37 has ___ neutrons?", opts: ["20", "17", "37", "54"], ans: 0, exp: "37-17=20", diff: "E7" }
-=======
                 { type: "mcq", q: "What is an atom?", opts: ["Smallest particle of element", "Molecule", "Reaction", "Mixture"], ans: 0, exp: "Building block", diff: "A4" },
                 { type: "tf", q: "Protons have a positive charge", ans: true, exp: "Protons = +", diff: "A4" },
                 { type: "tf", q: "Electrons have a positive charge", ans: false, exp: "Electrons = negative", diff: "A4" },
@@ -746,7 +597,6 @@ const questions = {
                 { type: "match", q: "Match particle to charge:", left: ["Proton", "Electron", "Neutron"], right: ["Negative", "Neutral", "Positive"], ans: [[0,2], [1,0], [2,1]], exp: "P=+, E=-, N=0", diff: "M5" },
                 { type: "mcq", q: "Group 1 elements are?", opts: ["Alkali metals", "Halogens", "Noble gases", "Alkaline"], ans: 0, exp: "Li, Na, K...", diff: "M6" },
                 { type: "fill", q: "Chlorine-37 has ___ neutrons", ans: "20", exp: "37-17=20", diff: "E7" }
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
             ],
             "Chemical-Formulas": [
                 { q: "Water symbol?", opts: ["H₂O", "CO₂", "NaCl", "O₂"], ans: 0, exp: "2H + 1O", diff: "A4" },
@@ -764,50 +614,6 @@ const questions = {
                 { q: "O₂ is called?", opts: ["Oxygen molecule", "Ozone", "Oxide", "Oxygen atom"], ans: 0, exp: "Diatomic", diff: "M5" }
             ],
             "Chemical-Reactions": [
-<<<<<<< HEAD
-                { q: "NOT sign of chemical reaction?", opts: ["Shape change", "Color change", "Gas production", "Heat change"], ans: 0, exp: "Shape = physical", diff: "M5" },
-                { q: "Reactants are?", opts: ["Starting substances", "End products", "Catalysts", "Solvents"], ans: 0, exp: "Before reaction", diff: "M5" },
-                { q: "Products are?", opts: ["End substances", "Starting", "Catalysts", "Solvents"], ans: 0, exp: "After reaction", diff: "M5" },
-                { q: "Catalyst does?", opts: ["Speeds up, not used", "Slows", "Stops", "Nothing"], ans: 0, exp: "Faster, unchanged", diff: "M6" },
-                { q: "Burning is?", opts: ["Combustion", "Photosynthesis", "Freezing", "Melting"], ans: 0, exp: "Reaction with oxygen", diff: "M5" },
-                { q: "Rust is?", opts: ["Oxidation", "Combustion", "Neutralization", "Decomposition"], ans: 0, exp: "Iron + oxygen + water", diff: "M6" },
-                { q: "Acid + base = ?", opts: ["Salt + water", "Gas", "Metal", "Oil"], ans: 0, exp: "Neutralization", diff: "M6" },
-                { q: "Balanced equation has?", opts: ["Equal atoms each side", "More products", "More reactants", "Different elements"], ans: 0, exp: "Conservation of mass", diff: "E7" },
-                { q: "Endothermic reaction?", opts: ["Absorbs heat", "Releases heat", "No heat change", "Creates light"], ans: 0, exp: "Takes in energy", diff: "E7" },
-                { q: "Exothermic example?", opts: ["Combustion", "Photosynthesis", "Melting ice", "Evaporation"], ans: 0, exp: "Releases heat", diff: "E7" },
-                { q: "HCl + NaOH → ?", opts: ["NaCl + H₂O", "Na + Cl₂", "H₂ + O₂", "NaCl only"], ans: 0, exp: "Salt + water", diff: "E7" },
-                { q: "Decomposition reaction?", opts: ["One → many", "Many → one", "Exchange", "No change"], ans: 0, exp: "Breaks apart", diff: "M6" },
-                { q: "Synthesis reaction?", opts: ["Many → one", "One → many", "Exchange", "No change"], ans: 0, exp: "Combines", diff: "M6" }
-            ],
-            "States-Matter": [
-                { q: "Three states?", opts: ["Solid, liquid, gas", "Hot, warm, cold", "Big, medium, small", "Hard, soft, flexible"], ans: 0, exp: "Basic states", diff: "A4" },
-                { q: "Solid → liquid?", opts: ["Melting", "Freezing", "Evaporation", "Condensation"], ans: 0, exp: "Melting", diff: "A4" },
-                { q: "Liquid → gas?", opts: ["Evaporation", "Condensation", "Melting", "Freezing"], ans: 0, exp: "Evaporation", diff: "M5" },
-                { q: "Gas → liquid?", opts: ["Condensation", "Evaporation", "Melting", "Sublimation"], ans: 0, exp: "Condensation", diff: "M5" },
-                { q: "Solid → gas directly?", opts: ["Sublimation", "Evaporation", "Melting", "Condensation"], ans: 0, exp: "Sublimation", diff: "M6" },
-                { q: "Particles in solid are?", opts: ["Close, vibrating", "Far, fast", "Random", "Free flowing"], ans: 0, exp: "Fixed positions", diff: "M6" },
-                { q: "Particles in gas are?", opts: ["Far apart, fast", "Close packed", "Fixed", "Vibrating only"], ans: 0, exp: "Most energy", diff: "M6" },
-                { q: "Boiling vs evaporation?", opts: ["Boiling is throughout liquid", "Same thing", "Boiling is slower", "Evaporation needs more heat"], ans: 0, exp: "Boiling = all liquid, evaporation = surface", diff: "E7" },
-                { q: "Diffusion is faster in?", opts: ["Gases", "Liquids", "Solids", "Same all"], ans: 0, exp: "Particles move more freely", diff: "E7" },
-                { q: "Gas → solid directly?", opts: ["Deposition", "Sublimation", "Freezing", "Condensation"], ans: 0, exp: "Reverse of sublimation", diff: "E7" },
-                { q: "Which has definite shape?", opts: ["Solid", "Liquid", "Gas", "All"], ans: 0, exp: "Fixed arrangement", diff: "M5" },
-                { q: "Plasma is?", opts: ["4th state, ionized gas", "Dense liquid", "Super solid", "Cold gas"], ans: 0, exp: "Stars, lightning", diff: "E8" }
-            ],
-            "Cells": [
-                { q: "Cell powerhouse?", opts: ["Mitochondria", "Nucleus", "Membrane", "Ribosome"], ans: 0, exp: "Makes ATP", diff: "M5" },
-                { q: "Nucleus function?", opts: ["Controls cell, DNA", "Energy", "Proteins", "Water"], ans: 0, exp: "Control center", diff: "M5" },
-                { q: "Cell membrane function?", opts: ["Controls entry/exit", "Makes energy", "Stores DNA", "Makes proteins"], ans: 0, exp: "Selective barrier", diff: "M6" },
-                { q: "Plant cells have, animal don't?", opts: ["Cell wall", "Nucleus", "Mitochondria", "Cytoplasm"], ans: 0, exp: "Cell wall", diff: "M5" },
-                { q: "Chlorophyll in?", opts: ["Chloroplast", "Mitochondria", "Nucleus", "Ribosome"], ans: 0, exp: "Green pigment", diff: "M6" },
-                { q: "Ribosomes make?", opts: ["Proteins", "Energy", "DNA", "Fats"], ans: 0, exp: "Protein synthesis", diff: "M6" },
-                { q: "Vacuole stores?", opts: ["Water and nutrients", "DNA", "Energy", "Proteins"], ans: 0, exp: "Storage", diff: "M5" },
-                { q: "Cytoplasm is?", opts: ["Jelly-like substance", "Hard shell", "Nucleus", "DNA"], ans: 0, exp: "Fills cell", diff: "M5" },
-                { q: "DNA found in?", opts: ["Nucleus", "Mitochondria only", "Cell wall", "Vacuole"], ans: 0, exp: "Genetic material", diff: "M6" },
-                { q: "Prokaryotes lack?", opts: ["Nucleus", "Cell membrane", "Ribosomes", "DNA"], ans: 0, exp: "No membrane-bound nucleus", diff: "E7" },
-                { q: "Eukaryotes have?", opts: ["Membrane-bound organelles", "No nucleus", "No DNA", "No ribosomes"], ans: 0, exp: "Complex cells", diff: "E7" },
-                { q: "Cell division for growth?", opts: ["Mitosis", "Meiosis", "Osmosis", "Diffusion"], ans: 0, exp: "Same copies", diff: "E7" },
-                { q: "Osmosis moves?", opts: ["Water", "Proteins", "DNA", "Energy"], ans: 0, exp: "Water diffusion", diff: "M6" }
-=======
                 { type: "mcq", q: "NOT sign of chemical reaction?", opts: ["Shape change", "Color change", "Gas production", "Heat change"], ans: 0, exp: "Shape = physical", diff: "M5" },
                 { type: "tf", q: "Reactants are the starting substances in a reaction", ans: true, exp: "Before reaction", diff: "M5" },
                 { type: "tf", q: "Products are formed at the end of a chemical reaction", ans: true, exp: "After reaction", diff: "M5" },
@@ -850,7 +656,6 @@ const questions = {
                 { type: "tf", q: "Eukaryotes have membrane-bound organelles", ans: true, exp: "Complex cells", diff: "E7" },
                 { type: "mcq", q: "Cell division for growth?", opts: ["Mitosis", "Meiosis", "Osmosis", "Diffusion"], ans: 0, exp: "Same copies", diff: "E7" },
                 { type: "fill", q: "Osmosis moves ___ across membranes", ans: "water", exp: "Water diffusion", diff: "M6" }
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
             ],
             "Photosynthesis": [
                 { q: "Plants make food by?", opts: ["Photosynthesis", "Respiration", "Digestion", "Fermentation"], ans: 0, exp: "Light+CO₂+H₂O", diff: "M5" },
@@ -942,21 +747,6 @@ const questions = {
         name: "Social Science", icon: "🌏", from: "#f97316", to: "#ef4444", target: "M5-M6",
         topics: {
             "Treaty": [
-<<<<<<< HEAD
-                { q: "Treaty signed?", opts: ["1840", "1800", "1900", "1776"], ans: 0, exp: "6 Feb 1840", diff: "A4" },
-                { q: "Waitangi Day?", opts: ["6 February", "25 December", "1 January", "26 January"], ans: 0, exp: "Treaty anniversary", diff: "A4" },
-                { q: "Treaty principles?", opts: ["Partnership, Protection, Participation", "Peace, Power, Prosperity", "Land, Law, Liberty", "King, Crown, Country"], ans: 0, exp: "The 3 P's", diff: "M5" },
-                { q: "Who signed for British?", opts: ["Captain Hobson", "Captain Cook", "Queen Victoria", "King George"], ans: 0, exp: "William Hobson", diff: "M5" },
-                { q: "Treaty written in?", opts: ["English and Māori", "English only", "Māori only", "French"], ans: 0, exp: "Both languages", diff: "M5" },
-                { q: "Article 1 about?", opts: ["Sovereignty/governance", "Land rights", "Citizenship", "Fishing"], ans: 0, exp: "Who governs", diff: "M6" },
-                { q: "Article 2 about?", opts: ["Property/taonga", "Sovereignty", "Citizenship", "Laws"], ans: 0, exp: "Māori keep taonga", diff: "M6" },
-                { q: "Article 3 about?", opts: ["Equal rights", "Land only", "Chiefs only", "Trade"], ans: 0, exp: "Citizenship", diff: "M6" },
-                { q: "Kawanatanga vs Rangatiratanga?", opts: ["Governance vs Chieftainship", "Same meaning", "Both mean land", "Both mean power"], ans: 0, exp: "Key translation difference", diff: "M6" },
-                { q: "Waitangi Tribunal?", opts: ["Investigates Treaty breaches", "Makes laws", "Signs treaties", "Elects PM"], ans: 0, exp: "Since 1975", diff: "M6" },
-                { q: "Where was Treaty signed?", opts: ["Waitangi", "Wellington", "Auckland", "Rotorua"], ans: 0, exp: "Bay of Islands", diff: "M5" },
-                { q: "How many chiefs signed first day?", opts: ["About 40", "About 500", "Just 1", "None"], ans: 0, exp: "~40 chiefs", diff: "M6" },
-                { q: "Taonga means?", opts: ["Treasures/valued things", "Land only", "Money", "Food"], ans: 0, exp: "Prized possessions", diff: "M5" }
-=======
                 { type: "fill", q: "The Treaty of Waitangi was signed in ___", ans: "1840", exp: "6 Feb 1840", diff: "A4" },
                 { type: "mcq", q: "Waitangi Day?", opts: ["6 February", "25 December", "1 January", "26 January"], ans: 0, exp: "Treaty anniversary", diff: "A4" },
                 { type: "multi", q: "Select ALL Treaty principles:", opts: ["Partnership", "Punishment", "Protection", "Participation", "Profit"], ans: [0, 2, 3], exp: "The 3 P's: Partnership, Protection, Participation", diff: "M5" },
@@ -970,7 +760,6 @@ const questions = {
                 { type: "fill", q: "The Treaty was signed at ___", ans: "waitangi", exp: "Bay of Islands", diff: "M5" },
                 { type: "mcq", q: "How many chiefs signed first day?", opts: ["About 40", "About 500", "Just 1", "None"], ans: 0, exp: "~40 chiefs", diff: "M6" },
                 { type: "tf", q: "Taonga means treasures or valued things", ans: true, exp: "Prized possessions", diff: "M5" }
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
             ],
             "NZ-History": [
                 { q: "First NZ settlers?", opts: ["Māori", "British", "Dutch", "Australian"], ans: 0, exp: "Polynesian ~1300AD", diff: "A4" },
@@ -1039,8 +828,6 @@ const questions = {
 const diffColors = { A3: "#ef4444", A4: "#f97316", M5: "#eab308", M6: "#22c55e", E7: "#3b82f6", E8: "#8b5cf6" };
 const diffLabels = { A3: "Achieved 3", A4: "Achieved 4", M5: "Merit 5", M6: "Merit 6", E7: "Excellence 7", E8: "Excellence 8" };
 
-<<<<<<< HEAD
-=======
 // ============ QUESTION TYPES ============
 const qTypes = {
     mcq: { name: "Multiple Choice", icon: "🔘", color: "#3b82f6", desc: "Select one correct answer" },
@@ -1051,26 +838,12 @@ const qTypes = {
     short: { name: "Short Answer", icon: "📝", color: "#14b8a6", desc: "Write a brief answer" }
 };
 
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
 // ============ GRADES ============
 const grades = { N0: { min: 0, max: 9, label: "Not Achieved", color: "#ef4444", emoji: "😔" }, N1: { min: 10, max: 19, label: "Not Achieved", color: "#ef4444", emoji: "😕" }, N2: { min: 20, max: 39, label: "Not Achieved", color: "#f97316", emoji: "🤔" }, A3: { min: 40, max: 49, label: "Achieved", color: "#eab308", emoji: "😊" }, A4: { min: 50, max: 59, label: "Achieved", color: "#84cc16", emoji: "🙂" }, M5: { min: 60, max: 69, label: "Merit", color: "#22c55e", emoji: "😄" }, M6: { min: 70, max: 79, label: "Merit", color: "#14b8a6", emoji: "😃" }, E7: { min: 80, max: 89, label: "Excellence", color: "#3b82f6", emoji: "🌟" }, E8: { min: 90, max: 100, label: "Excellence", color: "#8b5cf6", emoji: "🏆" } };
 function getGrade(p) { for (const [g, d] of Object.entries(grades)) if (p >= d.min && p <= d.max) return { grade: g, ...d }; return { grade: "N0", ...grades.N0 }; }
 
 // ============ STATS FUNCTIONS ============
 function getQuestionStats() {
-<<<<<<< HEAD
-    const stats = { total: 0, bySubject: {}, byDiff: { A3: 0, A4: 0, M5: 0, M6: 0, E7: 0, E8: 0 }, byTopic: {} };
-    Object.entries(questions).forEach(([subKey, sub]) => {
-        stats.bySubject[subKey] = { total: 0, topics: {}, diff: { A3: 0, A4: 0, M5: 0, M6: 0, E7: 0, E8: 0 } };
-        Object.entries(sub.topics).forEach(([topic, qs]) => {
-            stats.bySubject[subKey].topics[topic] = { total: qs.length, diff: {} };
-            qs.forEach(q => {
-                stats.total++;
-                stats.bySubject[subKey].total++;
-                stats.byDiff[q.diff] = (stats.byDiff[q.diff] || 0) + 1;
-                stats.bySubject[subKey].diff[q.diff] = (stats.bySubject[subKey].diff[q.diff] || 0) + 1;
-                stats.bySubject[subKey].topics[topic].diff[q.diff] = (stats.bySubject[subKey].topics[topic].diff[q.diff] || 0) + 1;
-=======
     const stats = { 
         total: 0, 
         bySubject: {}, 
@@ -1092,7 +865,6 @@ function getQuestionStats() {
                 stats.bySubject[subKey].type[qType] = (stats.bySubject[subKey].type[qType] || 0) + 1;
                 stats.bySubject[subKey].topics[topic].diff[q.diff] = (stats.bySubject[subKey].topics[topic].diff[q.diff] || 0) + 1;
                 stats.bySubject[subKey].topics[topic].type[qType] = (stats.bySubject[subKey].topics[topic].type[qType] || 0) + 1;
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
             });
         });
     });
@@ -1132,13 +904,6 @@ function dashboardHTML(stats) { const t = getTodayStr(), tp = getDayPlan(t), pr 
 
 function qbankHTML(stats) {
     const diffOrder = ['A3', 'A4', 'M5', 'M6', 'E7', 'E8'];
-<<<<<<< HEAD
-    return `<div class="glass"><h2 class="text-xl font-bold mb-4">📊 Question Bank Statistics</h2><div class="grid grid-2 gap-4 mb-4"><div class="stat-card"><div class="stat-num text-purple">${stats.total}</div><div class="stat-label">Total Questions</div></div><div class="stat-card"><div class="stat-num text-green">${Object.keys(questions).length}</div><div class="stat-label">Subjects</div></div></div></div>
-    <div class="glass"><h3 class="text-lg font-bold mb-4">📈 Difficulty Distribution (All)</h3><div class="diff-bar">${diffOrder.map(d => { const pct = (stats.byDiff[d] / stats.total * 100).toFixed(0); return pct > 0 ? `<div style="width:${pct}%;background:${diffColors[d]}">${d}</div>` : ''; }).join('')}</div><div class="grid grid-3 gap-2 mt-4">${diffOrder.map(d => `<div class="text-center"><span class="badge-tag" style="background:${diffColors[d]}">${d}</span><div class="font-bold mt-2">${stats.byDiff[d]}</div><div class="text-xs text-gray">${(stats.byDiff[d]/stats.total*100).toFixed(0)}%</div></div>`).join('')}</div></div>
-    ${Object.entries(questions).map(([k, v]) => {
-        const ss = stats.bySubject[k];
-        return `<div class="glass"><div class="flex items-center gap-3 mb-4"><span class="text-3xl">${v.icon}</span><div><h3 class="text-lg font-bold">${v.name}</h3><p class="text-sm text-gray">${ss.total} questions · Target: <span class="badge-tag badge-purple">${v.target}</span></p></div></div><h4 class="font-bold mb-2">Difficulty</h4><div class="diff-bar">${diffOrder.map(d => { const pct = ss.diff[d] ? (ss.diff[d] / ss.total * 100).toFixed(0) : 0; return pct > 0 ? `<div style="width:${pct}%;background:${diffColors[d]}">${ss.diff[d]}</div>` : ''; }).join('')}</div><h4 class="font-bold mt-4 mb-2">By Topic</h4>${Object.entries(ss.topics).map(([topic, td]) => `<div class="stats-row"><span>${topic}</span><span>${td.total} Qs</span></div>`).join('')}</div>`;
-=======
     const typeOrder = ['mcq', 'fill', 'tf', 'multi', 'match', 'short'];
     return `<div class="glass"><h2 class="text-xl font-bold mb-4">📊 Question Bank Statistics</h2><div class="grid grid-2 gap-4 mb-4"><div class="stat-card"><div class="stat-num text-purple">${stats.total}</div><div class="stat-label">Total Questions</div></div><div class="stat-card"><div class="stat-num text-green">${Object.keys(questions).length}</div><div class="stat-label">Subjects</div></div></div></div>
     <div class="glass"><h3 class="text-lg font-bold mb-4">📈 Difficulty Distribution</h3><div class="diff-bar">${diffOrder.map(d => { const pct = (stats.byDiff[d] / stats.total * 100).toFixed(0); return pct > 0 ? `<div style="width:${pct}%;background:${diffColors[d]}">${d}</div>` : ''; }).join('')}</div><div class="grid grid-3 gap-2 mt-4">${diffOrder.map(d => `<div class="text-center"><span class="badge-tag" style="background:${diffColors[d]}">${d}</span><div class="font-bold mt-2">${stats.byDiff[d]}</div><div class="text-xs text-gray">${(stats.byDiff[d]/stats.total*100).toFixed(0)}%</div></div>`).join('')}</div></div>
@@ -1146,7 +911,6 @@ function qbankHTML(stats) {
     ${Object.entries(questions).map(([k, v]) => {
         const ss = stats.bySubject[k];
         return `<div class="glass"><div class="flex items-center gap-3 mb-4"><span class="text-3xl">${v.icon}</span><div><h3 class="text-lg font-bold">${v.name}</h3><p class="text-sm text-gray">${ss.total} questions · Target: <span class="badge-tag badge-purple">${v.target}</span></p></div></div><h4 class="font-bold mb-2">Difficulty</h4><div class="diff-bar">${diffOrder.map(d => { const pct = ss.diff[d] ? (ss.diff[d] / ss.total * 100).toFixed(0) : 0; return pct > 0 ? `<div style="width:${pct}%;background:${diffColors[d]}">${ss.diff[d]}</div>` : ''; }).join('')}</div><h4 class="font-bold mt-4 mb-2">Question Types</h4><div class="diff-bar">${typeOrder.map(t => { const pct = ss.type[t] ? (ss.type[t] / ss.total * 100).toFixed(0) : 0; return pct > 0 ? `<div style="width:${pct}%;background:${qTypes[t].color}">${ss.type[t]}</div>` : ''; }).join('')}</div><h4 class="font-bold mt-4 mb-2">By Topic</h4>${Object.entries(ss.topics).map(([topic, td]) => `<div class="stats-row"><span>${topic}</span><span>${td.total} Qs</span></div>`).join('')}</div>`;
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
     }).join('')}`;
 }
 
@@ -1161,9 +925,6 @@ function badgesHTML() { return `<div class="glass"><div class="flex justify-betw
 function subjectsHTML(stats) { return `<div class="glass"><h2 class="text-xl font-bold mb-4">📚 All Subjects</h2><p class="text-gray text-sm mb-4">Total: ${stats.total} questions</p>${Object.entries(questions).map(([k, v]) => `<div class="subject-card mb-4" style="--from:${v.from};--to:${v.to};cursor:default"><div class="flex items-center gap-4 mb-2"><span class="text-4xl">${v.icon}</span><div><div class="font-bold">${v.name}</div><div class="text-sm" style="opacity:0.7">${state.subjects[k]}/${stats.bySubject[k].total} done · Target: ${v.target}</div></div></div>${Object.entries(v.topics).map(([topic, qs]) => `<button class="topic-btn" onclick="startExam('${k}','${topic}')">${topic}<span class="text-gray">${qs.length} →</span></button>`).join('')}</div>`).join('')}</div>`; }
 function statsHTML() { return `<div class="glass"><h2 class="text-xl font-bold mb-4">📈 All Stats</h2><div class="stats-row"><span>XP</span><span class="text-yellow font-bold">⚡ ${state.xp}</span></div><div class="stats-row"><span>Exams</span><span class="text-green font-bold">✅ ${state.exams}</span></div><div class="stats-row"><span>Streak</span><span style="color:#f97316" class="font-bold">🔥 ${state.streak}</span></div><div class="stats-row"><span>Perfect 100%</span><span class="text-purple font-bold">💯 ${state.perfect}</span></div><div class="stats-row"><span>Excellence</span><span style="color:#8b5cf6" class="font-bold">🏆 ${state.excellence}</span></div><h3 class="text-lg font-bold mt-4 mb-2">By Subject</h3>${Object.entries(questions).map(([k, v]) => `<div class="stats-row"><span>${v.icon} ${v.name}</span><span>${state.subjects[k]}</span></div>`).join('')}</div>${state.history.length > 0 ? `<div class="glass"><h2 class="text-xl font-bold mb-4">📜 Recent</h2>${state.history.slice(0, 8).map(h => `<div class="stats-row"><span>${questions[h.subject].icon} ${h.topic.substring(0,15)}${h.topic.length>15?'...':''}</span><span class="badge-tag" style="background:${getGrade(h.score).color}">${h.grade}</span></div>`).join('')}</div>` : ''}`; }
 function startExam(sub, topic) { const qs = questions[sub].topics[topic], shuffled = [...qs].sort(() => Math.random() - 0.5).slice(0, Math.min(10, qs.length)); currentExam = { subject: sub, topic, questions: shuffled, startTime: Date.now(), forDate: getTodayStr() }; examState = { q: 0, answers: new Array(shuffled.length).fill(null) }; render(); }
-<<<<<<< HEAD
-function examHTML() { const q = currentExam.questions[examState.q], pct = ((examState.q + 1) / currentExam.questions.length) * 100, sub = questions[currentExam.subject], isLast = examState.q === currentExam.questions.length - 1, allAnswered = examState.answers.every(a => a !== null); return `<div class="glass"><div class="flex justify-between items-center mb-4"><div class="flex items-center gap-2"><span class="text-2xl">${sub.icon}</span><span class="font-bold">${currentExam.topic}</span></div><span class="badge-tag badge-blue">Q${examState.q + 1}/${currentExam.questions.length}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div><div class="q-dots">${currentExam.questions.map((_, i) => { let cls = 'q-dot'; if (i === examState.q) cls += ' current'; if (examState.answers[i] !== null) cls += ' answered'; return `<div class="${cls}" onclick="goToQuestion(${i})">${i+1}</div>`; }).join('')}</div></div><div class="glass"><div class="flex gap-2 mb-4"><span class="badge-tag" style="background:${diffColors[q.diff]}">${q.diff}</span></div><h2 class="text-xl font-bold" style="margin-bottom:25px">${q.q}</h2>${q.opts.map((opt, i) => { let cls = 'option-btn'; if (examState.answers[examState.q] === i) cls += ' selected'; return `<button class="${cls}" onclick="selectAnswer(${i})">${String.fromCharCode(65+i)}. ${opt}</button>`; }).join('')}<div class="q-nav"><button class="btn btn-secondary btn-small" onclick="prevQuestion()" ${examState.q === 0 ? 'disabled' : ''}>← Prev</button>${isLast ? `<button class="btn btn-green btn-small" onclick="finishExam()" ${!allAnswered ? 'disabled' : ''}>✓ Submit</button>` : `<button class="btn btn-blue btn-small" onclick="nextQuestion()">Next →</button>`}</div></div><button onclick="exitExam()" class="text-gray mt-2" style="background:none;border:none;cursor:pointer">← Exit</button>`; }
-=======
 
 function examHTML() { 
     const q = currentExam.questions[examState.q], pct = ((examState.q + 1) / currentExam.questions.length) * 100, sub = questions[currentExam.subject], isLast = examState.q === currentExam.questions.length - 1;
@@ -1302,17 +1063,10 @@ function toggleMultiAnswer(i) {
     examState.answers[examState.q] = current.length > 0 ? current : null;
     render();
 }
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
 function selectAnswer(i) { examState.answers[examState.q] = i; render(); }
 function prevQuestion() { if (examState.q > 0) { examState.q--; render(); } }
 function nextQuestion() { if (examState.q < currentExam.questions.length - 1) { examState.q++; render(); } }
 function goToQuestion(i) { examState.q = i; render(); }
-<<<<<<< HEAD
-function finishExam() { let correct = 0; currentExam.questions.forEach((q, i) => { if (examState.answers[i] === q.ans) correct++; }); const score = Math.round((correct / currentExam.questions.length) * 100), gi = getGrade(score), tt = Math.floor((Date.now() - currentExam.startTime) / 1000), fast = tt < 120, xp = Math.round(score * 2 + (fast ? 50 : 0)); state.xp += xp; state.exams++; state.subjects[currentExam.subject]++; if (score === 100) state.perfect++; if (score >= 80) state.excellence++; if (fast) state.fastExams = (state.fastExams || 0) + 1; updateStreak(); updateDailyProgress(); state.history.unshift({ subject: currentExam.subject, topic: currentExam.topic, score, grade: gi.grade, xp, date: new Date().toISOString() }); state.history = state.history.slice(0, 20); const earned = checkBadges(); save(); showReview = true; render(); }
-
-function reviewHTML() { 
-    const correct = currentExam.questions.filter((q, i) => examState.answers[i] === q.ans).length;
-=======
 function finishExam() { 
     let correct = 0; 
     currentExam.questions.forEach((q, i) => { 
@@ -1372,15 +1126,10 @@ function checkAnswer(q, userAns) {
 
 function reviewHTML() { 
     const correct = currentExam.questions.filter((q, i) => checkAnswer(q, examState.answers[i])).length;
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
     const score = Math.round((correct / currentExam.questions.length) * 100), gi = getGrade(score);
     const t = getTodayStr(), tp = getDayPlan(t), pr = getDayProgress(t);
     return `<div class="glass text-center"><div class="text-6xl mb-4">${gi.emoji}</div><h1 class="text-3xl font-bold mb-4">Complete!</h1><div class="flex justify-center gap-4 mb-4 flex-wrap"><div><div class="text-3xl font-bold" style="color:${gi.color}">${score}%</div><div class="text-gray text-sm">Score</div></div><div><div class="text-3xl font-bold" style="color:${gi.color}">${gi.grade}</div><div class="text-gray text-sm">${gi.label}</div></div><div><div class="text-3xl font-bold text-yellow">+${Math.round(score * 2)}</div><div class="text-gray text-sm">XP</div></div></div>${tp && !tp.isRest ? `<div class="mb-4"><p class="text-sm text-gray mb-2">Today: ${pr.exams}/${tp.goal}</p><div class="progress-bar"><div class="progress-fill ${pr.completed ? 'green' : ''}" style="width:${Math.min(100, (pr.exams / tp.goal) * 100)}%"></div></div></div>` : ''}${newBadges.length > 0 ? `<div class="alert alert-success mb-4"><h3 class="font-bold mb-2">🎉 New Badge!</h3><div class="flex justify-center gap-3">${newBadges.map(id => `<span style="font-size:40px">${badgesDef[id].icon}</span>`).join('')}</div></div>` : ''}</div>
     <div class="glass"><h3 class="text-lg font-bold mb-4">📝 Review - All Questions</h3>${currentExam.questions.map((q, i) => { 
-<<<<<<< HEAD
-        const isC = examState.answers[i] === q.ans, userAns = examState.answers[i], correctAns = q.ans;
-        return `<div class="review-item ${isC ? 'correct' : 'wrong'}"><div class="flex justify-between items-start mb-2"><span class="badge-tag" style="background:${diffColors[q.diff]}">${q.diff}</span><span class="${isC ? 'text-green' : 'text-red'} font-bold">${isC ? '✓ Correct' : '✗ Wrong'}</span></div><div class="review-q">Q${i+1}: ${q.q}</div><div class="review-answer"><p><span class="text-gray">Your answer:</span> <span class="${isC ? 'text-green' : 'text-red'}">${q.opts[userAns]}</span></p>${!isC ? `<p><span class="text-gray">Correct:</span> <span class="text-green">${q.opts[correctAns]}</span></p>` : ''}<p class="text-purple text-sm mt-2">💡 ${q.exp}</p></div></div>`;
-=======
         const isC = checkAnswer(q, examState.answers[i]);
         const userAns = examState.answers[i];
         const qType = q.type || 'mcq';
@@ -1396,13 +1145,10 @@ function reviewHTML() {
             <div class="review-q">Q${i+1}: ${q.q}</div>
             <div class="review-answer">${renderReviewAnswer(q, userAns, qType, isC)}<p class="text-purple text-sm mt-2">💡 ${q.exp}</p></div>
         </div>`;
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
     }).join('')}</div>
     <button class="btn" onclick="backToMain()">Continue 🚀</button>`;
 }
 
-<<<<<<< HEAD
-=======
 function renderReviewAnswer(q, userAns, qType, isCorrect) {
     switch(qType) {
         case 'mcq':
@@ -1434,7 +1180,6 @@ function renderReviewAnswer(q, userAns, qType, isCorrect) {
     }
 }
 
->>>>>>> 9592d90 (🚀 v8: 多题型支持 - 6种题型 + Q-Bank统计)
 function backToMain() { currentExam = null; newBadges = []; showReview = false; view = 'dashboard'; render(); }
 function exitExam() { currentExam = null; showReview = false; view = 'dashboard'; render(); }
 
