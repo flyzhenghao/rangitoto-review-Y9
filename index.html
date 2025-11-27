@@ -211,7 +211,10 @@ const questions = {
                 { q: "(-5)³ = ?", opts: ["-125", "125", "-15", "15"], ans: 0, exp: "(-5)×(-5)×(-5) = -125", diff: "E7" },
                 { q: "If a = -3 and b = 4, find a² - b", opts: ["5", "-5", "13", "-7"], ans: 0, exp: "9 - 4 = 5", diff: "E7" },
                 { q: "Solve: -3x = 24", opts: ["-8", "8", "-21", "21"], ans: 0, exp: "x = 24 ÷ (-3) = -8", diff: "M6" },
-                { q: "(-2)⁴ × (-1)³ = ?", opts: ["-16", "16", "-8", "8"], ans: 0, exp: "16 × (-1) = -16", diff: "E7" }
+                { q: "(-2)⁴ × (-1)³ = ?", opts: ["-16", "16", "-8", "8"], ans: 0, exp: "16 × (-1) = -16", diff: "E7" },
+                { q: "Order: -5, 3, -8, 2, -1 from smallest", opts: ["-8,-5,-1,2,3", "-1,-5,-8,2,3", "3,2,-1,-5,-8", "-8,-1,-5,2,3"], ans: 0, exp: "Most negative first", diff: "M5" },
+                { q: "(-4)² - (-3)² = ?", opts: ["7", "-7", "25", "1"], ans: 0, exp: "16 - 9 = 7", diff: "E7" },
+                { q: "If x = -2, find 3x² - 2x", opts: ["16", "8", "-16", "-8"], ans: 0, exp: "12 - (-4) = 16", diff: "E8" }
             ],
             "Fractions": [
                 { q: "Simplify: 12/18", opts: ["2/3", "3/4", "1/2", "4/6"], ans: 0, exp: "÷6 each = 2/3", diff: "A4" },
@@ -225,7 +228,10 @@ const questions = {
                 { q: "(2/3)² = ?", opts: ["4/9", "4/6", "2/9", "2/6"], ans: 0, exp: "4/9", diff: "E7" },
                 { q: "3/4 of 2/5 = ?", opts: ["3/10", "5/9", "6/20", "5/20"], ans: 0, exp: "6/20 = 3/10", diff: "M6" },
                 { q: "1⅓ × 2¼ = ?", opts: ["3", "2½", "3½", "2¾"], ans: 0, exp: "4/3 × 9/4 = 3", diff: "E8" },
-                { q: "If x/4 = 3/8, find x", opts: ["1.5", "2", "3", "6"], ans: 0, exp: "x = 12/8 = 1.5", diff: "E7" }
+                { q: "If x/4 = 3/8, find x", opts: ["1.5", "2", "3", "6"], ans: 0, exp: "x = 12/8 = 1.5", diff: "E7" },
+                { q: "3½ - 1¾ = ?", opts: ["1¾", "2¼", "1½", "2"], ans: 0, exp: "7/2 - 7/4 = 7/4", diff: "E7" },
+                { q: "2/3 ÷ 4/5 = ?", opts: ["5/6", "8/15", "6/5", "10/12"], ans: 0, exp: "2/3 × 5/4 = 10/12 = 5/6", diff: "E7" },
+                { q: "Solve: x/3 + x/4 = 7", opts: ["12", "7", "21", "84"], ans: 0, exp: "7x/12 = 7, x = 12", diff: "E8" }
             ],
             "Percentages": [
                 { q: "25% of 200 = ?", opts: ["50", "25", "75", "100"], ans: 0, exp: "0.25 × 200 = 50", diff: "A3" },
@@ -239,7 +245,10 @@ const questions = {
                 { q: "200% of 25 = ?", opts: ["50", "25", "100", "125"], ans: 0, exp: "2 × 25 = 50", diff: "M5" },
                 { q: "Decrease 80 by 35%", opts: ["52", "45", "28", "55"], ans: 0, exp: "80 × 0.65 = 52", diff: "M6" },
                 { q: "A is 20% more than B. If A=60, B=?", opts: ["50", "48", "72", "52"], ans: 0, exp: "60÷1.2 = 50", diff: "E7" },
-                { q: "Compound: $100, 10%/year, 2 years", opts: ["$121", "$120", "$110", "$122"], ans: 0, exp: "100×1.1×1.1 = 121", diff: "E8" }
+                { q: "Compound: $100, 10%/year, 2 years", opts: ["$121", "$120", "$110", "$122"], ans: 0, exp: "100×1.1×1.1 = 121", diff: "E8" },
+                { q: "What % is 18 of 72?", opts: ["25%", "18%", "72%", "4%"], ans: 0, exp: "18÷72 = 0.25", diff: "M6" },
+                { q: "Profit margin: cost $40, sell $50", opts: ["25%", "20%", "10%", "50%"], ans: 0, exp: "10÷40 = 25%", diff: "E7" },
+                { q: "Sale price $75 after 25% off. Original?", opts: ["$100", "$93.75", "$56.25", "$90"], ans: 0, exp: "75÷0.75 = 100", diff: "E8" }
             ],
             "Algebra": [
                 { q: "Simplify: 3x + 5x - 2x", opts: ["6x", "8x", "10x", "4x"], ans: 0, exp: "(3+5-2)x = 6x", diff: "A4" },
@@ -255,7 +264,11 @@ const questions = {
                 { q: "Solve: x² = 49", opts: ["±7", "7", "-7", "49"], ans: 0, exp: "x = +7 or -7", diff: "E7" },
                 { q: "Factorise: x² + 5x + 6", opts: ["(x+2)(x+3)", "(x+1)(x+6)", "(x+5)(x+1)", "(x+3)²"], ans: 0, exp: "2+3=5, 2×3=6", diff: "E8" },
                 { q: "Solve: 3(x-2) = 2(x+1)", opts: ["8", "4", "6", "10"], ans: 0, exp: "3x-6=2x+2, x=8", diff: "E8" },
-                { q: "Simplify: (2x²)(3x³)", opts: ["6x⁵", "5x⁵", "6x⁶", "5x⁶"], ans: 0, exp: "2×3=6, 2+3=5", diff: "E7" }
+                { q: "Simplify: (2x²)(3x³)", opts: ["6x⁵", "5x⁵", "6x⁶", "5x⁶"], ans: 0, exp: "2×3=6, 2+3=5", diff: "E7" },
+                { q: "Expand: (x-4)(x+4)", opts: ["x²-16", "x²+16", "x²-8x", "2x"], ans: 0, exp: "Difference of squares", diff: "E7" },
+                { q: "Solve: x/2 + 3 = 7", opts: ["8", "2", "20", "14"], ans: 0, exp: "x/2 = 4, x = 8", diff: "M6" },
+                { q: "Factorise: 2x² + 6x", opts: ["2x(x+3)", "2(x²+3x)", "x(2x+6)", "6x(x+1)"], ans: 0, exp: "2x is common", diff: "E7" },
+                { q: "Solve: x² - 5x + 6 = 0", opts: ["2,3", "1,6", "-2,-3", "5,6"], ans: 0, exp: "(x-2)(x-3)=0", diff: "E8" }
             ],
             "Indices": [
                 { q: "2³ = ?", opts: ["8", "6", "9", "5"], ans: 0, exp: "2×2×2 = 8", diff: "A3" },
@@ -270,7 +283,10 @@ const questions = {
                 { q: "(3²)³ = ?", opts: ["729", "18", "81", "27"], ans: 0, exp: "3⁶ = 729", diff: "E7" },
                 { q: "Simplify: (2x³)²", opts: ["4x⁶", "2x⁶", "4x⁵", "2x⁵"], ans: 0, exp: "4x⁶", diff: "E7" },
                 { q: "8^(2/3) = ?", opts: ["4", "8", "2", "16"], ans: 0, exp: "(∛8)² = 2² = 4", diff: "E8" },
-                { q: "Simplify: 27^(1/3)", opts: ["3", "9", "27", "1"], ans: 0, exp: "Cube root of 27", diff: "E7" }
+                { q: "Simplify: 27^(1/3)", opts: ["3", "9", "27", "1"], ans: 0, exp: "Cube root of 27", diff: "E7" },
+                { q: "5⁻² = ?", opts: ["1/25", "-10", "25", "-25"], ans: 0, exp: "1/5² = 1/25", diff: "E7" },
+                { q: "Simplify: x³ × x⁴ × x", opts: ["x⁸", "x¹²", "x⁷", "3x⁸"], ans: 0, exp: "3+4+1 = 8", diff: "M6" },
+                { q: "(x²y³)² = ?", opts: ["x⁴y⁶", "x⁴y⁵", "x²y⁶", "2x²y³"], ans: 0, exp: "Square each", diff: "E8" }
             ],
             "Sequences": [
                 { q: "Next: 3, 7, 11, 15, ?", opts: ["19", "18", "20", "17"], ans: 0, exp: "+4 pattern", diff: "A4" },
@@ -282,7 +298,10 @@ const questions = {
                 { q: "Next: 1, 8, 27, 64, ?", opts: ["125", "100", "81", "128"], ans: 0, exp: "Cube numbers", diff: "E7" },
                 { q: "nth term: 2, 5, 8, 11...", opts: ["3n-1", "3n+2", "2n+3", "n+3"], ans: 0, exp: "3n - 1", diff: "E7" },
                 { q: "Find 10th term: 4, 7, 10, 13...", opts: ["31", "28", "34", "25"], ans: 0, exp: "3n+1, n=10: 31", diff: "E7" },
-                { q: "Geometric: a=2, r=3. 5th term?", opts: ["162", "48", "54", "108"], ans: 0, exp: "2×3⁴ = 162", diff: "E8" }
+                { q: "Geometric: a=2, r=3. 5th term?", opts: ["162", "48", "54", "108"], ans: 0, exp: "2×3⁴ = 162", diff: "E8" },
+                { q: "Sum: 1+2+3+...+10", opts: ["55", "50", "45", "100"], ans: 0, exp: "n(n+1)/2", diff: "E7" },
+                { q: "nth term: 5, 8, 11, 14...", opts: ["3n+2", "3n+5", "n+5", "5n"], ans: 0, exp: "3n + 2", diff: "E7" },
+                { q: "Find 20th term if nth = 2n+3", opts: ["43", "40", "46", "23"], ans: 0, exp: "2(20)+3 = 43", diff: "E8" }
             ],
             "Ratios": [
                 { q: "Simplify: 15:25", opts: ["3:5", "1:2", "5:3", "15:25"], ans: 0, exp: "÷5 = 3:5", diff: "A4" },
@@ -291,7 +310,10 @@ const questions = {
                 { q: "Scale 1:50. Model 3cm. Real?", opts: ["150cm", "53cm", "50cm", "15cm"], ans: 0, exp: "3×50 = 150", diff: "M6" },
                 { q: "Share $60 ratio 1:2:3", opts: ["10,20,30", "15,20,25", "20,20,20", "12,24,24"], ans: 0, exp: "6 parts, 1 part=10", diff: "E7" },
                 { q: "A:B=2:3, B:C=4:5. A:B:C=?", opts: ["8:12:15", "2:3:5", "4:6:5", "2:4:5"], ans: 0, exp: "Make B same: 8:12:15", diff: "E8" },
-                { q: "If 3:x = x:12, find x", opts: ["6", "4", "9", "8"], ans: 0, exp: "x² = 36, x = 6", diff: "E8" }
+                { q: "If 3:x = x:12, find x", opts: ["6", "4", "9", "8"], ans: 0, exp: "x² = 36, x = 6", diff: "E8" },
+                { q: "Recipe for 4: 200g flour. For 6?", opts: ["300g", "250g", "400g", "150g"], ans: 0, exp: "200×6÷4 = 300", diff: "M6" },
+                { q: "Map 1:25000. 4cm = ? km", opts: ["1km", "100m", "10km", "25km"], ans: 0, exp: "4×25000 = 100000cm = 1km", diff: "E7" },
+                { q: "Simplify: 24:36:48", opts: ["2:3:4", "4:6:8", "6:9:12", "1:2:3"], ans: 0, exp: "÷12 each", diff: "M6" }
             ],
             "Geometry-Angles": [
                 { q: "What angle is 135°?", opts: ["Obtuse", "Acute", "Right", "Reflex"], ans: 0, exp: "90°-180° = obtuse", diff: "A3" },
@@ -304,7 +326,10 @@ const questions = {
                 { q: "Interior angle regular hexagon?", opts: ["120°", "60°", "90°", "108°"], ans: 0, exp: "(6-2)×180÷6=120", diff: "E7" },
                 { q: "Exterior angles sum (any polygon)?", opts: ["360°", "180°", "540°", "720°"], ans: 0, exp: "Always 360°", diff: "E7" },
                 { q: "Interior angle regular pentagon?", opts: ["108°", "120°", "90°", "72°"], ans: 0, exp: "(5-2)×180÷5=108", diff: "E7" },
-                { q: "Polygon with interior 156°. Sides?", opts: ["15", "12", "18", "20"], ans: 0, exp: "180-156=24, 360÷24=15", diff: "E8" }
+                { q: "Polygon with interior 156°. Sides?", opts: ["15", "12", "18", "20"], ans: 0, exp: "180-156=24, 360÷24=15", diff: "E8" },
+                { q: "Co-interior angles sum?", opts: ["180°", "90°", "360°", "Equal"], ans: 0, exp: "On same side of transversal", diff: "M6" },
+                { q: "Alternate angles are?", opts: ["Equal", "180°", "90°", "Supplementary"], ans: 0, exp: "Z-angles are equal", diff: "M6" },
+                { q: "Sum of angles in octagon?", opts: ["1080°", "720°", "1440°", "900°"], ans: 0, exp: "(8-2)×180 = 1080", diff: "E7" }
             ],
             "Area-Perimeter": [
                 { q: "Rectangle 8×5. Area?", opts: ["40 cm²", "26 cm²", "13 cm²", "80 cm²"], ans: 0, exp: "8×5 = 40", diff: "A3" },
@@ -315,7 +340,10 @@ const questions = {
                 { q: "Trapezium: a=4, b=6, h=5. Area?", opts: ["25 cm²", "30 cm²", "20 cm²", "50 cm²"], ans: 0, exp: "½(4+6)×5 = 25", diff: "M6" },
                 { q: "Rectangle area 48, width 6. Length?", opts: ["8", "42", "54", "288"], ans: 0, exp: "48÷6 = 8", diff: "M6" },
                 { q: "Compound shape: 10×8 with 3×3 cut. Area?", opts: ["71 cm²", "80 cm²", "77 cm²", "89 cm²"], ans: 0, exp: "80-9 = 71", diff: "E7" },
-                { q: "Sector 90°, r=6. Area? (π=3.14)", opts: ["28.26 cm²", "113 cm²", "9.42 cm²", "56.52 cm²"], ans: 0, exp: "¼×π×36 = 28.26", diff: "E8" }
+                { q: "Sector 90°, r=6. Area? (π=3.14)", opts: ["28.26 cm²", "113 cm²", "9.42 cm²", "56.52 cm²"], ans: 0, exp: "¼×π×36 = 28.26", diff: "E8" },
+                { q: "Rhombus diagonals 6 & 8. Area?", opts: ["24 cm²", "48 cm²", "14 cm²", "28 cm²"], ans: 0, exp: "½×6×8 = 24", diff: "E7" },
+                { q: "Equilateral triangle side 6. Perimeter?", opts: ["18 cm", "36 cm", "12 cm", "6 cm"], ans: 0, exp: "3×6 = 18", diff: "M5" },
+                { q: "Square perimeter 36. Area?", opts: ["81 cm²", "36 cm²", "9 cm²", "324 cm²"], ans: 0, exp: "Side=9, 9²=81", diff: "M6" }
             ],
             "Circles": [
                 { q: "Circumference formula?", opts: ["2πr", "πr²", "πd²", "2πr²"], ans: 0, exp: "C = 2πr", diff: "M5" },
@@ -324,7 +352,10 @@ const questions = {
                 { q: "Circumference: r=7 (π=22/7)?", opts: ["44 cm", "154 cm", "22 cm", "88 cm"], ans: 0, exp: "2×22/7×7 = 44", diff: "M6" },
                 { q: "Area: r=7 (π=22/7)?", opts: ["154 cm²", "44 cm²", "49 cm²", "308 cm²"], ans: 0, exp: "22/7×49 = 154", diff: "M6" },
                 { q: "Semicircle perimeter: d=10 (π=3.14)?", opts: ["25.7 cm", "15.7 cm", "31.4 cm", "20 cm"], ans: 0, exp: "πr + d = 15.7+10", diff: "E7" },
-                { q: "Arc length: 60°, r=6 (π=3.14)?", opts: ["6.28 cm", "12.56 cm", "3.14 cm", "18.84 cm"], ans: 0, exp: "60/360×2πr", diff: "E8" }
+                { q: "Arc length: 60°, r=6 (π=3.14)?", opts: ["6.28 cm", "12.56 cm", "3.14 cm", "18.84 cm"], ans: 0, exp: "60/360×2πr", diff: "E8" },
+                { q: "Radius if circumference = 31.4?", opts: ["5", "10", "15.7", "3.14"], ans: 0, exp: "31.4÷2π = 5", diff: "E7" },
+                { q: "Radius if area = 78.5 (π=3.14)?", opts: ["5", "25", "10", "7.85"], ans: 0, exp: "√(78.5/3.14) = 5", diff: "E7" },
+                { q: "Annulus area: R=5, r=3 (π=3.14)?", opts: ["50.24 cm²", "78.5 cm²", "28.26 cm²", "25.12 cm²"], ans: 0, exp: "π(25-9) = 50.24", diff: "E8" }
             ],
             "Pythagoras": [
                 { q: "Pythagoras: a²+b²=?", opts: ["c²", "2c", "c", "ab"], ans: 0, exp: "Hypotenuse squared", diff: "M5" },
@@ -334,7 +365,10 @@ const questions = {
                 { q: "Hypotenuse 10, leg 6. Other leg?", opts: ["8", "4", "16", "14"], ans: 0, exp: "100-36=64, √64=8", diff: "E7" },
                 { q: "Is 7,24,25 right triangle?", opts: ["Yes", "No", "Maybe", "Need info"], ans: 0, exp: "49+576=625 ✓", diff: "E7" },
                 { q: "Diagonal of 6×8 rectangle?", opts: ["10", "14", "7", "12"], ans: 0, exp: "Pythagoras: 6²+8²=100", diff: "E7" },
-                { q: "3D diagonal: 3×4×12 box?", opts: ["13", "19", "12", "5"], ans: 0, exp: "√(9+16+144)=13", diff: "E8" }
+                { q: "3D diagonal: 3×4×12 box?", opts: ["13", "19", "12", "5"], ans: 0, exp: "√(9+16+144)=13", diff: "E8" },
+                { q: "Ladder 5m, base 3m from wall. Height?", opts: ["4m", "8m", "2m", "6m"], ans: 0, exp: "25-9=16, √16=4", diff: "E7" },
+                { q: "Is 8,15,17 Pythagorean triple?", opts: ["Yes", "No", "Maybe", "Need info"], ans: 0, exp: "64+225=289=17²", diff: "E7" },
+                { q: "Square diagonal 10√2. Side?", opts: ["10", "20", "5", "10√2"], ans: 0, exp: "d = s√2", diff: "E8" }
             ],
             "Statistics": [
                 { q: "Mean: 4, 7, 8, 9, 12?", opts: ["8", "7", "9", "8.5"], ans: 0, exp: "40÷5=8", diff: "A4" },
@@ -346,7 +380,10 @@ const questions = {
                 { q: "Mean after adding 10 to each?", opts: ["Increases by 10", "Same", "Doubles", "Halves"], ans: 0, exp: "Mean shifts same", diff: "M6" },
                 { q: "Which unaffected by outliers?", opts: ["Median", "Mean", "Sum", "Range"], ans: 0, exp: "Median is robust", diff: "E7" },
                 { q: "P(A)=0.3, P(B)=0.4, independent. P(A and B)?", opts: ["0.12", "0.7", "0.1", "0.5"], ans: 0, exp: "0.3×0.4=0.12", diff: "E7" },
-                { q: "Std dev measures?", opts: ["Spread from mean", "Average", "Middle", "Most common"], ans: 0, exp: "Data spread", diff: "E8" }
+                { q: "Std dev measures?", opts: ["Spread from mean", "Average", "Middle", "Most common"], ans: 0, exp: "Data spread", diff: "E8" },
+                { q: "Two dice. P(sum=7)?", opts: ["6/36", "7/36", "1/6", "1/12"], ans: 0, exp: "6 ways out of 36", diff: "E7" },
+                { q: "Mean=70, 5 scores. Total?", opts: ["350", "70", "14", "75"], ans: 0, exp: "70×5 = 350", diff: "M6" },
+                { q: "IQR is?", opts: ["Q3-Q1", "Max-Min", "Mean", "Median"], ans: 0, exp: "Interquartile range", diff: "E7" }
             ]
         }
     },
@@ -363,7 +400,13 @@ const questions = {
                 { q: "Synonym: 'courageous'?", opts: ["Brave", "Timid", "Scared", "Weak"], ans: 0, exp: "Brave = courageous", diff: "M5" },
                 { q: "Synonym: 'meticulous'?", opts: ["Careful", "Careless", "Sloppy", "Hasty"], ans: 0, exp: "Very careful, precise", diff: "M6" },
                 { q: "Synonym: 'abundant'?", opts: ["Plentiful", "Scarce", "Rare", "Few"], ans: 0, exp: "Plentiful = abundant", diff: "M6" },
-                { q: "Synonym: 'concise'?", opts: ["Brief", "Lengthy", "Verbose", "Rambling"], ans: 0, exp: "Brief and clear", diff: "M6" }
+                { q: "Synonym: 'concise'?", opts: ["Brief", "Lengthy", "Verbose", "Rambling"], ans: 0, exp: "Brief and clear", diff: "M6" },
+                { q: "Synonym: 'ancient'?", opts: ["Old", "New", "Modern", "Recent"], ans: 0, exp: "Old = ancient", diff: "A4" },
+                { q: "Synonym: 'difficult'?", opts: ["Hard", "Easy", "Simple", "Clear"], ans: 0, exp: "Hard = difficult", diff: "A4" },
+                { q: "Synonym: 'furious'?", opts: ["Angry", "Happy", "Calm", "Peaceful"], ans: 0, exp: "Very angry", diff: "M5" },
+                { q: "Synonym: 'commence'?", opts: ["Begin", "End", "Stop", "Continue"], ans: 0, exp: "Commence = start", diff: "M5" },
+                { q: "Synonym: 'enormous'?", opts: ["Huge", "Tiny", "Small", "Little"], ans: 0, exp: "Enormous = very big", diff: "A4" },
+                { q: "Synonym: 'assist'?", opts: ["Help", "Hinder", "Block", "Stop"], ans: 0, exp: "Assist = help", diff: "A4" }
             ],
             "Antonyms": [
                 { q: "Antonym: 'hot'?", opts: ["Cold", "Warm", "Burning", "Humid"], ans: 0, exp: "Cold ≠ hot", diff: "A3" },
@@ -375,7 +418,13 @@ const questions = {
                 { q: "Antonym: 'conceal'?", opts: ["Reveal", "Hide", "Cover", "Mask"], ans: 0, exp: "Reveal = show", diff: "M6" },
                 { q: "Antonym: 'profound'?", opts: ["Superficial", "Deep", "Meaningful", "Significant"], ans: 0, exp: "Superficial = shallow", diff: "M6" },
                 { q: "Antonym: 'abundant'?", opts: ["Scarce", "Plentiful", "Numerous", "Ample"], ans: 0, exp: "Scarce = rare", diff: "M6" },
-                { q: "Antonym: 'benevolent'?", opts: ["Malevolent", "Kind", "Generous", "Caring"], ans: 0, exp: "Malevolent = wishing harm", diff: "M6" }
+                { q: "Antonym: 'benevolent'?", opts: ["Malevolent", "Kind", "Generous", "Caring"], ans: 0, exp: "Malevolent = wishing harm", diff: "M6" },
+                { q: "Antonym: 'brave'?", opts: ["Cowardly", "Bold", "Fearless", "Heroic"], ans: 0, exp: "Cowardly = afraid", diff: "M5" },
+                { q: "Antonym: 'simple'?", opts: ["Complex", "Easy", "Basic", "Plain"], ans: 0, exp: "Complex ≠ simple", diff: "A4" },
+                { q: "Antonym: 'victory'?", opts: ["Defeat", "Win", "Success", "Triumph"], ans: 0, exp: "Defeat = loss", diff: "M5" },
+                { q: "Antonym: 'remember'?", opts: ["Forget", "Recall", "Memorize", "Think"], ans: 0, exp: "Forget ≠ remember", diff: "A4" },
+                { q: "Antonym: 'increase'?", opts: ["Decrease", "Grow", "Rise", "Expand"], ans: 0, exp: "Decrease = reduce", diff: "A4" },
+                { q: "Antonym: 'arrive'?", opts: ["Depart", "Come", "Reach", "Enter"], ans: 0, exp: "Depart = leave", diff: "A4" }
             ],
             "Prefixes": [
                 { q: "Prefix 'un-' means?", opts: ["Not", "Very", "Before", "After"], ans: 0, exp: "un- = not", diff: "A3" },
@@ -387,7 +436,10 @@ const questions = {
                 { q: "Prefix 'anti-' means?", opts: ["Against", "For", "With", "Before"], ans: 0, exp: "anti- = against", diff: "M5" },
                 { q: "'Impossible' means?", opts: ["Not possible", "Very possible", "More possible", "Again possible"], ans: 0, exp: "im- = not", diff: "M5" },
                 { q: "Prefix 'inter-' means?", opts: ["Between", "Within", "Outside", "Before"], ans: 0, exp: "inter- = between", diff: "M6" },
-                { q: "Prefix 'trans-' means?", opts: ["Across", "Below", "Within", "Around"], ans: 0, exp: "trans- = across", diff: "M6" }
+                { q: "Prefix 'trans-' means?", opts: ["Across", "Below", "Within", "Around"], ans: 0, exp: "trans- = across", diff: "M6" },
+                { q: "Prefix 'sub-' means?", opts: ["Under", "Over", "Before", "After"], ans: 0, exp: "sub- = under", diff: "M5" },
+                { q: "Prefix 'super-' means?", opts: ["Above/beyond", "Under", "Before", "Against"], ans: 0, exp: "super- = above", diff: "M5" },
+                { q: "'Bicycle' has prefix meaning?", opts: ["Two", "One", "Three", "Many"], ans: 0, exp: "bi- = two", diff: "A4" }
             ],
             "Suffixes": [
                 { q: "Suffix '-ful' means?", opts: ["Full of", "Without", "Before", "Again"], ans: 0, exp: "-ful = full of", diff: "A3" },
@@ -399,7 +451,10 @@ const questions = {
                 { q: "'Happiness' is a?", opts: ["Noun", "Verb", "Adjective", "Adverb"], ans: 0, exp: "-ness = noun", diff: "M5" },
                 { q: "Suffix '-tion' makes?", opts: ["Noun", "Verb", "Adjective", "Adverb"], ans: 0, exp: "-tion = noun", diff: "M6" },
                 { q: "Suffix '-ify' makes?", opts: ["Verb", "Noun", "Adjective", "Adverb"], ans: 0, exp: "-ify = verb (beautify)", diff: "M6" },
-                { q: "Suffix '-ment' makes?", opts: ["Noun", "Verb", "Adjective", "Adverb"], ans: 0, exp: "-ment = noun", diff: "M6" }
+                { q: "Suffix '-ment' makes?", opts: ["Noun", "Verb", "Adjective", "Adverb"], ans: 0, exp: "-ment = noun", diff: "M6" },
+                { q: "Suffix '-er' often means?", opts: ["One who does", "Action", "Quality", "Place"], ans: 0, exp: "Teacher = one who teaches", diff: "A4" },
+                { q: "Suffix '-ous' means?", opts: ["Full of/having", "Without", "Against", "Before"], ans: 0, exp: "Dangerous = full of danger", diff: "M5" },
+                { q: "Suffix '-ist' means?", opts: ["Person who", "Action", "Quality", "Place"], ans: 0, exp: "Artist = person who does art", diff: "M5" }
             ],
             "Parts of Speech": [
                 { q: "Which is a noun?", opts: ["Happiness", "Happy", "Happily", "Happier"], ans: 0, exp: "Noun = thing/concept", diff: "A4" },
@@ -411,7 +466,10 @@ const questions = {
                 { q: "'She' is a?", opts: ["Pronoun", "Noun", "Verb", "Adjective"], ans: 0, exp: "Replaces noun", diff: "M5" },
                 { q: "Identify verb: 'She runs fast'", opts: ["runs", "She", "fast", "None"], ans: 0, exp: "Action word", diff: "M5" },
                 { q: "In 'The tall boy ran', adjective is?", opts: ["tall", "The", "boy", "ran"], ans: 0, exp: "Describes 'boy'", diff: "M6" },
-                { q: "'However' is a?", opts: ["Conjunction/adverb", "Noun", "Verb", "Adjective"], ans: 0, exp: "Connects contrasting ideas", diff: "M6" }
+                { q: "'However' is a?", opts: ["Conjunction/adverb", "Noun", "Verb", "Adjective"], ans: 0, exp: "Connects contrasting ideas", diff: "M6" },
+                { q: "'Wow!' is a?", opts: ["Interjection", "Noun", "Verb", "Adverb"], ans: 0, exp: "Shows emotion", diff: "M5" },
+                { q: "'The' is a?", opts: ["Article", "Noun", "Verb", "Adverb"], ans: 0, exp: "Definite article", diff: "A4" },
+                { q: "In 'She sings beautifully', adverb is?", opts: ["beautifully", "She", "sings", "None"], ans: 0, exp: "Describes how", diff: "M5" }
             ],
             "Verb Tenses": [
                 { q: "Past tense: 'go'?", opts: ["Went", "Goed", "Gone", "Going"], ans: 0, exp: "Irregular verb", diff: "A4" },
@@ -423,7 +481,10 @@ const questions = {
                 { q: "Past perfect: 'eat'?", opts: ["Had eaten", "Have eaten", "Ate", "Was eating"], ans: 0, exp: "Had + past participle", diff: "M6" },
                 { q: "Which is present perfect?", opts: ["I have finished", "I finished", "I am finishing", "I will finish"], ans: 0, exp: "Have/has + pp", diff: "M6" },
                 { q: "Passive voice: 'The book was ___ by her'", opts: ["written", "write", "writing", "wrote"], ans: 0, exp: "Was + past participle", diff: "M6" },
-                { q: "Future continuous: 'study'?", opts: ["Will be studying", "Will study", "Studies", "Studied"], ans: 0, exp: "Will be + -ing", diff: "M6" }
+                { q: "Future continuous: 'study'?", opts: ["Will be studying", "Will study", "Studies", "Studied"], ans: 0, exp: "Will be + -ing", diff: "M6" },
+                { q: "Past tense: 'swim'?", opts: ["Swam", "Swimmed", "Swum", "Swimming"], ans: 0, exp: "Irregular verb", diff: "M5" },
+                { q: "Past tense: 'run'?", opts: ["Ran", "Runned", "Running", "Run"], ans: 0, exp: "Irregular verb", diff: "A4" },
+                { q: "Past participle: 'write'?", opts: ["Written", "Wrote", "Writing", "Writes"], ans: 0, exp: "Have/has written", diff: "M5" }
             ],
             "Sentence Structure": [
                 { q: "Correct: 'She ___ like apples'", opts: ["doesn't", "don't", "not", "no"], ans: 0, exp: "doesn't with she", diff: "A4" },
@@ -435,7 +496,10 @@ const questions = {
                 { q: "Fix: 'Him and me went'", opts: ["He and I went", "Him and I went", "He and me went", "Correct"], ans: 0, exp: "Subject pronouns", diff: "M6" },
                 { q: "Which is complex sentence?", opts: ["Although tired, she worked.", "She worked.", "She worked hard.", "Working."], ans: 0, exp: "Subordinate clause", diff: "M6" },
                 { q: "Passive: 'The cake was eaten by them' → Active?", opts: ["They ate the cake", "Cake ate them", "Eating cake", "Was eating"], ans: 0, exp: "Subject does action", diff: "M6" },
-                { q: "Identify fragment:", opts: ["After the rain.", "She danced.", "I am here.", "We went."], ans: 0, exp: "Incomplete thought", diff: "M6" }
+                { q: "Identify fragment:", opts: ["After the rain.", "She danced.", "I am here.", "We went."], ans: 0, exp: "Incomplete thought", diff: "M6" },
+                { q: "'Neither ___ nor they know'", opts: ["he", "him", "they", "them"], ans: 0, exp: "Subject pronoun", diff: "M6" },
+                { q: "Run-on sentence fix?", opts: ["Add period or conjunction", "Remove words", "Add more words", "Nothing"], ans: 0, exp: "Separate clauses", diff: "M6" },
+                { q: "'Each of the students ___ ready'", opts: ["is", "are", "were", "be"], ans: 0, exp: "Each = singular", diff: "M6" }
             ],
             "Punctuation": [
                 { q: "End a statement with?", opts: ["Period (.)", "Question mark", "Exclamation", "Comma"], ans: 0, exp: "Statement = period", diff: "A3" },
@@ -447,7 +511,10 @@ const questions = {
                 { q: "Colon introduces?", opts: ["List or explanation", "Question", "New paragraph", "End"], ans: 0, exp: "Colon = list/explain", diff: "M6" },
                 { q: "Oxford comma example?", opts: ["Red, white, and blue", "Red white blue", "Red, white blue", "Red and white and blue"], ans: 0, exp: "Comma before 'and' in list", diff: "M6" },
                 { q: "Quotation marks for?", opts: ["Direct speech", "Thoughts only", "Actions", "Descriptions"], ans: 0, exp: "Exact words spoken", diff: "M5" },
-                { q: "Correct: 'Its/It's raining'?", opts: ["It's", "Its", "Its'", "Itss"], ans: 0, exp: "It is = It's", diff: "M5" }
+                { q: "Correct: 'Its/It's raining'?", opts: ["It's", "Its", "Its'", "Itss"], ans: 0, exp: "It is = It's", diff: "M5" },
+                { q: "'You're' is short for?", opts: ["You are", "Your", "Yours", "You"], ans: 0, exp: "Contraction", diff: "A4" },
+                { q: "Hyphen used in?", opts: ["Compound words", "End of sentence", "Questions", "Lists"], ans: 0, exp: "Self-confident", diff: "M5" },
+                { q: "Ellipsis (...) shows?", opts: ["Omission or pause", "Excitement", "Question", "Ending"], ans: 0, exp: "Something left out", diff: "M6" }
             ],
             "Writing": [
                 { q: "Topic sentence purpose?", opts: ["Introduce main idea", "Conclude", "Give examples", "Cite sources"], ans: 0, exp: "Sets direction", diff: "M5" },
@@ -459,7 +526,10 @@ const questions = {
                 { q: "Formal writing avoids?", opts: ["Slang", "Facts", "Evidence", "Punctuation"], ans: 0, exp: "No informal language", diff: "M6" },
                 { q: "Thesis statement is?", opts: ["Main argument", "Supporting detail", "Conclusion", "Introduction"], ans: 0, exp: "Central claim", diff: "M6" },
                 { q: "PEEL structure: E stands for?", opts: ["Explain/Evidence", "End", "Effect", "Examine"], ans: 0, exp: "Explain then Evidence", diff: "M6" },
-                { q: "Transition for time order?", opts: ["First, then, finally", "However, but", "Similarly, likewise", "Therefore, thus"], ans: 0, exp: "Sequence words", diff: "M6" }
+                { q: "Transition for time order?", opts: ["First, then, finally", "However, but", "Similarly, likewise", "Therefore, thus"], ans: 0, exp: "Sequence words", diff: "M6" },
+                { q: "Narrative writing tells?", opts: ["A story", "Facts only", "How to do something", "Your opinion"], ans: 0, exp: "Story with plot", diff: "M5" },
+                { q: "What is expository writing?", opts: ["Explains/informs", "Tells story", "Gives opinion", "Describes scene"], ans: 0, exp: "Information based", diff: "M6" },
+                { q: "'Therefore' shows?", opts: ["Result/conclusion", "Contrast", "Addition", "Time"], ans: 0, exp: "Cause and effect", diff: "M5" }
             ],
             "Comprehension": [
                 { q: "Main idea is?", opts: ["What text is mainly about", "Small detail", "Title only", "Last sentence"], ans: 0, exp: "Central message", diff: "A4" },
@@ -471,7 +541,10 @@ const questions = {
                 { q: "'Ravenous' in 'ravenous wolf devoured meat'?", opts: ["Very hungry", "Angry", "Tired", "Fast"], ans: 0, exp: "Context: devoured", diff: "M6" },
                 { q: "Tone of 'What a disaster!'?", opts: ["Frustrated/upset", "Happy", "Calm", "Neutral"], ans: 0, exp: "Exclamation shows feeling", diff: "M6" },
                 { q: "Bias in writing means?", opts: ["One-sided view", "Neutral", "Factual", "Balanced"], ans: 0, exp: "Unfair perspective", diff: "M6" },
-                { q: "Author's perspective is?", opts: ["Their viewpoint", "Character's view", "Reader's opinion", "Publisher's view"], ans: 0, exp: "Writer's position", diff: "M6" }
+                { q: "Author's perspective is?", opts: ["Their viewpoint", "Character's view", "Reader's opinion", "Publisher's view"], ans: 0, exp: "Writer's position", diff: "M6" },
+                { q: "Supporting details do what?", opts: ["Back up main idea", "Introduce topic", "End paragraph", "Nothing"], ans: 0, exp: "Provide evidence", diff: "M5" },
+                { q: "Theme is?", opts: ["Central message/lesson", "Main character", "Setting", "Plot"], ans: 0, exp: "Deeper meaning", diff: "M6" },
+                { q: "'Auckland has 1.6M people' is?", opts: ["Fact", "Opinion", "Neither", "Both"], ans: 0, exp: "Can be verified", diff: "A4" }
             ]
         }
     },
@@ -490,7 +563,10 @@ const questions = {
                 { q: "Carbon-12 has how many neutrons?", opts: ["6", "12", "4", "8"], ans: 0, exp: "12-6=6 neutrons", diff: "E7" },
                 { q: "Electron configuration Na (11)?", opts: ["2,8,1", "2,9", "8,3", "11"], ans: 0, exp: "2 then 8 then 1", diff: "E7" },
                 { q: "Metals on periodic table?", opts: ["Left side", "Right side", "Top only", "Bottom only"], ans: 0, exp: "Metals left", diff: "M5" },
-                { q: "Noble gases are?", opts: ["Unreactive", "Very reactive", "Metals", "Liquids"], ans: 0, exp: "Full outer shell", diff: "M6" }
+                { q: "Noble gases are?", opts: ["Unreactive", "Very reactive", "Metals", "Liquids"], ans: 0, exp: "Full outer shell", diff: "M6" },
+                { q: "Symbol for sodium?", opts: ["Na", "So", "Sd", "S"], ans: 0, exp: "From Latin Natrium", diff: "M5" },
+                { q: "Group 1 elements are?", opts: ["Alkali metals", "Halogens", "Noble gases", "Alkaline"], ans: 0, exp: "Li, Na, K...", diff: "M6" },
+                { q: "Chlorine-37 has ___ neutrons?", opts: ["20", "17", "37", "54"], ans: 0, exp: "37-17=20", diff: "E7" }
             ],
             "Chemical-Formulas": [
                 { q: "Water symbol?", opts: ["H₂O", "CO₂", "NaCl", "O₂"], ans: 0, exp: "2H + 1O", diff: "A4" },
@@ -502,7 +578,10 @@ const questions = {
                 { q: "CO is?", opts: ["Carbon monoxide", "Carbon dioxide", "Cobalt", "Copper"], ans: 0, exp: "Poisonous gas", diff: "M6" },
                 { q: "H₂SO₄ is?", opts: ["Sulfuric acid", "Water", "Salt", "Sugar"], ans: 0, exp: "Strong acid", diff: "E7" },
                 { q: "How many atoms in H₂SO₄?", opts: ["7", "4", "6", "8"], ans: 0, exp: "2+1+4=7", diff: "E7" },
-                { q: "CaCO₃ is?", opts: ["Calcium carbonate", "Carbon dioxide", "Calcium oxide", "Carbolic acid"], ans: 0, exp: "Limestone/chalk", diff: "E7" }
+                { q: "CaCO₃ is?", opts: ["Calcium carbonate", "Carbon dioxide", "Calcium oxide", "Carbolic acid"], ans: 0, exp: "Limestone/chalk", diff: "E7" },
+                { q: "NH₃ is?", opts: ["Ammonia", "Nitrogen", "Water", "Acid"], ans: 0, exp: "N + 3H", diff: "M6" },
+                { q: "Atoms in C₆H₁₂O₆?", opts: ["24", "18", "6", "12"], ans: 0, exp: "6+12+6=24", diff: "E7" },
+                { q: "O₂ is called?", opts: ["Oxygen molecule", "Ozone", "Oxide", "Oxygen atom"], ans: 0, exp: "Diatomic", diff: "M5" }
             ],
             "Chemical-Reactions": [
                 { q: "NOT sign of chemical reaction?", opts: ["Shape change", "Color change", "Gas production", "Heat change"], ans: 0, exp: "Shape = physical", diff: "M5" },
@@ -514,7 +593,10 @@ const questions = {
                 { q: "Acid + base = ?", opts: ["Salt + water", "Gas", "Metal", "Oil"], ans: 0, exp: "Neutralization", diff: "M6" },
                 { q: "Balanced equation has?", opts: ["Equal atoms each side", "More products", "More reactants", "Different elements"], ans: 0, exp: "Conservation of mass", diff: "E7" },
                 { q: "Endothermic reaction?", opts: ["Absorbs heat", "Releases heat", "No heat change", "Creates light"], ans: 0, exp: "Takes in energy", diff: "E7" },
-                { q: "Exothermic example?", opts: ["Combustion", "Photosynthesis", "Melting ice", "Evaporation"], ans: 0, exp: "Releases heat", diff: "E7" }
+                { q: "Exothermic example?", opts: ["Combustion", "Photosynthesis", "Melting ice", "Evaporation"], ans: 0, exp: "Releases heat", diff: "E7" },
+                { q: "HCl + NaOH → ?", opts: ["NaCl + H₂O", "Na + Cl₂", "H₂ + O₂", "NaCl only"], ans: 0, exp: "Salt + water", diff: "E7" },
+                { q: "Decomposition reaction?", opts: ["One → many", "Many → one", "Exchange", "No change"], ans: 0, exp: "Breaks apart", diff: "M6" },
+                { q: "Synthesis reaction?", opts: ["Many → one", "One → many", "Exchange", "No change"], ans: 0, exp: "Combines", diff: "M6" }
             ],
             "States-Matter": [
                 { q: "Three states?", opts: ["Solid, liquid, gas", "Hot, warm, cold", "Big, medium, small", "Hard, soft, flexible"], ans: 0, exp: "Basic states", diff: "A4" },
@@ -525,7 +607,10 @@ const questions = {
                 { q: "Particles in solid are?", opts: ["Close, vibrating", "Far, fast", "Random", "Free flowing"], ans: 0, exp: "Fixed positions", diff: "M6" },
                 { q: "Particles in gas are?", opts: ["Far apart, fast", "Close packed", "Fixed", "Vibrating only"], ans: 0, exp: "Most energy", diff: "M6" },
                 { q: "Boiling vs evaporation?", opts: ["Boiling is throughout liquid", "Same thing", "Boiling is slower", "Evaporation needs more heat"], ans: 0, exp: "Boiling = all liquid, evaporation = surface", diff: "E7" },
-                { q: "Diffusion is faster in?", opts: ["Gases", "Liquids", "Solids", "Same all"], ans: 0, exp: "Particles move more freely", diff: "E7" }
+                { q: "Diffusion is faster in?", opts: ["Gases", "Liquids", "Solids", "Same all"], ans: 0, exp: "Particles move more freely", diff: "E7" },
+                { q: "Gas → solid directly?", opts: ["Deposition", "Sublimation", "Freezing", "Condensation"], ans: 0, exp: "Reverse of sublimation", diff: "E7" },
+                { q: "Which has definite shape?", opts: ["Solid", "Liquid", "Gas", "All"], ans: 0, exp: "Fixed arrangement", diff: "M5" },
+                { q: "Plasma is?", opts: ["4th state, ionized gas", "Dense liquid", "Super solid", "Cold gas"], ans: 0, exp: "Stars, lightning", diff: "E8" }
             ],
             "Cells": [
                 { q: "Cell powerhouse?", opts: ["Mitochondria", "Nucleus", "Membrane", "Ribosome"], ans: 0, exp: "Makes ATP", diff: "M5" },
@@ -537,7 +622,10 @@ const questions = {
                 { q: "Vacuole stores?", opts: ["Water and nutrients", "DNA", "Energy", "Proteins"], ans: 0, exp: "Storage", diff: "M5" },
                 { q: "Cytoplasm is?", opts: ["Jelly-like substance", "Hard shell", "Nucleus", "DNA"], ans: 0, exp: "Fills cell", diff: "M5" },
                 { q: "DNA found in?", opts: ["Nucleus", "Mitochondria only", "Cell wall", "Vacuole"], ans: 0, exp: "Genetic material", diff: "M6" },
-                { q: "Prokaryotes lack?", opts: ["Nucleus", "Cell membrane", "Ribosomes", "DNA"], ans: 0, exp: "No membrane-bound nucleus", diff: "E7" }
+                { q: "Prokaryotes lack?", opts: ["Nucleus", "Cell membrane", "Ribosomes", "DNA"], ans: 0, exp: "No membrane-bound nucleus", diff: "E7" },
+                { q: "Eukaryotes have?", opts: ["Membrane-bound organelles", "No nucleus", "No DNA", "No ribosomes"], ans: 0, exp: "Complex cells", diff: "E7" },
+                { q: "Cell division for growth?", opts: ["Mitosis", "Meiosis", "Osmosis", "Diffusion"], ans: 0, exp: "Same copies", diff: "E7" },
+                { q: "Osmosis moves?", opts: ["Water", "Proteins", "DNA", "Energy"], ans: 0, exp: "Water diffusion", diff: "M6" }
             ],
             "Photosynthesis": [
                 { q: "Plants make food by?", opts: ["Photosynthesis", "Respiration", "Digestion", "Fermentation"], ans: 0, exp: "Light+CO₂+H₂O", diff: "M5" },
@@ -547,7 +635,9 @@ const questions = {
                 { q: "Chlorophyll absorbs?", opts: ["Light energy", "Water", "Carbon dioxide", "Oxygen"], ans: 0, exp: "Sunlight", diff: "M6" },
                 { q: "Word equation?", opts: ["CO₂+H₂O→glucose+O₂", "O₂→CO₂", "Glucose→CO₂", "H₂O→O₂"], ans: 0, exp: "Reactants → Products", diff: "E7" },
                 { q: "Rate increases with?", opts: ["More light (to a point)", "Less CO₂", "Lower temp always", "Less water"], ans: 0, exp: "Limiting factors", diff: "E7" },
-                { q: "Starch test uses?", opts: ["Iodine", "Litmus", "Benedict's", "Biuret"], ans: 0, exp: "Iodine turns blue-black", diff: "E7" }
+                { q: "Starch test uses?", opts: ["Iodine", "Litmus", "Benedict's", "Biuret"], ans: 0, exp: "Iodine turns blue-black", diff: "E7" },
+                { q: "Why do plants need glucose?", opts: ["Energy and building", "Only storage", "Waste product", "Not needed"], ans: 0, exp: "Growth + respiration", diff: "M6" },
+                { q: "Variegated leaf test shows?", opts: ["Only green parts make starch", "All parts same", "White makes more", "No difference"], ans: 0, exp: "Chlorophyll needed", diff: "E7" }
             ],
             "Respiration": [
                 { q: "Respiration produces?", opts: ["Energy (ATP)", "Oxygen", "Glucose", "Sunlight"], ans: 0, exp: "Releases energy", diff: "M5" },
@@ -557,7 +647,9 @@ const questions = {
                 { q: "Aerobic needs?", opts: ["Oxygen", "No oxygen", "Sunlight", "CO₂"], ans: 0, exp: "With oxygen", diff: "M6" },
                 { q: "Anaerobic means?", opts: ["Without oxygen", "With oxygen", "With sunlight", "Without water"], ans: 0, exp: "No O₂", diff: "E7" },
                 { q: "Fermentation in yeast produces?", opts: ["Ethanol and CO₂", "Lactic acid", "Water", "Oxygen"], ans: 0, exp: "Alcohol + gas", diff: "E7" },
-                { q: "Muscle anaerobic produces?", opts: ["Lactic acid", "Ethanol", "Oxygen", "Glucose"], ans: 0, exp: "Causes cramps", diff: "E7" }
+                { q: "Muscle anaerobic produces?", opts: ["Lactic acid", "Ethanol", "Oxygen", "Glucose"], ans: 0, exp: "Causes cramps", diff: "E7" },
+                { q: "Where in cell does aerobic occur?", opts: ["Mitochondria", "Nucleus", "Cell wall", "Vacuole"], ans: 0, exp: "Powerhouse", diff: "E7" },
+                { q: "Which releases more energy?", opts: ["Aerobic", "Anaerobic", "Same", "Neither"], ans: 0, exp: "With oxygen = more ATP", diff: "E7" }
             ],
             "Ecosystems": [
                 { q: "Ecosystem is?", opts: ["Living things + environment", "Only animals", "Only plants", "Just rocks"], ans: 0, exp: "Biotic + abiotic", diff: "M5" },
@@ -568,7 +660,11 @@ const questions = {
                 { q: "Food chain starts with?", opts: ["Producer", "Consumer", "Decomposer", "Predator"], ans: 0, exp: "Plants first", diff: "M6" },
                 { q: "Energy transfer between levels?", opts: ["About 10%", "100%", "50%", "90%"], ans: 0, exp: "10% rule", diff: "E7" },
                 { q: "Pyramid of energy shows?", opts: ["Energy decreases up", "Energy increases", "Equal all levels", "No pattern"], ans: 0, exp: "Less energy higher up", diff: "E7" },
-                { q: "Biodiversity means?", opts: ["Variety of species", "One species", "No life", "Only plants"], ans: 0, exp: "Species variety", diff: "M6" }
+                { q: "Biodiversity means?", opts: ["Variety of species", "One species", "No life", "Only plants"], ans: 0, exp: "Species variety", diff: "M6" },
+                { q: "Carnivore eats?", opts: ["Meat", "Plants", "Both", "Sunlight"], ans: 0, exp: "Meat eater", diff: "M5" },
+                { q: "Omnivore eats?", opts: ["Plants and meat", "Only plants", "Only meat", "Nothing"], ans: 0, exp: "Both", diff: "M5" },
+                { q: "Apex predator?", opts: ["Top of food chain", "Bottom", "Middle", "Producer"], ans: 0, exp: "No natural predators", diff: "M6" },
+                { q: "Carbon cycle involves?", opts: ["Photosynthesis & respiration", "Only water", "Only rocks", "Nothing"], ans: 0, exp: "Carbon movement", diff: "E7" }
             ],
             "Forces": [
                 { q: "Force unit?", opts: ["Newton", "Joule", "Watt", "Metre"], ans: 0, exp: "N", diff: "A4" },
@@ -580,7 +676,10 @@ const questions = {
                 { q: "Weight = ?", opts: ["Mass × gravity", "Mass ÷ gravity", "Mass + gravity", "Mass only"], ans: 0, exp: "W = mg", diff: "M6" },
                 { q: "Unbalanced forces cause?", opts: ["Acceleration", "Constant speed", "Rest", "Nothing"], ans: 0, exp: "Change in motion", diff: "M6" },
                 { q: "Newton's 1st law?", opts: ["Object stays at rest/motion unless force", "F=ma", "Action-reaction", "Gravity"], ans: 0, exp: "Inertia", diff: "E7" },
-                { q: "Newton's 2nd: F=?", opts: ["ma", "mv", "mg", "m/a"], ans: 0, exp: "Force = mass × acceleration", diff: "E7" }
+                { q: "Newton's 2nd: F=?", opts: ["ma", "mv", "mg", "m/a"], ans: 0, exp: "Force = mass × acceleration", diff: "E7" },
+                { q: "Newton's 3rd law?", opts: ["Action = reaction", "F=ma", "Inertia", "Gravity"], ans: 0, exp: "Equal opposite forces", diff: "E7" },
+                { q: "Air resistance is?", opts: ["Friction with air", "Gravity", "Weight", "Mass"], ans: 0, exp: "Drag force", diff: "M6" },
+                { q: "Terminal velocity?", opts: ["Constant falling speed", "Maximum speed ever", "Zero speed", "Acceleration"], ans: 0, exp: "Drag = weight", diff: "E7" }
             ],
             "Energy": [
                 { q: "Moving object has?", opts: ["Kinetic", "Potential", "Chemical", "Nuclear"], ans: 0, exp: "Motion energy", diff: "M5" },
@@ -592,7 +691,10 @@ const questions = {
                 { q: "KE formula?", opts: ["½mv²", "mgh", "mv", "ma"], ans: 0, exp: "Kinetic energy", diff: "E7" },
                 { q: "GPE formula?", opts: ["mgh", "½mv²", "mv", "ma"], ans: 0, exp: "Gravitational PE", diff: "E7" },
                 { q: "Power unit?", opts: ["Watt", "Joule", "Newton", "Kilogram"], ans: 0, exp: "W = J/s", diff: "E7" },
-                { q: "Efficiency = ?", opts: ["Useful output / Total input", "Input / Output", "Total / Useful", "1"], ans: 0, exp: "As percentage", diff: "E7" }
+                { q: "Efficiency = ?", opts: ["Useful output / Total input", "Input / Output", "Total / Useful", "1"], ans: 0, exp: "As percentage", diff: "E7" },
+                { q: "Energy unit?", opts: ["Joule", "Newton", "Watt", "Kilogram"], ans: 0, exp: "J", diff: "M5" },
+                { q: "Work = ?", opts: ["Force × distance", "Mass × velocity", "Energy × time", "Power × mass"], ans: 0, exp: "W = Fd", diff: "E7" },
+                { q: "Power = ?", opts: ["Energy ÷ time", "Force × time", "Mass × speed", "Work × distance"], ans: 0, exp: "P = E/t", diff: "E8" }
             ],
             "Light-Sound": [
                 { q: "Light travels in?", opts: ["Straight lines", "Curves", "Circles", "Zigzags"], ans: 0, exp: "Light straight", diff: "A4" },
@@ -604,7 +706,10 @@ const questions = {
                 { q: "Refraction?", opts: ["Light bending", "Light bouncing", "Light stopping", "Light absorbed"], ans: 0, exp: "Bends at boundary", diff: "M6" },
                 { q: "Frequency affects?", opts: ["Pitch", "Volume", "Speed", "Color only"], ans: 0, exp: "High freq = high pitch", diff: "E7" },
                 { q: "Amplitude affects?", opts: ["Volume/loudness", "Pitch", "Color", "Speed"], ans: 0, exp: "Bigger = louder", diff: "E7" },
-                { q: "Total internal reflection needs?", opts: ["Angle > critical angle", "Any angle", "0 degrees", "90 degrees"], ans: 0, exp: "Beyond critical angle", diff: "E7" }
+                { q: "Total internal reflection needs?", opts: ["Angle > critical angle", "Any angle", "0 degrees", "90 degrees"], ans: 0, exp: "Beyond critical angle", diff: "E7" },
+                { q: "Speed of light approx?", opts: ["300,000 km/s", "300 km/s", "300 m/s", "3000 km/s"], ans: 0, exp: "3×10⁸ m/s", diff: "M6" },
+                { q: "Sound cannot travel in?", opts: ["Vacuum", "Air", "Water", "Steel"], ans: 0, exp: "Needs medium", diff: "M5" },
+                { q: "Echo is?", opts: ["Reflected sound", "Absorbed sound", "Fast sound", "Slow sound"], ans: 0, exp: "Sound bounce", diff: "M5" }
             ]
         }
     },
@@ -621,7 +726,10 @@ const questions = {
                 { q: "Article 2 about?", opts: ["Property/taonga", "Sovereignty", "Citizenship", "Laws"], ans: 0, exp: "Māori keep taonga", diff: "M6" },
                 { q: "Article 3 about?", opts: ["Equal rights", "Land only", "Chiefs only", "Trade"], ans: 0, exp: "Citizenship", diff: "M6" },
                 { q: "Kawanatanga vs Rangatiratanga?", opts: ["Governance vs Chieftainship", "Same meaning", "Both mean land", "Both mean power"], ans: 0, exp: "Key translation difference", diff: "M6" },
-                { q: "Waitangi Tribunal?", opts: ["Investigates Treaty breaches", "Makes laws", "Signs treaties", "Elects PM"], ans: 0, exp: "Since 1975", diff: "M6" }
+                { q: "Waitangi Tribunal?", opts: ["Investigates Treaty breaches", "Makes laws", "Signs treaties", "Elects PM"], ans: 0, exp: "Since 1975", diff: "M6" },
+                { q: "Where was Treaty signed?", opts: ["Waitangi", "Wellington", "Auckland", "Rotorua"], ans: 0, exp: "Bay of Islands", diff: "M5" },
+                { q: "How many chiefs signed first day?", opts: ["About 40", "About 500", "Just 1", "None"], ans: 0, exp: "~40 chiefs", diff: "M6" },
+                { q: "Taonga means?", opts: ["Treasures/valued things", "Land only", "Money", "Food"], ans: 0, exp: "Prized possessions", diff: "M5" }
             ],
             "NZ-History": [
                 { q: "First NZ settlers?", opts: ["Māori", "British", "Dutch", "Australian"], ans: 0, exp: "Polynesian ~1300AD", diff: "A4" },
@@ -632,7 +740,10 @@ const questions = {
                 { q: "Land Wars about?", opts: ["Land disputes", "Religion", "Trade", "Language"], ans: 0, exp: "Māori-settler conflict", diff: "M6" },
                 { q: "Māori came from?", opts: ["Polynesia", "Australia", "Asia", "Europe"], ans: 0, exp: "Pacific islands", diff: "M5" },
                 { q: "Aotearoa means?", opts: ["Land of long white cloud", "New Zealand", "Green land", "Big island"], ans: 0, exp: "Māori name", diff: "M5" },
-                { q: "Treaty settlements are?", opts: ["Compensation for breaches", "New treaties", "Land sales", "Government grants"], ans: 0, exp: "Addressing past wrongs", diff: "M6" }
+                { q: "Treaty settlements are?", opts: ["Compensation for breaches", "New treaties", "Land sales", "Government grants"], ans: 0, exp: "Addressing past wrongs", diff: "M6" },
+                { q: "Kate Sheppard known for?", opts: ["Women's suffrage", "Treaty signing", "First PM", "Explorer"], ans: 0, exp: "Voting rights", diff: "M5" },
+                { q: "NZ in ANZAC stands for?", opts: ["New Zealand", "North Zone", "Naval Zone", "Nothing"], ans: 0, exp: "Australia NZ Army Corps", diff: "M5" },
+                { q: "Gallipoli campaign was?", opts: ["WWI battle", "WWII battle", "Land war", "Trade route"], ans: 0, exp: "1915 Turkey", diff: "M6" }
             ],
             "Geography": [
                 { q: "NZ earthquakes from?", opts: ["Tectonic plates", "Volcanoes only", "Wind", "Rain"], ans: 0, exp: "Pacific+Australian", diff: "M5" },
@@ -644,7 +755,10 @@ const questions = {
                 { q: "Capital of NZ?", opts: ["Wellington", "Auckland", "Christchurch", "Hamilton"], ans: 0, exp: "Wellington", diff: "A4" },
                 { q: "Largest city?", opts: ["Auckland", "Wellington", "Christchurch", "Hamilton"], ans: 0, exp: "By population", diff: "A4" },
                 { q: "Alpine Fault?", opts: ["Major fault line", "Mountain", "River", "Lake"], ans: 0, exp: "Earthquake risk", diff: "M6" },
-                { q: "Greenhouse effect?", opts: ["Gases trap heat", "Plants grow", "Ozone hole", "Ice melts"], ans: 0, exp: "Warming", diff: "M6" }
+                { q: "Greenhouse effect?", opts: ["Gases trap heat", "Plants grow", "Ozone hole", "Ice melts"], ans: 0, exp: "Warming", diff: "M6" },
+                { q: "Geothermal energy from?", opts: ["Earth's heat", "Sun", "Wind", "Water"], ans: 0, exp: "Underground heat", diff: "M6" },
+                { q: "NZ in which hemisphere?", opts: ["Southern", "Northern", "Both", "Neither"], ans: 0, exp: "South of equator", diff: "A4" },
+                { q: "Deforestation causes?", opts: ["Habitat loss, erosion", "More rain", "Cooler temps", "More animals"], ans: 0, exp: "Environmental damage", diff: "M6" }
             ],
             "Government": [
                 { q: "NZ government type?", opts: ["Parliamentary democracy", "Presidential", "Monarchy", "Dictatorship"], ans: 0, exp: "Elected parliament", diff: "M5" },
@@ -656,7 +770,10 @@ const questions = {
                 { q: "Electorate vote for?", opts: ["Local MP", "Party", "PM", "President"], ans: 0, exp: "Your area's MP", diff: "M6" },
                 { q: "Party vote decides?", opts: ["Parliament seats", "Local MP", "PM directly", "Laws"], ans: 0, exp: "Proportional seats", diff: "M6" },
                 { q: "Election every?", opts: ["3 years", "4 years", "5 years", "2 years"], ans: 0, exp: "3 year term", diff: "M5" },
-                { q: "What is a bill?", opts: ["Proposed law", "Existing law", "Court case", "Vote"], ans: 0, exp: "Before becoming Act", diff: "M6" }
+                { q: "What is a bill?", opts: ["Proposed law", "Existing law", "Court case", "Vote"], ans: 0, exp: "Before becoming Act", diff: "M6" },
+                { q: "Head of state in NZ?", opts: ["King/Queen (via GG)", "Prime Minister", "President", "Mayor"], ans: 0, exp: "Constitutional monarchy", diff: "M6" },
+                { q: "Local government?", opts: ["Councils", "Parliament", "Courts", "Police"], ans: 0, exp: "Regional/city councils", diff: "M5" },
+                { q: "What does GG stand for?", opts: ["Governor-General", "Government Guide", "General Governor", "Grand Governor"], ans: 0, exp: "Crown representative", diff: "M6" }
             ],
             "Rights": [
                 { q: "Human rights include?", opts: ["Freedom of speech", "Right to harm", "Unlimited power", "No responsibilities"], ans: 0, exp: "Basic freedoms", diff: "M5" },
@@ -666,7 +783,12 @@ const questions = {
                 { q: "Diversity means?", opts: ["Variety of people", "Same people", "One culture", "No differences"], ans: 0, exp: "Differences valued", diff: "M5" },
                 { q: "NZ Bill of Rights protects?", opts: ["Fundamental freedoms", "Property only", "Voting only", "Nothing"], ans: 0, exp: "Core rights", diff: "M6" },
                 { q: "Freedom of expression?", opts: ["Share opinions", "Say anything harmful", "No limits", "No responsibility"], ans: 0, exp: "Voice views", diff: "M6" },
-                { q: "Te Tiriti guarantees Māori?", opts: ["Protection of taonga", "No rights", "Only land", "Nothing"], ans: 0, exp: "Article 2 rights", diff: "M6" }
+                { q: "Te Tiriti guarantees Māori?", opts: ["Protection of taonga", "No rights", "Only land", "Nothing"], ans: 0, exp: "Article 2 rights", diff: "M6" },
+                { q: "What is prejudice?", opts: ["Pre-judging without facts", "Fair judgment", "Legal term", "Nothing"], ans: 0, exp: "Unfair bias", diff: "M5" },
+                { q: "What is tolerance?", opts: ["Accepting differences", "Ignoring others", "Agreement", "Sameness"], ans: 0, exp: "Respect for diversity", diff: "M5" },
+                { q: "Active citizenship means?", opts: ["Participating in community", "Just voting", "Paying taxes only", "Nothing"], ans: 0, exp: "Engaged involvement", diff: "M6" },
+                { q: "What is democracy?", opts: ["Rule by the people", "Rule by one", "Rule by military", "No rules"], ans: 0, exp: "People have power", diff: "M5" },
+                { q: "Why are rights important?", opts: ["Protect individuals", "Create chaos", "Limit freedom", "None"], ans: 0, exp: "Safeguard freedoms", diff: "M5" }
             ]
         }
     }

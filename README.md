@@ -1,59 +1,60 @@
-# 🎓 Rangitoto Year 9 Review Hub
+# Rangitoto Year 9 Review Hub v7.1
 
-A gamified learning website for Year 9 students at Rangitoto College to review Mathematics, English ESOL, Science, and Social Science.
+## 🎮 Gamified Learning Platform for NZ Year 9 Students
 
-## 🌐 Live Demo
-**[https://flyzhenghao.github.io/rangitoto-review-Y9](https://flyzhenghao.github.io/rangitoto-review-Y9)**
+**Total Questions: 501**
+**Subjects: 4 (Mathematics, English, Science, Social Science)**
+**Target: Excellence Level Performance**
+
+## 📊 Question Distribution by Subject
+
+| Subject | Questions | Target Grade | Topics |
+|---------|-----------|--------------|--------|
+| Mathematics | ~175 | E7-E8 | 12 topics |
+| English | ~140 | M5-M6 | 10 topics |
+| Science | ~125 | M6-E7 | 11 topics |
+| Social Science | ~61 | M5-M6 | 5 topics |
+
+## 📈 Difficulty Distribution
+
+| Level | Count | Percentage | Description |
+|-------|-------|------------|-------------|
+| A3 | ~15 | 3% | Foundation (40-49%) |
+| A4 | ~50 | 10% | Basic (50-59%) |
+| M5 | ~125 | 25% | Merit Low (60-69%) |
+| M6 | ~145 | 29% | Merit High (70-79%) |
+| E7 | ~130 | 26% | Excellence (80-89%) |
+| E8 | ~36 | 7% | Challenge (90-100%) |
+
+## 🚀 Deployment
+
+1. Upload `index.html` to GitHub repository
+2. Enable GitHub Pages in Settings
+3. Access at: `https://[username].github.io/rangitoto-review`
 
 ## ✨ Features
 
-- 📚 **4 Subjects**: Math, English ESOL, Science, Social Science
-- 🎯 **60+ Questions**: Multiple choice with explanations
-- 🏅 **15 Badges**: Earn rewards for achievements
-- 🔥 **Streak System**: Track daily study consistency
-- ⚡ **XP System**: Earn points for every exam
-- 📊 **NCEA Grading**: N0-E8 grade system
-- 💾 **Backup/Restore**: Export and import your progress
-- 📱 **Responsive**: Works on desktop, tablet, and mobile
+- 📅 6-week study calendar (Dec 6, 2025 - Jan 17, 2026)
+- 🏅 15 achievement badges
+- 📊 Q-Bank statistics with difficulty analysis
+- 🔥 Daily streaks & XP system
+- 📝 Enhanced review with full explanations
+- 💾 Progress backup/restore
+- 📱 Mobile responsive design
 
-## 🏅 Badges
+## 📚 Topics Covered
 
-| Badge | Name | Requirement |
-|-------|------|-------------|
-| 🎯 | First Steps | Complete 1 exam |
-| 🔥 | On Fire | 3-day streak |
-| ⚔️ | Week Warrior | 7-day streak |
-| 💯 | Perfectionist | Get 100% score |
-| 🧙 | Math Wizard | 5 Math exams |
-| 📖 | Wordsmith | 5 English exams |
-| 🔭 | Scientist | 5 Science exams |
-| 🌏 | Historian | 5 Social Science exams |
-| 🏆 | Excellence | Get E7 or E8 grade |
-| 📚 | Dedicated | 10 total exams |
-| ⚡ | Speed Demon | Finish in <2 min |
-| 🚀 | Unstoppable | 25 total exams |
-| 👑 | Master | 5000+ XP |
-| 👑 | Streak King | 14-day streak |
-| 🌟 | All Rounder | 3+ exams each subject |
+### Mathematics (E7-E8 Target)
+Integers, Fractions, Percentages, Algebra, Indices, Sequences, Ratios, Geometry-Angles, Area-Perimeter, Circles, Pythagoras, Statistics
 
-## 📅 6-Week Study Plan
+### English (M5-M6 Target)  
+Synonyms, Antonyms, Prefixes, Suffixes, Parts of Speech, Verb Tenses, Sentence Structure, Punctuation, Writing, Comprehension
 
-| Week | Dates | Focus |
-|------|-------|-------|
-| 1 | Dec 6-12 | Math: Number & Algebra |
-| 2 | Dec 13-19 | English: Vocabulary |
-| 3 | Dec 20-26 | Math: Geometry |
-| 4 | Dec 27-Jan 2 | Science: All Topics |
-| 5 | Jan 3-9 | English: Grammar |
-| 6 | Jan 10-17 | Final Review |
+### Science (M6-E7 Target)
+Atoms-Elements, Chemical-Formulas, Chemical-Reactions, States-Matter, Cells, Photosynthesis, Respiration, Ecosystems, Forces, Energy, Light-Sound
 
-## 🛠️ Tech Stack
+### Social Science (M5-M6 Target)
+Treaty of Waitangi, NZ History, Geography, Government, Rights
 
-- Pure HTML/CSS/JavaScript
-- No external dependencies
-- LocalStorage for data persistence
-- Single file deployment
-
-## 📝 License
-
-Made for educational purposes. © 2025
+---
+Built for Rangitoto College Year 9 Summer Review 2025-2026
