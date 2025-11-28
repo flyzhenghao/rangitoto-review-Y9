@@ -947,7 +947,7 @@ function renderQuestionByType(q, qType) {
             }).join('');
             
         case 'fill':
-            return `<div class="text-center"><input type="text" class="fill-input" placeholder="Type your answer..." value="${currentAns || ''}" onchange="selectAnswer(this.value)" onkeyup="selectAnswer(this.value)"></div>`;
+            return `<div class="text-center"><input type="text" class="fill-input" placeholder="Type your answer..." value="${currentAns || ''}" oninput="updateFillAnswer(this.value)"></div>`;
             
         case 'tf':
             return `<div class="tf-container">
@@ -1053,6 +1053,7 @@ function toggleMultiAnswer(i) {
     render();
 }
 function selectAnswer(i) { examState.answers[examState.q] = i; render(); }
+function updateFillAnswer(value) { examState.answers[examState.q] = value; }
 function prevQuestion() { if (examState.q > 0) { examState.q--; render(); } }
 function nextQuestion() { if (examState.q < currentExam.questions.length - 1) { examState.q++; render(); } }
 function goToQuestion(i) { examState.q = i; render(); }
