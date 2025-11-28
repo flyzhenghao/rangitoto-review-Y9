@@ -244,7 +244,27 @@ const questions = {
                 { type: "mcq", q: "(-2)⁴ × (-1)³ = ?", opts: ["-16", "16", "-8", "8"], ans: 0, exp: "16 × (-1) = -16", diff: "E7" },
                 { type: "multi", q: "Select ALL negative numbers:", opts: ["-5", "3", "-8", "0", "-1"], ans: [0, 2, 4], exp: "-5, -8, and -1 are negative", diff: "A3" },
                 { type: "tf", q: "(-4)² - (-3)² = 7", ans: true, exp: "16 - 9 = 7", diff: "E7" },
-                { type: "fill", q: "If x = -2, find 3x² - 2x = ___", ans: "16", exp: "12 - (-4) = 16", diff: "E8" }
+                { type: "fill", q: "If x = -2, find 3x² - 2x = ___", ans: "16", exp: "12 - (-4) = 16", diff: "E8" },
+                { type: "mcq", q: "8 - (-3) = ?", opts: ["11", "5", "-11", "-5"], ans: 0, exp: "8 + 3 = 11", diff: "A4" },
+                { type: "fill", q: "-9 × 2 = ___", ans: "-18", exp: "Negative × positive = negative", diff: "A3" },
+                { type: "mcq", q: "Which is smallest?", opts: ["-10", "-5", "0", "3"], ans: 0, exp: "-10 is leftmost on number line", diff: "A4" },
+                { type: "tf", q: "(-3) + 5 = 2", ans: true, exp: "-3 + 5 = 2", diff: "A3" },
+                { type: "fill", q: "|-12| = ___", ans: "12", exp: "Absolute value = distance from 0", diff: "A4" },
+                { type: "mcq", q: "(-10) ÷ 2 = ?", opts: ["-5", "5", "-20", "20"], ans: 0, exp: "Negative ÷ positive = negative", diff: "M5" },
+                { type: "fill", q: "-4 - 6 = ___", ans: "-10", exp: "Both negative: -4 - 6 = -10", diff: "M5" },
+                { type: "mcq", q: "Order from smallest: 5, -3, 0, -7", opts: ["-7, -3, 0, 5", "-3, -7, 0, 5", "5, 0, -3, -7", "0, -3, 5, -7"], ans: 0, exp: "Negative numbers are smaller", diff: "M6" },
+                { type: "fill", q: "6 + (-9) = ___", ans: "-3", exp: "6 - 9 = -3", diff: "A4" },
+                { type: "mcq", q: "-20 ÷ 5 = ?", opts: ["-4", "4", "-25", "15"], ans: 0, exp: "Negative ÷ positive = negative", diff: "M5" },
+                { type: "tf", q: "(-1) × (-1) = 1", ans: true, exp: "Negative × negative = positive", diff: "A4" },
+                { type: "fill", q: "0 - 7 = ___", ans: "-7", exp: "Zero minus positive = negative", diff: "A3" },
+                { type: "mcq", q: "Which is larger: -2 or -5?", opts: ["-2", "-5", "Same", "Cannot compare"], ans: 0, exp: "-2 is closer to 0", diff: "A4" },
+                { type: "fill", q: "(-8) + 8 = ___", ans: "0", exp: "Opposites sum to zero", diff: "A3" },
+                { type: "mcq", q: "3 - 10 = ?", opts: ["-7", "7", "13", "-13"], ans: 0, exp: "3 - 10 = -7", diff: "A4" },
+                { type: "fill", q: "(-5) × 4 = ___", ans: "-20", exp: "Negative × positive = negative", diff: "M5" },
+                { type: "tf", q: "The opposite of -6 is 6", ans: true, exp: "Opposite changes sign", diff: "A3" },
+                { type: "mcq", q: "(-15) + 10 = ?", opts: ["-5", "5", "25", "-25"], ans: 0, exp: "-15 + 10 = -5", diff: "M5" },
+                { type: "fill", q: "24 ÷ (-6) = ___", ans: "-4", exp: "Positive ÷ negative = negative", diff: "M5" },
+                { type: "mcq", q: "(-7) - (-3) = ?", opts: ["-4", "4", "-10", "10"], ans: 0, exp: "-7 + 3 = -4", diff: "M6" }
             ],
             "Fractions": [
                 { type: "fill", q: "Simplify: 12/18 = ___", ans: "2/3", exp: "÷6 each = 2/3", diff: "A4" },
@@ -261,7 +281,14 @@ const questions = {
                 { type: "fill", q: "If x/4 = 3/8, find x = ___", ans: "1.5", exp: "x = 12/8 = 1.5", diff: "E7" },
                 { type: "multi", q: "Select fractions EQUAL to 1/2:", opts: ["2/4", "3/5", "4/8", "5/10", "2/3"], ans: [0, 2, 3], exp: "2/4, 4/8, 5/10 all equal 1/2", diff: "M5" },
                 { type: "mcq", q: "2/3 ÷ 4/5 = ?", opts: ["5/6", "8/15", "6/5", "10/12"], ans: 0, exp: "2/3 × 5/4 = 10/12 = 5/6", diff: "E7" },
-                { type: "fill", q: "Solve: x/3 + x/4 = 7, x = ___", ans: "12", exp: "7x/12 = 7, x = 12", diff: "E8" }
+                { type: "fill", q: "Solve: x/3 + x/4 = 7, x = ___", ans: "12", exp: "7x/12 = 7, x = 12", diff: "E8" },
+                { type: "mcq", q: "1/2 + 1/4 = ?", opts: ["3/4", "2/6", "1/6", "2/4"], ans: 0, exp: "2/4 + 1/4 = 3/4", diff: "A4" },
+                { type: "fill", q: "Simplify: 15/20 = ___", ans: "3/4", exp: "÷5 each = 3/4", diff: "A4" },
+                { type: "mcq", q: "2/3 - 1/3 = ?", opts: ["1/3", "3/3", "1/6", "2/6"], ans: 0, exp: "Same denominator: 2-1=1", diff: "A3" },
+                { type: "fill", q: "1/2 × 2/5 = ___", ans: "1/5", exp: "2/10 = 1/5", diff: "M5" },
+                { type: "mcq", q: "Which is larger: 2/3 or 3/4?", opts: ["3/4", "2/3", "Same", "Cannot compare"], ans: 0, exp: "8/12 vs 9/12, so 3/4 is larger", diff: "M5" },
+                { type: "tf", q: "1/4 + 1/4 = 1/2", ans: true, exp: "2/4 = 1/2", diff: "A3" },
+                { type: "fill", q: "3/5 + 1/10 = ___", ans: "7/10", exp: "6/10 + 1/10 = 7/10", diff: "M6" }
             ],
             "Percentages": [
                 { type: "fill", q: "25% of 200 = ___", ans: "50", exp: "0.25 × 200 = 50", diff: "A3" },
@@ -278,7 +305,14 @@ const questions = {
                 { type: "mcq", q: "Compound: $100, 10%/year, 2 years", opts: ["$121", "$120", "$110", "$122"], ans: 0, exp: "100×1.1×1.1 = 121", diff: "E8" },
                 { type: "mcq", q: "What % is 18 of 72?", opts: ["25%", "18%", "72%", "4%"], ans: 0, exp: "18÷72 = 0.25", diff: "M6" },
                 { type: "mcq", q: "Profit margin: cost $40, sell $50", opts: ["25%", "20%", "10%", "50%"], ans: 0, exp: "10÷40 = 25%", diff: "E7" },
-                { type: "mcq", q: "Sale price $75 after 25% off. Original?", opts: ["$100", "$93.75", "$56.25", "$90"], ans: 0, exp: "75÷0.75 = 100", diff: "E8" }
+                { type: "mcq", q: "Sale price $75 after 25% off. Original?", opts: ["$100", "$93.75", "$56.25", "$90"], ans: 0, exp: "75÷0.75 = 100", diff: "E8" },
+                { type: "fill", q: "10% of 150 = ___", ans: "15", exp: "0.1 × 150 = 15", diff: "A3" },
+                { type: "mcq", q: "Convert 1/4 to %", opts: ["25%", "40%", "50%", "75%"], ans: 0, exp: "1÷4 = 0.25 = 25%", diff: "A4" },
+                { type: "tf", q: "50% = 0.5", ans: true, exp: "50% = 50/100 = 0.5", diff: "A3" },
+                { type: "fill", q: "20% of 60 = ___", ans: "12", exp: "0.2 × 60 = 12", diff: "A4" },
+                { type: "mcq", q: "Increase 50 by 10%", opts: ["55", "60", "51", "45"], ans: 0, exp: "50 + 5 = 55", diff: "M5" },
+                { type: "fill", q: "$120 with 10% off = $___", ans: "108", exp: "120 - 12 = 108", diff: "M5" },
+                { type: "mcq", q: "Convert 0.75 to %", opts: ["75%", "7.5%", "750%", "0.75%"], ans: 0, exp: "0.75 × 100 = 75%", diff: "M5" }
             ],
             "Algebra": [
                 { type: "fill", q: "Simplify: 3x + 5x - 2x = ___x", ans: "6", exp: "(3+5-2)x = 6x", diff: "A4" },
@@ -298,27 +332,17 @@ const questions = {
                 { type: "tf", q: "(x-4)(x+4) = x² - 16", ans: true, exp: "Difference of squares", diff: "E7" },
                 { type: "fill", q: "Solve: x/2 + 3 = 7, x = ___", ans: "8", exp: "x/2 = 4, x = 8", diff: "M6" },
                 { type: "mcq", q: "Factorise: 2x² + 6x", opts: ["2x(x+3)", "2(x²+3x)", "x(2x+6)", "6x(x+1)"], ans: 0, exp: "2x is common", diff: "E7" },
-                { type: "fill", q: "Solve: x² - 5x + 6 = 0. Smaller x = ___", ans: "2", exp: "(x-2)(x-3)=0", diff: "E8" }
+                { type: "fill", q: "Solve: x² - 5x + 6 = 0. Smaller x = ___", ans: "2", exp: "(x-2)(x-3)=0", diff: "E8" },
+                { type: "fill", q: "Simplify: 7x - 3x = ___x", ans: "4", exp: "7 - 3 = 4", diff: "A3" },
+                { type: "mcq", q: "Solve: x + 5 = 12", opts: ["7", "17", "5", "12"], ans: 0, exp: "x = 12 - 5 = 7", diff: "A4" },
+                { type: "fill", q: "If x = 3, find 2x + 1 = ___", ans: "7", exp: "2(3) + 1 = 7", diff: "A4" },
+                { type: "mcq", q: "Expand: 3(x + 2)", opts: ["3x + 6", "3x + 2", "x + 6", "3x + 5"], ans: 0, exp: "3×x + 3×2", diff: "M5" },
+                { type: "tf", q: "2x + 3x = 5x", ans: true, exp: "Combine like terms", diff: "A4" },
+                { type: "fill", q: "Solve: 3x = 21, x = ___", ans: "7", exp: "x = 21 ÷ 3 = 7", diff: "M5" },
+                { type: "mcq", q: "Factorise: 4x + 8", opts: ["4(x + 2)", "4x + 2", "2(2x + 4)", "x + 2"], ans: 0, exp: "4 is common factor", diff: "M6" },
+                { type: "fill", q: "If y = -2, find y² + 3y = ___", ans: "-2", exp: "4 + (-6) = -2", diff: "M6" }
             ],
-            "Indices": [
-                { q: "2³ = ?", opts: ["8", "6", "9", "5"], ans: 0, exp: "2×2×2 = 8", diff: "A3" },
-                { q: "5² = ?", opts: ["25", "10", "52", "125"], ans: 0, exp: "5×5 = 25", diff: "A3" },
-                { q: "10⁰ = ?", opts: ["1", "0", "10", "100"], ans: 0, exp: "Any number⁰ = 1", diff: "A4" },
-                { q: "2³ × 2² = ?", opts: ["32", "16", "64", "8"], ans: 0, exp: "2⁵ = 32", diff: "M5" },
-                { q: "2⁴ ÷ 2² = ?", opts: ["4", "2", "8", "16"], ans: 0, exp: "2² = 4", diff: "M5" },
-                { q: "(2³)² = ?", opts: ["64", "32", "12", "36"], ans: 0, exp: "2⁶ = 64", diff: "M6" },
-                { q: "3⁴ = ?", opts: ["81", "12", "27", "64"], ans: 0, exp: "3×3×3×3", diff: "M5" },
-                { q: "x⁵ ÷ x² = ?", opts: ["x³", "x⁷", "x²⁵", "x¹⁰"], ans: 0, exp: "5-2 = 3", diff: "M6" },
-                { q: "2⁻¹ = ?", opts: ["1/2", "-2", "2", "-1"], ans: 0, exp: "Negative = reciprocal", diff: "E7" },
-                { q: "(3²)³ = ?", opts: ["729", "18", "81", "27"], ans: 0, exp: "3⁶ = 729", diff: "E7" },
-                { q: "Simplify: (2x³)²", opts: ["4x⁶", "2x⁶", "4x⁵", "2x⁵"], ans: 0, exp: "4x⁶", diff: "E7" },
-                { q: "8^(2/3) = ?", opts: ["4", "8", "2", "16"], ans: 0, exp: "(∛8)² = 2² = 4", diff: "E8" },
-                { q: "Simplify: 27^(1/3)", opts: ["3", "9", "27", "1"], ans: 0, exp: "Cube root of 27", diff: "E7" },
-                { q: "5⁻² = ?", opts: ["1/25", "-10", "25", "-25"], ans: 0, exp: "1/5² = 1/25", diff: "E7" },
-                { q: "Simplify: x³ × x⁴ × x", opts: ["x⁸", "x¹²", "x⁷", "3x⁸"], ans: 0, exp: "3+4+1 = 8", diff: "M6" },
-                { q: "(x²y³)² = ?", opts: ["x⁴y⁶", "x⁴y⁵", "x²y⁶", "2x²y³"], ans: 0, exp: "Square each", diff: "E8" }
-            ],
-            "Sequences": [
+            "Patterns": [
                 { q: "Next: 3, 7, 11, 15, ?", opts: ["19", "18", "20", "17"], ans: 0, exp: "+4 pattern", diff: "A4" },
                 { q: "Next: 2, 4, 8, 16, ?", opts: ["32", "24", "20", "18"], ans: 0, exp: "×2 pattern", diff: "A4" },
                 { q: "Next: 2, 6, 18, 54, ?", opts: ["162", "108", "72", "216"], ans: 0, exp: "×3 pattern", diff: "M5" },
@@ -331,21 +355,15 @@ const questions = {
                 { q: "Geometric: a=2, r=3. 5th term?", opts: ["162", "48", "54", "108"], ans: 0, exp: "2×3⁴ = 162", diff: "E8" },
                 { q: "Sum: 1+2+3+...+10", opts: ["55", "50", "45", "100"], ans: 0, exp: "n(n+1)/2", diff: "E7" },
                 { q: "nth term: 5, 8, 11, 14...", opts: ["3n+2", "3n+5", "n+5", "5n"], ans: 0, exp: "3n + 2", diff: "E7" },
-                { q: "Find 20th term if nth = 2n+3", opts: ["43", "40", "46", "23"], ans: 0, exp: "2(20)+3 = 43", diff: "E8" }
+                { q: "Find 20th term if nth = 2n+3", opts: ["43", "40", "46", "23"], ans: 0, exp: "2(20)+3 = 43", diff: "E8" },
+                { q: "Next: 5, 10, 15, 20, ?", opts: ["25", "30", "24", "22"], ans: 0, exp: "+5 pattern", diff: "A3" },
+                { q: "Next: 100, 90, 80, 70, ?", opts: ["60", "50", "65", "75"], ans: 0, exp: "-10 pattern", diff: "A4" },
+                { q: "Next: 1, 3, 9, 27, ?", opts: ["81", "54", "36", "108"], ans: 0, exp: "×3 pattern", diff: "M5" },
+                { q: "Pattern: 2, 4, 6, 8. Rule?", opts: ["Even numbers", "Odd numbers", "Squares", "Primes"], ans: 0, exp: "Multiples of 2", diff: "A4" },
+                { q: "Next: 1, 2, 4, 7, 11, ?", opts: ["16", "15", "14", "18"], ans: 0, exp: "+1, +2, +3, +4, +5", diff: "M6" },
+                { q: "nth term: 1, 4, 7, 10...", opts: ["3n-2", "3n+1", "n+3", "4n"], ans: 0, exp: "3n - 2", diff: "E7" }
             ],
-            "Ratios": [
-                { q: "Simplify: 15:25", opts: ["3:5", "1:2", "5:3", "15:25"], ans: 0, exp: "÷5 = 3:5", diff: "A4" },
-                { q: "Ratio 3:5, 24 boys. Girls?", opts: ["40", "30", "45", "35"], ans: 0, exp: "1 part=8, 5×8=40", diff: "M5" },
-                { q: "Ratio 2:3, total 30. Smaller?", opts: ["12", "18", "10", "15"], ans: 0, exp: "5 parts=30, 2 parts=12", diff: "M6" },
-                { q: "Scale 1:50. Model 3cm. Real?", opts: ["150cm", "53cm", "50cm", "15cm"], ans: 0, exp: "3×50 = 150", diff: "M6" },
-                { q: "Share $60 ratio 1:2:3", opts: ["10,20,30", "15,20,25", "20,20,20", "12,24,24"], ans: 0, exp: "6 parts, 1 part=10", diff: "E7" },
-                { q: "A:B=2:3, B:C=4:5. A:B:C=?", opts: ["8:12:15", "2:3:5", "4:6:5", "2:4:5"], ans: 0, exp: "Make B same: 8:12:15", diff: "E8" },
-                { q: "If 3:x = x:12, find x", opts: ["6", "4", "9", "8"], ans: 0, exp: "x² = 36, x = 6", diff: "E8" },
-                { q: "Recipe for 4: 200g flour. For 6?", opts: ["300g", "250g", "400g", "150g"], ans: 0, exp: "200×6÷4 = 300", diff: "M6" },
-                { q: "Map 1:25000. 4cm = ? km", opts: ["1km", "100m", "10km", "25km"], ans: 0, exp: "4×25000 = 100000cm = 1km", diff: "E7" },
-                { q: "Simplify: 24:36:48", opts: ["2:3:4", "4:6:8", "6:9:12", "1:2:3"], ans: 0, exp: "÷12 each", diff: "M6" }
-            ],
-            "Geometry-Angles": [
+            "Geometry": [
                 { q: "What angle is 135°?", opts: ["Obtuse", "Acute", "Right", "Reflex"], ans: 0, exp: "90°-180° = obtuse", diff: "A3" },
                 { q: "Angles on straight line sum?", opts: ["180°", "360°", "90°", "270°"], ans: 0, exp: "Supplementary", diff: "A4" },
                 { q: "Triangle angles sum?", opts: ["180°", "360°", "90°", "270°"], ans: 0, exp: "Always 180°", diff: "A4" },
@@ -359,35 +377,7 @@ const questions = {
                 { q: "Polygon with interior 156°. Sides?", opts: ["15", "12", "18", "20"], ans: 0, exp: "180-156=24, 360÷24=15", diff: "E8" },
                 { q: "Co-interior angles sum?", opts: ["180°", "90°", "360°", "Equal"], ans: 0, exp: "On same side of transversal", diff: "M6" },
                 { q: "Alternate angles are?", opts: ["Equal", "180°", "90°", "Supplementary"], ans: 0, exp: "Z-angles are equal", diff: "M6" },
-                { q: "Sum of angles in octagon?", opts: ["1080°", "720°", "1440°", "900°"], ans: 0, exp: "(8-2)×180 = 1080", diff: "E7" }
-            ],
-            "Area-Perimeter": [
-                { q: "Rectangle 8×5. Area?", opts: ["40 cm²", "26 cm²", "13 cm²", "80 cm²"], ans: 0, exp: "8×5 = 40", diff: "A3" },
-                { q: "Rectangle 8×5. Perimeter?", opts: ["26 cm", "40 cm", "13 cm", "80 cm"], ans: 0, exp: "2(8+5) = 26", diff: "A4" },
-                { q: "Square side 7. Area?", opts: ["49 cm²", "28 cm²", "14 cm²", "21 cm²"], ans: 0, exp: "7×7 = 49", diff: "A4" },
-                { q: "Triangle: base 10, height 6. Area?", opts: ["30 cm²", "60 cm²", "16 cm²", "8 cm²"], ans: 0, exp: "½×10×6 = 30", diff: "M5" },
-                { q: "Parallelogram: b=12, h=5. Area?", opts: ["60 cm²", "34 cm²", "17 cm²", "120 cm²"], ans: 0, exp: "b×h = 60", diff: "M5" },
-                { q: "Trapezium: a=4, b=6, h=5. Area?", opts: ["25 cm²", "30 cm²", "20 cm²", "50 cm²"], ans: 0, exp: "½(4+6)×5 = 25", diff: "M6" },
-                { q: "Rectangle area 48, width 6. Length?", opts: ["8", "42", "54", "288"], ans: 0, exp: "48÷6 = 8", diff: "M6" },
-                { q: "Compound shape: 10×8 with 3×3 cut. Area?", opts: ["71 cm²", "80 cm²", "77 cm²", "89 cm²"], ans: 0, exp: "80-9 = 71", diff: "E7" },
-                { q: "Sector 90°, r=6. Area? (π=3.14)", opts: ["28.26 cm²", "113 cm²", "9.42 cm²", "56.52 cm²"], ans: 0, exp: "¼×π×36 = 28.26", diff: "E8" },
-                { q: "Rhombus diagonals 6 & 8. Area?", opts: ["24 cm²", "48 cm²", "14 cm²", "28 cm²"], ans: 0, exp: "½×6×8 = 24", diff: "E7" },
-                { q: "Equilateral triangle side 6. Perimeter?", opts: ["18 cm", "36 cm", "12 cm", "6 cm"], ans: 0, exp: "3×6 = 18", diff: "M5" },
-                { q: "Square perimeter 36. Area?", opts: ["81 cm²", "36 cm²", "9 cm²", "324 cm²"], ans: 0, exp: "Side=9, 9²=81", diff: "M6" }
-            ],
-            "Circles": [
-                { q: "Circumference formula?", opts: ["2πr", "πr²", "πd²", "2πr²"], ans: 0, exp: "C = 2πr", diff: "M5" },
-                { q: "Area formula?", opts: ["πr²", "2πr", "πd", "2πr²"], ans: 0, exp: "A = πr²", diff: "M5" },
-                { q: "Diameter if radius 5?", opts: ["10", "5", "25", "15"], ans: 0, exp: "d = 2r = 10", diff: "A4" },
-                { q: "Circumference: r=7 (π=22/7)?", opts: ["44 cm", "154 cm", "22 cm", "88 cm"], ans: 0, exp: "2×22/7×7 = 44", diff: "M6" },
-                { q: "Area: r=7 (π=22/7)?", opts: ["154 cm²", "44 cm²", "49 cm²", "308 cm²"], ans: 0, exp: "22/7×49 = 154", diff: "M6" },
-                { q: "Semicircle perimeter: d=10 (π=3.14)?", opts: ["25.7 cm", "15.7 cm", "31.4 cm", "20 cm"], ans: 0, exp: "πr + d = 15.7+10", diff: "E7" },
-                { q: "Arc length: 60°, r=6 (π=3.14)?", opts: ["6.28 cm", "12.56 cm", "3.14 cm", "18.84 cm"], ans: 0, exp: "60/360×2πr", diff: "E8" },
-                { q: "Radius if circumference = 31.4?", opts: ["5", "10", "15.7", "3.14"], ans: 0, exp: "31.4÷2π = 5", diff: "E7" },
-                { q: "Radius if area = 78.5 (π=3.14)?", opts: ["5", "25", "10", "7.85"], ans: 0, exp: "√(78.5/3.14) = 5", diff: "E7" },
-                { q: "Annulus area: R=5, r=3 (π=3.14)?", opts: ["50.24 cm²", "78.5 cm²", "28.26 cm²", "25.12 cm²"], ans: 0, exp: "π(25-9) = 50.24", diff: "E8" }
-            ],
-            "Pythagoras": [
+                { q: "Sum of angles in octagon?", opts: ["1080°", "720°", "1440°", "900°"], ans: 0, exp: "(8-2)×180 = 1080", diff: "E7" },
                 { q: "Pythagoras: a²+b²=?", opts: ["c²", "2c", "c", "ab"], ans: 0, exp: "Hypotenuse squared", diff: "M5" },
                 { q: "Legs 3 & 4. Hypotenuse?", opts: ["5", "7", "6", "12"], ans: 0, exp: "9+16=25, √25=5", diff: "M6" },
                 { q: "Legs 6 & 8. Hypotenuse?", opts: ["10", "14", "48", "7"], ans: 0, exp: "36+64=100, √100=10", diff: "M6" },
@@ -398,22 +388,21 @@ const questions = {
                 { q: "3D diagonal: 3×4×12 box?", opts: ["13", "19", "12", "5"], ans: 0, exp: "√(9+16+144)=13", diff: "E8" },
                 { q: "Ladder 5m, base 3m from wall. Height?", opts: ["4m", "8m", "2m", "6m"], ans: 0, exp: "25-9=16, √16=4", diff: "E7" },
                 { q: "Is 8,15,17 Pythagorean triple?", opts: ["Yes", "No", "Maybe", "Need info"], ans: 0, exp: "64+225=289=17²", diff: "E7" },
-                { q: "Square diagonal 10√2. Side?", opts: ["10", "20", "5", "10√2"], ans: 0, exp: "d = s√2", diff: "E8" }
-            ],
-            "Statistics": [
-                { type: "fill", q: "Mean of 4, 7, 8, 9, 12 = ___", ans: "8", exp: "40÷5=8", diff: "A4" },
-                { type: "mcq", q: "Median: 3, 7, 9, 12, 15?", opts: ["9", "7", "12", "9.2"], ans: 0, exp: "Middle = 9", diff: "A4" },
-                { type: "fill", q: "Mode of 2, 4, 4, 5, 7, 4, 8 = ___", ans: "4", exp: "4 appears most", diff: "A4" },
-                { type: "mcq", q: "Range: 15, 22, 8, 31, 19?", opts: ["23", "31", "8", "19"], ans: 0, exp: "31-8=23", diff: "M5" },
-                { type: "fill", q: "Median of 2, 4, 6, 8 = ___", ans: "5", exp: "(4+6)/2=5", diff: "M5" },
-                { type: "tf", q: "Probability of rolling a 6 on a fair die is 1/6", ans: true, exp: "1 of 6 outcomes", diff: "M5" },
-                { type: "mcq", q: "Mean after adding 10 to each?", opts: ["Increases by 10", "Same", "Doubles", "Halves"], ans: 0, exp: "Mean shifts same", diff: "M6" },
-                { type: "mcq", q: "Which unaffected by outliers?", opts: ["Median", "Mean", "Sum", "Range"], ans: 0, exp: "Median is robust", diff: "E7" },
-                { type: "fill", q: "P(A)=0.3, P(B)=0.4, independent. P(A and B) = ___", ans: "0.12", exp: "0.3×0.4=0.12", diff: "E7" },
-                { type: "mcq", q: "Std dev measures?", opts: ["Spread from mean", "Average", "Middle", "Most common"], ans: 0, exp: "Data spread", diff: "E8" },
-                { type: "mcq", q: "Two dice. P(sum=7)?", opts: ["6/36", "7/36", "1/6", "1/12"], ans: 0, exp: "6 ways out of 36", diff: "E7" },
-                { type: "fill", q: "Mean=70, 5 scores. Total = ___", ans: "350", exp: "70×5 = 350", diff: "M6" },
-                { type: "tf", q: "IQR means Interquartile Range (Q3-Q1)", ans: true, exp: "Interquartile range", diff: "E7" }
+                { q: "Square diagonal 10√2. Side?", opts: ["10", "20", "5", "10√2"], ans: 0, exp: "d = s√2", diff: "E8" },
+                { q: "What is a 90° angle called?", opts: ["Right", "Acute", "Obtuse", "Straight"], ans: 0, exp: "90° = right angle", diff: "A3" },
+                { q: "How many sides in a triangle?", opts: ["3", "4", "5", "6"], ans: 0, exp: "Tri = 3", diff: "A3" },
+                { q: "Angle less than 90°?", opts: ["Acute", "Obtuse", "Right", "Straight"], ans: 0, exp: "Acute < 90°", diff: "A4" },
+                { q: "Find missing angle in triangle: 60°, 80°, ?", opts: ["40°", "100°", "50°", "30°"], ans: 0, exp: "180 - 60 - 80 = 40", diff: "M5" },
+                { q: "Isosceles triangle has?", opts: ["2 equal sides", "3 equal sides", "No equal sides", "4 sides"], ans: 0, exp: "Isosceles = 2 equal", diff: "M5" },
+                { q: "Equilateral triangle has?", opts: ["3 equal sides", "2 equal sides", "No equal sides", "4 equal sides"], ans: 0, exp: "Equilateral = all equal", diff: "M5" },
+                { q: "Pentagon has how many sides?", opts: ["5", "4", "6", "8"], ans: 0, exp: "Penta = 5", diff: "M6" },
+                { q: "Hexagon has how many sides?", opts: ["6", "5", "7", "8"], ans: 0, exp: "Hexa = 6", diff: "M6" },
+                { q: "Right triangle has angles: 90°, 40°, ?", opts: ["50°", "40°", "60°", "45°"], ans: 0, exp: "180 - 90 - 40 = 50", diff: "M6" },
+                { q: "Pythagoras: 8² + 6² = ?", opts: ["100", "64", "36", "14"], ans: 0, exp: "64 + 36 = 100", diff: "M6" },
+                { q: "Legs 9 & 12. Hypotenuse?", opts: ["15", "21", "3", "18"], ans: 0, exp: "81+144=225, √225=15", diff: "E7" },
+                { q: "Corresponding angles on parallel lines?", opts: ["Equal", "Add to 180°", "Add to 90°", "Different"], ans: 0, exp: "F-angles equal", diff: "M6" },
+                { q: "Octagon has how many sides?", opts: ["8", "6", "7", "9"], ans: 0, exp: "Octa = 8", diff: "M6" },
+                { q: "Scalene triangle has?", opts: ["No equal sides", "2 equal sides", "3 equal sides", "All equal"], ans: 0, exp: "All different", diff: "M5" }
             ]
         }
     },
