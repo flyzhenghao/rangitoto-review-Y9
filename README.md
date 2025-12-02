@@ -1,4 +1,4 @@
-# Rangitoto Year 9 Review Hub v8
+# Rangitoto Year 9 Review Hub v9.1
 
 A gamified study app for Year 9 students at Rangitoto College preparing for 2025.
 
@@ -13,7 +13,7 @@ A gamified study app for Year 9 students at Rangitoto College preparing for 2025
 | Science | 140 | M6-E7 |
 | Social Science | 60 | M5-M6 |
 
-### Question Types (NEW in v8!)
+### Question Types
 
 | Type | Icon | Count | Percentage | Description |
 |------|------|-------|------------|-------------|
@@ -51,11 +51,10 @@ A gamified study app for Year 9 students at Rangitoto College preparing for 2025
 - Writing, Comprehension
 
 ### Science (140 questions)
-- Atoms-Elements, Chemical Formulas
-- Chemical Reactions, States of Matter
-- Cells, Photosynthesis, Respiration
-- Ecosystems, Forces, Energy
-- Light-Sound
+**v9.1 Update: Consolidated into 3 main topics**
+- **Biology** (46 questions): Cells, Photosynthesis, Respiration, Ecosystems
+- **Chemistry** (53 questions): Atoms & Elements, Chemical Formulas, Chemical Reactions, States of Matter
+- **Physics** (39 questions): Forces, Energy, Light & Sound
 
 ### Social Science (60 questions)
 - Treaty of Waitangi
@@ -66,7 +65,12 @@ A gamified study app for Year 9 students at Rangitoto College preparing for 2025
 
 ## 🚀 Features
 
-### v8 New Features
+### v9.1 New Features
+- **Simplified Science Topics**: Consolidated from 11 subtopics into 3 main categories (Biology, Chemistry, Physics)
+- **Better Organization**: Questions grouped by major science discipline
+- **Same Question Count**: All 140 Science questions preserved
+
+### v8 Features
 - **6 Question Types**: MCQ, Fill-in-Blank, True/False, Multi-Select, Matching
 - **Type Statistics**: Q-Bank shows breakdown by question type
 - **Type Badges**: Each question displays its type during practice
@@ -102,6 +106,7 @@ Open `index.html` directly in any browser.
 
 ## 🔄 Version History
 
+- **v9.1**: Consolidated Science into 3 topics (Biology, Chemistry, Physics)
 - **v8**: Added 6 question types (MCQ, Fill, T/F, Multi, Match)
 - **v7.1**: Expanded to 500 questions
 - **v7**: Added Q-Bank statistics, complete review display
