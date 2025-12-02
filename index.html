@@ -573,8 +573,9 @@ const questions = {
     science: {
         name: "Science", icon: "🔬", from: "#22c55e", to: "#14b8a6", target: "M6-E7",
         topics: {
-            "Atoms-Elements": [
-                { type: "mcq", q: "What is an atom?", opts: ["Smallest particle of element", "Molecule", "Reaction", "Mixture"], ans: 0, exp: "Building block", diff: "A4" },
+            "Chemistry": [
+                // Atoms-Elements,
+                            { type: "mcq", q: "What is an atom?", opts: ["Smallest particle of element", "Molecule", "Reaction", "Mixture"], ans: 0, exp: "Building block", diff: "A4" },
                 { type: "tf", q: "Protons have a positive charge", ans: true, exp: "Protons = +", diff: "A4" },
                 { type: "tf", q: "Electrons have a positive charge", ans: false, exp: "Electrons = negative", diff: "A4" },
                 { type: "mcq", q: "Neutrons are?", opts: ["Neutral", "Positive", "Negative", "Both"], ans: 0, exp: "No charge", diff: "M5" },
@@ -588,10 +589,9 @@ const questions = {
                 { type: "mcq", q: "Noble gases are?", opts: ["Unreactive", "Very reactive", "Metals", "Liquids"], ans: 0, exp: "Full outer shell", diff: "M6" },
                 { type: "match", q: "Match particle to charge:", left: ["Proton", "Electron", "Neutron"], right: ["Negative", "Neutral", "Positive"], ans: [[0,2], [1,0], [2,1]], exp: "P=+, E=-, N=0", diff: "M5" },
                 { type: "mcq", q: "Group 1 elements are?", opts: ["Alkali metals", "Halogens", "Noble gases", "Alkaline"], ans: 0, exp: "Li, Na, K...", diff: "M6" },
-                { type: "fill", q: "Chlorine-37 has ___ neutrons", ans: "20", exp: "37-17=20", diff: "E7" }
-            ],
-            "Chemical-Formulas": [
-                { q: "Water symbol?", opts: ["H₂O", "CO₂", "NaCl", "O₂"], ans: 0, exp: "2H + 1O", diff: "A4" },
+                { type: "fill", q: "Chlorine-37 has ___ neutrons", ans: "20", exp: "37-17=20", diff: "E7" },
+                            // Chemical-Formulas,
+                            { q: "Water symbol?", opts: ["H₂O", "CO₂", "NaCl", "O₂"], ans: 0, exp: "2H + 1O", diff: "A4" },
                 { q: "CO₂ is?", opts: ["Carbon dioxide", "Carbon monoxide", "Calcium oxide", "Copper oxide"], ans: 0, exp: "1 carbon, 2 oxygen", diff: "M5" },
                 { q: "NaCl is?", opts: ["Salt", "Water", "Sugar", "Acid"], ans: 0, exp: "Sodium chloride", diff: "M5" },
                 { q: "H₂ means?", opts: ["2 hydrogen atoms", "Hydrogen ion", "Heavy hydrogen", "Helium"], ans: 0, exp: "Subscript = count", diff: "M5" },
@@ -603,10 +603,9 @@ const questions = {
                 { q: "CaCO₃ is?", opts: ["Calcium carbonate", "Carbon dioxide", "Calcium oxide", "Carbolic acid"], ans: 0, exp: "Limestone/chalk", diff: "E7" },
                 { q: "NH₃ is?", opts: ["Ammonia", "Nitrogen", "Water", "Acid"], ans: 0, exp: "N + 3H", diff: "M6" },
                 { q: "Atoms in C₆H₁₂O₆?", opts: ["24", "18", "6", "12"], ans: 0, exp: "6+12+6=24", diff: "E7" },
-                { q: "O₂ is called?", opts: ["Oxygen molecule", "Ozone", "Oxide", "Oxygen atom"], ans: 0, exp: "Diatomic", diff: "M5" }
-            ],
-            "Chemical-Reactions": [
-                { type: "mcq", q: "NOT sign of chemical reaction?", opts: ["Shape change", "Color change", "Gas production", "Heat change"], ans: 0, exp: "Shape = physical", diff: "M5" },
+                { q: "O₂ is called?", opts: ["Oxygen molecule", "Ozone", "Oxide", "Oxygen atom"], ans: 0, exp: "Diatomic", diff: "M5" },
+                            // Chemical-Reactions,
+                            { type: "mcq", q: "NOT sign of chemical reaction?", opts: ["Shape change", "Color change", "Gas production", "Heat change"], ans: 0, exp: "Shape = physical", diff: "M5" },
                 { type: "tf", q: "Reactants are the starting substances in a reaction", ans: true, exp: "Before reaction", diff: "M5" },
                 { type: "tf", q: "Products are formed at the end of a chemical reaction", ans: true, exp: "After reaction", diff: "M5" },
                 { type: "mcq", q: "Catalyst does?", opts: ["Speeds up, not used", "Slows", "Stops", "Nothing"], ans: 0, exp: "Faster, unchanged", diff: "M6" },
@@ -618,10 +617,9 @@ const questions = {
                 { type: "mcq", q: "Exothermic example?", opts: ["Combustion", "Photosynthesis", "Melting ice", "Evaporation"], ans: 0, exp: "Releases heat", diff: "E7" },
                 { type: "mcq", q: "HCl + NaOH → ?", opts: ["NaCl + H₂O", "Na + Cl₂", "H₂ + O₂", "NaCl only"], ans: 0, exp: "Salt + water", diff: "E7" },
                 { type: "mcq", q: "Decomposition reaction?", opts: ["One → many", "Many → one", "Exchange", "No change"], ans: 0, exp: "Breaks apart", diff: "M6" },
-                { type: "mcq", q: "Synthesis reaction?", opts: ["Many → one", "One → many", "Exchange", "No change"], ans: 0, exp: "Combines", diff: "M6" }
-            ],
-            "States-Matter": [
-                { type: "multi", q: "Select the three states of matter:", opts: ["Solid", "Liquid", "Gas", "Plasma", "Energy"], ans: [0, 1, 2], exp: "Basic states: solid, liquid, gas", diff: "A4" },
+                { type: "mcq", q: "Synthesis reaction?", opts: ["Many → one", "One → many", "Exchange", "No change"], ans: 0, exp: "Combines", diff: "M6" },
+                            // States-Matter,
+                            { type: "multi", q: "Select the three states of matter:", opts: ["Solid", "Liquid", "Gas", "Plasma", "Energy"], ans: [0, 1, 2], exp: "Basic states: solid, liquid, gas", diff: "A4" },
                 { type: "fill", q: "Solid → liquid is called ___", ans: "melting", exp: "Melting", diff: "A4" },
                 { type: "fill", q: "Liquid → gas is called ___", ans: "evaporation", exp: "Evaporation", diff: "M5" },
                 { type: "fill", q: "Gas → liquid is called ___", ans: "condensation", exp: "Condensation", diff: "M5" },
@@ -634,8 +632,9 @@ const questions = {
                 { type: "mcq", q: "Which has definite shape?", opts: ["Solid", "Liquid", "Gas", "All"], ans: 0, exp: "Fixed arrangement", diff: "M5" },
                 { type: "mcq", q: "Plasma is?", opts: ["4th state, ionized gas", "Dense liquid", "Super solid", "Cold gas"], ans: 0, exp: "Stars, lightning", diff: "E8" }
             ],
-            "Cells": [
-                { type: "mcq", q: "Cell powerhouse?", opts: ["Mitochondria", "Nucleus", "Membrane", "Ribosome"], ans: 0, exp: "Makes ATP", diff: "M5" },
+            "Biology": [
+                // Cells,
+                            { type: "mcq", q: "Cell powerhouse?", opts: ["Mitochondria", "Nucleus", "Membrane", "Ribosome"], ans: 0, exp: "Makes ATP", diff: "M5" },
                 { type: "mcq", q: "Nucleus function?", opts: ["Controls cell, DNA", "Energy", "Proteins", "Water"], ans: 0, exp: "Control center", diff: "M5" },
                 { type: "mcq", q: "Cell membrane function?", opts: ["Controls entry/exit", "Makes energy", "Stores DNA", "Makes proteins"], ans: 0, exp: "Selective barrier", diff: "M6" },
                 { type: "tf", q: "Plant cells have cell walls, animal cells do not", ans: true, exp: "Cell wall is unique to plants", diff: "M5" },
@@ -647,10 +646,9 @@ const questions = {
                 { type: "match", q: "Match organelle to function:", left: ["Mitochondria", "Nucleus", "Ribosome"], right: ["Makes proteins", "Controls cell", "Makes energy"], ans: [[0,2], [1,1], [2,0]], exp: "Mito=energy, Nucleus=control, Ribo=proteins", diff: "E7" },
                 { type: "tf", q: "Eukaryotes have membrane-bound organelles", ans: true, exp: "Complex cells", diff: "E7" },
                 { type: "mcq", q: "Cell division for growth?", opts: ["Mitosis", "Meiosis", "Osmosis", "Diffusion"], ans: 0, exp: "Same copies", diff: "E7" },
-                { type: "fill", q: "Osmosis moves ___ across membranes", ans: "water", exp: "Water diffusion", diff: "M6" }
-            ],
-            "Photosynthesis": [
-                { q: "Plants make food by?", opts: ["Photosynthesis", "Respiration", "Digestion", "Fermentation"], ans: 0, exp: "Light+CO₂+H₂O", diff: "M5" },
+                { type: "fill", q: "Osmosis moves ___ across membranes", ans: "water", exp: "Water diffusion", diff: "M6" },
+                            // Photosynthesis,
+                            { q: "Plants make food by?", opts: ["Photosynthesis", "Respiration", "Digestion", "Fermentation"], ans: 0, exp: "Light+CO₂+H₂O", diff: "M5" },
                 { q: "Photosynthesis needs?", opts: ["Sunlight, CO₂, water", "Oxygen only", "Darkness", "Sugar"], ans: 0, exp: "Inputs", diff: "M5" },
                 { q: "Photosynthesis produces?", opts: ["Glucose and oxygen", "CO₂ and water", "Only oxygen", "Only glucose"], ans: 0, exp: "Outputs", diff: "M6" },
                 { q: "Photosynthesis occurs in?", opts: ["Chloroplasts", "Mitochondria", "Nucleus", "Vacuole"], ans: 0, exp: "Green parts", diff: "M6" },
@@ -659,10 +657,9 @@ const questions = {
                 { q: "Rate increases with?", opts: ["More light (to a point)", "Less CO₂", "Lower temp always", "Less water"], ans: 0, exp: "Limiting factors", diff: "E7" },
                 { q: "Starch test uses?", opts: ["Iodine", "Litmus", "Benedict's", "Biuret"], ans: 0, exp: "Iodine turns blue-black", diff: "E7" },
                 { q: "Why do plants need glucose?", opts: ["Energy and building", "Only storage", "Waste product", "Not needed"], ans: 0, exp: "Growth + respiration", diff: "M6" },
-                { q: "Variegated leaf test shows?", opts: ["Only green parts make starch", "All parts same", "White makes more", "No difference"], ans: 0, exp: "Chlorophyll needed", diff: "E7" }
-            ],
-            "Respiration": [
-                { q: "Respiration produces?", opts: ["Energy (ATP)", "Oxygen", "Glucose", "Sunlight"], ans: 0, exp: "Releases energy", diff: "M5" },
+                { q: "Variegated leaf test shows?", opts: ["Only green parts make starch", "All parts same", "White makes more", "No difference"], ans: 0, exp: "Chlorophyll needed", diff: "E7" },
+                            // Respiration,
+                            { q: "Respiration produces?", opts: ["Energy (ATP)", "Oxygen", "Glucose", "Sunlight"], ans: 0, exp: "Releases energy", diff: "M5" },
                 { q: "Respiration uses?", opts: ["Glucose and oxygen", "CO₂ and water", "Sunlight", "Chlorophyll"], ans: 0, exp: "Inputs", diff: "M6" },
                 { q: "Respiration releases?", opts: ["CO₂ and water", "Oxygen and glucose", "Sunlight", "Chlorophyll"], ans: 0, exp: "Waste products", diff: "M6" },
                 { q: "Respiration occurs in?", opts: ["All living cells", "Leaves only", "Lungs only", "Plants only"], ans: 0, exp: "All organisms", diff: "M6" },
@@ -671,10 +668,9 @@ const questions = {
                 { q: "Fermentation in yeast produces?", opts: ["Ethanol and CO₂", "Lactic acid", "Water", "Oxygen"], ans: 0, exp: "Alcohol + gas", diff: "E7" },
                 { q: "Muscle anaerobic produces?", opts: ["Lactic acid", "Ethanol", "Oxygen", "Glucose"], ans: 0, exp: "Causes cramps", diff: "E7" },
                 { q: "Where in cell does aerobic occur?", opts: ["Mitochondria", "Nucleus", "Cell wall", "Vacuole"], ans: 0, exp: "Powerhouse", diff: "E7" },
-                { q: "Which releases more energy?", opts: ["Aerobic", "Anaerobic", "Same", "Neither"], ans: 0, exp: "With oxygen = more ATP", diff: "E7" }
-            ],
-            "Ecosystems": [
-                { q: "Ecosystem is?", opts: ["Living things + environment", "Only animals", "Only plants", "Just rocks"], ans: 0, exp: "Biotic + abiotic", diff: "M5" },
+                { q: "Which releases more energy?", opts: ["Aerobic", "Anaerobic", "Same", "Neither"], ans: 0, exp: "With oxygen = more ATP", diff: "E7" },
+                            // Ecosystems,
+                            { q: "Ecosystem is?", opts: ["Living things + environment", "Only animals", "Only plants", "Just rocks"], ans: 0, exp: "Biotic + abiotic", diff: "M5" },
                 { q: "Producer example?", opts: ["Plants", "Lions", "Humans", "Fungi"], ans: 0, exp: "Makes own food", diff: "M5" },
                 { q: "Consumer example?", opts: ["Animals", "Plants", "Sunlight", "Water"], ans: 0, exp: "Eats others", diff: "M5" },
                 { q: "Decomposer example?", opts: ["Fungi/bacteria", "Lion", "Tree", "Fish"], ans: 0, exp: "Breaks down dead", diff: "M6" },
@@ -688,8 +684,9 @@ const questions = {
                 { q: "Apex predator?", opts: ["Top of food chain", "Bottom", "Middle", "Producer"], ans: 0, exp: "No natural predators", diff: "M6" },
                 { q: "Carbon cycle involves?", opts: ["Photosynthesis & respiration", "Only water", "Only rocks", "Nothing"], ans: 0, exp: "Carbon movement", diff: "E7" }
             ],
-            "Forces": [
-                { q: "Force unit?", opts: ["Newton", "Joule", "Watt", "Metre"], ans: 0, exp: "N", diff: "A4" },
+            "Physics": [
+                // Forces,
+                            { q: "Force unit?", opts: ["Newton", "Joule", "Watt", "Metre"], ans: 0, exp: "N", diff: "A4" },
                 { q: "Gravity pulls?", opts: ["Downward", "Upward", "Sideways", "Nowhere"], ans: 0, exp: "Toward Earth", diff: "A4" },
                 { q: "Friction?", opts: ["Opposes motion", "Helps motion", "Creates heat only", "Nothing"], ans: 0, exp: "Slows down", diff: "M5" },
                 { q: "Balanced forces result?", opts: ["No change in motion", "Acceleration", "Deceleration", "Spinning"], ans: 0, exp: "Stays same", diff: "M5" },
@@ -701,10 +698,9 @@ const questions = {
                 { q: "Newton's 2nd: F=?", opts: ["ma", "mv", "mg", "m/a"], ans: 0, exp: "Force = mass × acceleration", diff: "E7" },
                 { q: "Newton's 3rd law?", opts: ["Action = reaction", "F=ma", "Inertia", "Gravity"], ans: 0, exp: "Equal opposite forces", diff: "E7" },
                 { q: "Air resistance is?", opts: ["Friction with air", "Gravity", "Weight", "Mass"], ans: 0, exp: "Drag force", diff: "M6" },
-                { q: "Terminal velocity?", opts: ["Constant falling speed", "Maximum speed ever", "Zero speed", "Acceleration"], ans: 0, exp: "Drag = weight", diff: "E7" }
-            ],
-            "Energy": [
-                { q: "Moving object has?", opts: ["Kinetic", "Potential", "Chemical", "Nuclear"], ans: 0, exp: "Motion energy", diff: "M5" },
+                { q: "Terminal velocity?", opts: ["Constant falling speed", "Maximum speed ever", "Zero speed", "Acceleration"], ans: 0, exp: "Drag = weight", diff: "E7" },
+                            // Energy,
+                            { q: "Moving object has?", opts: ["Kinetic", "Potential", "Chemical", "Nuclear"], ans: 0, exp: "Motion energy", diff: "M5" },
                 { q: "Stored energy?", opts: ["Potential", "Kinetic", "Thermal", "Sound"], ans: 0, exp: "Stored", diff: "M5" },
                 { q: "Energy cannot be?", opts: ["Created or destroyed", "Stored", "Changed", "Measured"], ans: 0, exp: "Conservation", diff: "M6" },
                 { q: "Battery stores?", opts: ["Chemical", "Kinetic", "Sound", "Light"], ans: 0, exp: "Chemical→electrical", diff: "M6" },
@@ -716,10 +712,9 @@ const questions = {
                 { q: "Efficiency = ?", opts: ["Useful output / Total input", "Input / Output", "Total / Useful", "1"], ans: 0, exp: "As percentage", diff: "E7" },
                 { q: "Energy unit?", opts: ["Joule", "Newton", "Watt", "Kilogram"], ans: 0, exp: "J", diff: "M5" },
                 { q: "Work = ?", opts: ["Force × distance", "Mass × velocity", "Energy × time", "Power × mass"], ans: 0, exp: "W = Fd", diff: "E7" },
-                { q: "Power = ?", opts: ["Energy ÷ time", "Force × time", "Mass × speed", "Work × distance"], ans: 0, exp: "P = E/t", diff: "E8" }
-            ],
-            "Light-Sound": [
-                { q: "Light travels in?", opts: ["Straight lines", "Curves", "Circles", "Zigzags"], ans: 0, exp: "Light straight", diff: "A4" },
+                { q: "Power = ?", opts: ["Energy ÷ time", "Force × time", "Mass × speed", "Work × distance"], ans: 0, exp: "P = E/t", diff: "E8" },
+                            // Light-Sound,
+                            { q: "Light travels in?", opts: ["Straight lines", "Curves", "Circles", "Zigzags"], ans: 0, exp: "Light straight", diff: "A4" },
                 { q: "Sound needs ___ to travel?", opts: ["A medium", "Nothing", "Light", "Electricity"], ans: 0, exp: "Needs particles", diff: "M5" },
                 { q: "Prism separates light into?", opts: ["Spectrum", "Brighter", "Disappears", "Laser"], ans: 0, exp: "ROYGBIV", diff: "M6" },
                 { q: "Sound fastest in?", opts: ["Solids", "Liquids", "Gases", "Vacuum"], ans: 0, exp: "Densest = fastest", diff: "M6" },
