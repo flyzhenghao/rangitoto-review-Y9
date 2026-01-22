@@ -7116,9 +7116,9 @@
                         return;
                     }
 
-                    // Check if we're in exam mode (use window.__appState)
+                    // Check if we're in exam mode (just check currentExam, not view)
                     const appState = window.__appState || {};
-                    if (appState.view === "exam" && appState.currentExam && !appState.showReview) {
+                    if (appState.currentExam && !appState.showReview) {
                         const isLast = appState.examState.q === appState.currentExam.questions.length - 1;
                         const allAnswered = appState.currentExam.questions.every((_, i) => appState.examState.answers[i] !== null && appState.examState.answers[i] !== undefined);
 
