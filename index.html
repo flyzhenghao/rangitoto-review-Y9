@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Rangitoto Year 9 Review Hub v9.2</title>
+        <title>Rangitoto Year 9 Review Hub v9.3</title>
         <style>
             * {
                 margin: 0;
@@ -890,7 +890,7 @@
         <div class="container" id="app"></div>
         <script>
             // ============ VERSION ============
-            const APP_VERSION = "v9.2";
+            const APP_VERSION = "v9.3";
 
             // ============ STUDY PLAN ============
             const PLAN_START = new Date("2025-12-06"),
@@ -7098,6 +7098,32 @@
                 view = "dashboard";
                 render();
             }
+
+            // Keyboard shortcuts
+            document.addEventListener("keydown", function (e) {
+                // Only handle Enter key in exam view
+                if (e.key === "Enter" && view === "exam" && currentExam && !showReview) {
+                    // Don't trigger if user is typing in a textarea or input
+                    if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") {
+                        return;
+                    }
+
+                    const isLast = examState.q === currentExam.questions.length - 1;
+                    const allAnswered = currentExam.questions.every((_, i) => examState.answers[i] !== null && examState.answers[i] !== undefined);
+
+                    if (isLast) {
+                        // On last question, Enter submits if all answered
+                        if (allAnswered) {
+                            finishExam();
+                        }
+                    } else {
+                        // On any other question, Enter goes to next
+                        nextQuestion();
+                    }
+
+                    e.preventDefault();
+                }
+            });
 
             // Init
             if (!state.dailyProgress) state.dailyProgress = {};
