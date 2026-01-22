@@ -6252,6 +6252,14 @@
                 selectedDay = null,
                 showReview = false;
 
+            // Expose to window for keyboard shortcuts
+            window.__appState = {
+                get view() { return view; },
+                get currentExam() { return currentExam; },
+                get examState() { return examState; },
+                get showReview() { return showReview; }
+            };
+
             // ============ HELPERS ============
             function getTodayStr() {
                 return new Date().toISOString().split("T")[0];
@@ -7108,10 +7116,11 @@
                         return;
                     }
 
-                    // Check if we're in exam mode
-                    if (view === "exam" && currentExam && !showReview) {
-                        const isLast = examState.q === currentExam.questions.length - 1;
-                        const allAnswered = currentExam.questions.every((_, i) => examState.answers[i] !== null && examState.answers[i] !== undefined);
+                    // Check if we're in exam mode (use window.__appState)
+                    const appState = window.__appState || {};
+                    if (appState.view === "exam" && appState.currentExam && !appState.showReview) {
+                        const isLast = appState.examState.q === appState.currentExam.questions.length - 1;
+                        const allAnswered = appState.currentExam.questions.every((_, i) => appState.examState.answers[i] !== null && appState.examState.answers[i] !== undefined);
 
                         if (isLast) {
                             // On last question, Enter submits if all answered
