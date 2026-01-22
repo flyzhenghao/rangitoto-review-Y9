@@ -7102,26 +7102,29 @@
             // Keyboard shortcuts
             document.addEventListener("keydown", function (e) {
                 // Only handle Enter key in exam view
-                if (e.key === "Enter" && view === "exam" && currentExam && !showReview) {
+                if (e.key === "Enter") {
                     // Don't trigger if user is typing in a textarea or input
                     if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") {
                         return;
                     }
 
-                    const isLast = examState.q === currentExam.questions.length - 1;
-                    const allAnswered = currentExam.questions.every((_, i) => examState.answers[i] !== null && examState.answers[i] !== undefined);
+                    // Check if we're in exam mode
+                    if (view === "exam" && currentExam && !showReview) {
+                        const isLast = examState.q === currentExam.questions.length - 1;
+                        const allAnswered = currentExam.questions.every((_, i) => examState.answers[i] !== null && examState.answers[i] !== undefined);
 
-                    if (isLast) {
-                        // On last question, Enter submits if all answered
-                        if (allAnswered) {
-                            finishExam();
+                        if (isLast) {
+                            // On last question, Enter submits if all answered
+                            if (allAnswered) {
+                                finishExam();
+                            }
+                        } else {
+                            // On any other question, Enter goes to next
+                            nextQuestion();
                         }
-                    } else {
-                        // On any other question, Enter goes to next
-                        nextQuestion();
-                    }
 
-                    e.preventDefault();
+                        e.preventDefault();
+                    }
                 }
             });
 
